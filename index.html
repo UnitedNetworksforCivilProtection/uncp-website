@@ -1,82 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>United Networks for Civil Protection (UNCP)</title>
-  <link rel="stylesheet" href="styles.css" />
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
-    .site-header { background: #f7f9fb; border-bottom: 1px solid #ddd; padding: 10px 20px; }
-    .brand { display: flex; align-items: center; gap: 12px; }
-    .logo img { height: 55px; }
-    .org strong { font-size: 1.3rem; display: block; }
-    .tagline { font-size: 0.9rem; color: #555; }
-    main { padding: 20px; max-width: 900px; margin: auto; }
-    h1, h2 { color: #004080; }
-    section { margin-bottom: 30px; }
-    ul { margin: 0; padding-left: 20px; }
-    footer { background: #004080; color: #fff; text-align: center; padding: 15px; margin-top: 30px; }
-    footer a { color: #fff; text-decoration: underline; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNCP Home</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background-color: #fdfdfd; }
+html { scroll-behavior: smooth; }
+
+/* Logo */
+.logo-container { text-align: center; padding: 20px 0; background-color: #f5f5f5; }
+.logo-container img { height: 80px; }
+
+/* Header & nav */
+header { background-color: #004080; color: white; padding: 15px 20px; position: relative; }
+header h1 { text-align: center; font-size: 2rem; margin-bottom: 10px; }
+nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; }
+nav a { color: white; text-decoration: none; font-weight: bold; font-size: 1rem; }
+nav a:hover { text-decoration: underline; }
+.menu-icon { display: none; position: absolute; right: 20px; top: 25px; font-size: 2rem; cursor: pointer; }
+
+/* Hero banner */
+.hero { background: url('hero-background.jpg') no-repeat center center/cover; text-align: center; padding: 80px 20px; color: white; position: relative; }
+.hero::after { content: ""; position: absolute; top:0; left:0; width:100%; height:100%; background-color: rgba(0,0,0,0.5); z-index:0; }
+.hero-content { position: relative; z-index:1; max-width: 800px; margin: 0 auto; }
+.hero-content h2 { font-size: 2.5rem; margin-bottom: 20px; }
+.hero-content p { font-size: 1.2rem; margin-bottom: 30px; }
+.hero-content .btn { display: inline-block; background-color: #ff9900; color: white; text-decoration: none; padding: 12px 25px; margin: 5px; border-radius: 5px; font-weight: bold; transition: background 0.3s; position: relative; overflow: hidden; }
+.hero-content .btn::after { content: ""; position: absolute; top:0; left:-100%; width:100%; height:100%; background: rgba(255,255,255,0.2); transform: skewX(-20deg); transition: all 0.5s; }
+.hero-content .btn:hover::after { left:100%; }
+.hero-content .btn:hover { background-color: #e68a00; }
+
+/* Main content */
+main { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+h2.section-title { color: #004080; margin-bottom: 15px; border-bottom: 2px solid #004080; display: inline-block; padding-bottom: 5px; }
+
+/* Cards layout */
+.cards-container { display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 20px; }
+.card { flex: 1 1 300px; background-color: #f9f9f9; border-left: 4px solid #004080; padding: 15px 20px; border-radius: 5px; transition: transform 0.2s, box-shadow 0.2s; display: flex; align-items: center; gap: 10px; cursor: default; opacity: 0; animation: fadeInUp 0.6s ease forwards; }
+.card:hover { transform: scale(1.02); box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
+.card h3 { margin-bottom: 5px; font-size: 1.1rem; }
+
+/* Section card colors */
+.about-card { background-color: #e6f2ff; border-left-color: #0059b3; }
+.what-card { background-color: #fff2e6; border-left-color: #ff9933; }
+.where-card { background-color: #e6ffe6; border-left-color: #33cc33; text-align: center; cursor: pointer; }
+.news-card { background-color: #fff0f5; border-left-color: #cc3399; }
+.action-card { background-color: #fffbe6; border-left-color: #ffcc00; }
+
+/* Fade-in animation */
+@keyframes fadeInUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+
+/* Modal */
+#locationModal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.6); z-index:1000; align-items:center; justify-content:center; }
+#locationModal div { background:white; padding:20px; border-radius:8px; max-width:500px; width:90%; position:relative; transform: scale(0.8); opacity:0; transition: all 0.3s ease; }
+#locationModal.show div { transform: scale(1); opacity:1; }
+
+/* Footer */
+footer { background-color: #e0e0e0; text-align: center; padding: 20px 10px; font-size: 0.9rem; color: #555; margin-top: 40px; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    nav { display: none; flex-direction: column; gap: 10px; text-align: center; }
+    nav.active { display: flex; }
+    .menu-icon { display: block; }
+    .hero-content h2 { font-size: 2rem; }
+    .hero-content p { font-size: 1rem; }
+}
+</style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="brand">
-      <div class="logo"><img src="UNCP LOGO.jpeg" alt="UNCP Logo"></div>
-      <div class="org">
-        <strong>United Networks for Civil Protection</strong>
-        <span class="tagline">Community-Based, Non-Profit • Arua City, Uganda</span>
-      </div>
+
+<!-- Logo -->
+<div class="logo-container"><img src="logo.jpeg" alt="UNCP Logo"></div>
+
+<!-- Header -->
+<header>
+    <h1>University of North Carolina at Pembroke</h1>
+    <span class="menu-icon" onclick="toggleMenu()">&#9776;</span>
+    <nav id="main-nav">
+        <a href="#about">About UNCP</a>
+        <a href="#what-we-do">What We Do</a>
+        <a href="#where-we-work">Where We Work</a>
+        <a href="#news-stories">News & Stories</a>
+        <a href="#get-involved">Get Involved</a>
+        <a href="#donate">Donate</a>
+    </nav>
+</header>
+
+<!-- Hero Banner -->
+<section class="hero">
+    <div class="hero-content">
+        <h2>Welcome to UNCP</h2>
+        <p>Empowering students, inspiring communities, and advancing knowledge through excellence in education and research.</p>
+        <a href="#donate" class="btn">Donate</a>
+        <a href="#get-involved" class="btn">Get Involved</a>
     </div>
-  </header>
+</section>
 
-  <main>
-    <section>
-      <h1>Welcome to UNCP</h1>
-      <p>Founded in 2018, United Networks for Civil Protection (UNCP) is a community-based, 
-      non-profit, non-political, and non-religious organization headquartered in Arua City, Uganda. 
-      We work to protect and empower vulnerable children, youth, and communities through rights-based, 
-      locally led programs.</p>
+<main>
+    <!-- About UNCP -->
+    <section id="about" class="section">
+        <h2 class="section-title">About UNCP</h2>
+        <div class="cards-container">
+            <div class="card about-card">📄 Overview</div>
+            <div class="card about-card">💰 Planning, Funding, and Results</div>
+            <div class="card about-card">🤝 Our Partners</div>
+            <div class="card about-card">🏛 Governance and Oversight</div>
+            <div class="card about-card">👥 Who We Work With and For</div>
+        </div>
     </section>
 
-    <section>
-      <h2>Vision</h2>
-      <p>A safe, inclusive, and resilient society where every child and vulnerable person can thrive with dignity and equal opportunity.</p>
+    <!-- What We Do -->
+    <section id="what-we-do" class="section">
+        <h2 class="section-title">What We Do</h2>
+        <div class="cards-container">
+            <div class="card what-card">📚 Thematic Area 1</div>
+            <div class="card what-card">🔬 Thematic Area 2</div>
+            <div class="card what-card">🌱 Thematic Area 3</div>
+            <div class="card what-card">💡 Thematic Area 4</div>
+        </div>
     </section>
 
-    <section>
-      <h2>Mission</h2>
-      <p>To protect and empower vulnerable children, youth and communities through rights-based, 
-      locally led programs in child protection, GBV prevention and response, mental health and psychosocial support, 
-      education and climate-resilient livelihoods.</p>
+    <!-- Where We Work -->
+    <section id="where-we-work" class="section">
+        <h2 class="section-title">Where We Work</h2>
+        <div class="cards-container">
+            <div class="card where-card" style="flex-basis:100%; font-weight:bold; font-size:1.2rem;">🇺🇬 Uganda</div>
+            <div class="cards-container" style="gap:10px;">
+                <div class="card where-card" onclick="openModal('Arua City')">🏙 Arua City</div>
+                <div class="card where-card" onclick="openModal('Arua District')">🌄 Arua District</div>
+                <div class="card where-card" onclick="openModal('Madi Okollo')">🌳 Madi Okollo</div>
+                <div class="card where-card" onclick="openModal('Terego')">🛤 Terego</div>
+                <div class="card where-card" onclick="openModal('Adjumani')">🏞 Adjumani</div>
+                <div class="card where-card" onclick="openModal('Moyo')">🏝 Moyo</div>
+                <div class="card where-card" onclick="openModal('Obongi')">🏘 Obongi</div>
+                <div class="card where-card" onclick="openModal('Pakwach')">🚢 Pakwach</div>
+                <div class="card where-card" onclick="openModal('Nebbi')">🏔 Nebbi</div>
+                <div class="card where-card" onclick="openModal('Koboko')">🏰 Koboko</div>
+                <div class="card where-card" onclick="openModal('Yumbe')">🏜 Yumbe</div>
+                <div class="card where-card" onclick="openModal('Zombo')">🌄 Zombo</div>
+                <div class="card where-card" onclick="openModal('Maracha')">🌾 Maracha</div>
+            </div>
+        </div>
     </section>
 
-    <section>
-      <h2>Thematic Areas</h2>
-      <ul>
-        <li>Child Protection</li>
-        <li>GBV Prevention and Response</li>
-        <li>Mental Health and Psychosocial Support</li>
-        <li>Adolescent and Youth Employment</li>
-        <li>Climate Change Adaptation and Sustainable Livelihoods</li>
-        <li>Inclusive Education</li>
-      </ul>
+    <!-- News & Stories -->
+    <section id="news-stories" class="section">
+        <h2 class="section-title">News & Stories</h2>
+        <div class="cards-container">
+            <div class="card news-card">
+                📰 <div><h3>New Research Program Launched</h3><p>Interdisciplinary research program focusing on AI and sustainability.</p></div>
+            </div>
+            <div class="card news-card">
+                🏗 <div><h3>Campus Renovation Updates</h3><p>Renovations underway for the library and student center.</p></div>
+            </div>
+        </div>
     </section>
 
-    <section>
-      <h2>Contact Us</h2>
-      <p>P.O. Box 341054, Arua City, Uganda<br>
-      Email: <a href="mailto:uncip2019@gmail.com">uncip2019@gmail.com</a><br>
-      Tel: <a href="tel:+256779576538">+256 779 576 538</a>, <a href="tel:+256702398687">+256 702 398 687</a></p>
+    <!-- Get Involved -->
+    <section id="get-involved" class="section">
+        <h2 class="section-title">Get Involved</h2>
+        <div class="card action-card">🤝 Join student clubs, volunteer opportunities, or participate in campus events.</div>
     </section>
-  </main>
 
-  <footer>
-    <p>&copy; 2018-2025 United Networks for Civil Protection (UNCP). All rights reserved.</p>
-  </footer>
+    <!-- Donate -->
+    <section id="donate" class="section">
+        <h2 class="section-title">Donate</h2>
+        <div class="card action-card">💛 Support UNCP programs, scholarships, and community initiatives.</div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer>&copy; 2025 University of North Carolina at Pembroke | All rights reserved</footer>
+
+<!-- Modal -->
+<div id="locationModal">
+    <div>
+        <span style="position:absolute; top:10px; right:15px; font-size:1.5rem; cursor:pointer;" onclick="closeModal()">&times;</span>
+        <h3 id="modalTitle"></h3>
+        <p id="modalContent">More information about this district/city will go here. You can include programs, contact info, or highlights.</p>
+    </div>
+</div>
+
+<script>
+function toggleMenu() {
+    const nav = document.getElementById('main-nav');
+    nav.classList.toggle('active');
+}
+
+function openModal(locationName) {
+    const modal = document.getElementById('locationModal');
+    document.getElementById('modalTitle').innerText = locationName;
+    modal.style.display = 'flex';
+    setTimeout(() => modal.classList.add('show'), 10);
+}
+
+function closeModal() {
+    const modal = document.getElementById('locationModal');
+    modal.classList.remove('show');
+    setTimeout(() => modal.style.display = 'none', 300);
+}
+</script>
+
 </body>
 </html>
 
-
-</html>
