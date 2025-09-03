@@ -4,348 +4,240 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>UNCP - United Networks for Civil Protection</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background-color: #fdfdfd; }
-html { scroll-behavior: smooth; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height:1.6; background:#fdfdfd; color:#333; }
+html { scroll-behavior:smooth; }
 
-/* Logo */
-.logo-container { text-align: center; padding: 20px 0; background-color: #f5f5f5; }
-.logo-container img { height: 80px; }
-
-/* Header & nav */
-header { background-color: #004080; color: white; padding: 15px 20px; position: relative; }
-header h1 { text-align: center; font-size: 2rem; margin-bottom: 10px; }
-nav ul { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; padding: 0; margin:0;}
-nav li { position: relative; }
-nav a { color: white; text-decoration: none; padding: 8px 12px; display: block; font-weight:bold; }
-nav a:hover { text-decoration: underline; }
-
-/* Dropdown */
-.dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 100%; left: 0;
-  background: white;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  border-radius: 5px;
-  min-width: 200px;
-  z-index: 100;
-}
-.dropdown:hover .dropdown-menu { display: block; }
+/* Header */
+header { display:flex; justify-content:space-between; align-items:center; padding:15px 20px; background:#004080; flex-wrap:wrap; position:relative; }
+header .logo-left img { height:60px; transition: transform 0.3s; }
+header .logo-left img:hover { transform: scale(1.05); }
+nav ul { list-style:none; display:flex; justify-content:center; flex-wrap:wrap; gap:15px; margin:0; padding:0; flex:2; }
+nav li { position:relative; }
+nav a { color:white; text-decoration:none; padding:8px 12px; display:block; font-weight:bold; transition: transform 0.3s; }
+nav a:hover { text-decoration:underline; transform: scale(1.05); }
+.dropdown-menu { display:none; position:absolute; top:100%; left:0; background:white; box-shadow:0 4px 6px rgba(0,0,0,0.1); border-radius:5px; min-width:200px; z-index:100; opacity:0; transition:opacity 0.3s ease; }
+.dropdown:hover .dropdown-menu { display:block; opacity:1; }
 .dropdown-menu li a { color:#333; padding:10px; }
 .dropdown-menu li a:hover { background:#f5f5f5; }
-
-.menu-icon { display: none; position: absolute; right: 20px; top: 25px; font-size: 2rem; cursor: pointer; }
+.donate-btn { background:#FF9900; color:white; padding:8px 15px; border-radius:5px; font-weight:bold; transition: transform 0.3s, background 0.3s; }
+.donate-btn:hover { background:#e68a00; transform: scale(1.05); }
+.search-icon a { color:white; font-size:1.5rem; transition: transform 0.3s; }
+.search-icon a:hover { transform: scale(1.1); }
 
 /* Hero banner */
-.hero { background: url('hero-background.jpg') no-repeat center center/cover; text-align: center; padding: 80px 20px; color: white; position: relative; }
-.hero::after { content: ""; position: absolute; top:0; left:0; width:100%; height:100%; background-color: rgba(0,0,0,0.5); z-index:0; }
-.hero-content { position: relative; z-index:1; max-width: 800px; margin: 0 auto; }
-.hero-content h2 { font-size: 2.5rem; margin-bottom: 20px; }
-.hero-content p { font-size: 1.2rem; margin-bottom: 30px; }
-.hero-content .btn { display: inline-block; background-color: #ff9900; color: white; text-decoration: none; padding: 12px 25px; margin: 5px; border-radius: 5px; font-weight: bold; transition: background 0.3s; position: relative; overflow: hidden; }
-.hero-content .btn::after { content: ""; position: absolute; top:0; left:-100%; width:100%; height:100%; background: rgba(255,255,255,0.2); transform: skewX(-20deg); transition: all 0.5s; }
-.hero-content .btn:hover::after { left:100%; }
-.hero-content .btn:hover { background-color: #e68a00; }
+.hero { background: url('uganda-community.jpg') no-repeat center center/cover; text-align:center; padding:80px 20px; color:white; position:relative; }
+.hero::after { content:""; position:absolute; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.5); z-index:0; }
+.hero-content { position:relative; z-index:1; max-width:800px; margin:0 auto; }
+.hero-content h2 { font-size:2.5rem; margin-bottom:20px; color:#FFD166; transition: transform 0.3s; }
+.hero-content h2:hover { transform: scale(1.02); }
+.hero-content p { font-size:1.2rem; margin-bottom:30px; }
+.hero-content .btn { display:inline-block; background-color:#FF9900; color:white; text-decoration:none; padding:12px 25px; margin:5px; border-radius:5px; font-weight:bold; transition: transform 0.3s, background 0.3s; }
+.hero-content .btn:hover { background-color:#e68a00; transform: scale(1.05); }
 
-/* Main content */
-main { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
-h2.section-title { color: #004080; margin-bottom: 15px; border-bottom: 2px solid #004080; display: inline-block; padding-bottom: 5px; }
-
-/* Cards layout */
-.cards-container { display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 20px; }
-.card { flex: 1 1 300px; background-color: #f9f9f9; border-left: 4px solid #004080; padding: 15px 20px; border-radius: 5px; transition: transform 0.2s, box-shadow 0.2s; display: flex; align-items: center; gap: 10px; cursor: default; opacity: 0; animation: fadeInUp 0.6s ease forwards; }
-.card:hover { transform: scale(1.02); box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
-.card h3 { margin-bottom: 5px; font-size: 1.1rem; }
-
-/* Section card colors */
-.about-card { background-color: #e6f2ff; border-left-color: #0059b3; }
-.what-card { background-color: #fff2e6; border-left-color: #ff9933; }
-.where-card { background-color: #e6ffe6; border-left-color: #33cc33; text-align: center; cursor: pointer; }
-.news-card { background-color: #fff0f5; border-left-color: #cc3399; }
-.action-card { background-color: #fffbe6; border-left-color: #ffcc00; }
-
-/* Fade-in animation */
-@keyframes fadeInUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
-
-/* Modal */
-#locationModal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.6); z-index:1000; align-items:center; justify-content:center; }
-#locationModal div { background:white; padding:20px; border-radius:8px; max-width:500px; width:90%; position:relative; transform: scale(0.8); opacity:0; transition: all 0.3s ease; }
-#locationModal.show div { transform: scale(1); opacity:1; }
+/* Main sections */
+main { max-width:1000px; margin:40px auto; padding:0 20px; }
+h2.section-title { color:#004080; margin-bottom:15px; border-bottom:2px solid #004080; display:inline-block; padding-bottom:5px; }
 
 /* Accordion */
-.accordion-item { margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; overflow: hidden; }
-.accordion-header { background: #f2f2f2; padding: 10px; cursor: pointer; font-weight: bold; }
-.accordion-header:hover { background: #e0e0e0; }
-.accordion-content { display: none; padding: 10px; background: #fafafa; }
+.accordion-item { margin:10px 0; border:1px solid #ccc; border-radius:5px; overflow:hidden; box-shadow:0 2px 5px rgba(0,0,0,0.05); }
+.accordion-header { background:#f2f2f2; padding:10px; cursor:pointer; font-weight:bold; transition: background 0.3s; }
+.accordion-header:hover { background:#e0e0e0; }
+.accordion-content { max-height:0; overflow:hidden; padding:0 10px; background:#fafafa; transition: max-height 0.4s ease, padding 0.4s ease; }
 
-/* Footer */
-footer { background-color: #e0e0e0; text-align: center; padding: 20px 10px; font-size: 0.9rem; color: #555; margin-top: 40px; }
+/* Grid for districts */
+.district-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(120px,1fr)); gap:5px; }
 
 /* Contact Form */
-.contact-form {
-  margin-top: 20px;
-  padding: 20px;
-  background: #f9f9f9;
-  border-radius: 8px;
-  max-width: 500px;
-}
-.contact-form h3 { margin-bottom: 15px; font-size: 1.3rem; color: #004080; }
-.contact-form form { display: flex; flex-direction: column; gap: 12px; }
-.contact-form label { font-weight: bold; }
-.contact-form input, .contact-form textarea {
-  padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 1rem;
-}
-.contact-form button {
-  background: #004080; color: white; padding: 12px; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer; transition: background 0.3s ease;
-}
-.contact-form button:hover { background: #003060; }
+.contact-form { margin-top:20px; padding:20px; background:#f9f9f9; border-radius:8px; max-width:500px; }
+.contact-form h3 { margin-bottom:15px; font-size:1.3rem; color:#004080; }
+.contact-form form { display:flex; flex-direction:column; gap:12px; }
+.contact-form label { font-weight:bold; }
+.contact-form input, .contact-form textarea { padding:10px; border:1px solid #ccc; border-radius:5px; font-size:1rem; }
+.contact-form button { background:#004080; color:white; padding:12px; border:none; border-radius:5px; font-size:1rem; cursor:pointer; transition:0.3s; }
+.contact-form button:hover { background:#003060; transform: scale(1.02); }
+.contact-info { color:#00BFA6; font-weight:bold; }
 
-/* Notification container */
-#notification-container {
-  position: fixed; top:20px; right:20px; z-index:2000; display:flex; flex-direction:column; gap:10px;
-}
-.notification { min-width:250px; padding:15px 20px; border-radius:8px; color:white; font-weight:bold; box-shadow:0 4px 8px rgba(0,0,0,0.2); opacity:0; transform:translateY(-20px); transition:opacity 0.8s ease, transform 0.8s ease; }
-.notification-success { background:#28a745; }
-.notification-error { background:#dc3545; }
+/* Footer */
+footer { background:#333; color:white; padding:40px 20px; }
+footer a { color:white; text-decoration:none; }
+footer a:hover { text-decoration:underline; }
+footer .social-icons a { font-size:1.5rem; margin-right:10px; transition: transform 0.3s; }
+footer .social-icons a:hover { transform: scale(1.2); }
 
 /* Responsive */
-@media (max-width: 768px) {
-    nav ul { flex-direction: column; text-align:center; gap:10px; }
-    .menu-icon { display: block; }
-    .hero-content h2 { font-size: 2rem; }
-    .hero-content p { font-size: 1rem; }
-}
+@media(max-width:768px){ nav ul{flex-direction:column; text-align:center; gap:10px;} .hero-content h2{font-size:2rem;} .hero-content p{font-size:1rem;} }
 </style>
 </head>
 <body>
 
-<!-- Logo -->
-<div class="logo-container"><img src="logo.jpeg" alt="UNCP Logo"></div>
-
 <!-- Header -->
 <header>
-    <h1>United Networks for Civil Protection (UNCP)</h1>
-    <span class="menu-icon" onclick="toggleMenu()">&#9776;</span>
-    <nav id="main-nav">
-      <ul>
-        <li><a href="#about">About UNCP</a></li>
-        <li><a href="#what-we-do">What We Do</a></li>
-        <li><a href="#where-we-work">Where We Work</a></li>
-        <li><a href="#news-stories">News & Stories</a></li>
-        <li class="dropdown">
-          <a href="#get-involved">Get Involved ▾</a>
-          <ul class="dropdown-menu">
-            <li><a href="#careers">Careers</a></li>
-            <li><a href="#partners">Our Partners / Donors</a></li>
-            <li><a href="#suppliers">Become a Supplier</a></li>
-          </ul>
-        </li>
-        <li><a href="#donate">Donate</a></li>
-        <li class="dropdown">
-          <a href="#contact">Contact Us ▾</a>
-          <ul class="dropdown-menu">
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="#contact-uncp">Contact UNCP</a></li>
-            <li><a href="#report-abuse">Report Misconduct or Abuse</a></li>
-            <li><a href="#report-fraud">Report Scammers or Fraudulent Site/Email</a></li>
-          </ul>
-        </li>
-      </ul>
-    </nav>
+  <div class="logo-left"><a href="#"><img src="logo.jpeg" alt="UNCP Logo"></a></div>
+  <nav>
+    <ul>
+      <li class="dropdown"><a href="#about">About UNCP ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#planning-funding-results">Planning, Funding & Results</a></li>
+          <li><a href="#partners">Our Partners</a></li>
+          <li><a href="#governance">Governance & Oversight</a></li>
+          <li><a href="#who-we-work-with">Who We Work With & For</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"><a href="#what-we-do">What We Do ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="#child-protection">Child Protection</a></li>
+          <li><a href="#gbv-prevention">GBV Prevention</a></li>
+          <li><a href="#mhpss">Mental Health & Psychosocial Support</a></li>
+          <li><a href="#youth-empowerment">Youth Empowerment</a></li>
+          <li><a href="#climate-livelihoods">Climate Change & Livelihoods</a></li>
+          <li><a href="#inclusive-education">Inclusive Education</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"><a href="#where-we-work">Where We Work ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="#uganda">Uganda</a></li>
+          <li><a href="#arua-city">Arua City</a></li>
+          <li><a href="#arua-district">Arua District</a></li>
+          <li><a href="#madi-okollo">Madi Okollo</a></li>
+          <li><a href="#terege">Terego</a></li>
+          <li><a href="#adjumani">Adjumani</a></li>
+          <li><a href="#moyo">Moyo</a></li>
+          <li><a href="#obongi">Obongi</a></li>
+          <li><a href="#pakwach">Pakwach</a></li>
+          <li><a href="#nebbi">Nebbi</a></li>
+          <li><a href="#koboko">Koboko</a></li>
+          <li><a href="#yumbe">Yumbe</a></li>
+          <li><a href="#zombo">Zombo</a></li>
+          <li><a href="#maracha">Maracha</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"><a href="#news-stories">News & Stories ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="#latest-news">Latest News</a></li>
+          <li><a href="#community-stories">Community Stories</a></li>
+          <li><a href="#project-highlights">Project Highlights</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"><a href="#get-involved">Get Involved ▾</a>
+        <ul class="dropdown-menu">
+          <li><a href="#careers">Careers</a></li>
+          <li><a href="#partners-donors">Partners / Donors</a></li>
+          <li><a href="#suppliers">Become a Supplier</a></li>
+        </ul>
+      </li>
+      <li><a href="#donate" class="donate-btn">Donate</a></li>
+    </ul>
+  </nav>
+  <div class="search-icon"><a href="#search"><i class="fas fa-magnifying-glass"></i></a></div>
 </header>
 
-<!-- Hero Banner -->
+<!-- Hero -->
 <section class="hero">
   <div class="hero-content">
-    <h2>Empowering Communities, Protecting Lives</h2>
-    <p>UNCP works with vulnerable children, youth, and communities in refugee and host settings across Uganda.</p>
-    <a href="#donate" class="btn">Donate Now</a>
-    <a href="#get-involved" class="btn">Get Involved</a>
+    <h2>Welcome to United Networks for Civil Protection (UNCP)</h2>
+    <p>Protecting and empowering vulnerable children, youth, and communities in Uganda.</p>
+    <a href="#donate" class="btn">Donate</a>
+    <a href="#contact" class="btn">Get Involved</a>
   </div>
 </section>
 
+<!-- Main Content -->
 <main>
-
-<!-- About -->
-<section id="about" class="section">
-<h2 class="section-title">About UNCP</h2>
-<div class="cards-container">
-  <div class="card about-card">
-    <h3>Overview</h3>
-    <p>United Networks for Civil Protection (UNCP) is a community-based organization founded in 2018 focused on child protection, youth empowerment, GBV prevention, mental health, education, and climate-resilient livelihoods.</p>
+  <h2 class="section-title">About UNCP</h2>
+  <div class="accordion-item">
+    <div class="accordion-header">Organization Overview</div>
+    <div class="accordion-content">
+      <p>United Networks for Civil Protection (UNCP) is a community-based organization (CBO) founded in 2018 in Arua, Uganda. Legal status: Non-profit, non-political, non-religious. UNCP works with vulnerable children, youth, and communities in refugee and host settings, delivering holistic, community-led protection and empowerment interventions.</p>
+    </div>
   </div>
-  <div class="card about-card">
-    <h3>Our Partners</h3>
-    <p>We collaborate with local communities, government agencies, NGOs, and international donors to maximize impact.</p>
+  <div class="accordion-item">
+    <div class="accordion-header">Mission & Vision</div>
+    <div class="accordion-content">
+      <p>Mission: To protect and empower vulnerable children, youth, and communities through rights-based, locally led programs in child protection, gender-based violence prevention, mental health and psychosocial support, education, and climate-resilient livelihoods.</p>
+      <p>Vision: A safe, inclusive, and resilient society where every child and vulnerable person can thrive with dignity and equal opportunity.</p>
+    </div>
   </div>
-  <div class="card about-card">
-    <h3>Governance & Oversight</h3>
-    <p>UNCP is legally registered as a non-profit, non-political, non-religious CBO with a diverse Board of Directors ensuring accountability.</p>
+
+  <h2 class="section-title">What We Do</h2>
+  <div class="accordion-item">
+    <div class="accordion-header">Thematic Areas</div>
+    <div class="accordion-content">
+      <ul>
+        <li>Child Protection</li>
+        <li>Gender-Based Violence (GBV) Prevention</li>
+        <li>Mental Health and Psychosocial Support (MHPSS)</li>
+        <li>Adolescent and Youth Empowerment</li>
+        <li>Climate Change Adaptation & Sustainable Livelihoods</li>
+        <li>Inclusive Education</li>
+      </ul>
+    </div>
   </div>
-</div>
-</section>
 
-<!-- What We Do -->
-<section id="what-we-do" class="section">
-<h2 class="section-title">What We Do</h2>
-<div class="cards-container">
-  <div class="card what-card"><h3>Child Protection</h3></div>
-  <div class="card what-card"><h3>GBV Prevention</h3></div>
-  <div class="card what-card"><h3>Mental Health & Psychosocial Support</h3></div>
-  <div class="card what-card"><h3>Adolescent & Youth Empowerment</h3></div>
-  <div class="card what-card"><h3>Climate Change & Livelihoods</h3></div>
-  <div class="card what-card"><h3>Inclusive Education</h3></div>
-</div>
-</section>
+  <h2 class="section-title">Where We Work</h2>
+  <div class="accordion-item">
+    <div class="accordion-header">Uganda</div>
+    <div class="accordion-content district-grid">
+      <div>Arua City</div><div>Arua District</div><div>Madi Okollo</div><div>Terego</div><div>Adjumani</div>
+      <div>Moyo</div><div>Obongi</div><div>Pakwach</div><div>Nebbi</div><div>Koboko</div>
+      <div>Yumbe</div><div>Zombo</div><div>Maracha</div>
+    </div>
+  </div>
+</main>
 
-<!-- Where We Work -->
-<section id="where-we-work" class="section">
-<h2 class="section-title">Where We Work</h2>
-<div class="cards-container">
-  <div class="card where-card" onclick="openModal('Arua City')">Arua City</div>
-  <div class="card where-card" onclick="openModal('Arua District')">Arua District</div>
-  <div class="card where-card" onclick="openModal('Madi Okollo')">Madi Okollo</div>
-  <div class="card where-card" onclick="openModal('Terego')">Terego</div>
-  <div class="card where-card" onclick="openModal('Adjumani')">Adjumani</div>
-  <div class="card where-card" onclick="openModal('Moyo')">Moyo</div>
-  <div class="card where-card" onclick="openModal('Obongi')">Obongi</div>
-  <div class="card where-card" onclick="openModal('Pakwach')">Pakwach</div>
-  <div class="card where-card" onclick="openModal('Nebbi')">Nebbi</div>
-  <div class="card where-card" onclick="openModal('Koboko')">Koboko</div>
-  <div class="card where-card" onclick="openModal('Yumbe')">Yumbe</div>
-  <div class="card where-card" onclick="openModal('Zombo')">Zombo</div>
-  <div class="card where-card" onclick="openModal('Maracha')">Maracha</div>
-</div>
-</section>
-
-<!-- News & Stories -->
-<section id="news-stories" class="section">
-<h2 class="section-title">News & Stories</h2>
-<p>Latest updates, community stories, and project highlights will appear here.</p>
-</section>
-
-<!-- Get Involved / Donate sections placeholder -->
-<section id="get-involved" class="section">
-<h2 class="section-title">Get Involved</h2>
-<p>Opportunities to contribute, volunteer, or partner with UNCP.</p>
-</section>
-
-<section id="donate" class="section">
-<h2 class="section-title">Donate</h2>
-<p>Your contributions help us protect vulnerable communities and empower youth.</p>
-</section>
-
-<!-- Contact Section -->
-<section id="contact" class="section">
-<h2 class="section-title">Contact Us</h2>
-<p><strong>Email:</strong> uncip2019@gmail.com</p>
-<p><strong>Telephone:</strong> +256 772 123456 / +256 701 654321</p>
-<p><strong>Head Office:</strong> P.O. Box 341054, Arua City, Uganda</p>
-<div class="contact-links">
-  <ul>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="#contact-uncp">Contact UNCP</a></li>
-    <li><a href="#report-abuse">Report Misconduct or Abuse</a></li>
-    <li><a href="#report-fraud">Report Scammers or Fraudulent Site/Email</a></li>
-  </ul>
-</div>
-
-<div class="contact-form">
-  <h3>Send us a Message</h3>
-  <form id="contactForm" action="https://formspree.io/f/mabcd123" method="POST">
-    <label for="name">Full Name:</label>
-    <input type="text" id="name" name="name" required>
-
-    <label for="email">Email Address:</label>
-    <input type="email" id="email" name="_replyto" required>
-
-    <label for="message">Message:</label>
-    <textarea id="message" name="message" rows="5" required></textarea>
-
-    <input type="hidden" name="_subject" value="New message from UNCP Website">
-    <input type="text" name="_gotcha" style="display:none">
-
+<!-- Contact -->
+<section id="contact" class="contact-form">
+  <h3>Contact Us</h3>
+  <p class="contact-info">Email: <a href="mailto:uncip2019@gmail.com">uncip2019@gmail.com</a></p>
+  <p class="contact-info">Phone: +256702398687 / +256779576538</p>
+  <p class="contact-info">Head Office: P.O. Box 341054, Arua City, Uganda</p>
+  <form action="mailto:uncip2019@gmail.com" method="post" enctype="text/plain">
+    <label>Name:</label><input type="text" name="name" required>
+    <label>Email:</label><input type="email" name="email" required>
+    <label>Message:</label><textarea name="message" rows="5" required></textarea>
     <button type="submit">Send Message</button>
   </form>
-</div>
-
 </section>
 
 <!-- Footer -->
 <footer>
-  &copy; 2025 United Networks for Civil Protection (UNCP) | All Rights Reserved
+  <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap;">
+    <div><img src="logo.jpeg" alt="UNCP Logo" style="height:50px;"></div>
+    <div>
+      <p>Email: <a href="mailto:uncip2019@gmail.com">uncip2019@gmail.com</a></p>
+      <p>Phone: +256702398687 / +256779576538</p>
+      <p>P.O. Box 341054, Arua City, Uganda</p>
+    </div>
+    <div class="social-icons">
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-x-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+      <a href="#"><i class="fab fa-tiktok"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+    </div>
+  </div>
 </footer>
 
-<!-- Notification Container -->
-<div id="notification-container"></div>
-
-<!-- Location Modal -->
-<div id="locationModal"><div>
-  <span style="position:absolute; top:10px; right:15px; font-size:1.5rem; cursor:pointer;" onclick="closeModal()">&times;</span>
-  <h3 id="modalTitle"></h3>
-  <p id="modalIntro"></p>
-  <div id="modalDetails"></div>
-</div></div>
-
 <script>
-// Menu toggle for small screens
-function toggleMenu() { document.getElementById('main-nav').classList.toggle('active'); }
-
-// Modal & Accordion
-function openModal(locationName) {
-    const modal = document.getElementById('locationModal');
-    const title = document.getElementById('modalTitle');
-    const intro = document.getElementById('modalIntro');
-    const details = document.getElementById('modalDetails');
-
-    const locationDetails = {
-      "Arua City": { intro: "In Arua City, UNCP runs key initiatives.", sections: {"Child Protection":"Awareness campaigns","Youth Empowerment":"Vocational training","GBV Prevention":"Community programs"} },
-      "Arua District": { intro:"Arua District support programs.", sections: {"Inclusive Education":"Access to schools","MHPSS":"Psychosocial support","Livelihoods":"Climate-smart training"} },
-      "Adjumani": { intro:"Adjumani refugee & host communities.", sections: {"GBV Prevention":"Awareness sessions","Youth Leadership":"Leadership training","Child Protection":"Case management"} }
-      // Add more districts similarly
-    };
-
-    if(locationDetails[locationName]){
-      intro.innerText = locationDetails[locationName].intro;
-      details.innerHTML = "";
-      for(const [sub,content] of Object.entries(locationDetails[locationName].sections)){
-        details.innerHTML += `<div class="accordion-item"><div class="accordion-header" onclick="toggleAccordion(this)">${sub}</div><div class="accordion-content">${content}</div></div>`;
-      }
-    } else { intro.innerText="More info coming soon."; details.innerHTML=""; }
-
-    modal.style.display='flex'; setTimeout(()=>modal.classList.add('show'),10);
-}
-function closeModal(){ const modal=document.getElementById('locationModal'); modal.classList.remove('show'); setTimeout(()=>modal.style.display='none',300);}
-function toggleAccordion(header){ const content=header.nextElementSibling; const visible=content.style.display==="block"; document.querySelectorAll(".accordion-content").forEach(c=>c.style.display="none"); if(!visible) content.style.display="block"; }
-
-// Contact Form with stacked notifications
-document.getElementById("contactForm").addEventListener("submit", async function(event){
-    event.preventDefault();
-    const form = event.target;
-    const data = new FormData(form);
-    const container = document.getElementById("notification-container");
-
-    function createNotification(message,type){
-        const notif = document.createElement("div");
-        notif.className = `notification ${type==='success'?'notification-success':'notification-error'}`;
-        notif.innerText=message;
-        container.appendChild(notif);
-        setTimeout(()=>{ notif.style.opacity="1"; notif.style.transform="translateY(0)"; },10);
-        setTimeout(()=>{ notif.style.opacity="0"; notif.style.transform="translateY(-20px)";
-            setTimeout(()=>{container.removeChild(notif);},800);
-        },5000);
+// Accordion toggle with smooth height
+const accHeaders = document.querySelectorAll('.accordion-header');
+accHeaders.forEach(header => {
+  header.addEventListener('click', () => {
+    const content = header.nextElementSibling;
+    if(content.style.maxHeight){
+      content.style.maxHeight = null;
+      content.style.padding = '0 10px';
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+      content.style.padding = '10px';
     }
-
-    try{
-        const response = await fetch(form.action,{method:form.method,body:data,headers:{'Accept':'application/json'}});
-        if(response.ok){ form.reset(); createNotification("✅ Thank you! Your message has been sent.","success"); }
-        else{ createNotification("❌ Oops! Something went wrong. Please try again.","error"); }
-    }catch(err){ createNotification("❌ Oops! Something went wrong. Please try again.","error"); }
+  });
 });
 </script>
 
 </body>
 </html>
-
