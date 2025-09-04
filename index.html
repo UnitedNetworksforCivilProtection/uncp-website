@@ -9,6 +9,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;line-height:1.6;background:#fdfdfd;color:#333}
 html{scroll-behavior:smooth}
+
 /* Header */
 header{display:flex;justify-content:space-between;align-items:center;padding:15px 20px;background:#004080;flex-wrap:wrap;position:relative}
 header .logo-left img{height:60px;transition:transform .3s}
@@ -25,6 +26,7 @@ nav a:hover{text-decoration:underline;transform:scale(1.05)}
 .donate-btn:hover{background:#e68a00;transform:scale(1.05)}
 .search-icon a{color:#fff;font-size:1.5rem;transition:transform .3s}
 .search-icon a:hover{transform:scale(1.1)}
+
 /* Hero */
 .hero{background:url('uganda-community.jpg') no-repeat center center/cover;text-align:center;padding:80px 20px;color:#fff;position:relative}
 .hero::after{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.5);z-index:0}
@@ -34,15 +36,18 @@ nav a:hover{text-decoration:underline;transform:scale(1.05)}
 .hero-content p{font-size:1.2rem;margin-bottom:30px}
 .hero-content .btn{display:inline-block;background:#FF9900;color:#fff;text-decoration:none;padding:12px 25px;margin:5px;border-radius:5px;font-weight:bold;transition:transform .3s,background .3s}
 .hero-content .btn:hover{background:#e68a00;transform:scale(1.05)}
+
 /* Main */
 main{max-width:1000px;margin:40px auto;padding:0 20px}
 h2.section-title{color:#004080;margin-bottom:15px;border-bottom:2px solid #004080;display:inline-block;padding-bottom:5px}
+
 /* Accordion */
 .accordion-item{margin:10px 0;border:1px solid #ccc;border-radius:5px;overflow:hidden;box-shadow:0 2px 5px rgba(0,0,0,.05)}
 .accordion-header{background:#f2f2f2;padding:10px;cursor:pointer;font-weight:bold;transition:background .3s}
 .accordion-header:hover{background:#e0e0e0}
 .accordion-content{max-height:0;overflow:hidden;padding:0 10px;background:#fafafa;transition:max-height .4s ease,padding .4s ease}
 .district-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:5px}
+
 /* Contact Form */
 .contact-form{margin-top:20px;padding:20px;background:#f9f9f9;border-radius:8px;max-width:500px}
 .contact-form h3{margin-bottom:15px;font-size:1.3rem;color:#004080}
@@ -52,12 +57,14 @@ h2.section-title{color:#004080;margin-bottom:15px;border-bottom:2px solid #00408
 .contact-form button{background:#004080;color:#fff;padding:12px;border:none;border-radius:5px;font-size:1rem;cursor:pointer;transition:.3s}
 .contact-form button:hover{background:#003060;transform:scale(1.02)}
 .contact-info{color:#00BFA6;font-weight:bold}
+
 /* Footer */
 footer{background:#333;color:#fff;padding:40px 20px}
 footer a{color:#fff;text-decoration:none}
 footer a:hover{text-decoration:underline}
 footer .social-icons a{font-size:1.5rem;margin-right:10px;transition:transform .3s}
 footer .social-icons a:hover{transform:scale(1.2)}
+
 /* Resources Section Enhancements */
 #resources .accordion-header {
   background: #004080;
@@ -65,7 +72,7 @@ footer .social-icons a:hover{transform:scale(1.2)}
   font-weight: bold;
   font-size: 1.1rem;
   border-bottom: 1px solid #003060;
-  box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 1px 1px 3px rgba(0,0,0,.1);
   transition: background 0.3s, color 0.3s;
 }
 #resources .accordion-header:hover {
@@ -92,6 +99,7 @@ footer .social-icons a:hover{transform:scale(1.2)}
   color: #FF9900;
   text-decoration: underline;
 }
+
 @media(max-width:768px){
   nav ul{flex-direction:column;text-align:center;gap:10px}
   .hero-content h2{font-size:2rem}
@@ -183,73 +191,117 @@ footer .social-icons a:hover{transform:scale(1.2)}
 </section>
 
 <main>
-<!-- Existing site sections go here (About, What We Do, etc.) -->
+  <!-- Include About, What We Do, Where We Work, News & Stories, Get Involved sections here -->
 
-<!-- Resources Section -->
-<section id="resources">
-  <h2 class="section-title">Resources & Documents</h2>
+  <!-- Resources Section -->
+  <section id="resources">
+    <h2 class="section-title">Resources & Documents</h2>
 
-  <div class="accordion-item" id="legal-docs">
-    <div class="accordion-header">Legal & Registration Documents</div>
-    <div class="accordion-content">
-      <ul>
-        <li><a href="documents/UNCP_Certificate_of_Registration.pdf" target="_blank">Certificate of Registration</a> – Proof that UNCP is legally recognized.</li>
-        <li><a href="documents/UNCP_NonProfit_Status.pdf" target="_blank">Non-Profit Status Certificate</a> – Confirms UNCP is non-profit and non-political.</li>
-        <li><a href="documents/UNCP_Tax_Exemption.pdf" target="_blank">Tax Exemption Certificate</a> – Validates tax-exempt status (if applicable).</li>
+    <div class="accordion-item" id="legal-docs">
+      <div class="accordion-header">Legal & Registration Documents</div>
+      <div class="accordion-content">
+        <ul>
+          <li><a href="documents/UNCP_Certificate_of_Registration.pdf" target="_blank">Certificate of Registration</a></li>
+          <li><a href="documents/UNCP_NonProfit_Status.pdf" target="_blank">Non-Profit Status Certificate</a></li>
+          <li><a href="documents/UNCP_Tax_Exemption.pdf" target="_blank">Tax Exemption Certificate</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion-item" id="governance-docs">
+      <div class="accordion-header">Governance & Policies</div>
+      <div class="accordion-content">
+        <ul>
+          <li><a href="documents/UNCP_Board_of_Directors.pdf" target="_blank">Board of Directors</a></li>
+          <li><a href="documents/UNCP_Child_Protection_Policy.pdf" target="_blank">Child Protection Policy</a></li>
+          <li><a href="documents/UNCP_GBV_Policy.pdf" target="_blank">GBV Policy</a></li>
+          <li><a href="documents/UNCP_Code_of_Conduct.pdf" target="_blank">Code of Conduct / Safeguarding Policy</a></li>
+          <li><a href="documents/UNCP_Strategic_Plan.pdf" target="_blank">Strategic Plan</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion-item" id="financial-docs">
+      <div class="accordion-header">Financial Documents</div>
+      <div class="accordion-content">
+        <ul>
+          <li><a href="documents/UNCP_Audited_Financial_Report_2024.pdf" target="_blank">Audited Financial Report 2024</a></li>
+          <li><a href="documents/UNCP_Budget_Summary.pdf" target="_blank">Annual Budget Summary</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion-item" id="program-docs">
+      <div class="accordion-header">Programs & Impact Reports</div>
+      <div class="accordion-content">
+        <ul>
+          <li><a href="documents/UNCP_Project_Report_Child_Protection.pdf" target="_blank">Child Protection Project Report</a></li>
+          <li><a href="documents/UNCP_MHPSS_Program_Report.pdf" target="_blank">MHPSS Program Report</a></li>
+          <li><a href="documents/UNCP_Youth_Empowerment_Report.pdf" target="_blank">Youth Empowerment Report</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="accordion-item" id="partners-docs">
+      <div class="accordion-header">Partners & Support Letters</div>
+      <div class="accordion-content">
+        <ul>
+          <li><a href="documents/UNCP_Partner_Support_Letter_1.pdf" target="_blank">Partner Support Letter 1</a></li>
+          <li><a href="documents/UNCP_Partner_Support_Letter_2.pdf" target="_blank">Partner Support Letter 2</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer>
+  <div style="display:flex;justify-content:space-between;flex-wrap:wrap;padding-bottom:20px;border-bottom:1px solid #555;">
+    <div>
+      <h4>Contact Us</h4>
+      <p>Email: <a href="mailto:uncip2019@gmail.com">uncip2019@gmail.com</a></p>
+      <p>Phone: +256 702 398687 / +256 779 576538</p>
+      <p>Head Office: P.O. Box 341054, Arua City, Uganda</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul style="list-style:none;padding:0;">
+        <li><a href="#donate">Donate</a></li>
+        <li><a href="#get-involved">Get Involved</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#report-misconduct">Report Misconduct or Abuse</a></li>
+        <li><a href="#report-fraud">Report Scammers or Fraudulent Sites</a></li>
       </ul>
     </div>
-  </div>
-
-  <div class="accordion-item" id="governance-docs">
-    <div class="accordion-header">Governance & Policies</div>
-    <div class="accordion-content">
-      <ul>
-        <li><a href="documents/UNCP_Board_of_Directors.pdf" target="_blank">Board of Directors</a> – Names and roles of UNCP’s board members.</li>
-        <li><a href="documents/UNCP_Child_Protection_Policy.pdf" target="_blank">Child Protection Policy</a></li>
-        <li><a href="documents/UNCP_GBV_Policy.pdf" target="_blank">GBV Policy</a></li>
-        <li><a href="documents/UNCP_Code_of_Conduct.pdf" target="_blank">Code of Conduct / Safeguarding Policy</a></li>
-        <li><a href="documents/UNCP_Strategic_Plan.pdf" target="_blank">Strategic Plan</a> – Roadmap for the next 3–5 years.</li>
-      </ul>
+    <div>
+      <h4>Follow Us</h4>
+      <div class="social-icons">
+        <a href="https://facebook.com/UNCP" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://x.com/UNCP" target="_blank"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://instagram.com/UNCP" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://youtube.com/UNCP" target="_blank"><i class="fab fa-youtube"></i></a>
+        <a href="https://tiktok.com/@UNCP" target="_blank"><i class="fab fa-tiktok"></i></a>
+        <a href="https://linkedin.com/company/UNCP" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      </div>
     </div>
   </div>
-
-  <div class="accordion-item" id="financial-docs">
-    <div class="accordion-header">Financial Documents</div>
-    <div class="accordion-content">
-      <ul>
-        <li><a href="documents/UNCP_Audited_Financial_Report_2024.pdf" target="_blank">Audited Financial Report 2024</a></li>
-        <li><a href="documents/UNCP_Budget_Summary.pdf" target="_blank">Annual Budget Summary</a></li>
-      </ul>
-    </div>
+  <div style="display:flex;justify-content:space-between;align-items:center;padding-top:15px;font-size:0.9rem;color:#ccc;">
+    <div><img src="logo.jpeg" alt="UNCP Logo" style="height:50px;"></div>
+    <div>&copy; 2018-2025 UNCP. All rights reserved.</div>
   </div>
-
-  <div class="accordion-item" id="program-docs">
-    <div class="accordion-header">Programs & Impact Reports</div>
-    <div class="accordion-content">
-      <ul>
-        <li><a href="documents/UNCP_Project_Report_Child_Protection.pdf" target="_blank">Child Protection Project Report</a></li>
-        <li><a href="documents/UNCP_MHPSS_Program_Report.pdf" target="_blank">MHPSS Program Report</a></li>
-        <li><a href="documents/UNCP_Youth_Empowerment_Report.pdf" target="_blank">Youth Empowerment Report</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="accordion-item" id="partners-docs">
-    <div class="accordion-header">Partners & Support Letters</div>
-    <div class="accordion-content">
-      <ul>
-        <li><a href="documents/UNCP_Partnership_Letter_Example.pdf" target="_blank">Sample Partner Support Letter</a></li>
-        <li><a href="documents/UNCP_Donor_Acknowledgement.pdf" target="_blank">Donor Acknowledgement Letters</a></li>
-      </ul>
-    </div>
-  </div>
-</section>
+</footer>
 
 <script>
-// Accordion toggle
-const accHeaders=document.querySelectorAll('.accordion-header');
-accHeaders.forEach(header=>{header.addEventListener('click',()=>{const content=header.nextElementSibling;if(content.style.maxHeight){content.style.maxHeight=null;content.style.padding='0 10px'}else{content.style.maxHeight=content.scrollHeight+"px";content.style.padding='10px'}})});
+// Accordion functionality
+const accHeaders = document.querySelectorAll(".accordion-header");
+accHeaders.forEach(header => {
+  header.addEventListener("click", () => {
+    const content = header.nextElementSibling;
+    content.style.maxHeight = content.style.maxHeight ? null : content.scrollHeight + "px";
+  });
+});
 </script>
+
 </body>
 </html>
-
