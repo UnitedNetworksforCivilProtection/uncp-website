@@ -1,219 +1,201 @@
+<?php /* index.php */ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>United Networks for Civil Protection (UNCP)</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: url('images/humanitarian-children.jpg') no-repeat center center fixed;
-      background-size: cover;
-      color: #333;
-    }
-    header {
-      background: rgba(255, 255, 255, 0.9);
-      padding: 10px 20px;
-      border-bottom: 2px solid #ff6600;
-    }
-    header h1 {
-      color: #ff6600;
-      font-size: 1.8rem;
-      margin: 0;
-    }
-    nav a {
-      margin-right: 15px;
-      color: #333;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    nav a:hover {
-      color: #ff6600;
-    }
+    body { font-family: Arial, sans-serif; margin:0; padding:0; }
+    header { background: #0d6efd; color: white; }
+    header .navbar-brand img { height: 60px; }
+    .btn-donate { background-color: orange; color: white; font-weight: bold; }
+    .btn-donate:hover { background-color: #e69500; }
     .hero {
-      text-align: center;
-      padding: 100px 20px;
-      background: rgba(255, 255, 255, 0.8);
-      margin-bottom: 20px;
+      background: url('images/humanitarian-children.jpg') no-repeat center center/cover;
+      color: white; text-align: center; padding: 120px 20px;
+      position: relative;
     }
-    .content-section {
-      display: none;
-      padding: 40px 20px;
-      background: rgba(255, 255, 255, 0.9);
-      margin: 20px;
-      border-radius: 10px;
+    .hero::after {
+      content:""; position:absolute; top:0; left:0; width:100%; height:100%;
+      background:rgba(0,0,0,0.5);
     }
-    footer {
-      background: #333;
-      color: #fff;
-      padding: 20px;
-      margin-top: 40px;
-    }
-    footer a {
-      color: #ff6600;
-      margin-right: 10px;
-    }
-    fieldset {
-      display: none;
-    }
-    fieldset.active {
-      display: block;
-    }
+    .hero h1 { position:relative; color:orange; z-index:1; }
+    .hero p { position:relative; z-index:1; font-size:1.2rem; }
+    footer { background: #f1f1f1; padding: 20px 0; margin-top: 40px; }
+    footer .social-icons a { font-size: 20px; margin-right: 10px; color: #0d6efd; text-decoration:none; }
+    footer .social-icons a:hover { color:#0056b3; }
+    /* Multi-step form */
+    .application { background:#f9f9f9; padding:40px; border-radius:10px; }
+    .step { display:none; }
+    .step.active { display:block; }
+    .form-navigation { margin-top:20px; }
+    .form-navigation button { margin-right:10px; }
   </style>
 </head>
 <body>
 
-<header class="d-flex justify-content-between align-items-center">
-  <h1>Welcome to United Networks for Civil Protection (UNCP)</h1>
-  <nav>
-    <a href="#" onclick="toggleHome()">Home</a>
-    <a href="#" onclick="toggleOverview()">Overview</a>
-    <a href="#" onclick="toggleCareers()">Careers</a>
-    <a href="#">Donate</a>
+<!-- Header -->
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark container">
+    <a class="navbar-brand" href="#">
+      <img src="images/logo.jpeg" alt="UNCP Logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">About UNCP</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#overview">Overview</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="#news">News & Stories</a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Get Involved</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#careers">Careers / Open Positions</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a href="mailto:uncip2019@gmail.com?subject=Donation to UNCP" class="btn btn-donate ms-3">Donate</a>
+        </li>
+      </ul>
+    </div>
   </nav>
 </header>
 
-<div class="hero">
-  <h2>Protecting and Empowering Vulnerable Communities</h2>
-  <p>Together for children, youth, and vulnerable populations</p>
-</div>
-
-<!-- Overview Section -->
-<section id="overview" class="content-section">
-  <h2>Overview</h2>
-  <h4>1.1 Brief History of UNCP</h4>
-  <p>United Networks for Civil Protection (UNCP) was founded in 2018 by two child protection specialists ... advancing long-term protection, psychosocial support, and youth empowerment across the region.</p>
-  <h4>2. Mission and Vision</h4>
-  <p><strong>Mission:</strong> To protect and empower vulnerable children, youth, and communities through rights-based, locally led programs ...</p>
-  <p><strong>Vision:</strong> A safe, inclusive, and resilient society where every child and vulnerable person can thrive with dignity and equal opportunity.</p>
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <h1>Welcome to United Networks for Civil Protection (UNCP)</h1>
+    <p>We protect and empower vulnerable children, youth, and communities in Uganda through holistic, community-led programs.</p>
+  </div>
 </section>
 
-<!-- Careers Section -->
-<section id="careers-section" class="content-section">
-  <h2>Careers</h2>
-  <p>We are always looking for passionate people. Current opening:</p>
-  <p><a href="pdfs/UNCP_ChildProtectionJD.pdf" download>Download Child Protection Officer JD (PDF)</a></p>
-  <button class="btn btn-primary" onclick="toggleApplicationForm()">Apply Now</button>
+<!-- Overview -->
+<section id="overview" class="container mt-5">
+  <h2>Overview</h2>
+  <h4>1.1 Brief History of UNCP</h4>
+  <p>United Networks for Civil Protection (UNCP) was founded in 2018 by two child protection specialists ...</p>
+  <h4>2. Mission and Vision</h4>
+  <p><strong>Mission:</strong> To protect and empower vulnerable children, youth, and communities ...</p>
+  <p><strong>Vision:</strong> A safe, inclusive, and resilient society ...</p>
+</section>
+
+<!-- Careers -->
+<section id="careers" class="container mt-5">
+  <h2>Open Positions</h2>
+  <div class="job-card p-3 border rounded bg-white shadow-sm">
+    <h3>Child Protection Case Worker (Volunteer)</h3>
+    <p><strong>Duty Station:</strong> Arua City</p>
+    <p><strong>Duration:</strong> 6 months</p>
+    <p><strong>Application Deadline:</strong> 24th September 2025</p>
+    <a href="pdfs/UNCP_ChildProtectionJD.pdf" class="btn btn-secondary">Download JD (PDF)</a>
+    <button class="btn btn-primary" onclick="document.getElementById('application').scrollIntoView();">Apply</button>
+  </div>
 </section>
 
 <!-- Application Form -->
-<section id="application-form" class="content-section">
-  <h2>Job Application Form</h2>
-  <form id="multiStepForm">
-    <!-- Step 1: My Information -->
-    <fieldset class="active">
-      <legend>My Information</legend>
-      <label>How Did You Hear About Us?</label>
-      <select name="HowDidYouHear">
-        <option>Job Board</option>
-        <option>Social Media</option>
-        <option>UNCP Website Career Page</option>
-        <option>Other</option>
-      </select><br>
-      <label>Have you previously worked for UNCP?</label>
-      <select name="PreviouslyWorked">
-        <option>No</option>
-        <option>Yes</option>
-      </select><br>
-      <label>Full Name*</label>
-      <input type="text" name="FullName" required><br>
-      <label>Current Address*</label>
-      <input type="text" name="Address" required><br>
-      <label>Email Address*</label>
-      <input type="email" name="Email Address" required><br>
-      <label>Phone Number*</label>
-      <input type="tel" name="PhoneNumber" required><br>
-      <button type="button" onclick="nextStep()">Next</button>
-    </fieldset>
-
-    <!-- Step 2: Experience -->
-    <fieldset>
-      <legend>My Experience</legend>
-      <label>Job Title*</label>
-      <input type="text" name="JobTitle" required><br>
-      <label>Company*</label>
-      <input type="text" name="Company" required><br>
-      <label>Location*</label>
-      <input type="text" name="Location" required><br>
-      <label>Role Description</label>
-      <textarea name="RoleDescription"></textarea><br>
-      <button type="button" onclick="prevStep()">Back</button>
-      <button type="button" onclick="nextStep()">Next</button>
-    </fieldset>
-
-    <!-- Step 3: Education -->
-    <fieldset>
-      <legend>Education</legend>
-      <label>School/University*</label>
-      <input type="text" name="School" required><br>
-      <label>Degree*</label>
-      <input type="text" name="Degree" required><br>
-      <label>Field of Study</label>
-      <input type="text" name="Field"><br>
-      <button type="button" onclick="prevStep()">Back</button>
-      <button type="button" onclick="nextStep()">Next</button>
-    </fieldset>
-
-    <!-- Step 4: Review -->
-    <fieldset>
-      <legend>Review & Submit</legend>
-      <p>Please review your information before submitting.</p>
-      <button type="button" onclick="prevStep()">Back</button>
-      <button type="button" onclick="generatePDFandSubmit()">Submit</button>
-    </fieldset>
+<section id="application" class="container mt-5 application">
+  <h2>Application Form</h2>
+  <form id="jobApplicationForm" enctype="multipart/form-data">
+    <!-- Step 1 -->
+    <div class="step active">
+      <h4>My Information</h4>
+      <label>Full Name*</label><input type="text" name="name" class="form-control" required>
+      <label>Email*</label><input type="email" name="email" class="form-control" required>
+      <label>Phone</label><input type="tel" name="phone" class="form-control">
+    </div>
+    <!-- Step 2 -->
+    <div class="step">
+      <h4>Work Experience</h4>
+      <label>Job Title*</label><input type="text" name="jobTitle" class="form-control" required>
+      <label>Company*</label><input type="text" name="company" class="form-control" required>
+      <label>Role Description</label><textarea name="roleDesc" class="form-control"></textarea>
+    </div>
+    <!-- Step 3 -->
+    <div class="step">
+      <h4>Education</h4>
+      <label>School*</label><input type="text" name="school" class="form-control" required>
+      <label>Degree*</label><input type="text" name="degree" class="form-control" required>
+    </div>
+    <!-- Step 4 -->
+    <div class="step">
+      <h4>Review</h4>
+      <p>Please review your information before submitting. A PDF will be generated.</p>
+    </div>
+    <!-- Navigation -->
+    <div class="form-navigation">
+      <button type="button" class="btn btn-secondary" id="prevBtn">Back</button>
+      <button type="button" class="btn btn-primary" id="nextBtn">Next</button>
+      <button type="submit" class="btn btn-success" id="submitBtn" style="display:none;">Submit</button>
+    </div>
   </form>
 </section>
 
 <!-- Footer -->
 <footer>
-  <div class="container">
-    <p><strong>Telephone:</strong> +256702398687 / +256779576538<br>
-    <strong>Address:</strong> P.O. Box 341054, Arua City, Uganda</p>
-    <p>
+  <div class="container d-flex justify-content-between align-items-center py-4">
+    <div>
+      <img src="images/logo.jpeg" alt="UNCP Logo" style="height:50px;"><br>
+      <strong>Email:</strong> uncip2019@gmail.com<br>
+      <strong>Telephone:</strong> +256702398687 / +256779576538<br>
+      <strong>Address:</strong> P.O. Box 341054, Arua City, Uganda
+    </div>
+    <div class="social-icons">
       <a href="#"><i class="bi bi-facebook"></i></a>
-      <a href="#"><i class="bi bi-twitter-x"></i></a>
+      <a href="#"><i class="bi bi-twitter"></i></a>
       <a href="#"><i class="bi bi-instagram"></i></a>
       <a href="#"><i class="bi bi-youtube"></i></a>
       <a href="#"><i class="bi bi-tiktok"></i></a>
       <a href="#"><i class="bi bi-linkedin"></i></a>
-    </p>
+    </div>
   </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
 let currentStep = 0;
-const steps = document.querySelectorAll("form fieldset");
-function showStep(n){ steps.forEach((fs,i)=>fs.classList.toggle("active",i===n)); }
-function nextStep(){ if(currentStep<steps.length-1){currentStep++;showStep(currentStep);} }
-function prevStep(){ if(currentStep>0){currentStep--;showStep(currentStep);} }
+const steps = document.querySelectorAll('.step');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+const submitBtn = document.getElementById('submitBtn');
 
-function toggleOverview(){document.getElementById('overview').style.display='block';document.getElementById('careers-section').style.display='none';document.getElementById('application-form').style.display='none';}
-function toggleCareers(){document.getElementById('overview').style.display='none';document.getElementById('careers-section').style.display='block';document.getElementById('application-form').style.display='none';}
-function toggleApplicationForm(){document.getElementById('overview').style.display='none';document.getElementById('careers-section').style.display='none';document.getElementById('application-form').style.display='block';}
-function toggleHome(){document.getElementById('overview').style.display='none';document.getElementById('careers-section').style.display='none';document.getElementById('application-form').style.display='none';}
-
-async function generatePDFandSubmit(){
-  const { jsPDF } = window.jspdf;
-  const form=document.getElementById("multiStepForm");
-  const formData=new FormData(form);
-  let doc=new jsPDF();
-  let y=10;
-  formData.forEach((v,k)=>{doc.text(`${k}: ${v}`,10,y);y+=10;});
-  const pdfBlob=doc.output('blob');
-  const data=new FormData();
-  data.append("pdf",pdfBlob,"application.pdf");
-  data.append("formData",JSON.stringify(Object.fromEntries(formData)));
-  try{
-    const res=await fetch("send_application.php",{method:"POST",body:data});
-    const result=await res.json();
-    alert(result.message||"Application submitted successfully!");
-    form.reset();currentStep=0;showStep(currentStep);
-  }catch(err){alert("Submission failed: "+err.message);}
+function showStep(n) {
+  steps.forEach((step, i) => step.classList.toggle('active', i === n));
+  prevBtn.style.display = n === 0 ? 'none' : 'inline-block';
+  nextBtn.style.display = n === steps.length-1 ? 'none' : 'inline-block';
+  submitBtn.style.display = n === steps.length-1 ? 'inline-block' : 'none';
 }
+showStep(currentStep);
+
+nextBtn.addEventListener('click', () => { if(currentStep < steps.length-1){ currentStep++; showStep(currentStep); } });
+prevBtn.addEventListener('click', () => { if(currentStep > 0){ currentStep--; showStep(currentStep); } });
+
+document.getElementById('jobApplicationForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+  const formData = new FormData(this);
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  let y = 10;
+  formData.forEach((v,k)=>{ doc.text(`${k}: ${v}`,10,y); y+=10; });
+  const pdfBlob = doc.output('blob');
+  const pdfFile = new File([pdfBlob], "application.pdf", {type:'application/pdf'});
+  const uploadData = new FormData();
+  uploadData.append('pdf', pdfFile);
+  uploadData.append('formData', JSON.stringify(Object.fromEntries(formData)));
+
+  const res = await fetch('send_application.php', { method:'POST', body: uploadData });
+  const result = await res.json();
+  alert(result.message);
+});
 </script>
 </body>
 </html>
