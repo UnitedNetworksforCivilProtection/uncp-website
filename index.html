@@ -1,62 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="="UTF-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>United Networks for Civil Protection (UNCP)</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
   <style>
     body { font-family: Arial, sans-serif; }
-    header { background: #0d6efd; color: #fff; padding: 10px 0; }
+    header { background: #0d6efd; color: white; }
     header .navbar-brand img { height: 60px; }
-    header .donate-btn { background: orange; color: #fff; font-weight: bold; padding: 8px 16px; border-radius: 5px; }
-    header .search-box { position: relative; }
-    header .search-box input { width: 0; opacity: 0; transition: width 0.4s, opacity 0.4s; position: absolute; right: 30px; top: 0; }
-    header .search-box.active input { width: 200px; opacity: 1; }
+    .btn-donate { background-color: orange; color: white; font-weight: bold; }
+    .btn-donate:hover { background-color: #e69500; }
     footer { background: #f1f1f1; padding: 20px 0; margin-top: 40px; }
-    footer .logo-footer img { height: 50px; }
-    footer .social-icons a { color: #333; font-size: 20px; margin-right: 10px; }
-    .accordion-button:focus { box-shadow: none; }
-    .hidden { display: none; }
+    footer .social-icons a { font-size: 20px; margin-right: 10px; color: #0d6efd; }
+    .search-box { display: inline-flex; align-items: center; }
+    .search-box input { display: none; margin-left: 5px; }
+    .search-box.active input { display: inline-block; }
   </style>
 </head>
 <body>
 
+<!-- Header -->
 <header>
   <nav class="navbar navbar-expand-lg navbar-dark container">
-    <a class="navbar-brand" href="#"><img src="logo.jpeg" alt="UNCP Logo"></a>
+    <a class="navbar-brand" href="#">
+      <img src="logo.jpeg" alt="UNCP Logo">
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto align-items-lg-center">
-        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">About UNCP</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#">Overview</a></li>
-            <li><a class="dropdown-item" href="#">Planning, Funding & Results</a></li>
+            <li><a class="dropdown-item" href="#">Planning & Results</a></li>
             <li><a class="dropdown-item" href="#">Our Partners</a></li>
-            <li><a class="dropdown-item" href="#">Governance & Oversight</a></li>
-            <li><a class="dropdown-item" href="#">Who We Work With & For</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">What We Do</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#">Child Protection</a></li>
-            <li><a class="dropdown-item" href="#">Gender-Based Violence Prevention</a></li>
-            <li><a class="dropdown-item" href="#">Mental Health & Psychosocial Support</a></li>
-            <li><a class="dropdown-item" href="#">Adolescent & Youth Empowerment</a></li>
-            <li><a class="dropdown-item" href="#">Climate Change Adaptation</a></li>
+            <li><a class="dropdown-item" href="#">GBV Prevention</a></li>
+            <li><a class="dropdown-item" href="#">MHPSS</a></li>
+            <li><a class="dropdown-item" href="#">Youth Empowerment</a></li>
+            <li><a class="dropdown-item" href="#">Climate & Livelihoods</a></li>
             <li><a class="dropdown-item" href="#">Inclusive Education</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Where We Work</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Uganda</a></li>
             <li><a class="dropdown-item" href="#">Arua City</a></li>
             <li><a class="dropdown-item" href="#">Arua District</a></li>
             <li><a class="dropdown-item" href="#">Madi Okollo</a></li>
@@ -72,691 +70,181 @@
             <li><a class="dropdown-item" href="#">Maracha</a></li>
           </ul>
         </li>
-        <li class="nav-item"><a class="nav-link" href="#news">News & Stories</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">News & Stories</a></li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Get Involved</a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#careers">Careers</a></li>
-            <li><a class="dropdown-item" href="#">Our Partners/Donors</a></li>
+            <li><a class="dropdown-item" href="#">Careers / Open Positions</a></li>
+            <li><a class="dropdown-item" href="#">Our Partners & Donors</a></li>
             <li><a class="dropdown-item" href="#">Become a Supplier</a></li>
           </ul>
         </li>
-        <li class="nav-item"><a class="nav-link donate-btn" href="#donate">Donate</a></li>
-        <li class="nav-item search-box">
-          <a href="#" id="searchToggle"><i class="fa fa-search text-white"></i></a>
-          <input type="text" placeholder="Search...">
-        </li>
       </ul>
+      <div class="d-flex align-items-center">
+        <!-- Donate: email link -->
+        <a href="mailto:uncip2019@gmail.com?subject=Donation to UNCP" class="btn btn-donate me-3">Donate</a>
+        <!-- Search -->
+        <div class="search-box">
+          <i class="bi bi-search" id="searchIcon"></i>
+          <input type="text" class="form-control form-control-sm" placeholder="Search...">
+        </div>
+      </div>
     </div>
   </nav>
 </header>
 
+<!-- Main Content Placeholder -->
 <main class="container mt-4">
-  <section id="home">
-    <h1>United Networks for Civil Protection (UNCP)</h1>
-    <p><strong>Type:</strong> Community-Based Organization (Non-profit)</p>
-    <p><strong>Incorporated:</strong> Company Limited by Guarantee in Uganda</p>
-    <p>UNCP works with vulnerable children, youth, and communities in refugee and host settings, delivering holistic, community-led protection and empowerment interventions.</p>
-    <h3>Mission</h3>
-    <p>To protect and empower vulnerable children, youth, and communities through rights-based, locally led programs.</p>
-    <h3>Vision</h3>
-    <p>A safe, inclusive, and resilient society where every child and vulnerable person can thrive with dignity and equal opportunity.</p>
-  </section>
-
-  <section id="careers" class="mt-5">
-    <h2>Open Positions</h2>
-    <div id="job-listings"></div>
-    <div id="application-form" class="mt-4 hidden"></div>
-  </section>
+  <h1>Welcome to United Networks for Civil Protection (UNCP)</h1>
+  <p>We protect and empower vulnerable children, youth, and communities in Uganda through holistic, community-led programs.</p>
 </main>
 
-<footer class="text-center">
+<!-- Footer -->
+<footer id="contact">
   <div class="container d-flex justify-content-between align-items-center">
-    <div class="logo-footer"><img src="logo.jpeg" alt="UNCP Logo"></div>
     <div>
-      <p>Email: <a href="mailto:uncip2019@gmail.com">uncip2019@gmail.com</a></p>
-      <p>Tel: +256702398687 / +256779576538</p>
-      <p>P.O. Box 341054, Arua City, Uganda</p>
+      <img src="logo.jpeg" alt="UNCP Logo" style="height:50px;"><br>
+      <strong>Email:</strong> uncip2019@gmail.com<br>
+      <strong>Telephone:</strong> +256702398687 / +256779576538<br>
+      <strong>Address:</strong> P.O. Box 341054, Arua City, Uganda
     </div>
     <div class="social-icons">
-      <a href="#"><i class="fab fa-facebook"></i></a>
-      <a href="#"><i class="fab fa-x-twitter"></i></a>
-      <a href="#"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-youtube"></i></a>
-      <a href="#"><i class="fab fa-tiktok"></i></a>
-      <a href="#"><i class="fab fa-linkedin"></i></a>
+      <a href="#"><i class="bi bi-facebook"></i></a>
+      <a href="#"><i class="bi bi-twitter-x"></i></a>
+      <a href="#"><i class="bi bi-instagram"></i></a>
+      <a href="#"><i class="bi bi-youtube"></i></a>
+      <a href="#"><i class="bi bi-tiktok"></i></a>
+      <a href="#"><i class="bi bi-linkedin"></i></a>
     </div>
   </div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-  document.getElementById('searchToggle').addEventListener('click', function(e) {
-    e.preventDefault();
-    document.querySelector('.search-box').classList.toggle('active');
+  // Search expand effect
+  const searchBox = document.querySelector('.search-box');
+  document.getElementById('searchIcon').addEventListener('click', () => {
+    searchBox.classList.toggle('active');
   });
-
-  const jobs = [
-    {
-      title: "Child Protection Case Worker (Volunteer)",
-      location: "Arua City",
-      deadline: "2025-09-24",
-      jd: "Terms of Reference – Child Protection Case Worker..."
-    }
-  ];
-
-  function renderJobs() {
-    const today = new Date().toISOString().split("T")[0];
-    const jobListings = document.getElementById("job-listings");
-    jobListings.innerHTML = "";
-    jobs.forEach(job => {
-      if (today <= job.deadline) {
-        const div = document.createElement("div");
-        div.classList.add("card", "mb-3", "p-3");
-        div.innerHTML = `
-          <h4>${job.title}</h4>
-          <p><strong>Location:</strong> ${job.location}</p>
-          <p><strong>Deadline:</strong> ${job.deadline}</p>
-          <button class="btn btn-primary" onclick="applyJob('${job.title}')">Apply</button>
-        `;
-        jobListings.appendChild(div);
-      }
-    });
-  }
-
-  function applyJob(title) {
-    const formDiv = document.getElementById("application-form");
-    formDiv.classList.remove("hidden");
-    formDiv.innerHTML = `
-      <h3>Application Form - ${title}</h3>
-      <form id="multiStepForm">
-        <!-- Multi-step fields go here -->
-        <p>Form fields will appear here (multi-step with references, etc.).</p>
-      </form>
-    `;
-  }
-
-  renderJobs();
 </script>
 </body>
 </html>
-<!-- ===========================
-  BLOCK A — HTML + Multi-step form structure
-  Copy/paste this into your index.html where you want the form to appear.
-  The JavaScript (navigation, add-more, submit) is in BLOCK B below.
-  =========================== -->
+<!-- Careers / Open Positions Section -->
+<section id="careers" class="careers">
+  <h2>Open Positions</h2>
+  <p>Explore current opportunities with UNCP. Click "Apply" to review the job description and submit your application online.</p>
 
-<main class="container mt-4">
-
-  <!-- Home / Intro -->
-  <section id="home">
-    <h1>United Networks for Civil Protection (UNCP)</h1>
-    <p><strong>Type:</strong> Community-Based Organization (Non-profit)</p>
-    <p><strong>Incorporated:</strong> Company Limited by Guarantee in Uganda</p>
-    <p>UNCP works with vulnerable children, youth, and communities in refugee and host settings, delivering holistic, community-led protection and empowerment interventions.</p>
-  </section>
-
-  <!-- Careers / Jobs -->
-  <section id="careers" class="mt-5">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-      <h2>Open Positions</h2>
-      <input id="jobSearch" class="form-control w-50" placeholder="Filter positions..." />
-    </div>
-
-    <div id="job-listings" class="mb-4">
-      <!-- Job template (duplicate this block to add new jobs) -->
-      <div class="card mb-3" data-deadline="2025-09-24">
-        <div class="card-body">
-          <h5 class="card-title mb-1">Child Protection Case Worker (Volunteer)</h5>
-          <p class="mb-1"><strong>Location:</strong> Arua City</p>
-          <p class="mb-1"><strong>Duration:</strong> 6 months</p>
-          <p class="mb-1"><strong>Application:</strong> 10 Sep 2025 – 24 Sep 2025</p>
-          <div class="mt-2">
-            <button class="btn btn-outline-primary me-2" onclick="showJobJD('Child Protection Case Worker (Volunteer)')">View JD</button>
-            <button class="btn btn-primary" onclick="beginApplication('Child Protection Case Worker (Volunteer)','2025-09-24')">Apply Now</button>
-          </div>
-        </div>
-      </div>
-      <!-- end template -->
-    </div>
-
-    <!-- Job description modal (simple) -->
-    <div id="jobJD" class="modal" tabindex="-1" style="display:none; position:fixed; z-index:2000; left:0; top:0; right:0; bottom:0; background:rgba(0,0,0,0.5);">
-      <div class="modal-dialog modal-lg" style="margin:6% auto;">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 id="jobJDTitle" class="modal-title"></h5>
-            <button type="button" class="btn-close" onclick="closeJobJD()"></button>
-          </div>
-          <div class="modal-body" id="jobJDContent"></div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" onclick="closeJobJD()">Close</button>
-            <button class="btn btn-primary" onclick="startApplicationFromJD()">Apply</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Application form area (hidden until "Apply" clicked) -->
-    <div id="application-area" class="card mt-4" style="display:none">
-      <div class="card-body">
-        <h3 id="application-title">Application Form</h3>
-
-        <!-- progress indicator -->
-        <div id="formProgress" class="mb-3">
-          <small id="progressText">Step 1 of 10</small>
-          <div class="progress">
-            <div id="progressBar" class="progress-bar" role="progressbar" style="width:10%"></div>
-          </div>
-        </div>
-
-        <form id="multiStepForm" onsubmit="return false;">
-          <input type="hidden" name="position_title" id="position_title">
-
-          <!-- Step 1: Personal Info -->
-          <div class="form-step" data-step="1">
-            <h5>Step 1 — Personal Information</h5>
-            <div class="mb-2">
-              <label class="form-label">How did you hear about us? <span class="text-danger">*</span></label>
-              <select name="hear_about" class="form-select" required>
-                <option value="">Select</option>
-                <option>Job Board</option><option>Event</option><option>Social Media</option><option>UNCP Website</option><option>Other</option>
-              </select>
-            </div>
-            <div class="mb-2">
-              <label class="form-label">Have you previously worked for UNCP? <span class="text-danger">*</span></label>
-              <div>
-                <div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="worked_uncp" value="Yes" required> <label class="form-check-label">Yes</label></div>
-                <div class="form-check form-check-inline"><input class="form-check-input" type="radio" name="worked_uncp" value="No" required> <label class="form-check-label">No</label></div>
-              </div>
-            </div>
-            <div class="mb-2"><label class="form-label">Full name <span class="text-danger">*</span></label><input name="full_name" class="form-control" required></div>
-            <div class="mb-2"><label class="form-label">Address</label><input name="address" class="form-control"></div>
-            <div class="mb-2"><label class="form-label">Email <span class="text-danger">*</span></label><input name="email" type="email" class="form-control" required></div>
-            <div class="mb-2"><label class="form-label">Phone <span class="text-danger">*</span></label><input name="phone" type="tel" class="form-control" required></div>
-
-            <div class="d-flex justify-content-between mt-3">
-              <button type="button" class="btn btn-outline-secondary" onclick="saveDraft()">Save Draft</button>
-              <div>
-                <button type="button" class="btn btn-secondary" onclick="cancelApplication()">Cancel</button>
-                <button type="button" class="btn btn-primary" onclick="goToStep(2)">Next</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 2: Work Experience -->
-          <div class="form-step" data-step="2" style="display:none">
-            <h5>Step 2 — Work Experience</h5>
-            <div id="workExpList">
-              <div class="card mb-3 p-2 work-exp" data-index="1">
-                <div class="mb-2"><label class="form-label">Job title <span class="text-danger">*</span></label><input name="job_title_1" class="form-control" required></div>
-                <div class="mb-2"><label class="form-label">Company <span class="text-danger">*</span></label><input name="company_1" class="form-control" required></div>
-                <div class="mb-2"><label class="form-label">Location (City, Country)</label><input name="location_1" class="form-control"></div>
-                <div class="mb-2 form-check"><input class="form-check-input" type="checkbox" name="current_1"><label class="form-check-label">I currently work here</label></div>
-                <div class="row g-2 mb-2">
-                  <div class="col"><label class="form-label">From</label><input type="date" name="from_1" class="form-control"></div>
-                  <div class="col"><label class="form-label">To</label><input type="date" name="to_1" class="form-control"></div>
-                </div>
-                <div class="mb-2"><label class="form-label">Role description</label><textarea name="role_1" class="form-control" maxlength="1500"></textarea></div>
-              </div>
-            </div>
-            <div class="mb-2"><button type="button" class="btn btn-outline-primary" onclick="addWorkExp()">+ Add More Experience</button></div>
-            <div class="d-flex justify-content-between mt-3">
-              <button type="button" class="btn btn-secondary" onclick="goToStep(1)">Back</button>
-              <div>
-                <button type="button" class="btn btn-secondary" onclick="cancelApplication()">Cancel</button>
-                <button type="button" class="btn btn-primary" onclick="goToStep(3)">Next</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 3: Education -->
-          <div class="form-step" data-step="3" style="display:none">
-            <h5>Step 3 — Education</h5>
-            <div id="educationList">
-              <div class="card mb-3 p-2 edu-item" data-index="1">
-                <div class="mb-2"><label class="form-label">School / University <span class="text-danger">*</span></label><input name="school_1" class="form-control" required></div>
-                <div class="mb-2"><label class="form-label">Degree <span class="text-danger">*</span></label><input name="degree_1" class="form-control" required></div>
-                <div class="mb-2"><label class="form-label">Field of study</label><input name="field_1" class="form-control"></div>
-                <div class="row g-2 mb-2">
-                  <div class="col"><label>From</label><input type="date" name="edu_from_1" class="form-control"></div>
-                  <div class="col"><label>To</label><input type="date" name="edu_to_1" class="form-control"></div>
-                </div>
-              </div>
-            </div>
-            <div class="mb-2"><button type="button" class="btn btn-outline-primary" onclick="addEducation()">+ Add More Education</button></div>
-            <div class="d-flex justify-content-between mt-3">
-              <button type="button" class="btn btn-secondary" onclick="goToStep(2)">Back</button>
-              <div>
-                <button type="button" class="btn btn-secondary" onclick="cancelApplication()">Cancel</button>
-                <button type="button" class="btn btn-primary" onclick="goToStep(4)">Next</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 4: Certifications -->
-          <div class="form-step" data-step="4" style="display:none">
-            <h5>Step 4 — Certifications (optional)</h5>
-            <div id="certList">
-              <div class="card mb-3 p-2 cert-item" data-index="1">
-                <div class="mb-2"><label class="form-label">Certification name</label><input name="cert_name_1" class="form-control"></div>
-                <div class="mb-2"><label class="form-label">Certification number</label><input name="cert_no_1" class="form-control"></div>
-                <div class="mb-2"><label class="form-label">Issued date</label><input type="date" name="cert_date_1" class="form-control"></div>
-                <div class="mb-2"><label class="form-label">Upload certificate (file)</label><input type="file" name="cert_file_1" class="form-control"></div>
-              </div>
-            </div>
-            <div class="mb-2"><button type="button" class="btn btn-outline-primary" onclick="addCertification()">+ Add More Certifications</button></div>
-            <div class="d-flex justify-content-between mt-3">
-              <button type="button" class="btn btn-secondary" onclick="goToStep(3)">Back</button>
-              <div>
-                <button type="button" class="btn btn-secondary" onclick="cancelApplication()">Cancel</button>
-                <button type="button" class="btn btn-primary" onclick="goToStep(5)">Next</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 5: Languages -->
-          <div class="form-step" data-step="5" style="display:none">
-            <h5>Step 5 — Languages</h5>
-            <div id="languagesList">
-              <div class="card mb-3 p-2 lang-item" data-index="1">
-                <div class="mb-2"><label class="form-label">Language <span class="text-danger">*</span></label>
-                  <select name="language_1" class="form-select" required>
-                    <option value="">Select</option>
-                    <option>Lugbarati</option><option>Alur</option><option>Kakwa</option><option>Ma’di</option><option>Luganda</option><option>English</option><option>Other</option>
-                  </select>
-                </div>
-                <div class="form-check mb-2"><input class="form-check-input" type="checkbox" name="fluent_1"><label class="form-check-label">I am fluent</label></div>
-                <div class="mb-2"><label>Overall (A1–C2 / Mother Tongue) <span class="text-danger">*</span></label>
-                  <select name="level_1" class="form-select" required>
-                    <option value="">Select</option><option>A1</option><option>A2</option><option>B1</option><option>B2</option><option>C1</option><option>C2</option><option>Mother Tongue</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="mb-2"><button type="button" class="btn btn-outline-primary" onclick="addLanguage()">+ Add More Languages</button></div>
-            <div class="mb-2"><label class="form-label">Skills (max 1500 chars)</label><textarea name="skills" class="form-control" maxlength="1500"></textarea></div>
-            <div class="d-flex justify-content-between mt-3">
-              <button type="button" class="btn btn-secondary" onclick="goToStep(4)">Back</button>
-              <div>
-                <button type="button" class="btn btn-secondary" onclick="cancelApplication()">Cancel</button>
-                <button type="button" class="btn btn-primary" onclick="goToStep(6)">Next</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 6: Application Questions -->
-          <div class="form-step" data-step="6" style="display:none">
-            <h5>Step 6 — Application Questions</h5>
-            <div class="mb-2"><label class="form-label">a) How have your achievements and operational experience prepared you for this position? (2500 chars) <span class="text-danger">*</span></label><textarea name="q_a" class="form-control" maxlength="2500" required></textarea></div>
-            <div class="mb-2"><label class="form-label">b) Please describe any skills and competencies relevant to this position (2500 chars) <span class="text-danger">*</span></label><textarea name="q_b" class="form-control" maxlength="2500" required></textarea></div>
-            <div class="mb-2"><label class="form-label">c) How does this position align with your career aspirations? (1000 chars) <span class="text-danger">*</span></label><textarea name="q_c" class="form-control" maxlength="1000" required></textarea></div>
-            <div class="d-flex justify-content-between mt-3">
-              <button type="button" class="btn btn-secondary" onclick="goToStep(5)">Back</button>
-              <div>
-                <button type="button" class="btn btn-secondary" onclick="cancelApplication()">Cancel</button>
-                <button type="button" class="btn btn-primary" onclick="goToStep(7)">Next</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 7: Voluntary Disclosures -->
-          <div class="form-step" data-step="7" style="display:none">
-            <h5>Step 7 — Voluntary Disclosures</h5>
-            <div class="mb-2"><label class="form-label">Date of Birth <span class="text-danger">*</span></label><input type="date" name="dob" class="form-control" required></div>
-            <div class="mb-2"><label class="form-label">Marital Status <span class="text-danger">*</span></label>
-              <select name="marital_status" class="form-select" required><option value="">Select</option><option>Single</option><option>Married</option><option>Separated</option><option>Divorced</option><option>Registered partnership</option><option>Other</option></select>
-            </div>
-            <div class="mb-2"><label class="form-label">Disability</label><select name="disability" class="form-select"><option>No</option><option>Yes</option></select></div>
-            <div class="mb-2"><label class="form-label">Sex <span class="text-danger">*</span></label><select name="sex" class="form-select" required><option value="">Select</option><option>Female</option><option>Male</option><option>Not declared</option></select></div>
-            <div class="d-flex justify-content-between mt-3">
-              <button type="button" class="btn btn-secondary" onclick="goToStep(6)">Back</button>
-              <div>
-                <button type="button" class="btn btn-secondary" onclick="cancelApplication()">Cancel</button>
-                <button type="button" class="btn btn-primary" onclick="goToStep(8)">Next</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 8: References (placed after voluntary disclosures as requested) -->
-          <div class="form-step" data-step="8" style="display:none">
-            <h5>Step 8 — Reference Persons</h5>
-            <div id="referencesList">
-              <div class="card mb-3 p-2 ref-item" data-index="1">
-                <div class="mb-2"><label class="form-label">Reference name <span class="text-danger">*</span></label><input name="ref_name_1" class="form-control" required></div>
-                <div class="mb-2"><label class="form-label">Organization / Address <span class="text-danger">*</span></label><input name="ref_org_1" class="form-control" required></div>
-                <div class="mb-2"><label class="form-label">Position <span class="text-danger">*</span></label><input name="ref_position_1" class="form-control" required></div>
-                <div class="mb-2"><label class="form-label">Relationship with candidate <span class="text-danger">*</span></label><input name="ref_relation_1" class="form-control" required></div>
-                <div class="mb-2"><label class="form-label">Email <span class="text-danger">*</span></label><input name="ref_email_1" type="email" class="form-control" required></div>
-                <div class="mb-2"><label class="form-label">Telephone <span class="text-danger">*</span></label><input name="ref_phone_1" class="form-control" required></div>
-              </div>
-
-              <div class="card mb-3 p-2 ref-item" data-index="2">
-                <div class="mb-2"><label class="form-label">Reference name <span class="text-danger">*</span></label><input name="ref_name_2" class="form-control" required></div>
-                <div class="mb-2"><label class="form-label">Organization / Address <span class="text-danger">*</span></label><input name="ref_org_2" class="form-control" required></div>
-                <div class="mb-2"><label class="form-label">Position <span class="text-danger">*</span></label><input name="ref_position_2" class="form-control" required></div>
-                <div class="mb-2"><label class="form-label">Relationship with candidate <span class="text-danger">*</span></label><input name="ref_relation_2" class="form-control" required></div>
-                <div class="mb-2"><label class="form-label">Email <span class="text-danger">*</span></label><input name="ref_email_2" type="email" class="form-control" required></div>
-                <div class="mb-2"><label class="form-label">Telephone <span class="text-danger">*</span></label><input name="ref_phone_2" class="form-control" required></div>
-              </div>
-            </div>
-
-            <div class="mb-2"><button type="button" class="btn btn-outline-primary" onclick="addReference()">+ Add More Reference</button></div>
-            <div class="d-flex justify-content-between mt-3">
-              <button type="button" class="btn btn-secondary" onclick="goToStep(7)">Back</button>
-              <div>
-                <button type="button" class="btn btn-secondary" onclick="cancelApplication()">Cancel</button>
-                <button type="button" class="btn btn-primary" onclick="goToStep(9)">Next</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 9: Terms & Conditions and acknowledgement -->
-          <div class="form-step" data-step="9" style="display:none">
-            <h5>Step 9 — Terms & Conditions</h5>
-            <div class="card p-3 mb-3">
-              <p>UNCP will only contact shortlisted candidates. UNCP processes personal data in line with its privacy policy. The information you provide must be accurate; false or misrepresented information may lead to disqualification or termination.</p>
-            </div>
-            <div class="mb-2 form-check"><input class="form-check-input" type="checkbox" id="ack_terms" name="ack_terms" required> <label class="form-check-label">I acknowledge and agree to these terms and conditions. <span class="text-danger">*</span></label></div>
-            <div class="d-flex justify-content-between mt-3">
-              <button type="button" class="btn btn-secondary" onclick="goToStep(8)">Back</button>
-              <div>
-                <button type="button" class="btn btn-secondary" onclick="cancelApplication()">Cancel</button>
-                <button type="button" class="btn btn-primary" onclick="generateReview()">Review & Submit</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Step 10: Review & Submit -->
-          <div class="form-step" data-step="10" style="display:none">
-            <h5>Review Your Application</h5>
-            <div id="reviewArea" class="mb-3" style="max-height:420px; overflow:auto; border:1px solid #e9ecef; padding:12px; border-radius:6px; background:#fafafa"></div>
-            <div class="d-flex justify-content-between mt-3">
-              <button type="button" class="btn btn-secondary" onclick="goToStep(9)">Back</button>
-              <div>
-                <button type="button" class="btn btn-secondary" onclick="cancelApplication()">Cancel</button>
-                <button type="button" class="btn btn-success" onclick="submitToNetlify()">Submit Application</button>
-              </div>
-            </div>
-          </div>
-
-        </form>
-      </div>
-    </div>
-
-    <!-- Submission status modal -->
-    <div id="submissionStatus" class="modal" tabindex="-1" style="display:none; position:fixed; z-index:2500; left:0; top:0; right:0; bottom:0; background:rgba(0,0,0,0.5);">
-      <div class="modal-dialog" style="margin:10% auto; max-width:560px;">
-        <div class="modal-content">
-          <div class="modal-header"><h5 class="modal-title">Submitting application</h5></div>
-          <div class="modal-body" id="submissionBody"><p>Please wait — processing your application...</p></div>
-          <div class="modal-footer"><button class="btn btn-secondary" onclick="closeSubmissionModal()">Close</button></div>
-        </div>
-      </div>
-    </div>
-
-  </section>
-</main>
-<!-- ===========================
-  BLOCK B — JavaScript
-  Paste this right before </body> or in your site JS file.
-  =========================== -->
-<script>
-/* === Configuration === */
-const NETLIFY_FUNCTION_ENDPOINT = "/.netlify/functions/generate-pdf"; // Netlify function to process the application and create/email PDF
-
-/* === UI utilities === */
-function showElement(el){ el.style.display = ''; }
-function hideElement(el){ el.style.display = 'none'; }
-
-/* === Job JD modal helpers === */
-function showJobJD(title){
-  const jdMap = {
-    "Child Protection Case Worker (Volunteer)": `
-      <h5>${title}</h5>
-      <p>UNCP seeks volunteer Child Protection Case Workers to support case management, psychosocial support, referrals, and community engagement.</p>
+  <!-- Sample Position -->
+  <div class="job-card">
+    <h3>Child Protection Case Worker (Volunteer)</h3>
+    <p><strong>Duty Station:</strong> Arua City</p>
+    <p><strong>Duration:</strong> 6 months</p>
+    <p><strong>Application Deadline:</strong> 24th September 2025</p>
+    <button class="apply-btn" onclick="toggleJD('jd1')">View Details</button>
+    <div id="jd1" class="job-details" style="display:none;">
+      <h4>Terms of Reference</h4>
+      <p><strong>Background:</strong> United Networks for Civil Protection (UNCP) is committed to safeguarding and promoting the rights and well-being of children affected by crises, displacement, and vulnerability...</p>
+      <p><strong>Purpose of the Role:</strong> The Child Protection Case Worker (Volunteer) will provide direct support to children at risk, survivors of violence, exploitation, abuse, and neglect.</p>
+      <p><strong>Responsibilities:</strong></p>
       <ul>
-        <li>Duty station: Arua City</li>
-        <li>Duration: 6 months</li>
-        <li>Application: 10 Sep 2025 - 24 Sep 2025</li>
+        <li>Conduct intake assessments, case planning, follow-up, and safe case closure.</li>
+        <li>Provide psychosocial support and referrals for children and caregivers.</li>
+        <li>Work with community structures to strengthen awareness and prevention.</li>
       </ul>
-    `
-  };
-  document.getElementById('jobJDTitle').innerText = title;
-  document.getElementById('jobJDContent').innerHTML = jdMap[title] || "<p>Description not available.</p>";
-  document.getElementById('jobJD').style.display = 'block';
-}
-function closeJobJD(){ document.getElementById('jobJD').style.display='none'; }
-function startApplicationFromJD(){ 
-  const title = document.getElementById('jobJDTitle').innerText;
-  beginApplication(title); 
-  closeJobJD();
-}
-
-/* === Begin application === */
-function beginApplication(title, deadline){
-  document.getElementById('application-area').style.display = 'block';
-  document.getElementById('position_title').value = title || '';
-  document.getElementById('application-title').innerText = `Application — ${title || ''}`;
-  goToStep(1);
-}
-
-/* === Form navigation and progress === */
-const totalSteps = 10;
-function goToStep(stepNum){
-  const steps = document.querySelectorAll('.form-step');
-  steps.forEach(el => el.style.display = 'none');
-  const target = document.querySelector(`.form-step[data-step="${stepNum}"]`);
-  if(target) target.style.display = '';
-  updateProgress(stepNum);
-  window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 80, behavior:'smooth' });
-}
-function updateProgress(stepNum){
-  const percent = Math.round((stepNum / totalSteps) * 100);
-  document.getElementById('progressBar').style.width = percent + '%';
-  document.getElementById('progressText').innerText = `Step ${stepNum} of ${totalSteps}`;
-}
-
-/* === Add-more functions === */
-let workIndex = 1, eduIndex = 1, certIndex = 1, langIndex = 1, refIndex = 2; // refIndex starts at 2 because two refs are pre-rendered
-
-function addWorkExp(){
-  workIndex++;
-  const wrap = document.getElementById('workExpList');
-  const div = document.createElement('div');
-  div.className = 'card mb-3 p-2 work-exp';
-  div.dataset.index = workIndex;
-  div.innerHTML = `
-    <div class="mb-2"><label class="form-label">Job title</label><input name="job_title_${workIndex}" class="form-control"></div>
-    <div class="mb-2"><label class="form-label">Company</label><input name="company_${workIndex}" class="form-control"></div>
-    <div class="mb-2"><label class="form-label">Location</label><input name="location_${workIndex}" class="form-control"></div>
-    <div class="mb-2 form-check"><input class="form-check-input" type="checkbox" name="current_${workIndex}"><label class="form-check-label">I currently work here</label></div>
-    <div class="row g-2 mb-2"><div class="col"><label>From</label><input type="date" name="from_${workIndex}" class="form-control"></div><div class="col"><label>To</label><input type="date" name="to_${workIndex}" class="form-control"></div></div>
-    <div class="mb-2"><label class="form-label">Role description</label><textarea name="role_${workIndex}" class="form-control" maxlength="1500"></textarea></div>
-  `;
-  wrap.appendChild(div);
-}
-
-function addEducation(){
-  eduIndex++;
-  const wrap = document.getElementById('educationList');
-  const div = document.createElement('div');
-  div.className = 'card mb-3 p-2 edu-item';
-  div.dataset.index = eduIndex;
-  div.innerHTML = `
-    <div class="mb-2"><label class="form-label">School / University</label><input name="school_${eduIndex}" class="form-control"></div>
-    <div class="mb-2"><label class="form-label">Degree</label><input name="degree_${eduIndex}" class="form-control"></div>
-    <div class="mb-2"><label class="form-label">Field</label><input name="field_${eduIndex}" class="form-control"></div>
-    <div class="row g-2 mb-2"><div class="col"><label>From</label><input type="date" name="edu_from_${eduIndex}" class="form-control"></div><div class="col"><label>To</label><input type="date" name="edu_to_${eduIndex}" class="form-control"></div></div>
-  `;
-  wrap.appendChild(div);
-}
-
-function addCertification(){
-  certIndex++;
-  const wrap = document.getElementById('certList');
-  const div = document.createElement('div');
-  div.className = 'card mb-3 p-2 cert-item';
-  div.dataset.index = certIndex;
-  div.innerHTML = `
-    <div class="mb-2"><label class="form-label">Certification name</label><input name="cert_name_${certIndex}" class="form-control"></div>
-    <div class="mb-2"><label class="form-label">Certification number</label><input name="cert_no_${certIndex}" class="form-control"></div>
-    <div class="mb-2"><label class="form-label">Issued date</label><input type="date" name="cert_date_${certIndex}" class="form-control"></div>
-    <div class="mb-2"><label class="form-label">Upload</label><input type="file" name="cert_file_${certIndex}" class="form-control"></div>
-  `;
-  wrap.appendChild(div);
-}
-
-function addLanguage(){
-  langIndex++;
-  const wrap = document.getElementById('languagesList');
-  const div = document.createElement('div');
-  div.className = 'card mb-3 p-2 lang-item';
-  div.dataset.index = langIndex;
-  div.innerHTML = `
-    <div class="mb-2"><label class="form-label">Language</label>
-      <select name="language_${langIndex}" class="form-select"><option value="">Select</option><option>Lugbarati</option><option>Alur</option><option>Kakwa</option><option>Ma’di</option><option>Luganda</option><option>English</option><option>Other</option></select>
+      <p><strong>Qualifications:</strong> Bachelor’s degree in Social Work, Psychology, Child Development, or related field (Diploma with experience may be considered).</p>
+      <p><strong>Application Process:</strong> Please submit your application using the online application form.</p>
+      <a href="#application-form" class="apply-link">Apply Now</a>
     </div>
-    <div class="mb-2 form-check"><input class="form-check-input" type="checkbox" name="fluent_${langIndex}"><label class="form-check-label">I am fluent</label></div>
-    <div class="mb-2"><label>Overall</label><select name="level_${langIndex}" class="form-select"><option value="">Select</option><option>A1</option><option>A2</option><option>B1</option><option>B2</option><option>C1</option><option>C2</option><option>Mother Tongue</option></select></div>
-  `;
-  wrap.appendChild(div);
-}
+  </div>
+</section>
 
-function addReference(){
-  refIndex++;
-  const wrap = document.getElementById('referencesList');
-  const div = document.createElement('div');
-  div.className = 'card mb-3 p-2 ref-item';
-  div.dataset.index = refIndex;
-  div.innerHTML = `
-    <div class="mb-2"><label class="form-label">Reference name</label><input name="ref_name_${refIndex}" class="form-control"></div>
-    <div class="mb-2"><label class="form-label">Organization / Address</label><input name="ref_org_${refIndex}" class="form-control"></div>
-    <div class="mb-2"><label class="form-label">Position</label><input name="ref_position_${refIndex}" class="form-control"></div>
-    <div class="mb-2"><label class="form-label">Relationship with candidate</label><input name="ref_relation_${refIndex}" class="form-control"></div>
-    <div class="mb-2"><label class="form-label">Email</label><input name="ref_email_${refIndex}" type="email" class="form-control"></div>
-    <div class="mb-2"><label class="form-label">Telephone</label><input name="ref_phone_${refIndex}" class="form-control"></div>
-  `;
-  wrap.appendChild(div);
-}
-
-/* === Save & load draft === */
-function saveDraft(){
-  const form = document.getElementById('multiStepForm');
-  const obj = {};
-  for(const el of form.elements){
-    if(!el.name) continue;
-    if(el.type === 'checkbox') obj[el.name] = el.checked;
-    else if(el.type !== 'file') obj[el.name] = el.value;
+<script>
+  // Toggle Job Description visibility
+  function toggleJD(id) {
+    const jd = document.getElementById(id);
+    jd.style.display = jd.style.display === "none" ? "block" : "none";
   }
-  localStorage.setItem('uncp_application_draft', JSON.stringify(obj));
-  alert('Draft saved locally. You can continue later on this browser.');
-}
-function loadDraft(){
-  const raw = localStorage.getItem('uncp_application_draft');
-  if(!raw) return;
-  const data = JSON.parse(raw);
-  const form = document.getElementById('multiStepForm');
-  for(const k in data){
-    if(form.elements[k]){
-      const el = form.elements[k];
-      if(el.type === 'checkbox') el.checked = data[k];
-      else el.value = data[k];
-    }
-  }
-}
-window.addEventListener('load', loadDraft);
-
-/* === Generate review content === */
-function generateReview(){
-  const form = document.getElementById('multiStepForm');
-  const review = document.getElementById('reviewArea');
-  review.innerHTML = '';
-  for(const el of form.elements){
-    if(!el.name) continue;
-    if(el.type === 'file'){ if(el.files && el.files.length) review.innerHTML += `<p><strong>${el.name}:</strong> ${el.files[0].name}</p>`; continue; }
-    if(el.type === 'checkbox'){ review.innerHTML += `<p><strong>${el.name.replace(/_/g,' ')}:</strong> ${el.checked ? 'Yes' : 'No'}</p>`; continue; }
-    if(el.type === 'radio'){ if(!el.checked) continue; }
-    if(el.value) review.innerHTML += `<p><strong>${el.name.replace(/_/g,' ')}:</strong> ${el.value}</p>`;
-  }
-  goToStep(10);
-}
-
-/* === Cancel application (hide form) === */
-function cancelApplication(){
-  if(confirm('Cancel application and clear form?')) {
-    document.getElementById('application-area').style.display = 'none';
-    document.getElementById('multiStepForm').reset();
-    localStorage.removeItem('uncp_application_draft');
-  }
-}
-
-/* === Submission: collect JSON and send to Netlify Function === */
-async function submitToNetlify(){
-  // basic check: required checkbox
-  const ack = document.getElementById('ack_terms') || document.querySelector('input[name="ack_terms"]');
-  if(ack && !ack.checked){ alert('Please accept terms and conditions before submitting.'); return; }
-
-  const form = document.getElementById('multiStepForm');
-  const payload = {};
-  for(const el of form.elements){
-    if(!el.name) continue;
-    if(el.type === 'file'){
-      // include only the filename (function can be adapted to accept file uploads separately)
-      payload[el.name] = (el.files && el.files.length) ? el.files[0].name : '';
-      continue;
-    }
-    if(el.type === 'checkbox') payload[el.name] = el.checked ? 'Yes' : 'No';
-    else if(el.type === 'radio'){ if(!el.checked) continue; else payload[el.name] = el.value; }
-    else payload[el.name] = el.value || '';
-  }
-
-  // show submission modal
-  document.getElementById('submissionBody').innerHTML = '<p>Submitting your application — please wait...</p>';
-  document.getElementById('submissionStatus').style.display = 'block';
-
-  try {
-    const res = await fetch(NETLIFY_FUNCTION_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-    const result = await res.json();
-    if(res.ok){
-      document.getElementById('submissionBody').innerHTML = '<p>Application submitted successfully. You will receive a confirmation email shortly.</p><p>If you do not receive a confirmation, contact uncip2019@gmail.com</p>';
-      // clear form & draft
-      form.reset();
-      localStorage.removeItem('uncp_application_draft');
-      goToStep(1);
-    } else {
-      document.getElementById('submissionBody').innerHTML = `<p>Submission failed: ${result.error || 'Server returned an error'}. Please contact uncip2019@gmail.com</p>`;
-    }
-  } catch (err){
-    console.error(err);
-    document.getElementById('submissionBody').innerHTML = '<p>Network or server error. Please try again later or contact uncip2019@gmail.com</p>';
-  }
-}
-
-/* === Close submission modal === */
-function closeSubmissionModal(){
-  document.getElementById('submissionStatus').style.display = 'none';
-}
-
-/* === Job search filter (local) === */
-document.getElementById('jobSearch').addEventListener('input', function(){
-  const q = this.value.trim().toLowerCase();
-  document.querySelectorAll('#job-listings .card').forEach(card => {
-    const text = card.innerText.toLowerCase();
-    card.style.display = text.includes(q) ? '' : 'none';
-  });
-});
-
-/* === Hide expired jobs automatically by data-deadline attribute === */
-(function hideExpiredJobs(){
-  const today = new Date();
-  document.querySelectorAll('#job-listings .card').forEach(card => {
-    const d = card.getAttribute('data-deadline');
-    if(d && new Date(d + 'T23:59:59') < today) card.style.display = 'none';
-  });
-})();
 </script>
+
+<style>
+  .careers {
+    padding: 40px;
+    background: #f9f9f9;
+  }
+  .job-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  }
+  .apply-btn, .apply-link {
+    display: inline-block;
+    background: #007BFF;
+    color: #fff;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  .apply-btn:hover, .apply-link:hover {
+    background: #0056b3;
+  }
+  .job-details {
+    margin-top: 15px;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+  }
+</style>
+<!-- Application Form Section -->
+<section id="application" class="application">
+  <div class="container">
+    <h2>Application Form</h2>
+    <p>Please complete the form below to apply for this position.</p>
+    
+    <form id="jobApplicationForm">
+      <!-- Step 1: Personal Information -->
+      <fieldset>
+        <legend>Personal Information</legend>
+        <label for="name">Full Name*:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email*:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone">
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address">
+      </fieldset>
+
+      <!-- Step 2: Work Experience -->
+      <fieldset>
+        <legend>Work Experience</legend>
+        <label for="experience">Describe your relevant work experience*:</label>
+        <textarea id="experience" name="experience" required></textarea>
+      </fieldset>
+
+      <!-- Step 3: Education -->
+      <fieldset>
+        <legend>Education</legend>
+        <label for="education">Education Background*:</label>
+        <textarea id="education" name="education" required></textarea>
+      </fieldset>
+
+      <!-- Step 4: References -->
+      <fieldset>
+        <legend>References</legend>
+        <label for="reference">Reference (Name, Organization, Contact)*:</label>
+        <textarea id="reference" name="reference" required></textarea>
+      </fieldset>
+
+      <!-- Step 5: Submit -->
+      <button type="submit">Submit Application</button>
+    </form>
+  </div>
+</section>
