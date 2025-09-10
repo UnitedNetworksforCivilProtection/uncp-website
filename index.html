@@ -10,13 +10,41 @@
     body { font-family: Arial, sans-serif; }
     header { background: #0d6efd; color: white; }
     header .navbar-brand img { height: 60px; }
-    .btn-donate { background-color: orange; color: white; font-weight: bold; }
-    .btn-donate:hover { background-color: #e69500; }
     footer { background: #f1f1f1; padding: 20px 0; margin-top: 40px; }
     footer .social-icons a { font-size: 20px; margin-right: 10px; color: #0d6efd; }
     .search-box { display: inline-flex; align-items: center; }
     .search-box input { display: none; margin-left: 5px; }
     .search-box.active input { display: inline-block; }
+
+    /* Navbar Donate button */
+    .navbar .btn-donate {
+      background-color: transparent;
+      color: orange;
+      font-weight: bold;
+      border: none;
+      padding: 0.5rem 0.75rem;
+      margin-right: 0.5rem;
+    }
+    .navbar .btn-donate:hover {
+      color: white;
+      background-color: orange;
+      border-radius: 5px;
+    }
+
+    /* Orange heading */
+    .text-orange { color: orange; }
+
+    /* Careers / Job Section */
+    .job-card { border: none; }
+    .apply-btn, .apply-link { cursor: pointer; }
+
+    /* Job details toggle */
+    .job-details { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; }
+
+    /* Application form */
+    fieldset { border: 1px solid #ddd; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+    fieldset:not(:first-of-type) { display: none; }
+    fieldset button { margin-right: 10px; }
   </style>
 </head>
 <body>
@@ -32,6 +60,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link btn-donate" href="mailto:uncip2019@gmail.com?subject=Donation to UNCP">Donate</a>
+        </li>
         <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">About UNCP</a>
@@ -81,9 +112,6 @@
         </li>
       </ul>
       <div class="d-flex align-items-center">
-        <!-- Donate: email link -->
-        <a href="mailto:uncip2019@gmail.com?subject=Donation to UNCP" class="btn btn-donate me-3">Donate</a>
-        <!-- Search -->
         <div class="search-box">
           <i class="bi bi-search" id="searchIcon"></i>
           <input type="text" class="form-control form-control-sm" placeholder="Search...">
@@ -93,11 +121,119 @@
   </nav>
 </header>
 
-<!-- Main Content Placeholder -->
+<!-- Main Content -->
 <main class="container mt-4">
-  <h1>Welcome to United Networks for Civil Protection (UNCP)</h1>
+  <h1 class="text-orange">Welcome to United Networks for Civil Protection (UNCP)</h1>
   <p>We protect and empower vulnerable children, youth, and communities in Uganda through holistic, community-led programs.</p>
 </main>
+
+<!-- Careers Section with Multiple Jobs and Download JD -->
+<section id="careers" class="careers py-5" style="background:#f9f9f9;">
+  <div class="container">
+    <h2 class="mb-3">Open Positions</h2>
+    <p>Explore current opportunities with UNCP. Click "Apply" to review the job description and submit your application online.</p>
+
+    <!-- Job 1 -->
+    <div class="job-card mb-4 p-4 bg-white rounded shadow-sm">
+      <h3 class="job-title">Child Protection Case Worker (Volunteer)</h3>
+      <p><strong>Duty Station:</strong> Arua City</p>
+      <p><strong>Duration:</strong> 6 months</p>
+      <p><strong>Application Deadline:</strong> 24th September 2025</p>
+
+      <button class="apply-btn btn btn-primary mt-2" onclick="toggleJD('jd1')">View Details</button>
+      <a href="JD_Child_Protection_Case_Worker.pdf" download class="btn btn-secondary mt-2 ms-2">Download JD</a>
+
+      <div id="jd1" class="job-details mt-3">
+        <h4>Terms of Reference</h4>
+        <p>UNCP is committed to safeguarding and promoting the rights and well-being of children affected by crises, displacement, and vulnerability...</p>
+        <a href="javascript:void(0)" class="apply-link btn btn-success mt-2" onclick="showApplicationForm(this)">Apply Now</a>
+      </div>
+    </div>
+
+    <!-- Job 2 -->
+    <div class="job-card mb-4 p-4 bg-white rounded shadow-sm">
+      <h3 class="job-title">Youth Empowerment Coordinator</h3>
+      <p><strong>Duty Station:</strong> Moyo</p>
+      <p><strong>Duration:</strong> 12 months</p>
+      <p><strong>Application Deadline:</strong> 30th September 2025</p>
+
+      <button class="apply-btn btn btn-primary mt-2" onclick="toggleJD('jd2')">View Details</button>
+      <a href="JD_Youth_Empowerment_Coordinator.pdf" download class="btn btn-secondary mt-2 ms-2">Download JD</a>
+
+      <div id="jd2" class="job-details mt-3">
+        <h4>Terms of Reference</h4>
+        <p>Coordinate youth empowerment programs, including training, mentorship, and community engagement activities.</p>
+        <a href="javascript:void(0)" class="apply-link btn btn-success mt-2" onclick="showApplicationForm(this)">Apply Now</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Hidden Application Form -->
+<div id="applicationFormContainer" style="display:none;">
+  <section id="application" class="application py-5">
+    <div class="container">
+      <h2 class="mb-3">Application Form</h2>
+      <p>Please complete the form below to apply for the selected position.</p>
+
+      <form id="jobApplicationForm">
+        <div class="mb-3">
+          <label for="jobTitle" class="form-label">Applying For:</label>
+          <input type="text" class="form-control" id="jobTitle" name="jobTitle" readonly>
+        </div>
+
+        <fieldset>
+          <legend>Personal Information</legend>
+          <div class="mb-3">
+            <label for="name" class="form-label">Full Name*:</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email*:</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="phone" class="form-label">Phone Number:</label>
+            <input type="tel" class="form-control" id="phone" name="phone">
+          </div>
+          <div class="mb-3">
+            <label for="address" class="form-label">Address:</label>
+            <input type="text" class="form-control" id="address" name="address">
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Work Experience</legend>
+          <div class="mb-3">
+            <label for="experience" class="form-label">Describe your relevant work experience*:</label>
+            <textarea class="form-control" id="experience" name="experience" required></textarea>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Education</legend>
+          <div class="mb-3">
+            <label for="education" class="form-label">Education Background*:</label>
+            <textarea class="form-control" id="education" name="education" required></textarea>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>References</legend>
+          <div class="mb-3">
+            <label for="reference" class="form-label">Reference (Name, Organization, Contact)*:</label>
+            <textarea class="form-control" id="reference" name="reference" required></textarea>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <button type="submit" class="btn btn-success">Submit Application</button>
+        </fieldset>
+      </form>
+    </div>
+  </section>
+</div>
 
 <!-- Footer -->
 <footer id="contact">
@@ -121,128 +257,13 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-  // Search expand effect
+  // Search expand
   const searchBox = document.querySelector('.search-box');
   document.getElementById('searchIcon').addEventListener('click', () => {
     searchBox.classList.toggle('active');
   });
-</script>
-</body>
-</html>
-<!-- Careers / Open Positions Section -->
-<section id="careers" class="careers py-5" style="background:#f9f9f9;">
-  <div class="container">
-    <h2 class="mb-3">Open Positions</h2>
-    <p>Explore current opportunities with UNCP. Click "Apply" to review the job description and submit your application online.</p>
 
-    <!-- Sample Position -->
-    <div class="job-card mb-4 p-4 bg-white rounded shadow-sm">
-      <h3>Child Protection Case Worker (Volunteer)</h3>
-      <p><strong>Duty Station:</strong> Arua City</p>
-      <p><strong>Duration:</strong> 6 months</p>
-      <p><strong>Application Deadline:</strong> 24th September 2025</p>
-      <button class="apply-btn btn btn-primary mt-2" onclick="toggleJD('jd1')">View Details</button>
-
-      <div id="jd1" class="job-details mt-3" style="max-height:0; overflow:hidden; transition:max-height 0.5s ease;">
-        <h4>Terms of Reference</h4>
-        <p><strong>Background:</strong> United Networks for Civil Protection (UNCP) is committed to safeguarding and promoting the rights and well-being of children affected by crises, displacement, and vulnerability...</p>
-        <p><strong>Purpose of the Role:</strong> Provide direct support to children at risk, survivors of violence, exploitation, abuse, and neglect.</p>
-        <p><strong>Responsibilities:</strong></p>
-        <ul>
-          <li>Conduct intake assessments, case planning, follow-up, and safe case closure.</li>
-          <li>Provide psychosocial support and referrals for children and caregivers.</li>
-          <li>Work with community structures to strengthen awareness and prevention.</li>
-        </ul>
-        <p><strong>Qualifications:</strong> Bachelor’s degree in Social Work, Psychology, Child Development, or related field (Diploma with experience may be considered).</p>
-        <a href="#application" class="apply-link btn btn-success mt-2">Apply Now</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Application Form Section -->
-<section id="application" class="application py-5">
-  <div class="container">
-    <h2 class="mb-3">Application Form</h2>
-    <p>Please complete the form below to apply for this position.</p>
-
-    <form id="jobApplicationForm">
-      <!-- Step 1: Personal Information -->
-      <fieldset>
-        <legend>Personal Information</legend>
-        <div class="mb-3">
-          <label for="name" class="form-label">Full Name*:</label>
-          <input type="text" class="form-control" id="name" name="name" required>
-        </div>
-        <div class="mb-3">
-          <label for="email" class="form-label">Email*:</label>
-          <input type="email" class="form-control" id="email" name="email" required>
-        </div>
-        <div class="mb-3">
-          <label for="phone" class="form-label">Phone Number:</label>
-          <input type="tel" class="form-control" id="phone" name="phone">
-        </div>
-        <div class="mb-3">
-          <label for="address" class="form-label">Address:</label>
-          <input type="text" class="form-control" id="address" name="address">
-        </div>
-      </fieldset>
-
-      <!-- Step 2: Work Experience -->
-      <fieldset>
-        <legend>Work Experience</legend>
-        <div class="mb-3">
-          <label for="experience" class="form-label">Describe your relevant work experience*:</label>
-          <textarea class="form-control" id="experience" name="experience" required></textarea>
-        </div>
-      </fieldset>
-
-      <!-- Step 3: Education -->
-      <fieldset>
-        <legend>Education</legend>
-        <div class="mb-3">
-          <label for="education" class="form-label">Education Background*:</label>
-          <textarea class="form-control" id="education" name="education" required></textarea>
-        </div>
-      </fieldset>
-
-      <!-- Step 4: References -->
-      <fieldset>
-        <legend>References</legend>
-        <div class="mb-3">
-          <label for="reference" class="form-label">Reference (Name, Organization, Contact)*:</label>
-          <textarea class="form-control" id="reference" name="reference" required></textarea>
-        </div>
-      </fieldset>
-
-      <!-- Step 5: Submit -->
-      <fieldset>
-        <button type="submit" class="btn btn-success">Submit Application</button>
-      </fieldset>
-    </form>
-  </div>
-</section>
-
-<!-- Styles -->
-<style>
-  .job-card { border: none; }
-  .apply-btn, .apply-link { cursor: pointer; }
-  fieldset { border: 1px solid #ddd; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
-  fieldset:not(:first-of-type) { display: none; }
-  fieldset button { margin-right: 10px; }
-</style>
-
-<!-- Scripts -->
-<script>
-  // Smooth scroll for "Apply Now"
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      e.preventDefault();
-      document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-    });
-  });
-
-  // Toggle Job Details
+  // Toggle job details
   function toggleJD(id) {
     const jd = document.getElementById(id);
     if (jd.style.maxHeight && jd.style.maxHeight !== "0px") {
@@ -251,6 +272,16 @@
       jd.style.maxHeight = jd.scrollHeight + "px";
       jd.scrollIntoView({ behavior: 'smooth' });
     }
+  }
+
+  // Show application form and set job title dynamically
+  function showApplicationForm(button) {
+    const formContainer = document.getElementById('applicationFormContainer');
+    const jobCard = button.closest('.job-card');
+    const jobTitle = jobCard.querySelector('.job-title').innerText;
+    document.getElementById('jobTitle').value = jobTitle;
+    formContainer.style.display = 'block';
+    formContainer.scrollIntoView({ behavior: 'smooth' });
   }
 
   // Multi-step form
@@ -282,7 +313,7 @@
     }
   });
 
-  // Form submission
+  // Form submit
   form.addEventListener('submit', function(e) {
     e.preventDefault();
     alert('Thank you for submitting your application! We will review it and get back to you.');
@@ -291,3 +322,6 @@
     showStep(currentStep);
   });
 </script>
+</body>
+</html>
+
