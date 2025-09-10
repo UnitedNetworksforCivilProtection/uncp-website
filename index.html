@@ -61,6 +61,7 @@ textarea { resize: vertical; }
   justify-content: center;
   text-align: center;
   padding: 20px;
+  z-index:2;
 }
 .hero-text h1 {
   color: #FFA500;
@@ -75,6 +76,36 @@ textarea { resize: vertical; }
 @media(max-width:768px){
   .hero-text h1 { font-size: 2em; }
   .hero-text p { font-size: 1em; }
+}
+
+/* Animated Icons Overlay */
+.icons-overlay {
+  position: absolute;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index:1;
+}
+.icon {
+  position: absolute;
+  font-size: 2em;
+  color: rgba(255,255,255,0.4);
+  animation: floatIcons 10s linear infinite;
+}
+.icon:nth-child(1){ left:10%; animation-duration:12s; }
+.icon:nth-child(2){ left:25%; animation-duration:10s; animation-delay:2s; }
+.icon:nth-child(3){ left:40%; animation-duration:14s; animation-delay:1s; }
+.icon:nth-child(4){ left:60%; animation-duration:11s; animation-delay:3s; }
+.icon:nth-child(5){ left:80%; animation-duration:13s; animation-delay:4s; }
+
+@keyframes floatIcons {
+  0% { transform: translateY(100%) rotate(0deg); opacity:0; }
+  25% { opacity:0.4; }
+  50% { transform: translateY(50%) rotate(180deg); opacity:0.6; }
+  75% { opacity:0.4; }
+  100% { transform: translateY(-100%) rotate(360deg); opacity:0; }
 }
 </style>
 </head>
@@ -118,13 +149,20 @@ textarea { resize: vertical; }
 </nav>
 </header>
 
-<!-- Hero Section -->
+<!-- Hero Section with Animated Icons -->
 <section class="hero-section">
 <div class="hero-overlay">
 <div class="hero-text">
 <h1>Welcome to United Networks for Civil Protection (UNCP)</h1>
 <p>We protect and empower vulnerable children, youth, and communities in Uganda through holistic, community-led programs.</p>
 </div>
+</div>
+<div class="icons-overlay">
+<i class="bi bi-heart-fill icon"></i>
+<i class="bi bi-person-fill icon"></i>
+<i class="bi bi-book icon"></i>
+<i class="bi bi-hand-thumbs-up-fill icon"></i>
+<i class="bi bi-basket icon"></i>
 </div>
 </section>
 
@@ -158,7 +196,7 @@ textarea { resize: vertical; }
 
 <!-- Multi-step Application Form -->
 <section id="applicationFormContainer" style="display:none;">
-<!-- FORM CONTENT (as generated before) -->
+<!-- FORM CONTENT (same as previous multi-step form) -->
 </section>
 
 <footer id="contact">
