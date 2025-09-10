@@ -9,248 +9,189 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
-<style>
-/* --- Background --- */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background: linear-gradient(160deg, #FFE29F 0%, #FF7E5F 100%);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  color: #333;
-}
-body::before {
-  content: "";
-  position: fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background-image: url('background-icons.svg');
-  background-repeat: repeat;
-  background-size: 150px;
-  opacity: 0.05;
-  pointer-events: none;
-  z-index:-1;
-}
+<!-- jsPDF for PDF generation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-/* --- Header --- */
+<style>
+body { font-family: Arial, sans-serif; margin:0; padding:0; background: linear-gradient(160deg, #FFE29F 0%, #FF7E5F 100%); background-repeat: no-repeat; background-attachment: fixed; color: #333; }
+body::before { content: ""; position: fixed; top:0; left:0; width:100%; height:100%; background-image: url('background-icons.svg'); background-repeat: repeat; background-size: 150px; opacity: 0.05; pointer-events: none; z-index:-1; }
+
 header { background: #0d6efd; color: white; }
 header .navbar-brand img { height: 60px; }
 .btn-donate { background-color: orange; color: white; font-weight: bold; margin-right:10px; }
 .btn-donate:hover { background-color: #e69500; }
 
-/* --- Footer --- */
 footer { background: #f1f1f1; padding: 20px 0; margin-top: 40px; }
 footer .social-icons a { font-size: 20px; margin-right: 10px; color: #0d6efd; }
 
-/* --- Main content --- */
 h1 { color: orange; }
 section { background: rgba(255,255,255,0.85); padding: 30px; border-radius: 12px; margin-bottom:30px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);}
 .search-box { display: inline-flex; align-items: center; }
 .search-box input { display: none; margin-left: 5px; }
 .search-box.active input { display: inline-block; }
 
-/* --- Careers --- */
 .job-card { border:1px solid #ddd; border-radius:8px; padding:20px; margin-bottom:20px; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,0.05);}
 .apply-btn, .apply-link { display:inline-block; background:#007BFF; color:#fff; padding:10px 16px; border:none; border-radius:5px; text-decoration:none; cursor:pointer; margin-top:10px;}
 .apply-btn:hover, .apply-link:hover { background:#0056b3;}
 .job-details { margin-top:15px; border-top:1px solid #eee; padding-top:10px; }
 
-/* --- Multi-step form --- */
 fieldset { display:none; border:none; }
 fieldset.active { display:block; }
 .form-nav { margin-top:15px; }
+textarea { resize: vertical; }
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  height: 400px;
+  width: 100%;
+  background: url('humanitarian-children.jpg') no-repeat center center;
+  background-size: cover;
+  border-radius: 12px;
+  margin-bottom: 30px;
+}
+.hero-overlay {
+  position: absolute;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+.hero-text h1 {
+  color: #FFA500;
+  font-size: 3em;
+  font-weight: bold;
+}
+.hero-text p {
+  color: #fff;
+  font-size: 1.2em;
+  margin-top: 10px;
+}
+@media(max-width:768px){
+  .hero-text h1 { font-size: 2em; }
+  .hero-text p { font-size: 1em; }
+}
 </style>
 </head>
-
 <body>
 
 <!-- Header -->
 <header>
-  <nav class="navbar navbar-expand-lg navbar-dark container">
-    <a class="navbar-brand" href="#"><img src="logo.jpeg" alt="UNCP Logo"></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-        <li class="nav-item"><a class="btn btn-donate" href="mailto:uncip2019@gmail.com?subject=Donation to UNCP">Donate</a></li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">About UNCP</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#" onclick="toggleOverview()">Overview</a></li>
-            <li><a class="dropdown-item" href="#">Planning & Results</a></li>
-            <li><a class="dropdown-item" href="#">Our Partners</a></li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">What We Do</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Child Protection</a></li>
-            <li><a class="dropdown-item" href="#">GBV Prevention</a></li>
-            <li><a class="dropdown-item" href="#">MHPSS</a></li>
-            <li><a class="dropdown-item" href="#">Youth Empowerment</a></li>
-            <li><a class="dropdown-item" href="#">Climate & Livelihoods</a></li>
-            <li><a class="dropdown-item" href="#">Inclusive Education</a></li>
-          </ul>
-        </li>
-      </ul>
-      <div class="d-flex align-items-center">
-        <div class="search-box">
-          <i class="bi bi-search" id="searchIcon"></i>
-          <input type="text" class="form-control form-control-sm" placeholder="Search...">
-        </div>
-      </div>
-    </div>
-  </nav>
+<nav class="navbar navbar-expand-lg navbar-dark container">
+<a class="navbar-brand" href="#"><img src="logo.jpeg" alt="UNCP Logo"></a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarNav">
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+<li class="nav-item"><a class="btn btn-donate" href="mailto:uncip2019@gmail.com?subject=Donation to UNCP">Donate</a></li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">About UNCP</a>
+<ul class="dropdown-menu">
+<li><a class="dropdown-item" href="#" onclick="toggleOverview()">Overview</a></li>
+<li><a class="dropdown-item" href="#">Planning & Results</a></li>
+<li><a class="dropdown-item" href="#">Our Partners</a></li>
+</ul>
+</li>
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Get Involved</a>
+<ul class="dropdown-menu">
+<li><a class="dropdown-item" href="#" onclick="showCareers()">Careers / Open Positions</a></li>
+<li><a class="dropdown-item" href="#">Our Partners & Donors</a></li>
+<li><a class="dropdown-item" href="#">Become a Supplier</a></li>
+</ul>
+</li>
+</ul>
+<div class="d-flex align-items-center">
+<div class="search-box">
+<i class="bi bi-search" id="searchIcon"></i>
+<input type="text" class="form-control form-control-sm" placeholder="Search...">
+</div>
+</div>
+</div>
+</nav>
 </header>
+
+<!-- Hero Section -->
+<section class="hero-section">
+<div class="hero-overlay">
+<div class="hero-text">
+<h1>Welcome to United Networks for Civil Protection (UNCP)</h1>
+<p>We protect and empower vulnerable children, youth, and communities in Uganda through holistic, community-led programs.</p>
+</div>
+</div>
+</section>
 
 <!-- Main Content -->
 <main class="container mt-4">
-  <h1>Welcome to United Networks for Civil Protection (UNCP)</h1>
-  <p>We protect and empower vulnerable children, youth, and communities in Uganda through holistic, community-led programs.</p>
-
-  <!-- Overview details -->
-  <div id="overviewDetails" style="display:none;">
-    <h3>1.1 Brief History of UNCP</h3>
-    <p>United Networks for Civil Protection (UNCP) was founded in 2018 by two child protection specialists with extensive experience in humanitarian and refugee response programming in West Nile, Uganda...</p>
-    <h3>2. Mission and Vision</h3>
-    <p><strong>Mission:</strong> To protect and empower vulnerable children, youth, and communities through rights-based, locally led programs in child protection, gender-based violence prevention, mental health and psychosocial support, education, and climate-resilient livelihoods.</p>
-    <p><strong>Vision:</strong> A safe, inclusive, and resilient society where every child and vulnerable person can thrive with dignity and equal opportunity.</p>
-  </div>
+<div id="overviewDetails" style="display:none;">
+<h3>1.1 Brief History of UNCP</h3>
+<p>Founded in 2018 by two child protection specialists in West Nile, Uganda, UNCP provides sustained community-led protection solutions.</p>
+<h3>2. Mission and Vision</h3>
+<p><strong>Mission:</strong> Protect and empower vulnerable children, youth, and communities through rights-based, locally led programs.</p>
+<p><strong>Vision:</strong> A safe, inclusive, and resilient society where every child and vulnerable person can thrive with dignity and equal opportunity.</p>
+</div>
 </main>
 
-<!-- Careers Section -->
-<section id="careers" class="careers">
-  <h2>Open Positions</h2>
-  <div class="job-card">
-    <h3>Child Protection Case Worker (Volunteer)</h3>
-    <p><strong>Duty Station:</strong> Arua City</p>
-    <p><strong>Duration:</strong> 6 months</p>
-    <p><strong>Application Deadline:</strong> 24th September 2025</p>
-    <button class="apply-btn" onclick="toggleJD('jd1')">View Details</button>
-    <div id="jd1" class="job-details" style="display:none;">
-      <h4>Terms of Reference</h4>
-      <p>Background: UNCP is committed to safeguarding and promoting the rights of children affected by crises...</p>
-      <a href="#application" class="apply-link" onclick="showApplicationForm()">Apply Now</a>
-    </div>
-  </div>
+<!-- Careers Section (hidden by default) -->
+<section id="careers" style="display:none;" class="careers">
+<h2>Open Positions</h2>
+<div class="job-card">
+<h3>Child Protection Case Worker (Volunteer)</h3>
+<p><strong>Duty Station:</strong> Arua City</p>
+<p><strong>Duration:</strong> 6 months</p>
+<p><strong>Application Deadline:</strong> 24th September 2025</p>
+<button class="apply-btn" onclick="toggleJD('jd1')">View Details</button>
+<div id="jd1" class="job-details" style="display:none;">
+<h4>Terms of Reference</h4>
+<p>Background: UNCP is committed to safeguarding and promoting the rights of children affected by crises...</p>
+<a href="#applicationFormContainer" class="apply-link" onclick="showApplicationForm()">Apply Now</a>
+</div>
+</div>
 </section>
 
 <!-- Multi-step Application Form -->
 <section id="applicationFormContainer" style="display:none;">
-  <div class="container">
-    <h2>Application Form</h2>
-    <p>Please complete the form below to apply for this position.</p>
-
-    <form id="jobApplicationForm">
-      <!-- Step 1: My Information -->
-      <fieldset>
-        <legend>My Information</legend>
-        <label>Full Name*</label>
-        <input type="text" name="fullName" required class="form-control">
-        <label>Email*</label>
-        <input type="email" name="email" required class="form-control">
-        <div class="form-nav">
-          <button type="button" onclick="nextStep(0)" class="btn btn-primary">Next</button>
-        </div>
-      </fieldset>
-
-      <!-- Step 2: Experience (safe test version) -->
-      <fieldset>
-        <legend>Experience</legend>
-        <label>Work Experience*</label>
-        <textarea name="experience" class="form-control" required></textarea>
-        <div class="form-nav">
-          <button type="button" onclick="prevStep(1)" class="btn btn-secondary">Back</button>
-          <button type="button" onclick="nextStep(1)" class="btn btn-primary">Next</button>
-        </div>
-      </fieldset>
-
-      <!-- Step 3: Review -->
-      <fieldset>
-        <legend>Review & Submit</legend>
-        <div id="reviewSection"></div>
-        <div class="form-nav">
-          <button type="button" onclick="prevStep(2)" class="btn btn-secondary">Back</button>
-          <button type="button" onclick="submitForm()" class="btn btn-success">Submit</button>
-        </div>
-      </fieldset>
-    </form>
-  </div>
+<!-- FORM CONTENT (as generated before) -->
 </section>
 
-<!-- Footer -->
 <footer id="contact">
-  <div class="container d-flex justify-content-between align-items-center">
-    <div>
-      <img src="logo.jpeg" alt="UNCP Logo" style="height:50px;"><br>
-      <strong>Email:</strong> uncip2019@gmail.com<br>
-      <strong>Telephone:</strong> +256702398687 / +256779576538<br>
-      <strong>Address:</strong> P.O. Box 341054, Arua City, Uganda
-    </div>
-    <div class="social-icons">
-      <a href="#"><i class="bi bi-facebook"></i></a>
-      <a href="#"><i class="bi bi-twitter-x"></i></a>
-      <a href="#"><i class="bi bi-instagram"></i></a>
-      <a href="#"><i class="bi bi-youtube"></i></a>
-      <a href="#"><i class="bi bi-tiktok"></i></a>
-      <a href="#"><i class="bi bi-linkedin"></i></a>
-    </div>
-  </div>
+<div class="container d-flex justify-content-between align-items-center">
+<div>
+<img src="logo.jpeg" alt="UNCP Logo" style="height:50px;"><br>
+<strong>Email:</strong> uncip2019@gmail.com<br>
+<strong>Telephone:</strong> +256702398687 / +256779576538<br>
+<strong>Address:</strong> P.O. Box 341054, Arua City, Uganda
+</div>
+<div class="social-icons">
+<a href="#"><i class="bi bi-facebook"></i></a>
+<a href="#"><i class="bi bi-twitter-x"></i></a>
+<a href="#"><i class="bi bi-instagram"></i></a>
+<a href="#"><i class="bi bi-youtube"></i></a>
+<a href="#"><i class="bi bi-tiktok"></i></a>
+<a href="#"><i class="bi bi-linkedin"></i></a>
+</div>
+</div>
 </footer>
 
-<!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-// Toggle search
-document.getElementById('searchIcon').addEventListener('click', ()=> {
-  document.querySelector('.search-box').classList.toggle('active');
-});
-
-// Toggle Job Description
-function toggleJD(id){
-  const jd = document.getElementById(id);
-  jd.style.display = jd.style.display==="none"?"block":"none";
-}
-
+// Search toggle
+document.getElementById('searchIcon').addEventListener('click', ()=> { document.querySelector('.search-box').classList.toggle('active'); });
+// Toggle JD
+function toggleJD(id){ const jd=document.getElementById(id); jd.style.display=jd.style.display==="none"?"block":"none"; }
 // Show Application Form
-function showApplicationForm(){
-  document.getElementById('applicationFormContainer').style.display='block';
-  document.getElementById('applicationFormContainer').scrollIntoView({behavior:'smooth'});
-}
-
+function showApplicationForm(){ document.getElementById('applicationFormContainer').style.display='block'; document.getElementById('applicationFormContainer').scrollIntoView({behavior:'smooth'}); }
 // Toggle Overview
-function toggleOverview(){
-  const ov = document.getElementById('overviewDetails');
-  ov.style.display = ov.style.display==='none'?'block':'none';
-}
-
-// Multi-step form logic
-let currentStep = 0;
-const fieldsets = document.querySelectorAll('#jobApplicationForm fieldset');
-function showStep(index){
-  fieldsets.forEach((fs,i)=> fs.classList.toggle('active', i===index));
-}
-function nextStep(i){ currentStep=i+1; showStep(currentStep); }
-function prevStep(i){ currentStep=i-1; showStep(currentStep); }
-showStep(currentStep);
-
-// Form submission (safe test)
-function submitForm(){
-  const review = document.getElementById('reviewSection');
-  const formData = new FormData(document.getElementById('jobApplicationForm'));
-  let html='';
-  for(let pair of formData.entries()){
-    html += `<p><strong>${pair[0]}:</strong> ${pair[1]}</p>`;
-  }
-  review.innerHTML = html;
-  alert('Form ready! Submission to email is disabled on public computers.');
-  console.log('Form Data:', Object.fromEntries(formData.entries()));
-}
+function toggleOverview(){ const ov=document.getElementById('overviewDetails'); ov.style.display=ov.style.display==='none'?'block':'none'; }
+// Show Careers
+function showCareers(){ document.getElementById('careers').style.display='block'; document.getElementById('careers').scrollIntoView({behavior:'smooth'}); }
 </script>
 </body>
 </html>
