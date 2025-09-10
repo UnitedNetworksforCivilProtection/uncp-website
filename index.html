@@ -38,7 +38,6 @@ footer .social-icons a { font-size: 20px; margin-right: 10px; color: #0d6efd; }
 fieldset { display:none; opacity:0; transition: opacity 0.5s ease; border:none; }
 fieldset.active { display:block; opacity:1; }
 .form-nav { margin-top:15px; }
-.add-btn, .remove-btn { margin-top:10px; }
 </style>
 </head>
 <body>
@@ -58,35 +57,9 @@ fieldset.active { display:block; opacity:1; }
 <li><a class="dropdown-item" href="#">Planning & Results</a></li>
 <li><a class="dropdown-item" href="#">Our Partners</a></li>
 </ul></li>
-<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">What We Do</a>
-<ul class="dropdown-menu">
-<li><a class="dropdown-item" href="#">Child Protection</a></li>
-<li><a class="dropdown-item" href="#">GBV Prevention</a></li>
-<li><a class="dropdown-item" href="#">MHPSS</a></li>
-<li><a class="dropdown-item" href="#">Youth Empowerment</a></li>
-<li><a class="dropdown-item" href="#">Climate & Livelihoods</a></li>
-<li><a class="dropdown-item" href="#">Inclusive Education</a></li>
-</ul></li>
-<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Where We Work</a>
-<ul class="dropdown-menu">
-<li><a class="dropdown-item" href="#">Arua City</a></li>
-<li><a class="dropdown-item" href="#">Arua District</a></li>
-<li><a class="dropdown-item" href="#">Madi Okollo</a></li>
-<li><a class="dropdown-item" href="#">Terego</a></li>
-<li><a class="dropdown-item" href="#">Adjumani</a></li>
-<li><a class="dropdown-item" href="#">Moyo</a></li>
-<li><a class="dropdown-item" href="#">Obongi</a></li>
-<li><a class="dropdown-item" href="#">Pakwach</a></li>
-<li><a class="dropdown-item" href="#">Nebbi</a></li>
-<li><a class="dropdown-item" href="#">Koboko</a></li>
-<li><a class="dropdown-item" href="#">Yumbe</a></li>
-<li><a class="dropdown-item" href="#">Zombo</a></li>
-<li><a class="dropdown-item" href="#">Maracha</a></li>
-</ul></li>
-<li class="nav-item"><a class="nav-link" href="#">News & Stories</a></li>
 <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Get Involved</a>
 <ul class="dropdown-menu">
-<li><a class="dropdown-item" href="javascript:void(0)" onclick="showCareers()">Careers / Open Positions</a></li>
+<li><a class="dropdown-item" href="javascript:void(0)" onclick="showCareers()">Careers</a></li>
 <li><a class="dropdown-item" href="#">Our Partners & Donors</a></li>
 <li><a class="dropdown-item" href="#">Become a Supplier</a></li>
 </ul></li>
@@ -112,7 +85,7 @@ fieldset.active { display:block; opacity:1; }
 <section id="overviewDetails" style="display:none;" class="container mt-4">
 <h2>Overview</h2>
 <h4>1.1 Brief History of UNCP</h4>
-<p>United Networks for Civil Protection (UNCP) was founded in 2018 by two child protection specialists with extensive experience in humanitarian and refugee response programming in West Nile, Uganda. Drawing from years of frontline work with displaced and vulnerable populations, the founders established UNCP to provide sustained, community-led protection solutions beyond short-term emergency interventions. Today, both founders continue to serve in the child protection sector while leading UNCP's growth. With a diverse Board of Directors, a growing membership base, and strong ties to local and refugee communities, UNCP remains grounded in its humanitarian roots while advancing long-term protection, psychosocial support, and youth empowerment across the region.</p>
+<p>United Networks for Civil Protection (UNCP) was founded in 2018 by two child protection specialists with extensive experience in humanitarian and refugee response programming in West Nile, Uganda...</p>
 <h4>2. Mission and Vision</h4>
 <p><strong>Mission:</strong> To protect and empower vulnerable children, youth, and communities through rights-based, locally led programs in child protection, GBV prevention, mental health and psychosocial support, education, and climate-resilient livelihoods.</p>
 <p><strong>Vision:</strong> A safe, inclusive, and resilient society where every child and vulnerable person can thrive with dignity and equal opportunity.</p>
@@ -136,120 +109,129 @@ fieldset.active { display:block; opacity:1; }
 <section id="applicationFormContainer" class="application" style="display:none;">
 <div class="container">
 <h2>Application Form</h2>
-<p>Please complete the multi-step form below.</p>
-
 <form id="multiStepForm">
+
 <!-- Step 1: My Information -->
 <fieldset class="active">
 <legend>My Information</legend>
-<label>How Did You Hear About Us?*</label>
-<select name="hearAbout" required>
+<label>How Did You Hear About Us?</label>
+<select name="hearAboutUs" required>
 <option value="">Select</option>
-<option value="Job Board">Job Board</option>
-<option value="Social Media">Social Media</option>
-<option value="UNCP website career page">UNCP website career page</option>
-<option value="Others">Others</option>
+<option>Job Board</option>
+<option>Social Media</option>
+<option>UNCP Website Career Page</option>
+<option>Others</option>
 </select>
-<label>Have you previously worked for UNCP?*</label>
-<select name="prevUNCP" required>
-<option value="">Select</option>
-<option value="Yes">Yes</option>
-<option value="No">No</option>
-</select>
+
+<label>Have you previously worked for UNCP?</label>
+<select name="previousUNCP" id="prevUNCP" required onchange="togglePrevUNCPDetails(this.value)">
+<option value="">Select</option><option>Yes</option><option>No</option></select>
+
 <div id="prevUNCPDetails" style="display:none;">
-<label>Employee ID:</label><input type="text" name="employeeID">
-<label>Supervisor:</label><input type="text" name="supervisor">
-<label>Year:</label><input type="text" name="prevYear">
-<label>Former Duty Station:</label><input type="text" name="prevStation">
-<label>Contract Type:</label><input type="text" name="prevContract">
+<label>Employee ID*</label><input type="text" name="employeeID">
+<label>Supervisor</label><input type="text" name="supervisor">
+<label>Year</label><input type="text" name="prevYear">
+<label>Former Duty Station</label><input type="text" name="prevDutyStation">
+<label>Contract Type</label><input type="text" name="prevContractType">
 </div>
-<label>Full Name*:</label><input type="text" name="fullName" required>
-<label>Current Address:</label><input type="text" name="address">
-<label>Email Address*:</label><input type="email" name="email" required>
-<label>Phone Number (Mobile):</label><input type="tel" name="phone">
+
+<label>Full Name*</label><input type="text" name="fullName" required>
+<label>Current Address</label><input type="text" name="address">
+<label>Email Address*</label><input type="email" name="email" required>
+<label>Phone Number</label><input type="tel" name="phone">
 </fieldset>
 
 <!-- Step 2: Work Experience -->
 <fieldset>
 <legend>Work Experience</legend>
+<p>List all work experience. Include % if part-time, internships, or other types.</p>
 <div id="workExperienceContainer">
-<div class="workExp">
-<h5>Experience 1</h5>
-<label>Job Title*:</label><input type="text" name="jobTitle[]" required>
-<label>Company*:</label><input type="text" name="company[]" required>
-<label>Location:</label><input type="text" name="workLocation[]">
-<label>Currently Work Here:</label><input type="checkbox" name="currentlyHere[]">
-<label>From* (MM/YYYY):</label><input type="month" name="workFrom[]" required>
-<label>To* (MM/YYYY):</label><input type="month" name="workTo[]">
-<label>Role Description:</label><textarea name="roleDesc[]" maxlength="2500"></textarea>
-<button type="button" class="add-btn" onclick="addWorkExp()">Add Another Experience</button>
+<div class="workExperienceEntry">
+<label>Job Title*</label><input type="text" name="jobTitle[]" required>
+<label>Company*</label><input type="text" name="company[]" required>
+<label>Location (City, Country)*</label><input type="text" name="location[]" required>
+<label>Currently Working Here</label><input type="checkbox" name="currentlyWorking[]">
+<label>From*</label><input type="month" name="fromDate[]" required>
+<label>To*</label><input type="month" name="toDate[]" required>
+<label>Role Description</label><textarea name="roleDesc[]" maxlength="2500"></textarea>
 </div>
 </div>
+<button type="button" onclick="addWorkExperience()">Add Another Work Experience</button>
 </fieldset>
 
 <!-- Step 3: Education -->
 <fieldset>
 <legend>Education</legend>
 <div id="educationContainer">
-<div class="eduExp">
-<h5>Education 1</h5>
-<label>School/University*:</label><input type="text" name="school[]" required>
-<label>Degree/Award Title*:</label><input type="text" name="degree[]" required>
-<label>Field of Study:</label><input type="text" name="field[]">
-<label>From* (YYYY):</label><input type="number" name="eduFrom[]" required>
-<label>To* (Actual/Expected):</label><input type="number" name="eduTo[]">
-<button type="button" class="add-btn" onclick="addEducation()">Add Another</button>
+<div class="educationEntry">
+<label>School/University*</label><input type="text" name="school[]" required>
+<label>Degree/Award Title*</label><input type="text" name="degree[]" required>
+<label>Field of Study</label><input type="text" name="field[]" >
+<label>From*</label><input type="number" name="eduFrom[]" required min="1900" max="2100">
+<label>To (Actual/Expected)*</label><input type="number" name="eduTo[]" required min="1900" max="2100">
 </div>
 </div>
+<button type="button" onclick="addEducation()">Add Another Education</button>
 </fieldset>
 
 <!-- Step 4: Languages -->
 <fieldset>
 <legend>Languages</legend>
 <div id="languageContainer">
-<div class="langExp">
-<label>Language*:</label><input type="text" name="language[]" required>
-<label>I am fluent:</label><input type="checkbox" name="fluent[]">
-<label>Overall Level* (A1-C2):</label><input type="text" name="level[]" required>
-<button type="button" class="add-btn" onclick="addLanguage()">Add Another</button>
+<div class="languageEntry">
+<label>Language*</label><input type="text" name="language[]" required>
+<label>Fluent?</label><input type="checkbox" name="fluent[]">
+<label>Level (CEFR)</label>
+<select name="level[]">
+<option>Mother Tongue</option>
+<option>A1</option><option>A2</option><option>B1</option><option>B2</option><option>C1</option><option>C2</option>
+</select>
 </div>
 </div>
+<button type="button" onclick="addLanguage()">Add Another Language</button>
 </fieldset>
 
 <!-- Step 5: Skills -->
 <fieldset>
 <legend>Skills</legend>
-<label>Skills:</label><input type="text" name="skills">
+<label>Type to Add Skills (comma separated)</label>
+<input type="text" name="skills">
 </fieldset>
 
 <!-- Step 6: Application Questions -->
 <fieldset>
-<legend>Application Questions</legend>
-<label>How have your achievements and operational experience prepared you for this position?*</label>
+<legend>Application Questions 1 of 2</legend>
+<label>a) How have your achievements and operational experience to date prepared you for this position?*</label>
 <textarea name="appQ1" maxlength="2500" required></textarea>
-<label>Please describe any skills and competencies relevant to this position.*</label>
+<label>b) Describe any skills and competencies relevant to this position*</label>
 <textarea name="appQ2" maxlength="2500" required></textarea>
-<label>How does this position align with your career aspirations?*</label>
+<label>c) How does this position align with your career aspirations?*</label>
 <textarea name="appQ3" maxlength="1000" required></textarea>
 </fieldset>
 
 <!-- Step 7: Disclosures & Personal Data -->
 <fieldset>
 <legend>Disclosures & Personal Data</legend>
-<label>Date of Birth*:</label><input type="date" name="dob" required>
-<label>Marital Status*:</label>
-<select name="marital" required>
+<label>Are you/ever been a permanent civil servant?*</label>
+<select name="civilServant" required><option value="">Select</option><option>Yes</option><option>No</option></select>
+<label>Date of Birth*</label><input type="date" name="dob" required>
+<label>Marital Status*</label>
+<select name="maritalStatus" required>
 <option value="">Select</option>
-<option>Divorced</option><option>Legally Separated</option><option>Married</option>
-<option>Registered Partnership</option><option>Single</option><option>Widowed</option><option>Others</option>
+<option>Single</option><option>Married</option><option>Divorced</option><option>Widowed</option><option>Legally Separated</option><option>Registered Partnership</option><option>Other</option>
 </select>
-<label>Primary Nationality*:</label><input type="text" name="nationality" required>
-<label>Disability:</label><select name="disability">
-<option>No</option><option>Yes</option>
-</select>
-<label>Sex*:</label>
+<label>Primary Nationality*</label><input type="text" name="nationality" required>
+<label>Disability?</label>
+<select name="disability"><option>No</option><option>Yes</option></select>
+<label>Sex*</label>
 <select name="sex" required><option>Female</option><option>Male</option><option>Not Declared</option></select>
-<label><input type="checkbox" name="ackTerms" required> I acknowledge and agree to terms & conditions.</label>
+<label><input type="checkbox" name="ackTerms" required> I acknowledge and agree to UNCP terms and conditions</label>
+</fieldset>
+
+<!-- Step 8: Review & Submit -->
+<fieldset>
+<legend>Review & Submit</legend>
+<p>Review your entries before submission. Click "Submit" when ready.</p>
 </fieldset>
 
 <div class="form-nav mt-3">
@@ -257,6 +239,7 @@ fieldset.active { display:block; opacity:1; }
 <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
 <button type="submit" id="submitBtn" style="display:none;">Submit</button>
 </div>
+
 </form>
 </div>
 </section>
@@ -283,75 +266,87 @@ fieldset.active { display:block; opacity:1; }
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-// Navbar search toggle
-const searchBox = document.querySelector('.search-box');
-document.getElementById('searchIcon').addEventListener('click', ()=>{ searchBox.classList.toggle('active'); });
+// Search expand
+document.getElementById('searchIcon').addEventListener('click', ()=>{ document.querySelector('.search-box').classList.toggle('active'); });
 
 // Overview toggle
 function toggleOverview(){ document.getElementById('overviewDetails').style.display='block'; document.getElementById('overviewDetails').scrollIntoView({behavior:'smooth'}); }
-
 // Careers toggle
-function showCareers(){
-  document.getElementById('careers').style.display='block';
-  document.getElementById('careers').scrollIntoView({behavior:'smooth'});
-  document.querySelectorAll('.job-card').forEach((card,i)=>{ setTimeout(()=>{ card.classList.add('show'); }, i*200); });
-}
-
+function showCareers(){ document.getElementById('careers').style.display='block'; document.getElementById('careers').scrollIntoView({behavior:'smooth'}); }
 // Show application form
-function showApplicationForm(){
-  document.getElementById('applicationFormContainer').style.display='block';
-  document.getElementById('applicationFormContainer').scrollIntoView({behavior:'smooth'});
-}
-
-// Previous UNCP work details toggle
-document.querySelectorAll('select[name="prevUNCP"]').forEach(sel=>{
-  sel.addEventListener('change', ()=>{ document.getElementById('prevUNCPDetails').style.display = sel.value==='Yes'?'block':'none'; });
-});
+function showApplicationForm(){ document.getElementById('applicationFormContainer').style.display='block'; document.getElementById('applicationFormContainer').scrollIntoView({behavior:'smooth'}); }
+// Previous UNCP toggle
+function togglePrevUNCPDetails(val){ document.getElementById('prevUNCPDetails').style.display=val==='Yes'?'block':'none'; }
 
 // Multi-step form
-var currentStep = 0;
-var steps = document.querySelectorAll('#multiStepForm fieldset');
+var currentStep=0;
+var steps=document.querySelectorAll('#multiStepForm fieldset');
 showStep(currentStep);
-
 function showStep(n){
-  steps.forEach((f,i)=>{ f.classList.remove('active'); f.style.opacity=0; });
-  steps[n].classList.add('active');
-  setTimeout(()=>{ steps[n].style.opacity=1; },50);
-  document.getElementById('prevBtn').style.display=n===0?'none':'inline';
-  document.getElementById('nextBtn').style.display=n===steps.length-1?'none':'inline';
-  document.getElementById('submitBtn').style.display=n===steps.length-1?'inline':'none';
+steps.forEach(f=>{f.classList.remove('active'); f.style.opacity=0;});
+steps[n].classList.add('active'); setTimeout(()=>{steps[n].style.opacity=1;},50);
+document.getElementById('prevBtn').style.display=n===0?'none':'inline';
+document.getElementById('nextBtn').style.display=n===steps.length-1?'none':'inline';
+document.getElementById('submitBtn').style.display=n===steps.length-1?'inline':'none';
 }
-function nextPrev(n){ currentStep += n; if(currentStep>=steps.length){ document.getElementById('multiStepForm').dispatchEvent(new Event('submit')); return false; } showStep(currentStep); }
+function nextPrev(n){ currentStep+=n; if(currentStep>=steps.length){ document.getElementById('multiStepForm').dispatchEvent(new Event('submit')); return false;} showStep(currentStep);}
 
-// Dynamic Work/Edu/Language adding
-function addWorkExp(){ var container=document.getElementById('workExperienceContainer'); var div=document.createElement('div'); div.innerHTML=document.querySelector('.workExp').innerHTML; container.appendChild(div);}
-function addEducation(){ var container=document.getElementById('educationContainer'); var div=document.createElement('div'); div.innerHTML=document.querySelector('.eduExp').innerHTML; container.appendChild(div);}
-function addLanguage(){ var container=document.getElementById('languageContainer'); var div=document.createElement('div'); div.innerHTML=document.querySelector('.langExp').innerHTML; container.appendChild(div);}
+// Add dynamic fields
+function addWorkExperience(){
+let container=document.getElementById('workExperienceContainer');
+let div=document.createElement('div'); div.className='workExperienceEntry mt-2';
+div.innerHTML=`<label>Job Title*</label><input type="text" name="jobTitle[]" required>
+<label>Company*</label><input type="text" name="company[]" required>
+<label>Location (City, Country)*</label><input type="text" name="location[]" required>
+<label>Currently Working Here</label><input type="checkbox" name="currentlyWorking[]">
+<label>From*</label><input type="month" name="fromDate[]" required>
+<label>To*</label><input type="month" name="toDate[]" required>
+<label>Role Description</label><textarea name="roleDesc[]" maxlength="2500"></textarea>`;
+container.appendChild(div);
+}
+function addEducation(){
+let container=document.getElementById('educationContainer');
+let div=document.createElement('div'); div.className='educationEntry mt-2';
+div.innerHTML=`<label>School/University*</label><input type="text" name="school[]" required>
+<label>Degree/Award Title*</label><input type="text" name="degree[]" required>
+<label>Field of Study</label><input type="text" name="field[]" >
+<label>From*</label><input type="number" name="eduFrom[]" required min="1900" max="2100">
+<label>To (Actual/Expected)*</label><input type="number" name="eduTo[]" required min="1900" max="2100">`;
+container.appendChild(div);
+}
+function addLanguage(){
+let container=document.getElementById('languageContainer');
+let div=document.createElement('div'); div.className='languageEntry mt-2';
+div.innerHTML=`<label>Language*</label><input type="text" name="language[]" required>
+<label>Fluent?</label><input type="checkbox" name="fluent[]">
+<label>Level (CEFR)</label><select name="level[]">
+<option>Mother Tongue</option><option>A1</option><option>A2</option><option>B1</option><option>B2</option><option>C1</option><option>C2</option></select>`;
+container.appendChild(div);
+}
 
-// Multi-step form submit -> PDF generation
+// Form submit -> PDF + mailto
 document.getElementById('multiStepForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  const formData = new FormData(this);
-  let pdfContent = "UNCP Job Application\n\n";
-  formData.forEach((value,key)=>{ pdfContent+=`${key}: ${value}\n`; });
+e.preventDefault();
+const formData = new FormData(this);
+let pdfContent = "UNCP Job Application\n\n";
+let candidateEmail = "";
+formData.forEach((value,key)=>{ pdfContent += `${key}: ${value}\n`; if(key==="email") candidateEmail=value; });
+const { jsPDF } = window.jspdf;
+const doc = new jsPDF();
+const lines = doc.splitTextToSize(pdfContent,180);
+doc.text(lines,10,10);
+doc.save("UNCP_Application.pdf");
 
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
-  const lines = doc.splitTextToSize(pdfContent,180);
-  doc.text(lines,10,10);
+// Here you can send PDF blob to your server using fetch to send_application.php
+alert("Application generated as PDF! Please email it to UNCP or use server-side handler.");
 
-  // Download for candidate
-  doc.save("UNCP_Application.pdf");
-
-  // Send PDF to UNCP via server (requires server-side script)
-  fetch('send_application.php',{
-    method:'POST',
-    body:doc.output('blob')
-  }).then(res=>res.text())
-    .then(()=> alert("Application submitted successfully! UNCP will contact you shortly."))
-    .catch(()=> alert("Submission failed. Please try again later."));
+// Optional: mailto acknowledgment
+if(candidateEmail){
+const subject = encodeURIComponent("UNCP Application Acknowledgment");
+const body = encodeURIComponent("Dear Candidate,\n\nThank you for submitting your application to UNCP. Your application has been received successfully.\n\nBest regards,\nUNCP");
+window.location.href = `mailto:${candidateEmail}?subject=${subject}&body=${body}`;
+}
 });
 </script>
 </body>
 </html>
-
