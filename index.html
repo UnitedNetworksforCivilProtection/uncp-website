@@ -130,121 +130,164 @@
 </body>
 </html>
 <!-- Careers / Open Positions Section -->
-<section id="careers" class="careers">
-  <h2>Open Positions</h2>
-  <p>Explore current opportunities with UNCP. Click "Apply" to review the job description and submit your application online.</p>
+<section id="careers" class="careers py-5" style="background:#f9f9f9;">
+  <div class="container">
+    <h2 class="mb-3">Open Positions</h2>
+    <p>Explore current opportunities with UNCP. Click "Apply" to review the job description and submit your application online.</p>
 
-  <!-- Sample Position -->
-  <div class="job-card">
-    <h3>Child Protection Case Worker (Volunteer)</h3>
-    <p><strong>Duty Station:</strong> Arua City</p>
-    <p><strong>Duration:</strong> 6 months</p>
-    <p><strong>Application Deadline:</strong> 24th September 2025</p>
-    <button class="apply-btn" onclick="toggleJD('jd1')">View Details</button>
-    <div id="jd1" class="job-details" style="display:none;">
-      <h4>Terms of Reference</h4>
-      <p><strong>Background:</strong> United Networks for Civil Protection (UNCP) is committed to safeguarding and promoting the rights and well-being of children affected by crises, displacement, and vulnerability...</p>
-      <p><strong>Purpose of the Role:</strong> The Child Protection Case Worker (Volunteer) will provide direct support to children at risk, survivors of violence, exploitation, abuse, and neglect.</p>
-      <p><strong>Responsibilities:</strong></p>
-      <ul>
-        <li>Conduct intake assessments, case planning, follow-up, and safe case closure.</li>
-        <li>Provide psychosocial support and referrals for children and caregivers.</li>
-        <li>Work with community structures to strengthen awareness and prevention.</li>
-      </ul>
-      <p><strong>Qualifications:</strong> Bachelor’s degree in Social Work, Psychology, Child Development, or related field (Diploma with experience may be considered).</p>
-      <p><strong>Application Process:</strong> Please submit your application using the online application form.</p>
-      <a href="#application-form" class="apply-link">Apply Now</a>
+    <!-- Sample Position -->
+    <div class="job-card mb-4 p-4 bg-white rounded shadow-sm">
+      <h3>Child Protection Case Worker (Volunteer)</h3>
+      <p><strong>Duty Station:</strong> Arua City</p>
+      <p><strong>Duration:</strong> 6 months</p>
+      <p><strong>Application Deadline:</strong> 24th September 2025</p>
+      <button class="apply-btn btn btn-primary mt-2" onclick="toggleJD('jd1')">View Details</button>
+
+      <div id="jd1" class="job-details mt-3" style="max-height:0; overflow:hidden; transition:max-height 0.5s ease;">
+        <h4>Terms of Reference</h4>
+        <p><strong>Background:</strong> United Networks for Civil Protection (UNCP) is committed to safeguarding and promoting the rights and well-being of children affected by crises, displacement, and vulnerability...</p>
+        <p><strong>Purpose of the Role:</strong> Provide direct support to children at risk, survivors of violence, exploitation, abuse, and neglect.</p>
+        <p><strong>Responsibilities:</strong></p>
+        <ul>
+          <li>Conduct intake assessments, case planning, follow-up, and safe case closure.</li>
+          <li>Provide psychosocial support and referrals for children and caregivers.</li>
+          <li>Work with community structures to strengthen awareness and prevention.</li>
+        </ul>
+        <p><strong>Qualifications:</strong> Bachelor’s degree in Social Work, Psychology, Child Development, or related field (Diploma with experience may be considered).</p>
+        <a href="#application" class="apply-link btn btn-success mt-2">Apply Now</a>
+      </div>
     </div>
   </div>
 </section>
 
-<script>
-  // Toggle Job Description visibility
-  function toggleJD(id) {
-    const jd = document.getElementById(id);
-    jd.style.display = jd.style.display === "none" ? "block" : "none";
-  }
-</script>
-
-<style>
-  .careers {
-    padding: 40px;
-    background: #f9f9f9;
-  }
-  .job-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-    background: #fff;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  }
-  .apply-btn, .apply-link {
-    display: inline-block;
-    background: #007BFF;
-    color: #fff;
-    padding: 10px 16px;
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    cursor: pointer;
-    margin-top: 10px;
-  }
-  .apply-btn:hover, .apply-link:hover {
-    background: #0056b3;
-  }
-  .job-details {
-    margin-top: 15px;
-    border-top: 1px solid #eee;
-    padding-top: 10px;
-  }
-</style>
 <!-- Application Form Section -->
-<section id="application" class="application">
+<section id="application" class="application py-5">
   <div class="container">
-    <h2>Application Form</h2>
+    <h2 class="mb-3">Application Form</h2>
     <p>Please complete the form below to apply for this position.</p>
-    
+
     <form id="jobApplicationForm">
       <!-- Step 1: Personal Information -->
       <fieldset>
         <legend>Personal Information</legend>
-        <label for="name">Full Name*:</label>
-        <input type="text" id="name" name="name" required>
-
-        <label for="email">Email*:</label>
-        <input type="email" id="email" name="email" required>
-
-        <label for="phone">Phone Number:</label>
-        <input type="tel" id="phone" name="phone">
-
-        <label for="address">Address:</label>
-        <input type="text" id="address" name="address">
+        <div class="mb-3">
+          <label for="name" class="form-label">Full Name*:</label>
+          <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email*:</label>
+          <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="mb-3">
+          <label for="phone" class="form-label">Phone Number:</label>
+          <input type="tel" class="form-control" id="phone" name="phone">
+        </div>
+        <div class="mb-3">
+          <label for="address" class="form-label">Address:</label>
+          <input type="text" class="form-control" id="address" name="address">
+        </div>
       </fieldset>
 
       <!-- Step 2: Work Experience -->
       <fieldset>
         <legend>Work Experience</legend>
-        <label for="experience">Describe your relevant work experience*:</label>
-        <textarea id="experience" name="experience" required></textarea>
+        <div class="mb-3">
+          <label for="experience" class="form-label">Describe your relevant work experience*:</label>
+          <textarea class="form-control" id="experience" name="experience" required></textarea>
+        </div>
       </fieldset>
 
       <!-- Step 3: Education -->
       <fieldset>
         <legend>Education</legend>
-        <label for="education">Education Background*:</label>
-        <textarea id="education" name="education" required></textarea>
+        <div class="mb-3">
+          <label for="education" class="form-label">Education Background*:</label>
+          <textarea class="form-control" id="education" name="education" required></textarea>
+        </div>
       </fieldset>
 
       <!-- Step 4: References -->
       <fieldset>
         <legend>References</legend>
-        <label for="reference">Reference (Name, Organization, Contact)*:</label>
-        <textarea id="reference" name="reference" required></textarea>
+        <div class="mb-3">
+          <label for="reference" class="form-label">Reference (Name, Organization, Contact)*:</label>
+          <textarea class="form-control" id="reference" name="reference" required></textarea>
+        </div>
       </fieldset>
 
       <!-- Step 5: Submit -->
-      <button type="submit">Submit Application</button>
+      <fieldset>
+        <button type="submit" class="btn btn-success">Submit Application</button>
+      </fieldset>
     </form>
   </div>
 </section>
+
+<!-- Styles -->
+<style>
+  .job-card { border: none; }
+  .apply-btn, .apply-link { cursor: pointer; }
+  fieldset { border: 1px solid #ddd; padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+  fieldset:not(:first-of-type) { display: none; }
+  fieldset button { margin-right: 10px; }
+</style>
+
+<!-- Scripts -->
+<script>
+  // Smooth scroll for "Apply Now"
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  // Toggle Job Details
+  function toggleJD(id) {
+    const jd = document.getElementById(id);
+    if (jd.style.maxHeight && jd.style.maxHeight !== "0px") {
+      jd.style.maxHeight = "0";
+    } else {
+      jd.style.maxHeight = jd.scrollHeight + "px";
+      jd.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  // Multi-step form
+  const form = document.getElementById('jobApplicationForm');
+  const fieldsets = form.querySelectorAll('fieldset');
+  let currentStep = 0;
+
+  function showStep(n) {
+    fieldsets.forEach((fs, i) => fs.style.display = i === n ? 'block' : 'none');
+  }
+  showStep(currentStep);
+
+  fieldsets.forEach((fs, i) => {
+    if (i < fieldsets.length - 1) {
+      const nextBtn = document.createElement('button');
+      nextBtn.type = 'button';
+      nextBtn.textContent = 'Next';
+      nextBtn.className = 'btn btn-primary mt-2';
+      nextBtn.onclick = () => { currentStep++; showStep(currentStep); };
+      fs.appendChild(nextBtn);
+    }
+    if (i > 0) {
+      const prevBtn = document.createElement('button');
+      prevBtn.type = 'button';
+      prevBtn.textContent = 'Previous';
+      prevBtn.className = 'btn btn-secondary mt-2';
+      prevBtn.onclick = () => { currentStep--; showStep(currentStep); };
+      fs.appendChild(prevBtn);
+    }
+  });
+
+  // Form submission
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('Thank you for submitting your application! We will review it and get back to you.');
+    form.reset();
+    currentStep = 0;
+    showStep(currentStep);
+  });
+</script>
