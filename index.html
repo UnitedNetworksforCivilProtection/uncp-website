@@ -20,21 +20,23 @@ footer .social-icons a { font-size: 20px; margin-right: 10px; color: #0d6efd; }
 .search-box.active input { display: inline-block; }
 
 /* Hero */
-.hero { background: url('hero-image.jpg') center/cover no-repeat; height: 400px; color: orange; font-size: 2.5rem; font-weight: bold; position: relative; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; }
+.hero { background: url('hero-image.jpg') center/cover no-repeat; height: 400px; color: orange; font-size: 2.5rem; font-weight: bold; position: relative; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; overflow: hidden; animation: heroZoom 15s ease-in-out infinite alternate; }
+@keyframes heroZoom { 0% { transform: scale(1); opacity: 0.9; } 100% { transform: scale(1.05); opacity: 1; } }
 .hero-overlay { position:absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.4); z-index:1; }
-.hero-text { position:relative; z-index:2; text-shadow:2px 2px 6px rgba(0,0,0,0.7); }
-.hero .btn-donate { position:relative; z-index:2; font-weight:bold; padding:10px 20px; }
+.hero-text { position:relative; z-index:2; text-shadow:2px 2px 6px rgba(0,0,0,0.7); animation: fadeInText 2s ease forwards; opacity: 0; }
+@keyframes fadeInText { to { opacity: 1; } }
 
 /* Careers and form */
 .careers, .application { padding: 40px; background:#f9f9f9; }
-.job-card { border:1px solid #ddd; border-radius:8px; padding:20px; margin-bottom:20px; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,0.05);}
+.job-card { border:1px solid #ddd; border-radius:8px; padding:20px; margin-bottom:20px; background:#fff; box-shadow:0 2px 6px rgba(0,0,0,0.05); opacity:0; transform: translateY(20px); transition: all 0.6s ease; }
+.job-card.show { opacity:1; transform: translateY(0); }
 .apply-btn, .apply-link { display:inline-block; background:#007BFF; color:#fff; padding:10px 16px; border:none; border-radius:5px; text-decoration:none; cursor:pointer; margin-top:10px; }
 .apply-btn:hover, .apply-link:hover { background:#0056b3; }
 .job-details { margin-top:15px; border-top:1px solid #eee; padding-top:10px; }
 
 /* Multi-step form */
-fieldset { display:none; border:none; }
-fieldset.active { display:block; }
+fieldset { display:none; opacity:0; transition: opacity 0.5s ease; border:none; }
+fieldset.active { display:block; opacity:1; }
 .form-nav { margin-top:15px; }
 .add-btn, .remove-btn { margin-top:10px; }
 </style>
@@ -145,14 +147,17 @@ fieldset.active { display:block; }
 <option value="">Select</option>
 <option value="Job Board">Job Board</option>
 <option value="Social Media">Social Media</option>
-<option value="UNCP Website">UNCP Website Career Page</option>
+<option value="UNCP website career page">UNCP website career page</option>
 <option value="Others">Others</option>
 </select>
-<p>Have you previously worked for UNCP?*</p>
-<label><input type="radio" name="prevUNCP" value="Yes" required> Yes</label>
-<label><input type="radio" name="prevUNCP" value="No"> No</label>
-<div id="prevUNCPDetails" style="display:none; margin-top:10px;">
-<label>Employee ID (Personnel ID)*:</label><input type="text" name="empID">
+<label>Have you previously worked for UNCP?*</label>
+<select name="prevUNCP" required>
+<option value="">Select</option>
+<option value="Yes">Yes</option>
+<option value="No">No</option>
+</select>
+<div id="prevUNCPDetails" style="display:none;">
+<label>Employee ID:</label><input type="text" name="employeeID">
 <label>Supervisor:</label><input type="text" name="supervisor">
 <label>Year:</label><input type="text" name="prevYear">
 <label>Former Duty Station:</label><input type="text" name="prevStation">
@@ -166,18 +171,18 @@ fieldset.active { display:block; }
 
 <!-- Step 2: Work Experience -->
 <fieldset>
-<legend>My Experience</legend>
+<legend>Work Experience</legend>
 <div id="workExperienceContainer">
 <div class="workExp">
-<h5>Work Experience 1</h5>
+<h5>Experience 1</h5>
 <label>Job Title*:</label><input type="text" name="jobTitle[]" required>
 <label>Company*:</label><input type="text" name="company[]" required>
-<label>Location*:</label><input type="text" name="location[]" placeholder="City, Country" required>
-<label>Currently Work Here:</label><input type="checkbox" name="currentWork[]">
-<label>From* (MM/YYYY):</label><input type="month" name="fromDate[]" required>
-<label>To* (MM/YYYY):</label><input type="month" name="toDate[]">
-<label>Role Description (2500 chars max):</label><textarea name="roleDesc[]" maxlength="2500"></textarea>
-<button type="button" class="add-btn" onclick="addWorkExp()">Add Another</button>
+<label>Location:</label><input type="text" name="workLocation[]">
+<label>Currently Work Here:</label><input type="checkbox" name="currentlyHere[]">
+<label>From* (MM/YYYY):</label><input type="month" name="workFrom[]" required>
+<label>To* (MM/YYYY):</label><input type="month" name="workTo[]">
+<label>Role Description:</label><textarea name="roleDesc[]" maxlength="2500"></textarea>
+<button type="button" class="add-btn" onclick="addWorkExp()">Add Another Experience</button>
 </div>
 </div>
 </fieldset>
@@ -188,17 +193,66 @@ fieldset.active { display:block; }
 <div id="educationContainer">
 <div class="eduExp">
 <h5>Education 1</h5>
-<label>School or University*:</label><input type="text" name="school[]" required>
-<label>Degree / Award Title*:</label><input type="text" name="degree[]" required>
+<label>School/University*:</label><input type="text" name="school[]" required>
+<label>Degree/Award Title*:</label><input type="text" name="degree[]" required>
 <label>Field of Study:</label><input type="text" name="field[]">
-<label>From* (YYYY):</label><input type="number" name="eduFrom[]" min="1900" max="2099" required>
-<label>To (Actual or Expected)*:</label><input type="number" name="eduTo[]" min="1900" max="2099" required>
+<label>From* (YYYY):</label><input type="number" name="eduFrom[]" required>
+<label>To* (Actual/Expected):</label><input type="number" name="eduTo[]">
 <button type="button" class="add-btn" onclick="addEducation()">Add Another</button>
 </div>
 </div>
 </fieldset>
 
-<div class="form-nav">
+<!-- Step 4: Languages -->
+<fieldset>
+<legend>Languages</legend>
+<div id="languageContainer">
+<div class="langExp">
+<label>Language*:</label><input type="text" name="language[]" required>
+<label>I am fluent:</label><input type="checkbox" name="fluent[]">
+<label>Overall Level* (A1-C2):</label><input type="text" name="level[]" required>
+<button type="button" class="add-btn" onclick="addLanguage()">Add Another</button>
+</div>
+</div>
+</fieldset>
+
+<!-- Step 5: Skills -->
+<fieldset>
+<legend>Skills</legend>
+<label>Skills:</label><input type="text" name="skills">
+</fieldset>
+
+<!-- Step 6: Application Questions -->
+<fieldset>
+<legend>Application Questions</legend>
+<label>How have your achievements and operational experience prepared you for this position?*</label>
+<textarea name="appQ1" maxlength="2500" required></textarea>
+<label>Please describe any skills and competencies relevant to this position.*</label>
+<textarea name="appQ2" maxlength="2500" required></textarea>
+<label>How does this position align with your career aspirations?*</label>
+<textarea name="appQ3" maxlength="1000" required></textarea>
+</fieldset>
+
+<!-- Step 7: Disclosures & Personal Data -->
+<fieldset>
+<legend>Disclosures & Personal Data</legend>
+<label>Date of Birth*:</label><input type="date" name="dob" required>
+<label>Marital Status*:</label>
+<select name="marital" required>
+<option value="">Select</option>
+<option>Divorced</option><option>Legally Separated</option><option>Married</option>
+<option>Registered Partnership</option><option>Single</option><option>Widowed</option><option>Others</option>
+</select>
+<label>Primary Nationality*:</label><input type="text" name="nationality" required>
+<label>Disability:</label><select name="disability">
+<option>No</option><option>Yes</option>
+</select>
+<label>Sex*:</label>
+<select name="sex" required><option>Female</option><option>Male</option><option>Not Declared</option></select>
+<label><input type="checkbox" name="ackTerms" required> I acknowledge and agree to terms & conditions.</label>
+</fieldset>
+
+<div class="form-nav mt-3">
 <button type="button" id="prevBtn" onclick="nextPrev(-1)">Back</button>
 <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
 <button type="submit" id="submitBtn" style="display:none;">Submit</button>
@@ -229,58 +283,75 @@ fieldset.active { display:block; }
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-// Search toggle
-document.getElementById('searchIcon').addEventListener('click', ()=>{document.querySelector('.search-box').classList.toggle('active');});
+// Navbar search toggle
+const searchBox = document.querySelector('.search-box');
+document.getElementById('searchIcon').addEventListener('click', ()=>{ searchBox.classList.toggle('active'); });
+
 // Overview toggle
-function toggleOverview(){ let ov=document.getElementById('overviewDetails'); ov.style.display=ov.style.display==='none'?'block':'none';}
-// Show Careers
-function showCareers(){ document.getElementById('careers').style.display='block'; document.getElementById('careers').scrollIntoView({behavior:'smooth'});}
-// Show Application Form
-function showApplicationForm(){ document.getElementById('applicationFormContainer').style.display='block'; document.getElementById('applicationFormContainer').scrollIntoView({behavior:'smooth'});}
+function toggleOverview(){ document.getElementById('overviewDetails').style.display='block'; document.getElementById('overviewDetails').scrollIntoView({behavior:'smooth'}); }
+
+// Careers toggle
+function showCareers(){
+  document.getElementById('careers').style.display='block';
+  document.getElementById('careers').scrollIntoView({behavior:'smooth'});
+  document.querySelectorAll('.job-card').forEach((card,i)=>{ setTimeout(()=>{ card.classList.add('show'); }, i*200); });
+}
+
+// Show application form
+function showApplicationForm(){
+  document.getElementById('applicationFormContainer').style.display='block';
+  document.getElementById('applicationFormContainer').scrollIntoView({behavior:'smooth'});
+}
+
+// Previous UNCP work details toggle
+document.querySelectorAll('select[name="prevUNCP"]').forEach(sel=>{
+  sel.addEventListener('change', ()=>{ document.getElementById('prevUNCPDetails').style.display = sel.value==='Yes'?'block':'none'; });
+});
 
 // Multi-step form
-let currentStep=0;
-const steps=document.querySelectorAll('#multiStepForm fieldset');
+var currentStep = 0;
+var steps = document.querySelectorAll('#multiStepForm fieldset');
 showStep(currentStep);
+
 function showStep(n){
+  steps.forEach((f,i)=>{ f.classList.remove('active'); f.style.opacity=0; });
   steps[n].classList.add('active');
+  setTimeout(()=>{ steps[n].style.opacity=1; },50);
   document.getElementById('prevBtn').style.display=n===0?'none':'inline';
   document.getElementById('nextBtn').style.display=n===steps.length-1?'none':'inline';
   document.getElementById('submitBtn').style.display=n===steps.length-1?'inline':'none';
 }
-function nextPrev(n){
-  steps[currentStep].classList.remove('active');
-  currentStep+=n;
-  if(currentStep>=steps.length){ generatePDF(); return false; }
-  showStep(currentStep);
-}
+function nextPrev(n){ currentStep += n; if(currentStep>=steps.length){ document.getElementById('multiStepForm').dispatchEvent(new Event('submit')); return false; } showStep(currentStep); }
 
-// Dynamic Add Another
-function addWorkExp(){ const container=document.getElementById('workExperienceContainer'); const clone=container.children[0].cloneNode(true); clone.querySelectorAll('input,textarea').forEach(i=>i.value=''); container.appendChild(clone);}
-function addEducation(){ const container=document.getElementById('educationContainer'); const clone=container.children[0].cloneNode(true); clone.querySelectorAll('input,textarea').forEach(i=>i.value=''); container.appendChild(clone);}
+// Dynamic Work/Edu/Language adding
+function addWorkExp(){ var container=document.getElementById('workExperienceContainer'); var div=document.createElement('div'); div.innerHTML=document.querySelector('.workExp').innerHTML; container.appendChild(div);}
+function addEducation(){ var container=document.getElementById('educationContainer'); var div=document.createElement('div'); div.innerHTML=document.querySelector('.eduExp').innerHTML; container.appendChild(div);}
+function addLanguage(){ var container=document.getElementById('languageContainer'); var div=document.createElement('div'); div.innerHTML=document.querySelector('.langExp').innerHTML; container.appendChild(div);}
 
-// Show previous UNCP details dynamically
-document.querySelectorAll('input[name="prevUNCP"]').forEach(r=>r.addEventListener('change',e=>{
-document.getElementById('prevUNCPDetails').style.display=e.target.value==='Yes'?'block':'none';
-}));
+// Multi-step form submit -> PDF generation
+document.getElementById('multiStepForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  const formData = new FormData(this);
+  let pdfContent = "UNCP Job Application\n\n";
+  formData.forEach((value,key)=>{ pdfContent+=`${key}: ${value}\n`; });
 
-// Generate PDF
-function generatePDF(){
   const { jsPDF } = window.jspdf;
-  const doc=new jsPDF();
-  let y=10;
-  doc.setFontSize(14);
-  doc.text("UNCP Job Application",105,y,null,null,"center");
-  y+=10;
-  const formData=new FormData(document.getElementById('multiStepForm'));
-  for(const pair of formData.entries()){
-    if(y>270){ doc.addPage(); y=10; }
-    doc.text(pair[0]+": "+pair[1],10,y);
-    y+=8;
-  }
+  const doc = new jsPDF();
+  const lines = doc.splitTextToSize(pdfContent,180);
+  doc.text(lines,10,10);
+
+  // Download for candidate
   doc.save("UNCP_Application.pdf");
-  alert("PDF generated! Please email it to uncip2019@gmail.com");
-}
+
+  // Send PDF to UNCP via server (requires server-side script)
+  fetch('send_application.php',{
+    method:'POST',
+    body:doc.output('blob')
+  }).then(res=>res.text())
+    .then(()=> alert("Application submitted successfully! UNCP will contact you shortly."))
+    .catch(()=> alert("Submission failed. Please try again later."));
+});
 </script>
 </body>
 </html>
+
