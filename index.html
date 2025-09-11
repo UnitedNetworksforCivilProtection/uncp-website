@@ -5,145 +5,160 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>United Networks for Civil Protection (UNCP)</title>
   <style>
-    body { margin: 0; font-family: Arial, sans-serif; line-height: 1.6; }
-    header { background: #004080; color: white; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; }
-    header img { height: 60px; }
-    nav { display: flex; align-items: center; gap: 15px; }
-    nav a { color: white; text-decoration: none; font-weight: bold; }
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+    header { display: flex; justify-content: space-between; align-items: center; background: #003366; color: white; padding: 10px 20px; }
+    header img { height: 50px; }
+    nav { display: flex; align-items: center; }
+    nav a { color: white; margin: 0 10px; text-decoration: none; }
     nav a:hover { text-decoration: underline; }
     .donate-btn { background: orange; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-weight: bold; }
-    .donate-btn:hover { opacity: 0.9; }
-    .search-container { position: relative; }
-    .search-input { display: none; position: absolute; top: 30px; right: 0; padding: 5px; width: 200px; }
-    .accordion { width: 90%; margin: 20px auto; }
-    .accordion button { background: #f4f4f4; color: #333; cursor: pointer; padding: 15px; width: 100%; border: none; text-align: left; outline: none; font-size: 18px; transition: background 0.3s ease; }
-    .accordion button:hover { background: #ddd; }
-    .accordion .panel { padding: 0 15px; display: none; background: #fafafa; border: 1px solid #ccc; }
-    footer { background: #333; color: white; text-align: center; padding: 20px; margin-top: 40px; }
-    footer a { color: orange; font-weight: bold; text-decoration: none; }
+    .search-box { display: none; margin-left: 10px; }
+    .accordion { border: 1px solid #ccc; border-radius: 5px; margin: 15px 0; }
+    .accordion-item { border-bottom: 1px solid #ccc; }
+    .accordion-header { width: 100%; text-align: left; padding: 10px; background: #f2f2f2; border: none; font-size: 16px; cursor: pointer; }
+    .accordion-content { display: none; padding: 10px; }
+    .accordion-item.active .accordion-content { display: block; }
+    footer { background: #222; color: white; padding: 20px; text-align: center; }
+    footer img { height: 40px; float: left; }
+    footer .social-icons { margin: 10px 0; }
+    footer .social-icons a { margin: 0 5px; color: white; font-size: 20px; text-decoration: none; }
+    footer .donate-btn { margin-left: 15px; }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <div style="display: flex; align-items: center; gap: 15px;">
-      <img src="logo.jpeg" alt="UNCP Logo">
-      <a href="#home">Home</a>
-    </div>
-    <nav>
-      <div class="search-container">
-        <a href="#" id="search-icon">🔍</a>
-        <input type="text" id="search-input" class="search-input" placeholder="Search...">
-      </div>
-      <a href="#donate" class="donate-btn">Donate</a>
-    </nav>
-  </header>
+<header>
+  <img src="logo.png" alt="UNCP Logo">
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About UNCP</a>
+    <a href="#whatwedo">What We Do</a>
+    <a href="#wherewework">Where We Work</a>
+    <a href="#news">News & Stories</a>
+    <a href="#getinvolved">Get Involved</a>
+    <a href="#donate" class="donate-btn">Donate</a>
+    <a href="javascript:void(0)" id="search-icon">🔍</a>
+    <input type="text" id="search-box" class="search-box" placeholder="Search...">
+  </nav>
+</header>
 
-  <!-- Home Page Sections with Accordion -->
-  <section id="home" class="accordion">
-    <button class="accordion-btn">About UNCP</button>
-    <div class="panel">
-      <p><strong>Overview:</strong> United Networks for Civil Protection (UNCP) is a Community-Based Organization incorporated as a company limited by guarantee in Uganda. Established in 2018, UNCP is dedicated to protecting and empowering vulnerable children, youth, and communities.</p>
-      <p><strong>Mission:</strong> To protect and empower vulnerable children, youth, and communities through rights-based, locally led programs.</p>
-      <p><strong>Vision:</strong> A safe, inclusive, and resilient society where every child and vulnerable person can thrive with dignity and equal opportunity.</p>
-    </div>
-
-    <button class="accordion-btn">What We Do</button>
-    <div class="panel">
-      <ul>
-        <li>Child Protection</li>
-        <li>Gender-Based Violence (GBV) Prevention</li>
-        <li>Mental Health and Psychosocial Support (MHPSS)</li>
-        <li>Adolescent and Youth Empowerment</li>
-        <li>Climate Change Adaptation & Sustainable Livelihoods</li>
-        <li>Inclusive Education</li>
-      </ul>
-    </div>
-
-    <button class="accordion-btn">Where We Work</button>
-    <div class="panel">
-      <p>Uganda (West Nile Region):</p>
-      <p>Arua City, Arua District, Madi Okollo, Terego, Adjumani, Moyo, Obongi, Pakwach, Nebbi, Koboko, Yumbe, Zombo, Maracha.</p>
-    </div>
-
-    <button class="accordion-btn">News and Stories</button>
-    <div class="panel">
-      <p>Updates and impact stories from UNCP’s community-based initiatives will be shared here.</p>
-    </div>
-
-    <button class="accordion-btn">Get Involved</button>
-    <div class="panel">
-      <p>You can get involved with UNCP by volunteering, applying for open positions, or supporting our work through partnerships and donations.</p>
-    </div>
-  </section>
-    <button class="accordion-btn">Careers / Open Positions</button>
-    <div class="panel">
-      <h3>Open Positions</h3>
-      <p>Join us in making a difference! Explore opportunities below.</p>
-
-      <!-- Example Job -->
-      <div class="job">
-        <h4>Child Protection Case Worker (Volunteer)</h4>
-        <p><strong>Duty Station:</strong> Arua City</p>
-        <p><strong>Duration:</strong> 6 months</p>
-        <p><strong>Application Period:</strong> 10th September 2025 – 24th September 2025</p>
-        <p><strong>Overview:</strong> The Child Protection Case Worker will provide case management, psychosocial support, and referrals for vulnerable children and their caregivers in West Nile.</p>
-        <a href="#application" class="donate-btn">Apply Now</a>
-      </div>
-
-      <!-- More positions can be added here -->
-    </div>
-<!-- Home Page Sections with Accordion -->
-<section id="home" class="accordion">
-    <button class="accordion-btn">About UNCP</button>
-    <div class="panel">...</div>
-
-    <button class="accordion-btn">What We Do</button>
-    <div class="panel">...</div>
-
-    <button class="accordion-btn">Where We Work</button>
-    <div class="panel">...</div>
-
-    <button class="accordion-btn">News and Stories</button>
-    <div class="panel">...</div>
-
-    <button class="accordion-btn">Get Involved</button>
-    <div class="panel">...</div>
-
-    <!-- ✨ Paste Careers here -->
+<!-- Home -->
+<section id="home">
+  <h1>Welcome to United Networks for Civil Protection (UNCP)</h1>
+  <p>A community-based non-profit organization incorporated as a company limited by guarantee in Uganda. We protect and empower vulnerable children, youth, and communities.</p>
 </section>
 
-  <!-- Footer -->
-  <footer>
-    <p><strong>Contact Us</strong><br>
-    Email: <a href="mailto:uncip2019@gmail.com">uncip2019@gmail.com</a><br>
-    Telephone: +256702398687 / +256779576538<br>
-    Head Office: P.O. Box 341054, Arua City, Uganda</p>
-    <a href="mailto:uncip2019@gmail.com" class="donate-btn">Donate</a>
-    <p>Follow us: 📘 🐦 📸 ▶️ 🎵 💼</p>
-  </footer>
+<!-- About -->
+<section id="about">
+  <h2>About UNCP</h2>
+  <div class="accordion">
+    <div class="accordion-item">
+      <button class="accordion-header">Overview</button>
+      <div class="accordion-content">
+        <p><strong>Type:</strong> Community-Based Organization</p>
+        <p><strong>Incorporated:</strong> Company Limited by Guarantee in Uganda</p>
+        <p><strong>Founded:</strong> 2018</p>
+        <p><strong>Mission:</strong> To protect and empower vulnerable children, youth, and communities.</p>
+        <p><strong>Vision:</strong> A safe, inclusive, and resilient society where every child and vulnerable person thrives.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <script>
-    // Accordion functionality
-    const accBtns = document.querySelectorAll(".accordion-btn");
-    accBtns.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const panel = btn.nextElementSibling;
-        panel.style.display = (panel.style.display === "block") ? "none" : "block";
-      });
-    });
+<!-- What We Do -->
+<section id="whatwedo">
+  <h2>What We Do</h2>
+  <p>We deliver holistic, community-led interventions in child protection, GBV prevention, MHPSS, youth empowerment, inclusive education, and climate change adaptation.</p>
+</section>
 
-    // Search functionality
-    const searchIcon = document.getElementById("search-icon");
-    const searchInput = document.getElementById("search-input");
-    searchIcon.addEventListener("click", (e) => {
-      e.preventDefault();
-      searchInput.style.display = (searchInput.style.display === "block") ? "none" : "block";
-      if (searchInput.style.display === "block") {
-        searchInput.focus();
-      }
+<!-- Where We Work -->
+<section id="wherewework">
+  <h2>Where We Work</h2>
+  <p>We work across Uganda, especially in refugee and host communities in West Nile and other regions.</p>
+</section>
+
+<!-- News & Stories -->
+<section id="news">
+  <h2>News and Stories</h2>
+  <p>Latest updates and success stories from our work will be shared here.</p>
+</section>
+
+<!-- Get Involved -->
+<section id="getinvolved">
+  <h2>Get Involved</h2>
+  <p>Join us in making a difference.</p>
+  <ul>
+    <li><a href="#career">Career</a></li>
+    <li><a href="#partners">Our Partners & Donors</a></li>
+    <li><a href="#supplier">Become a Supplier</a></li>
+  </ul>
+</section>
+
+<!-- Career -->
+<section id="career">
+  <h2>Career Opportunities</h2>
+  <p>Explore open positions with UNCP. Positions are only visible during the application period.</p>
+  <div class="accordion">
+    <div class="accordion-item">
+      <button class="accordion-header">Child Protection Case Worker (Volunteer) – Arua City</button>
+      <div class="accordion-content">
+        <p><strong>Duration:</strong> 6 months</p>
+        <p><strong>Application Period:</strong> 10th – 24th September 2025</p>
+        <p><strong>Summary:</strong> Provide case management, psychosocial support, and community-based protection for children at risk.</p>
+        <a href="#application" class="donate-btn">Apply Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Application Form -->
+<section id="application">
+  <h2>Application Form</h2>
+  <form id="careerForm">
+    <label for="position">Position Title*</label>
+    <input type="text" id="position" name="position" required>
+    <label for="name">Full Name*</label>
+    <input type="text" id="name" name="name" required>
+    <label for="email">Email*</label>
+    <input type="email" id="email" name="email" required>
+    <label for="phone">Phone*</label>
+    <input type="text" id="phone" name="phone" required>
+    <label><input type="checkbox" required> I acknowledge and agree to UNCP’s terms.</label>
+    <button type="submit" class="donate-btn">Submit Application</button>
+  </form>
+</section>
+
+<!-- Footer -->
+<footer>
+  <img src="logo.png" alt="UNCP Logo">
+  <p>Contact us: uncip2019@gmail.com | +256702398687 | +256779576538</p>
+  <div class="social-icons">
+    <a href="#">📘</a>
+    <a href="#">🐦</a>
+    <a href="#">📸</a>
+    <a href="#">▶️</a>
+    <a href="#">🎵</a>
+    <a href="#">💼</a>
+  </div>
+  <a href="#donate" class="donate-btn">Donate</a>
+</footer>
+
+<script>
+  // Accordion toggle
+  document.querySelectorAll('.accordion-header').forEach(button => {
+    button.addEventListener('click', () => {
+      button.parentElement.classList.toggle('active');
     });
-  </script>
+  });
+
+  // Search toggle
+  document.getElementById('search-icon').addEventListener('click', () => {
+    let box = document.getElementById('search-box');
+    box.style.display = box.style.display === 'inline-block' ? 'none' : 'inline-block';
+    box.focus();
+  });
+</script>
+
 </body>
 </html>
+
