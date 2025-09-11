@@ -1,854 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>United Networks for Civil Protection (UNCP)</title>
-<style>
-  :root{
-    --blue:#004080;
-    --blue-2:#0066cc;
-    --gray:#f0f0f0;
-    --text:#1b1b1b;
-    --accent:#ffcc00;
-  }
-  /* Base */
-  *{box-sizing:border-box}
-  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.55;color:var(--text);background:#fff}
-  a{color:var(--blue);text-decoration:none}
-  a:hover{color:var(--blue-2)}
-  .container{max-width:1100px;margin:0 auto;padding:0 16px}
-  .req{color:#c81e1e;margin-left:4px}
-
-  /* Header & Nav */
-  header{position:sticky;top:0;z-index:1000;background:var(--blue);color:#fff}
-  .header-inner{display:flex;align-items:center;justify-content:space-between;padding:10px 16px}
-  .brand{display:flex;align-items:center;gap:12px}
-  .brand img{height:56px}
-  nav>ul{list-style:none;display:flex;gap:18px;margin:0;padding:0}
-  nav>ul>li{position:relative}
-  nav a{color:#fff;font-weight:600;padding:8px 6px;display:block;border-radius:6px}
-  nav > ul > li:hover > a{background:rgba(255,255,255,.12)}
-  /* dropdown */
-  nav ul li ul{display:none;position:absolute;top:100%;left:0;background:var(--blue);min-width:240px;border-radius:8px;padding:6px;margin:6px 0 0;box-shadow:0 8px 24px rgba(0,0,0,.18)}
-  nav ul li:hover ul{display:block}
-  nav ul li ul li a{padding:10px 12px}
-  /* Header actions */
-  .actions{display:flex;align-items:center;gap:10px}
-  .btn{background:var(--blue-2);color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:700}
-  .btn:hover{background:#045eb8}
-  .icon-btn{background:transparent;border:2px solid rgba(255,255,255,.6);color:#fff;border-radius:10px;padding:6px 10px;cursor:pointer}
-  .icon-btn:hover{background:rgba(255,255,255,.12)}
-
-  /* Hero placeholder */
-  .hero{background:linear-gradient(135deg, #e8f1ff, #ffffff);border-bottom:1px solid #e8e8e8}
-  .hero .container{padding:24px 16px}
-  .hero h1{color:var(--blue);margin:0 0 8px}
-  .hero p{margin:0}
-
-  /* Sections */
-  section{padding:32px 0}
-  h2{color:var(--blue);margin:0 0 12px;font-size:1.6rem}
-  .muted{color:#555}
-
-  /* Where we work chips */
-  .districts{display:flex;flex-wrap:wrap;gap:8px}
-  .chip{border:1px dashed var(--blue);padding:6px 10px;border-radius:999px;font-size:.92rem;white-space:nowrap}
-
-  /* Open Positions */
-  #careersSection{background:var(--gray)}
-  #jobSearch{width:100%;padding:10px;border:1px solid #d4d4d4;border-radius:10px;margin:10px 0 18px}
-  #jobList{list-style:none;margin:0;padding:0}
-  #jobList li{display:flex;align-items:center;justify-content:space-between;background:#fff;border-left:4px solid var(--blue);padding:14px 14px;margin:12px 0;border-radius:10px;gap:12px}
-  #jobList .job-meta{font-size:.92rem;color:#444}
-  #jobList .job-actions button{margin-left:6px}
-  #jobList button{background:var(--blue);color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer}
-  #jobList button:hover{background:var(--blue-2)}
-
-  /* JD Modal */
-  #jdModal{display:none;position:fixed;top:8%;left:50%;transform:translateX(-50%);background:#fff;z-index:1500;max-width:720px;width:90%;max-height:80vh;overflow:auto;border:2px solid var(--blue);border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.25)}
-  #jdModal header{position:sticky;top:0;background:#fff;color:var(--blue);padding:12px 16px;border-bottom:1px solid #e8e8e8}
-  #jdModal .content{padding:16px}
-  #jdModal .close{margin:12px 16px 16px}
-
-  /* Multi-step form */
-  .step{display:none;background:#fff;padding:18px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.08);margin:18px 0}
-  .step h3{color:var(--blue);margin-top:0}
-  label{display:block;margin-top:10px;font-weight:700}
-  input, select, textarea{width:100%;padding:10px;margin-top:6px;border:1px solid #cfcfcf;border-radius:10px}
-  textarea{resize:vertical}
-  .inline{display:flex;gap:12px;align-items:center}
-  .inline>div{flex:1}
-  .nav-buttons{display:flex;justify-content:flex-end;gap:10px;margin-top:12px}
-  .secondary{background:#e9eef7;color:#0b2b57}
-  .secondary:hover{background:#dae6fa}
-  .add-more{margin-top:12px}
-  .hint{font-size:.9rem;color:#555}
-  .review-section{background:#fafafa;border:1px solid #eee;padding:12px;border-radius:10px}
-
-  /* Contact & Donate & Legal */
-  .card{background:#fff;border:1px solid #eee;border-radius:12px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
-  .grid{display:grid;gap:16px}
-  .grid-2{grid-template-columns:1fr 1fr}
-
-  /* Footer */
-  footer{background:var(--gray);padding:22px 0;margin-top:24px}
-  .footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;align-items:flex-start}
-  .social a{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:999px;border:1px solid #b9c5da;margin-right:6px;color:var(--blue)}
-  .social a:hover{background:#e7eefb}
-  .footer-logo{height:50px}
-
-  /* Back to Top */
-  #backToTopBtn{display:none;position:fixed;bottom:24px;right:24px;z-index:2000;font-size:16px;border:none;background:var(--blue);color:#fff;cursor:pointer;padding:10px 14px;border-radius:10px}
-  #backToTopBtn:hover{background:var(--blue-2)}
-
-  /* Responsive */
-  @media (max-width:900px){
-    nav>ul{flex-wrap:wrap}
-    .grid-2{grid-template-columns:1fr}
-    .footer-grid{grid-template-columns:1fr}
-    #jobList li{flex-direction:column;align-items:flex-start}
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>United Networks for Civil Protection (UNCP)</title>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; line-height: 1.6; }
+    header { background: #004080; color: white; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; }
+    header img { height: 60px; }
+    nav { display: flex; align-items: center; gap: 15px; }
+    nav a { color: white; text-decoration: none; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+    .donate-btn { background: orange; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-weight: bold; }
+    .donate-btn:hover { opacity: 0.9; }
+    .search-container { position: relative; }
+    .search-input { display: none; position: absolute; top: 30px; right: 0; padding: 5px; width: 200px; }
+    .accordion { width: 90%; margin: 20px auto; }
+    .accordion button { background: #f4f4f4; color: #333; cursor: pointer; padding: 15px; width: 100%; border: none; text-align: left; outline: none; font-size: 18px; transition: background 0.3s ease; }
+    .accordion button:hover { background: #ddd; }
+    .accordion .panel { padding: 0 15px; display: none; background: #fafafa; border: 1px solid #ccc; }
+    footer { background: #333; color: white; text-align: center; padding: 20px; margin-top: 40px; }
+    footer a { color: orange; font-weight: bold; text-decoration: none; }
+  </style>
 </head>
 <body>
 
-<!-- HEADER -->
-<header>
-  <div class="header-inner container">
-    <div class="brand">
-      <img src="logo.jpeg" alt="UNCP Logo" />
-      <div>
-        <strong>United Networks for Civil Protection</strong><br/>
-        <span style="font-size:.9rem;opacity:.9">Community-Based Organization • Since 2018</span>
+  <!-- Header -->
+  <header>
+    <div style="display: flex; align-items: center; gap: 15px;">
+      <img src="logo.jpeg" alt="UNCP Logo">
+      <a href="#home">Home</a>
+    </div>
+    <nav>
+      <div class="search-container">
+        <a href="#" id="search-icon">🔍</a>
+        <input type="text" id="search-input" class="search-input" placeholder="Search...">
       </div>
-    </div>
-
-    <nav aria-label="Primary">
-      <ul>
-        <li><a href="#about">About UNCP</a>
-          <ul>
-            <li><a href="#about">Overview</a></li>
-            <li><a href="#planning">Planning, Funding & Results</a></li>
-            <li><a href="#partners">Our Partners</a></li>
-            <li><a href="#governance">Governance & Oversight</a></li>
-            <li><a href="#about">Who We Work With & For</a></li>
-          </ul>
-        </li>
-        <li><a href="#what-we-do">What We Do</a>
-          <ul>
-            <li><a href="#what-we-do">Child Protection</a></li>
-            <li><a href="#what-we-do">GBV Prevention</a></li>
-            <li><a href="#what-we-do">MHPSS</a></li>
-            <li><a href="#what-we-do">Adolescent & Youth Empowerment</a></li>
-            <li><a href="#what-we-do">Climate Change & Livelihoods</a></li>
-            <li><a href="#what-we-do">Inclusive Education</a></li>
-          </ul>
-        </li>
-        <li><a href="#where-we-work">Where We Work</a>
-          <ul>
-            <li><a href="#where-we-work">Uganda</a></li>
-            <li><a href="#where-we-work">Arua City • Arua District • Madi Okollo • Terego • Adjumani • Moyo • Obongi • Pakwach • Nebbi • Koboko • Yumbe • Zombo • Maracha</a></li>
-          </ul>
-        </li>
-        <li><a href="#news">News & Stories</a></li>
-        <li><a href="#get-involved">Get Involved</a>
-          <ul>
-            <li><a href="#careersSection">Careers – View Open Positions</a></li>
-            <li><a href="#partners">Our Partners / Donors</a></li>
-            <li><a href="#suppliers">Become a Supplier</a></li>
-          </ul>
-        </li>
-        <li><a href="#donate" class="btn" style="padding:6px 10px">Donate</a></li>
-      </ul>
+      <a href="#donate" class="donate-btn">Donate</a>
     </nav>
+  </header>
 
-    <div class="actions">
-      <button class="icon-btn" title="Search jobs & site" onclick="focusJobSearch()">🔍</button>
-    </div>
-  </div>
-</header>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="container">
-    <h1>Together for Protection, Dignity, and Resilience</h1>
-    <p class="muted">UNCP protects and empowers vulnerable children, youth, and communities through child protection, GBV prevention, MHPSS, education, and climate‑resilient livelihoods.</p>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="container grid grid-2">
-    <div class="card">
-      <h2>About UNCP</h2>
-      <p><strong>Name:</strong> United Networks for Civil Protection (UNCP)<br>
-         <strong>Type:</strong> Community‑Based Organization (Non‑profit, non‑political, non‑religious)<br>
-         <strong>Founded:</strong> 2018 • <strong>Head Office:</strong> P.O. Box 341054, Arua City, Uganda</p>
-      <p><strong>Brief History:</strong> Founded by two child protection specialists working in West Nile refugee and host settings to deliver sustained, community‑led protection beyond short‑term emergency interventions. Today UNCP advances long‑term protection, psychosocial support, and youth empowerment with strong ties to local and refugee communities.</p>
-      <p><strong>Mission:</strong> To protect and empower vulnerable children, youth, and communities through rights‑based, locally led programs in child protection, GBV prevention, MHPSS, education, and climate‑resilient livelihoods.</p>
+  <!-- Home Page Sections with Accordion -->
+  <section id="home" class="accordion">
+    <button class="accordion-btn">About UNCP</button>
+    <div class="panel">
+      <p><strong>Overview:</strong> United Networks for Civil Protection (UNCP) is a Community-Based Organization incorporated as a company limited by guarantee in Uganda. Established in 2018, UNCP is dedicated to protecting and empowering vulnerable children, youth, and communities.</p>
+      <p><strong>Mission:</strong> To protect and empower vulnerable children, youth, and communities through rights-based, locally led programs.</p>
       <p><strong>Vision:</strong> A safe, inclusive, and resilient society where every child and vulnerable person can thrive with dignity and equal opportunity.</p>
     </div>
-    <div class="card" id="what-we-do">
-      <h2>What We Do – Thematic Areas</h2>
+
+    <button class="accordion-btn">What We Do</button>
+    <div class="panel">
       <ul>
         <li>Child Protection</li>
-        <li>Gender‑Based Violence (GBV) Prevention</li>
-        <li>Mental Health & Psychosocial Support (MHPSS)</li>
-        <li>Adolescent & Youth Empowerment</li>
+        <li>Gender-Based Violence (GBV) Prevention</li>
+        <li>Mental Health and Psychosocial Support (MHPSS)</li>
+        <li>Adolescent and Youth Empowerment</li>
         <li>Climate Change Adaptation & Sustainable Livelihoods</li>
         <li>Inclusive Education</li>
       </ul>
     </div>
-  </div>
-</section>
 
-<!-- WHERE WE WORK -->
-<section id="where-we-work">
-  <div class="container card">
-    <h2>Where We Work – Uganda</h2>
-    <p class="muted">Operations across refugee and host communities in West Nile and beyond.</p>
-    <div class="districts">
-      <span class="chip">Arua City</span>
-      <span class="chip">Arua District</span>
-      <span class="chip">Madi Okollo</span>
-      <span class="chip">Terego</span>
-      <span class="chip">Adjumani</span>
-      <span class="chip">Moyo</span>
-      <span class="chip">Obongi</span>
-      <span class="chip">Pakwach</span>
-      <span class="chip">Nebbi</span>
-      <span class="chip">Koboko</span>
-      <span class="chip">Yumbe</span>
-      <span class="chip">Zombo</span>
-      <span class="chip">Maracha</span>
+    <button class="accordion-btn">Where We Work</button>
+    <div class="panel">
+      <p>Uganda (West Nile Region):</p>
+      <p>Arua City, Arua District, Madi Okollo, Terego, Adjumani, Moyo, Obongi, Pakwach, Nebbi, Koboko, Yumbe, Zombo, Maracha.</p>
     </div>
-  </div>
-</section>
 
-<!-- NEWS (placeholder) -->
-<section id="news">
-  <div class="container card">
-    <h2>News & Stories</h2>
-    <p class="muted">Updates and stories coming soon.</p>
-  </div>
-</section>
-
-<!-- GET INVOLVED / CAREERS -->
-<section id="get-involved">
-  <div class="container">
-    <div class="card">
-      <h2>Get Involved</h2>
-      <p>Explore opportunities to partner with us, become a supplier, or join our team.</p>
-      <p><a class="btn" href="#careersSection">View Open Positions</a></p>
+    <button class="accordion-btn">News and Stories</button>
+    <div class="panel">
+      <p>Updates and impact stories from UNCP’s community-based initiatives will be shared here.</p>
     </div>
-  </div>
-</section>
 
-<!-- OPEN POSITIONS -->
-<section id="careersSection">
-  <div class="container">
-    <h2>Open Positions at UNCP</h2>
-    <input id="jobSearch" type="text" placeholder="Search positions (e.g., Child Protection, Volunteer, Arua)" onkeyup="filterJobs()" />
-    <ul id="jobList">
-      <li>
-        <div>
-          <strong>Child Protection Case Worker (Volunteer)</strong>
-          <div class="job-meta">Duty Station: Arua City • Duration: 6 months • Application: 10–24 Sep 2025</div>
-        </div>
-        <div class="job-actions">
-          <button onclick="showJD('Child Protection Case Worker (Volunteer)')">View JD</button>
-          <button onclick="startApplication('Child Protection Case Worker (Volunteer)')">Apply Now</button>
-        </div>
-      </li>
-      <!-- Add future positions here by duplicating the <li> block -->
-    </ul>
-  </div>
-</section>
-
-<!-- JOB DESCRIPTION MODAL -->
-<div id="jdModal" role="dialog" aria-modal="true" aria-labelledby="jdTitle">
-  <header>
-    <h3 id="jdTitle">Job Title</h3>
-  </header>
-  <div class="content" id="jdContent"></div>
-  <div class="content">
-    <button class="btn close" onclick="closeJD()">Close</button>
-  </div>
-</div>
-
-<!-- APPLICATION FORM -->
-<section id="application">
-  <div class="container">
-    <div id="careerFormContainer" style="display:none">
-      <h2>Apply for <span id="formPositionTitle"></span></h2>
-      <form id="careersForm">
-        <input type="hidden" name="position_title" id="position_title" />
-
-        <!-- STEP 1: Personal Information -->
-        <div class="step" id="step1">
-          <h3>Step 1: Personal Information</h3>
-          <label>How did you hear about us?<span class="req">*</span></label>
-          <div class="inline">
-            <div>
-              <select name="hear_about_us" required>
-                <option value="">-- Select --</option>
-                <option>Job Board</option>
-                <option>Event</option>
-                <option>Social Media</option>
-                <option>UNCP Website</option>
-                <option>Others</option>
-              </select>
-            </div>
-            <div style="width:44px;text-align:center" title="Quick select">🔎</div>
-          </div>
-          <label>Have you previously worked for UNHCR?<span class="req">*</span></label>
-          <select name="previous_unhcr" required>
-            <option value="">-- Select --</option>
-            <option>Yes</option>
-            <option>No</option>
-          </select>
-          <label>Full Name<span class="req">*</span></label>
-          <input type="text" name="full_name" required />
-          <label>Address<span class="req">*</span></label>
-          <input type="text" name="address" required />
-          <label>Email Address<span class="req">*</span></label>
-          <input type="email" name="email" required />
-          <label>Phone<span class="req">*</span></label>
-          <input type="tel" name="phone" required />
-          <div class="nav-buttons">
-            <button type="button" class="secondary" onclick="prevStep(1)">Back</button>
-            <button type="button" class="btn" onclick="nextStep(1)">Next</button>
-            <button type="button" class="secondary" onclick="saveForm()">Save & Continue Later</button>
-          </div>
-        </div>
-
-        <!-- STEP 2: Work Experience -->
-        <div class="step" id="step2">
-          <h3>Step 2: Work Experience</h3>
-          <p class="hint">List all relevant work experiences. Indicate internships/volunteering/self‑employment in the title. Use format "City, Country" for locations.</p>
-          <div id="workExperienceContainer">
-            <div class="workExperienceEntry card" style="margin-top:10px">
-              <label>Job Title<span class="req">*</span></label>
-              <input type="text" name="job_title1" required />
-              <label>Company<span class="req">*</span></label>
-              <input type="text" name="company1" required />
-              <label>Location<span class="req">*</span></label>
-              <input type="text" name="location1" required />
-              <div class="inline"><label>I currently work here</label><input type="checkbox" name="current1" /></div>
-              <div class="inline"><div><label>From<span class="req">*</span></label><input type="date" name="from1" required /></div><div><label>To<span class="req">*</span></label><input type="date" name="to1" required /></div></div>
-              <label>Role Description<span class="req">*</span></label>
-              <textarea name="role_desc1" maxlength="1500" rows="4" required></textarea>
-            </div>
-          </div>
-          <button type="button" class="add-more" onclick="addWorkExperience()">+ Add More Work Experience</button>
-          <div class="nav-buttons">
-            <button type="button" class="secondary" onclick="prevStep(2)">Back</button>
-            <button type="button" class="btn" onclick="nextStep(2)">Next</button>
-            <button type="button" class="secondary" onclick="saveForm()">Save & Continue Later</button>
-          </div>
-        </div>
-
-        <!-- STEP 3: Education -->
-        <div class="step" id="step3">
-          <h3>Step 3: Education</h3>
-          <div id="educationContainer">
-            <div class="educationEntry card" style="margin-top:10px">
-              <label>School/University<span class="req">*</span></label>
-              <input type="text" name="school1" required />
-              <label>Degree<span class="req">*</span></label>
-              <input type="text" name="degree1" required />
-              <label>Field of Study</label>
-              <input type="text" name="field1" />
-              <div class="inline"><div><label>From<span class="req">*</span></label><input type="date" name="edu_from1" required /></div><div><label>To<span class="req">*</span></label><input type="date" name="edu_to1" required /></div></div>
-            </div>
-          </div>
-          <button type="button" class="add-more" onclick="addEducation()">+ Add More Education</button>
-          <div class="nav-buttons">
-            <button type="button" class="secondary" onclick="prevStep(3)">Back</button>
-            <button type="button" class="btn" onclick="nextStep(3)">Next</button>
-            <button type="button" class="secondary" onclick="saveForm()">Save & Continue Later</button>
-          </div>
-        </div>
-
-        <!-- STEP 4: Certifications (optional) -->
-        <div class="step" id="step4">
-          <h3>Step 4: Certifications <span class="muted">(optional)</span></h3>
-          <div id="certContainer">
-            <div class="certEntry card" style="margin-top:10px">
-              <label>Certification Name</label>
-              <input type="text" name="cert_name1" />
-              <label>Certification Number</label>
-              <input type="text" name="cert_no1" />
-              <label>Issued Date</label>
-              <input type="date" name="cert_date1" />
-              <label>Upload Certificate</label>
-              <input type="file" name="cert_file1" />
-            </div>
-          </div>
-          <button type="button" class="add-more" onclick="addCertification()">+ Add More Certifications</button>
-          <div class="nav-buttons">
-            <button type="button" class="secondary" onclick="prevStep(4)">Back</button>
-            <button type="button" class="btn" onclick="nextStep(4)">Next</button>
-            <button type="button" class="secondary" onclick="saveForm()">Save & Continue Later</button>
-          </div>
-        </div>
-
-        <!-- STEP 5: Languages -->
-        <div class="step" id="step5">
-          <h3>Step 5: Languages</h3>
-          <div id="languagesContainer">
-            <div class="languageEntry card" style="margin-top:10px">
-              <label>Language<span class="req">*</span></label>
-              <select name="language1" required>
-                <option value="">-- Select --</option>
-                <option>Lugbarati</option>
-                <option>Alur</option>
-                <option>Kakwa</option>
-                <option>Ma’di</option>
-                <option>Luganda</option>
-                <option>English</option>
-                <option>French</option>
-                <option>Arabic</option>
-                <option>Swahili</option>
-                <option>Other (specify below)</option>
-              </select>
-              <label>Other (if selected)</label>
-              <input type="text" name="language_other1" placeholder="Specify language" />
-              <div class="inline"><label>I am fluent in this language</label><input type="checkbox" name="fluent1" /></div>
-              <label>Overall Level<span class="req">*</span></label>
-              <select name="overall1" required>
-                <option value="">-- Select --</option>
-                <option>A1</option>
-                <option>A2</option>
-                <option>B1</option>
-                <option>B2</option>
-                <option>C1</option>
-                <option>C2</option>
-                <option>Mother Tongue</option>
-              </select>
-            </div>
-          </div>
-          <button type="button" class="add-more" onclick="addLanguage()">+ Add More Languages</button>
-          <div class="nav-buttons">
-            <button type="button" class="secondary" onclick="prevStep(5)">Back</button>
-            <button type="button" class="btn" onclick="nextStep(5)">Next</button>
-            <button type="button" class="secondary" onclick="saveForm()">Save & Continue Later</button>
-          </div>
-        </div>
-
-        <!-- STEP 6: Skills -->
-        <div class="step" id="step6">
-          <h3>Step 6: Skills</h3>
-          <label>Type to add skills (e.g., Child Development, Case Management)<span class="req">*</span></label>
-          <textarea name="skills" rows="4" maxlength="1500" required></textarea>
-          <div class="nav-buttons">
-            <button type="button" class="secondary" onclick="prevStep(6)">Back</button>
-            <button type="button" class="btn" onclick="nextStep(6)">Next</button>
-            <button type="button" class="secondary" onclick="saveForm()">Save & Continue Later</button>
-          </div>
-        </div>
-
-        <!-- STEP 7: Application Questions -->
-        <div class="step" id="step7">
-          <h3>Step 7: Application Questions</h3>
-          <label>a) How have your achievements prepared you for this position?<span class="req">*</span></label>
-          <textarea name="q_achievements" rows="6" maxlength="2500" required></textarea>
-          <label>b) Describe skills/competencies relevant to this position.<span class="req">*</span></label>
-          <textarea name="q_skills" rows="6" maxlength="2500" required></textarea>
-          <label>c) How does this position align with your career aspirations?<span class="req">*</span></label>
-          <textarea name="q_alignment" rows="5" maxlength="1000" required></textarea>
-
-          <h4 style="margin-top:16px;color:var(--blue)">Application Questions 2 of 2</h4>
-          <div class="card">
-            <label>Are you now, or have you ever been, a permanent civil servant?<span class="req">*</span></label>
-            <div class="inline"><label><input type="radio" name="civil_servant" value="Yes" onchange="toggleBlock(this,'civil_details')"> Yes</label><label><input type="radio" name="civil_servant" value="No" onchange="toggleBlock(this,'civil_details')"> No</label></div>
-            <div id="civil_details" style="display:none">
-              <label>Please provide the from and to dates<span class="req">*</span></label>
-              <div class="inline"><div><input type="date" name="civil_from"></div><div><input type="date" name="civil_to"></div></div>
-            </div>
-            <label>Have you ever been arrested/indicted/convicted (excluding minor traffic violations)?<span class="req">*</span></label>
-            <div class="inline"><label><input type="radio" name="criminal" value="Yes" onchange="toggleBlock(this,'criminal_details')"> Yes</label><label><input type="radio" name="criminal" value="No" onchange="toggleBlock(this,'criminal_details')"> No</label></div>
-            <div id="criminal_details" style="display:none"><label>If yes, provide details<span class="req">*</span></label><textarea name="criminal_info" rows="4"></textarea></div>
-            <label>Have you been investigated for misconduct?<span class="req">*</span></label>
-            <div class="inline"><label><input type="radio" name="misconduct" value="Yes" onchange="toggleBlock(this,'misconduct_details')"> Yes</label><label><input type="radio" name="misconduct" value="No" onchange="toggleBlock(this,'misconduct_details')"> No</label></div>
-            <div id="misconduct_details" style="display:none"><label>Please provide more details<span class="req">*</span></label><textarea name="misconduct_info" rows="4"></textarea></div>
-            <label>Have you ever been subject to disciplinary measures?<span class="req">*</span></label>
-            <div class="inline"><label><input type="radio" name="disciplinary" value="Yes" onchange="toggleBlock(this,'disciplinary_details')"> Yes</label><label><input type="radio" name="disciplinary" value="No" onchange="toggleBlock(this,'disciplinary_details')"> No</label></div>
-            <div id="disciplinary_details" style="display:none"><label>Please provide more details<span class="req">*</span></label><textarea name="disciplinary_info" rows="4"></textarea></div>
-            <label>Are any relatives or your spouse employed by UNCP?<span class="req">*</span></label>
-            <div class="inline"><label><input type="radio" name="relatives_uncp" value="Yes" onchange="toggleBlock(this,'relatives_details')"> Yes</label><label><input type="radio" name="relatives_uncp" value="No" onchange="toggleBlock(this,'relatives_details')"> No</label></div>
-            <div id="relatives_details" style="display:none"><label>Indicate relationship, position title, duty station<span class="req">*</span></label><textarea name="relatives_info" rows="4"></textarea></div>
-            <label>Are you a former UNCP staff member who held an appointment?<span class="req">*</span></label>
-            <div class="inline"><label><input type="radio" name="former_uncp" value="Yes" onchange="toggleBlock(this,'former_details')"> Yes</label><label><input type="radio" name="former_uncp" value="No" onchange="toggleBlock(this,'former_details')"> No</label></div>
-            <div id="former_details" style="display:none"><label>Please provide more details<span class="req">*</span></label><textarea name="former_info" rows="4"></textarea></div>
-            <label>Have you worked in a supervisory function?<span class="req">*</span></label>
-            <div class="inline"><label><input type="radio" name="supervisory" value="Yes" onchange="toggleBlock(this,'supervisory_details')"> Yes</label><label><input type="radio" name="supervisory" value="No" onchange="toggleBlock(this,'supervisory_details')"> No</label></div>
-            <div id="supervisory_details" style="display:none"><label>Add further details including number of people supervised<span class="req">*</span></label><textarea name="supervisory_info" rows="4"></textarea></div>
-          </div>
-          <div class="nav-buttons">
-            <button type="button" class="secondary" onclick="prevStep(7)">Back</button>
-            <button type="button" class="btn" onclick="nextStep(7)">Next</button>
-            <button type="button" class="secondary" onclick="saveForm()">Save & Continue Later</button>
-          </div>
-        </div>
-
-        <!-- STEP 8: Voluntary Disclosures & Terms -->
-        <div class="step" id="step8">
-          <h3>Step 8: Voluntary Disclosures & Terms</h3>
-          <div class="card">
-            <label>Date of Birth<span class="req">*</span></label>
-            <input type="date" name="dob" required />
-            <label>Marital Status<span class="req">*</span></label>
-            <select name="marital" required>
-              <option value="">-- Select --</option>
-              <option>Single</option>
-              <option>Married</option>
-              <option>Separated</option>
-              <option>Divorced</option>
-              <option>Registered Partnership</option>
-              <option>Other</option>
-            </select>
-            <label>Disability</label>
-            <select name="disability"><option>No</option><option>Yes</option></select>
-            <label>Sex<span class="req">*</span></label>
-            <select name="sex" required><option value="">-- Select --</option><option>Female</option><option>Male</option><option>Not declared</option></select>
-          </div>
-          <div class="card" style="margin-top:12px">
-            <h4 style="margin:6px 0;color:var(--blue)">Terms and Conditions</h4>
-            <ul>
-              <li>UNCP will only contact candidates who are shortlisted.</li>
-              <li><strong>Privacy:</strong> UNCP processes personal data of job applicants as per the Privacy Policy.</li>
-              <li><strong>Sex & Gender Identity:</strong> UNCP is working to expand options for sex and gender identity in applications.</li>
-              <li><strong>Accuracy:</strong> Any false or misleading information may result in disqualification or termination.</li>
-              <li><strong>Education:</strong> You authorize UNCP to verify educational records directly with institutions.</li>
-              <li><strong>Work Experience:</strong> You authorize UNCP to contact former/current employers and references.</li>
-            </ul>
-            <label class="inline"><input type="checkbox" id="agree_terms" name="agree_terms" /> <span>I acknowledge and agree to these terms and conditions.<span class="req">*</span></span></label>
-          </div>
-          <div class="nav-buttons">
-            <button type="button" class="secondary" onclick="prevStep(8)">Back</button>
-            <button type="button" class="btn" onclick="nextStep(8)">Next</button>
-            <button type="button" class="secondary" onclick="saveForm()">Save & Continue Later</button>
-          </div>
-        </div>
-
-        <!-- STEP 9: Review & Submit -->
-        <div class="step" id="step9">
-          <h3>Step 9: Review Your Application</h3>
-          <div id="reviewContainer" class="review-section"></div>
-          <div class="nav-buttons">
-            <button type="button" class="secondary" onclick="prevStep(9)">Back</button>
-            <button type="button" class="btn" onclick="submitApplication()">Submit Application</button>
-          </div>
-        </div>
-      </form>
+    <button class="accordion-btn">Get Involved</button>
+    <div class="panel">
+      <p>You can get involved with UNCP by volunteering, applying for open positions, or supporting our work through partnerships and donations.</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- DONATE / CONTACT / LEGAL DOCS -->
-<section id="donate">
-  <div class="container grid grid-2">
-    <div class="card">
-      <h2>Donate</h2>
-      <p>Your support strengthens child protection, GBV prevention, MHPSS, and climate‑resilient livelihoods. Contact us to discuss partnerships and giving.</p>
-      <p><strong>Email:</strong> <a href="mailto:uncip2019@gmail.com">uncip2019@gmail.com</a><br>
-         <strong>Telephone:</strong> +256 702 398687 / +256 779 576538<br>
-         <strong>Head Office:</strong> P.O. Box 341054, Arua City, Uganda</p>
-    </div>
-    <div class="card" id="contact">
-      <h2>Contact Us</h2>
-      <form action="mailto:uncip2019@gmail.com" method="post" enctype="text/plain">
-        <label>Your Name<span class="req">*</span></label>
-        <input type="text" name="name" required />
-        <label>Your Email<span class="req">*</span></label>
-        <input type="email" name="email" required />
-        <label>Phone</label>
-        <input type="tel" name="phone" />
-        <label>Subject<span class="req">*</span></label>
-        <input type="text" name="subject" required />
-        <label>Message<span class="req">*</span></label>
-        <textarea name="message" rows="5" required></textarea>
-        <div class="nav-buttons">
-          <button type="submit" class="btn">Send Message</button>
-        </div>
-      </form>
-      <p class="hint" style="margin-top:8px">If your browser doesn’t open email automatically, send us an email at <a href="mailto:uncip2019@gmail.com">uncip2019@gmail.com</a>.</p>
-      <div style="margin-top:10px">
-        <a href="#" title="FAQ">FAQ</a> ·
-        <a href="#" title="Contact UNCP">Contact UNCP</a> ·
-        <a href="#" title="Report Misconduct or Abuse">Report Misconduct or Abuse</a> ·
-        <a href="#" title="Report Scammers or Fraudulent site/email">Report Scammers</a>
-      </div>
-    </div>
-  </div>
-</section>
+  <!-- Footer -->
+  <footer>
+    <p><strong>Contact Us</strong><br>
+    Email: <a href="mailto:uncip2019@gmail.com">uncip2019@gmail.com</a><br>
+    Telephone: +256702398687 / +256779576538<br>
+    Head Office: P.O. Box 341054, Arua City, Uganda</p>
+    <a href="mailto:uncip2019@gmail.com" class="donate-btn">Donate</a>
+    <p>Follow us: 📘 🐦 📸 ▶️ 🎵 💼</p>
+  </footer>
 
-<section id="planning">
-  <div class="container card">
-    <h2>Legal & Organizational Documents</h2>
-    <ul>
-      <li><a href="docs/UNCP_Registration_Certificate.pdf" target="_blank">Registration Certificate (PDF)</a></li>
-      <li><a href="docs/UNCP_Constitution.pdf" target="_blank">Constitution / Articles (PDF)</a></li>
-      <li><a href="docs/UNCP_Governance_Policy.pdf" target="_blank">Governance & Oversight Policy (PDF)</a></li>
-      <li><a href="docs/UNCP_Safeguarding_PSEA.pdf" target="_blank">Child Safeguarding & PSEA Policy (PDF)</a></li>
-      <li><a href="docs/UNCP_Strategic_Plan.pdf" target="_blank">Strategic Plan (PDF)</a></li>
-      <li><a href="docs/UNCP_Annual_Report.pdf" target="_blank">Latest Annual Report (PDF)</a></li>
-      <li><a href="docs/UNCP_Audited_Financials.pdf" target="_blank">Audited Financial Statement (PDF)</a></li>
-    </ul>
-  </div>
-</section>
+  <script>
+    // Accordion functionality
+    const accBtns = document.querySelectorAll(".accordion-btn");
+    accBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const panel = btn.nextElementSibling;
+        panel.style.display = (panel.style.display === "block") ? "none" : "block";
+      });
+    });
 
-<section id="partners">
-  <div class="container card">
-    <h2>Partners & Donors</h2>
-    <p class="muted">If you are a potential donor/partner, please reach out via <a href="mailto:uncip2019@gmail.com">uncip2019@gmail.com</a>.</p>
-  </div>
-</section>
-
-<section id="suppliers">
-  <div class="container card">
-    <h2>Become a Supplier</h2>
-    <p class="muted">Share your company profile and relevant certifications to be considered for our supplier database.</p>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="container footer-grid">
-    <div>
-      <img src="logo.jpeg" alt="UNCP Logo" class="footer-logo" />
-      <p class="muted">United Networks for Civil Protection (UNCP)<br/>Non‑profit CBO • Arua City, Uganda</p>
-    </div>
-    <div>
-      <h3 style="margin-top:0;color:var(--blue)">Contact</h3>
-      <p>Email: <a href="mailto:uncip2019@gmail.com">uncip2019@gmail.com</a><br/>
-         Tel: +256 702 398687 / +256 779 576538<br/>
-         P.O. Box 341054, Arua City, Uganda</p>
-    </div>
-    <div>
-      <h3 style="margin-top:0;color:var(--blue)">Follow Us</h3>
-      <div class="social">
-        <a href="#" title="Facebook">f</a>
-        <a href="#" title="X">x</a>
-        <a href="#" title="Instagram">○</a>
-        <a href="#" title="YouTube">▶</a>
-        <a href="#" title="TikTok">♬</a>
-        <a href="#" title="LinkedIn">in</a>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<!-- Back to Top -->
-<button onclick="topFunction()" id="backToTopBtn" title="Go to top">↑ Top</button>
-
-<script>
-// ======= Header search focuses job search box =======
-function focusJobSearch(){
-  const input = document.getElementById('jobSearch');
-  if(input){ input.scrollIntoView({behavior:'smooth', block:'center'}); setTimeout(()=>input.focus(), 600); }
-}
-
-// ======= Jobs: filter + JD modal =======
-function filterJobs(){
-  const q = document.getElementById('jobSearch').value.toLowerCase();
-  const items = document.querySelectorAll('#jobList li');
-  items.forEach(li=>{
-    const title = li.querySelector('strong').innerText.toLowerCase();
-    li.style.display = title.includes(q) ? '' : 'none';
-  });
-}
-
-const jobDescriptions = {
-  "Child Protection Case Worker (Volunteer)": `
-    <p><strong>Organization:</strong> United Networks for Civil Protection (UNCP)</p>
-    <p><strong>Position Title:</strong> Child Protection Case Worker (Volunteer)</p>
-    <p><strong>Duty Station:</strong> Arua City</p>
-    <p><strong>Duration:</strong> 6 months</p>
-    <p><strong>Application Period:</strong> 10 September 2025 – 24 September 2025</p>
-    <p><strong>Application Method:</strong> Apply via UNCP website (Get Involved → Careers).</p>
-    <h4>Background</h4>
-    <p>UNCP safeguards and promotes the rights and well‑being of children affected by crises, displacement, and vulnerability. We seek volunteer Child Protection Case Workers to support case management, psychosocial support, and community‑based protection initiatives.</p>
-    <h4>Purpose of the Role</h4>
-    <p>Provide direct support to children at risk, survivors of violence, exploitation, abuse, and neglect through case management, referral, psychosocial support, and caregiver/community engagement.</p>
-    <h4>Key Responsibilities</h4>
-    <ul>
-      <li>Conduct intake assessments, case planning, follow‑up, and safe case closure.</li>
-      <li>Identify and register children at risk (UASC and other vulnerable children).</li>
-      <li>Provide psychosocial support, group activities, and referrals.</li>
-      <li>Maintain confidential case files and ethical documentation.</li>
-      <li>Facilitate referrals to medical, legal, psychosocial and other services.</li>
-      <li>Engage community structures for awareness and prevention of risks.</li>
-      <li>Participate in case conferences and coordination meetings.</li>
-      <li>Ensure adherence to Child Safeguarding and PSEA policies.</li>
-    </ul>
-    <h4>Qualifications & Experience</h4>
-    <ul>
-      <li>Bachelor’s degree (or Diploma with relevant experience) in Social Work, Psychology, Social Sciences, Child Development, Community Development, or related field.</li>
-      <li>Experience in child protection/case management/community protection (paid or voluntary) is an advantage.</li>
-      <li>Strong understanding of child protection principles and safeguarding.</li>
-      <li>Excellent communication, counseling, and interpersonal skills.</li>
-      <li>Fluency in English; local languages are an asset.</li>
-    </ul>
-    <h4>Benefits</h4>
-    <ul>
-      <li>Hands‑on experience in child protection and humanitarian programming.</li>
-      <li>Training and capacity building opportunities.</li>
-      <li>Stipend/reimbursement may be provided (if applicable).</li>
-      <li>Certificate of volunteer service upon completion.</li>
-    </ul>
-    <p><em>Only shortlisted candidates will be contacted.</em></p>
-  `
-};
-
-function showJD(position){
-  document.getElementById('jdTitle').innerText = position;
-  document.getElementById('jdContent').innerHTML = jobDescriptions[position] || '<p>Job description not available.</p>';
-  document.getElementById('jdModal').style.display = 'block';
-}
-function closeJD(){ document.getElementById('jdModal').style.display = 'none'; }
-
-function startApplication(position){
-  document.getElementById('careerFormContainer').style.display = 'block';
-  document.getElementById('formPositionTitle').innerText = position;
-  document.getElementById('position_title').value = position;
-  window.scrollTo({top: document.getElementById('application').offsetTop - 20, behavior:'smooth'});
-  showStep(1);
-}
-
-// ======= Multi-step form logic =======
-let currentStep = 1;
-function showStep(step){
-  document.querySelectorAll('.step').forEach(s=>s.style.display='none');
-  const el = document.getElementById('step'+step);
-  if(el) el.style.display = 'block';
-  currentStep = step;
-}
-function nextStep(step){
-  if(step===8){ generateReview(); showStep(9); }
-  else showStep(step+1);
-}
-function prevStep(step){ showStep(step-1); }
-
-// Save / Load progress
-function saveForm(){
-  const form=document.getElementById('careersForm');
-  const data={};
-  for(const el of form.elements){
-    if(!el.name) continue;
-    if(el.type==='checkbox') data[el.name]=el.checked;
-    else if(el.type!=='file') data[el.name]=el.value;
-  }
-  localStorage.setItem('uncpCareerForm', JSON.stringify(data));
-  alert('Your progress has been saved.');
-}
-window.addEventListener('load',()=>{
-  const saved=JSON.parse(localStorage.getItem('uncpCareerForm')||'{}');
-  const form=document.getElementById('careersForm');
-  for(const key in saved){ if(form.elements[key]){ if(form.elements[key].type==='checkbox') form.elements[key].checked=saved[key]; else form.elements[key].value=saved[key]; }}
-});
-
-// Dynamic Add More
-let workExpCount=1, eduCount=1, certCount=1, langCount=1;
-function addWorkExperience(){
-  workExpCount++;
-  const c=document.getElementById('workExperienceContainer');
-  const d=document.createElement('div'); d.className='workExperienceEntry card'; d.style.marginTop='10px';
-  d.innerHTML=`<label>Job Title<span class='req'>*</span></label><input type='text' name='job_title${workExpCount}' required>
-               <label>Company<span class='req'>*</span></label><input type='text' name='company${workExpCount}' required>
-               <label>Location<span class='req'>*</span></label><input type='text' name='location${workExpCount}' required>
-               <div class='inline'><label>I currently work here</label><input type='checkbox' name='current${workExpCount}'></div>
-               <div class='inline'><div><label>From<span class='req'>*</span></label><input type='date' name='from${workExpCount}' required></div><div><label>To<span class='req'>*</span></label><input type='date' name='to${workExpCount}' required></div></div>
-               <label>Role Description<span class='req'>*</span></label><textarea name='role_desc${workExpCount}' maxlength='1500' rows='4' required></textarea>`;
-  c.appendChild(d);
-}
-function addEducation(){
-  eduCount++;
-  const c=document.getElementById('educationContainer');
-  const d=document.createElement('div'); d.className='educationEntry card'; d.style.marginTop='10px';
-  d.innerHTML=`<label>School/University<span class='req'>*</span></label><input type='text' name='school${eduCount}' required>
-               <label>Degree<span class='req'>*</span></label><input type='text' name='degree${eduCount}' required>
-               <label>Field of Study</label><input type='text' name='field${eduCount}'>
-               <div class='inline'><div><label>From<span class='req'>*</span></label><input type='date' name='edu_from${eduCount}' required></div><div><label>To<span class='req'>*</span></label><input type='date' name='edu_to${eduCount}' required></div></div>`;
-  c.appendChild(d);
-}
-function addCertification(){
-  certCount++;
-  const c=document.getElementById('certContainer');
-  const d=document.createElement('div'); d.className='certEntry card'; d.style.marginTop='10px';
-  d.innerHTML=`<label>Certification Name</label><input type='text' name='cert_name${certCount}'>
-               <label>Certification Number</label><input type='text' name='cert_no${certCount}'>
-               <label>Issued Date</label><input type='date' name='cert_date${certCount}'>
-               <label>Upload Certificate</label><input type='file' name='cert_file${certCount}'>`;
-  c.appendChild(d);
-}
-function addLanguage(){
-  langCount++;
-  const c=document.getElementById('languagesContainer');
-  const d=document.createElement('div'); d.className='languageEntry card'; d.style.marginTop='10px';
-  d.innerHTML=`<label>Language<span class='req'>*</span></label>
-               <select name='language${langCount}' required>
-                <option value=''>-- Select --</option>
-                <option>Lugbarati</option><option>Alur</option><option>Kakwa</option><option>Ma’di</option><option>Luganda</option>
-                <option>English</option><option>French</option><option>Arabic</option><option>Swahili</option>
-                <option>Other (specify below)</option>
-               </select>
-               <label>Other (if selected)</label><input type='text' name='language_other${langCount}' placeholder='Specify language'>
-               <div class='inline'><label>I am fluent in this language</label><input type='checkbox' name='fluent${langCount}'></div>
-               <label>Overall Level<span class='req'>*</span></label>
-               <select name='overall${langCount}' required>
-                <option value=''>-- Select --</option>
-                <option>A1</option><option>A2</option><option>B1</option><option>B2</option><option>C1</option><option>C2</option><option>Mother Tongue</option>
-               </select>`;
-  c.appendChild(d);
-}
-
-// Conditional blocks (Yes/No)
-function toggleBlock(input, id){
-  const show = input && input.value === 'Yes';
-  document.getElementById(id).style.display = show ? 'block' : 'none';
-}
-
-// Review & submit
-function generateReview(){
-  const form=document.getElementById('careersForm');
-  const review=document.getElementById('reviewContainer');
-  review.innerHTML='';
-  for(const el of form.elements){
-    if(!el.name || el.type==='hidden') continue;
-    let val='';
-    if(el.type==='checkbox') val = el.checked ? 'Yes' : 'No';
-    else if(el.type==='file') val = el.files && el.files.length? el.files[0].name : '';
-    else val = el.value;
-    if(val){
-      const p=document.createElement('p');
-      p.innerHTML = `<strong>${el.name.replace(/_/g,' ')}:</strong> ${val}`;
-      review.appendChild(p);
-    }
-  }
-}
-
-function submitApplication(){
-  // Validate terms checkbox
-  const agree = document.getElementById('agree_terms');
-  if(!agree || !agree.checked){ alert('Please agree to the Terms and Conditions before submitting.'); return; }
-  alert('Your application has been submitted. Thank you for applying to UNCP!');
-  document.getElementById('careersForm').reset();
-  localStorage.removeItem('uncpCareerForm');
-  showStep(1);
-  window.scrollTo({top:0, behavior:'smooth'});
-}
-
-// Back to top
-window.addEventListener('scroll',()=>{
-  const btn=document.getElementById('backToTopBtn');
-  const sc = document.documentElement.scrollTop || document.body.scrollTop;
-  btn.style.display = sc>300 ? 'block' : 'none';
-});
-function topFunction(){ window.scrollTo({top:0, behavior:'smooth'}); }
-</script>
+    // Search functionality
+    const searchIcon = document.getElementById("search-icon");
+    const searchInput = document.getElementById("search-input");
+    searchIcon.addEventListener("click", (e) => {
+      e.preventDefault();
+      searchInput.style.display = (searchInput.style.display === "block") ? "none" : "block";
+      if (searchInput.style.display === "block") {
+        searchInput.focus();
+      }
+    });
+  </script>
 </body>
 </html>
-
