@@ -1,231 +1,333 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>United Networks for Civil Protection (UNCP)</title>
-<link rel="icon" href="logo.jpeg">
-
-<!-- jsPDF for PDF generation -->
-<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
-<!-- EmailJS SDK -->
-<script src="https://cdn.emailjs.com/sdk/3.2/email.min.js"></script>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UNCP - United Networks for Civil Protection</title>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- jsPDF CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<!-- EmailJS CDN -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
 <style>
-/* ======== General Styles ======== */
-body{font-family:Arial,Helvetica,sans-serif;margin:0;background:#f4f6f9;color:#222}
-.container{max-width:1100px;margin:18px auto;padding:0 16px}
-header{display:flex;align-items:center;justify-content:space-between;padding:12px;background:#fff;border-bottom:1px solid #e6eefc;position:sticky;top:0;z-index:1000}
-.brand{display:flex;align-items:center;gap:12px}
-.brand img{height:100px}
-nav ul{display:flex;gap:12px;list-style:none;margin:0;padding:0;align-items:center}
-nav li{position:relative}
-nav a{color:#0b3b66;font-weight:700;padding:8px;border-radius:6px;text-decoration:none}
-nav .donate{background:#ff7f00;color:#fff;padding:8px 12px;border-radius:8px}
-section{background:#fff;margin:18px 0;padding:18px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
-h1,h2,h3,h4{color:#083e6b}
-.accordion-item{border:1px solid #e6eefc;border-radius:8px;margin-bottom:10px;overflow:hidden}
-.accordion-header{background:#f7fbff;padding:12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
-.accordion-body{max-height:0;overflow:hidden;transition:max-height .28s ease;padding:0 12px}
-.accordion-item.active .accordion-body{padding:12px}
-.btn{background:#0b62a6;color:#fff;padding:8px 12px;border-radius:8px;border:none;cursor:pointer;margin-top:12px}
-.btn.secondary{background:#eef4ff;color:#0b62a6}
-.card{background:#fff;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,0.08);padding:16px;margin-bottom:16px}
-.inline{display:flex;gap:12px;flex-wrap:wrap}
-.chip{display:inline-block;padding:6px 10px;border-radius:999px;border:1px dashed #0b62a6;margin:4px}
-input,select,textarea{width:100%;padding:8px;border-radius:6px;border:1px solid #d6d6d6;margin-top:6px}
-footer{background:#083e6b;color:#fff;padding:24px;border-radius:12px;margin-top:24px}
-footer h4{margin-bottom:8px;color:#ff7f00}
-footer a{color:#ff7f00;text-decoration:none}
-.social-icons a{display:inline-block;width:36px;height:36px;line-height:36px;text-align:center;border-radius:50%;background:#ff7f00;color:#fff;font-weight:bold;margin-right:6px;transition:transform .2s}
-.social-icons a:hover{transform:scale(1.2)}
-.form-step{display:none;margin-top:12px}
+body {font-family: 'Inter', sans-serif;}
+.header-logo {height:100px;}
+.header-nav a {margin-right:16px;}
+.form-step {padding:16px;border:1px solid #ddd;border-radius:12px;margin-bottom:16px;background:#fff;}
+.card {background:#f9f9f9;border-radius:10px;padding:12px;margin-bottom:10px;}
+.btn {padding:8px 14px;border-radius:8px;}
+.btn.secondary {background:#ddd;color:#333;}
+.btn:hover {opacity:0.9;}
+.social-icon {width:32px;height:32px;margin-right:8px;display:inline-block;}
 </style>
 </head>
-<body>
-<div class="container">
+<body class="bg-gray-50">
 
-<!-- Header -->
-<header>
-  <div class="brand">
-    <a href="#home"><img src="logo.jpeg" alt="UNCP Logo"></a>
-    <div>
-      <div style="font-weight:900;color:#083e6b">United Networks for Civil Protection</div>
-      <div style="font-size:13px;color:#666">Community-Based Non-Profit • Company Limited by Guarantee (Uganda)</div>
-    </div>
-  </div>
-  <nav>
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#what-we-do">What We Do</a></li>
-      <li><a href="#where-we-work">Where We Work</a></li>
-      <li><a href="#careersSection">Careers</a></li>
-      <li><a href="#donate" class="donate">Donate</a></li>
-    </ul>
-  </nav>
+<!-- HEADER -->
+<header class="bg-white shadow p-4 flex items-center justify-between">
+<img src="logo.png" alt="UNCP Logo" class="header-logo">
+<nav class="header-nav flex items-center">
+<a href="#home" class="text-gray-700 hover:text-blue-600">Home</a>
+<a href="#about" class="text-gray-700 hover:text-blue-600">About</a>
+<a href="#careers" class="text-gray-700 hover:text-blue-600">Careers</a>
+<a href="#donate" class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600">Donate</a>
+</nav>
 </header>
 
-<!-- Home -->
-<section id="home">
-  <h1>United Networks for Civil Protection (UNCP)</h1>
-  <p><strong>Type:</strong> Community-Based Organization</p>
-  <p><strong>Incorporated:</strong> Company Limited by Guarantee, Uganda</p>
-  <p style="font-weight:bold;color:#0b3b66;">We protect, empower, and work with vulnerable children, youth, and communities, including forcibly displaced populations.</p>
+<!-- HOME SECTION -->
+<section id="home" class="p-6 text-center bg-blue-50">
+<h1 class="text-4xl font-bold mb-4">United Networks for Civil Protection (UNCP)</h1>
+<p class="text-lg max-w-3xl mx-auto">We protect, empower, and work with vulnerable children, youth, and communities, including forcefully displaced populations.</p>
 </section>
 
-<!-- Accordion: About / What we do / Where we work -->
-<section id="about" class="accordion">
-  <div class="accordion-item">
-    <div class="accordion-header">About UNCP <span>+</span></div>
-    <div class="accordion-body">
-      <h3>Overview</h3>
-      <p>United Networks for Civil Protection (UNCP) ...</p>
-      <h4>History</h4>
-      <p>Founded in 2018 by child protection specialists...</p>
-      <h4>Mission & Vision</h4>
-      <p>Mission: ... Vision: ...</p>
-    </div>
-  </div>
-  <div class="accordion-item">
-    <div class="accordion-header">What We Do <span>+</span></div>
-    <div class="accordion-body">
-      <ul>
-        <li>Child Protection</li>
-        <li>GBV Prevention</li>
-        <li>MHPSS</li>
-        <li>Youth Empowerment</li>
-        <li>Climate & Livelihoods</li>
-        <li>Inclusive Education</li>
-      </ul>
-    </div>
-  </div>
-  <div class="accordion-item">
-    <div class="accordion-header">Where We Work <span>+</span></div>
-    <div class="accordion-body">
-      <div class="inline">
-        <span class="chip">Arua City</span><span class="chip">Arua District</span><span class="chip">Madi Okollo</span>
-        <span class="chip">Terego</span><span class="chip">Adjumani</span><span class="chip">Moyo</span><span class="chip">Obongi</span>
-        <span class="chip">Pakwach</span><span class="chip">Nebbi</span><span class="chip">Koboko</span><span class="chip">Yumbe</span>
-        <span class="chip">Zombo</span><span class="chip">Maracha</span>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- ABOUT SECTION -->
+<section id="about" class="p-6 bg-white mt-6 rounded-xl shadow">
+<h2 class="text-3xl font-bold mb-4">About UNCP</h2>
 
-<!-- Careers Section -->
-<section id="careersSection">
-  <h2>Open Positions</h2>
-  <div id="jobList">
-    <div class="job card" data-deadline="2025-09-24">
-      <strong>Child Protection Case Worker (Volunteer)</strong>
-      <div style="margin-top:6px;color:#444">Arua City • 6 months • Application: 10 Sep 2025 – 24 Sep 2025</div>
-      <div style="margin-top:8px">
-        <button class="btn" onclick="showJD('Child Protection Case Worker (Volunteer)')">View JD</button>
-        <button class="btn" onclick="startApplication('Child Protection Case Worker (Volunteer)')">Apply</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Job Description Modal -->
-<div id="jdModal" style="display:none;position:fixed;left:50%;top:6%;transform:translateX(-50%);max-width:900px;width:92%;background:#fff;padding:16px;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.25);z-index:3000;">
-  <div id="jdContent"></div>
-  <div style="text-align:right;margin-top:12px"><button onclick="closeJD()" class="btn secondary">Close</button></div>
+<div>
+<h3 class="text-xl font-semibold">Overview</h3>
+<p>United Networks for Civil Protection (UNCP) is a humanitarian organization dedicated to safeguarding and empowering vulnerable communities and populations.</p>
 </div>
 
-<!-- Hidden Multi-Step Application Form -->
-<section id="application" class="card" style="display:none">
-  <h2>Application Form</h2>
-  <!-- Form content inserted here (see previous multi-step JS + HTML) -->
+<div>
+<h3 class="text-xl font-semibold">History</h3>
+<p>Founded in 2018 by child protection specialists, UNCP has grown to serve thousands of children, youth, and displaced communities.</p>
+</div>
+
+<div>
+<h3 class="text-xl font-semibold">Mission & Vision</h3>
+<p><strong>Mission:</strong> To protect and empower vulnerable populations, providing them with the resources, care, and advocacy they need to thrive.</p>
+<p><strong>Vision:</strong> A world where every child, youth, and community can live safely, with dignity and opportunity, even in the face of displacement and crisis.</p>
+</div>
 </section>
 
-<!-- Donate / Contact -->
-<section id="donate" class="card">
-  <h2>Donate / Contact</h2>
-  <p>Email: <a href="mailto:uncip2019@gmail.com">uncip2019@gmail.com</a></p>
-  <p>Tel: +256 702 398687 / +256 779 576538</p>
+<!-- CAREERS SECTION -->
+<section id="careers" class="p-6 mt-6 bg-blue-50 rounded-xl shadow">
+<h2 class="text-3xl font-bold mb-4">Careers</h2>
+<p>Explore our open positions and join UNCP in making a difference. Click "Apply" to submit your application.</p>
+
+<!-- Example Position -->
+<div class="job-card bg-white p-4 rounded-lg shadow mb-4">
+<h3 class="font-semibold text-xl">Child Protection Officer</h3>
+<p>Location: Juba</p>
+<p>Full-time | Posted: 2025-09-15</p>
+<button class="btn bg-blue-500 text-white mt-2" onclick="showApplication('Child Protection Officer')">Apply</button>
+</div>
 </section>
 
-<!-- Artistic Footer -->
-<footer>
-  <div style="display:flex;justify-content:space-between;flex-wrap:wrap;align-items:center;gap:12px">
-    <div>
-      <h4>Contact</h4>
-      <p>Email: <a href="mailto:uncip2019@gmail.com">uncip2019@gmail.com</a><br>Tel: +256 702 398687 / +256 779 576538</p>
-    </div>
-    <div>
-      <h4>Follow Us</h4>
-      <div class="social-icons">
-        <a href="#" title="Facebook">F</a>
-        <a href="#" title="X / Twitter">X</a>
-        <a href="#" title="Instagram">I</a>
-        <a href="#" title="YouTube">Y</a>
-      </div>
-    </div>
-    <div><img src="logo.jpeg" alt="UNCP Logo" height="70"></div>
-  </div>
+<!-- APPLICATION FORM (HIDDEN BY DEFAULT) -->
+<section id="application" class="p-6 mt-6 bg-white rounded-xl shadow" style="display:none;">
+<h2 class="text-2xl font-bold mb-4">Application Form</h2>
+<form id="careersForm">
+
+<input type="hidden" name="position_title" id="position_title" value="">
+
+<!-- Step 1: Personal Info -->
+<div class="form-step" data-step="1">
+<h3 class="font-semibold text-xl mb-2">Step 1 — Personal Information</h3>
+<label>Full Name *</label>
+<input type="text" name="candidate_name" required class="w-full p-2 border rounded">
+<label>Email *</label>
+<input type="email" name="candidate_email" required class="w-full p-2 border rounded">
+<label>Phone *</label>
+<input type="tel" name="candidate_phone" required class="w-full p-2 border rounded">
+<div class="mt-4">
+<button type="button" class="btn secondary" onclick="goToStep(2)">Next</button>
+</div>
+</div>
+
+<!-- Step 2: Work Experience -->
+<div class="form-step" data-step="2" style="display:none;">
+<h3 class="font-semibold text-xl mb-2">Step 2 — Work Experience</h3>
+<div id="workExpWrap">
+<div class="card" data-index="1">
+<label>Job Title *</label><input type="text" name="job_title_1" required class="w-full p-2 border rounded">
+<label>Company *</label><input type="text" name="company_1" required class="w-full p-2 border rounded">
+<label>From</label><input type="date" name="from_1" class="w-full p-2 border rounded">
+<label>To</label><input type="date" name="to_1" class="w-full p-2 border rounded">
+<label>Role Description (max 1500 chars)</label><textarea name="role_desc_1" maxlength="1500" class="w-full p-2 border rounded"></textarea>
+</div>
+</div>
+<button type="button" class="btn secondary mt-2" onclick="addWorkExp()">Add More</button>
+<div class="mt-4">
+<button type="button" class="btn secondary" onclick="goToStep(1)">Back</button>
+<button type="button" class="btn" onclick="goToStep(3)">Next</button>
+</div>
+</div>
+
+<!-- Step 3: Education -->
+<div class="form-step" data-step="3" style="display:none;">
+<h3 class="font-semibold text-xl mb-2">Step 3 — Education</h3>
+<div id="eduWrap">
+<div class="card" data-index="1">
+<label>School / University *</label><input type="text" name="school_1" required class="w-full p-2 border rounded">
+<label>Degree *</label><input type="text" name="degree_1" required class="w-full p-2 border rounded">
+<label>Field of Study</label><input type="text" name="field_1" class="w-full p-2 border rounded">
+</div>
+</div>
+<button type="button" class="btn secondary mt-2" onclick="addEdu()">Add More</button>
+<div class="mt-4">
+<button type="button" class="btn secondary" onclick="goToStep(2)">Back</button>
+<button type="button" class="btn" onclick="goToStep(4)">Next</button>
+</div>
+</div>
+
+<!-- Step 4: Certifications -->
+<div class="form-step" data-step="4" style="display:none;">
+<h3 class="font-semibold text-xl mb-2">Step 4 — Certifications (Optional)</h3>
+<div id="certWrap">
+<div class="card" data-index="1">
+<label>Certification Name</label><input type="text" name="cert_name_1" class="w-full p-2 border rounded">
+<label>Certification Number</label><input type="text" name="cert_no_1" class="w-full p-2 border rounded">
+<label>Issued Date</label><input type="date" name="cert_date_1" class="w-full p-2 border rounded">
+</div>
+</div>
+<button type="button" class="btn secondary mt-2" onclick="addCert()">Add More</button>
+<div class="mt-4">
+<button type="button" class="btn secondary" onclick="goToStep(3)">Back</button>
+<button type="button" class="btn" onclick="goToStep(5)">Next</button>
+</div>
+</div>
+
+<!-- Step 5: Languages & Skills -->
+<div class="form-step" data-step="5" style="display:none;">
+<h3 class="font-semibold text-xl mb-2">Step 5 — Languages & Skills</h3>
+<div id="langWrap">
+<div class="card" data-index="1">
+<label>Language *</label>
+<select name="lang_1" required class="w-full p-2 border rounded">
+<option value="">--Select--</option><option>Lugbarati</option><option>Alur</option><option>Kakwa</option><option>Ma’di</option><option>Luganda</option><option>English</option><option>Other</option>
+</select>
+<label><input type="checkbox" name="fluent_1"> I am fluent</label>
+<label>Overall (A1-C2/Mother Tongue) *</label>
+<select name="level_1" required class="w-full p-2 border rounded">
+<option value="">--Select--</option><option>A1</option><option>A2</option><option>B1</option><option>B2</option><option>C1</option><option>C2</option><option>Mother Tongue</option>
+</select>
+</div>
+</div>
+<label>Skills (max 1500 chars)</label>
+<textarea name="skills" maxlength="1500" class="w-full p-2 border rounded"></textarea>
+<div class="mt-4">
+<button type="button" class="btn secondary" onclick="goToStep(4)">Back</button>
+<button type="button" class="btn" onclick="goToStep(6)">Next</button>
+</div>
+</div>
+
+<!-- Step 6: Application Questions -->
+<div class="form-step" data-step="6" style="display:none;">
+<h3 class="font-semibold text-xl mb-2">Step 6 — Application Questions</h3>
+<label>a) How have your achievements and operational experience to date prepared you for this position? (max 2500 chars) *</label>
+<textarea name="q1" maxlength="2500" required class="w-full p-2 border rounded"></textarea>
+
+<label>b) Describe any skills and competencies you have, particularly relevant to this position (max 2500 chars) *</label>
+<textarea name="q2" maxlength="2500" required class="w-full p-2 border rounded"></textarea>
+
+<label>c) How does this position align with your career aspirations? (max 1000 chars) *</label>
+<textarea name="q3" maxlength="1000" required class="w-full p-2 border rounded"></textarea>
+
+<div class="mt-4">
+<button type="button" class="btn secondary" onclick="goToStep(5)">Back</button>
+<button type="button" class="btn" onclick="goToStep(7)">Next</button>
+</div>
+</div>
+
+<!-- Step 7: References -->
+<div class="form-step" data-step="7" style="display:none;">
+<h3 class="font-semibold text-xl mb-2">Step 7 — References</h3>
+<div id="refsWrap">
+<div class="card" data-index="1">
+<label>Reference Name *</label><input type="text" name="ref_name_1" required class="w-full p-2 border rounded">
+<label>Organization / Address *</label><input type="text" name="ref_org_1" required class="w-full p-2 border rounded">
+<label>Position *</label><input type="text" name="ref_position_1" required class="w-full p-2 border rounded">
+<label>Relationship *</label><input type="text" name="ref_relationship_1" required class="w-full p-2 border rounded">
+<label>Email *</label><input type="email" name="ref_email_1" required class="w-full p-2 border rounded">
+<label>Telephone *</label><input type="tel" name="ref_phone_1" required class="w-full p-2 border rounded">
+</div>
+</div>
+<button type="button" class="btn secondary mt-2" onclick="addRef()">Add More</button>
+<div class="mt-4">
+<button type="button" class="btn secondary" onclick="goToStep(6)">Back</button>
+<button type="button" class="btn" onclick="goToStep(8)">Next</button>
+</div>
+</div>
+
+<!-- Step 8: Final Review & Submit -->
+<div class="form-step" data-step="8" style="display:none;">
+<h3 class="font-semibold text-xl mb-2">Step 8 — Review & Submit</h3>
+<p>Ensure all your information is accurate before submitting. You can also save a draft locally.</p>
+<div class="mt-4">
+<button type="button" class="btn secondary" onclick="goToStep(7)">Back</button>
+<button type="button" class="btn" onclick="saveDraft()">Save Draft</button>
+<button type="button" class="btn bg-green-500 text-white" onclick="submitForm()">Submit Application</button>
+</div>
+</div>
+
+</form>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-gray-900 text-white p-6 mt-6 rounded-xl shadow text-center">
+<p class="mb-4">© 2025 United Networks for Civil Protection. All rights reserved.</p>
+<div>
+<a href="#" class="social-icon"><img src="facebook.svg" alt="Facebook"></a>
+<a href="#" class="social-icon"><img src="twitter.svg" alt="Twitter"></a>
+<a href="#" class="social-icon"><img src="linkedin.svg" alt="LinkedIn"></a>
+<a href="#" class="social-icon"><img src="instagram.svg" alt="Instagram"></a>
+</div>
 </footer>
 
 <script>
-// ====== Accordion ======
-document.querySelectorAll('.accordion-header').forEach(header=>{
-  header.addEventListener('click', ()=>{
-    const item = header.parentElement;
-    item.classList.toggle('active');
-    const body = header.nextElementSibling;
-    if(item.classList.contains('active')){
-      body.style.maxHeight = body.scrollHeight + "px";
-    } else {
-      body.style.maxHeight = null;
-    }
-  });
-});
-
-// ====== Job Description Modal ======
-function showJD(title){
-  document.getElementById('jdContent').innerHTML = `<h3>${title}</h3><p>Description goes here...</p>`;
-  document.getElementById('jdModal').style.display='block';
-}
-function closeJD(){document.getElementById('jdModal').style.display='none'}
-
-// ====== Careers Application Form ======
-function startApplication(position){
-  document.getElementById('application').style.display='block';
-  document.getElementById('position_title').value = position;
-  goToStep(1);
+// Multi-step navigation
+let currentStep=1;
+function goToStep(n){
+document.querySelectorAll('.form-step').forEach(s=>s.style.display='none');
+document.querySelector(`.form-step[data-step="${n}"]`).style.display='block';
+currentStep=n;
 }
 
-// ====== Multi-Step Form JS ======
-let currentStep = 1; const totalSteps = 8;
-function goToStep(step){
-  document.querySelectorAll('.form-step').forEach(f=>f.style.display='none');
-  const s = document.querySelector(`.form-step[data-step='${step}']`);
-  if(s) s.style.display='block';
-  currentStep = step;
-}
-function nextStep(){if(currentStep<totalSteps){goToStep(currentStep+1)}}
-function prevStep(){if(currentStep>1){goToStep(currentStep-1)}}
-async function submitApplication(){
-  const form=document.getElementById('careersForm'); const formData=new FormData(form);
-  const { jsPDF } = window.jspdf; const pdf = new jsPDF();
-  let y=10; formData.forEach((v,k)=>{pdf.text(`${k}: ${v}`,10,y); y+=10;if(y>280){pdf.addPage(); y=10;}});
-  const pdfBlob = pdf.output('blob');
-  try{
-    await emailjs.send('YOUR_SERVICE_ID','YOUR_TEMPLATE_ID',{
-      position_title: formData.get('position_title'),
-      applicant_name: formData.get('first_name')+' '+formData.get('last_name'),
-      applicant_email: formData.get('email'),
-      pdf_attachment: pdfBlob
-    });
-    alert('Application submitted successfully!');
-    form.reset(); goToStep(1); document.getElementById('application').style.display='none';
-  }catch(err){alert('Error submitting application: '+err);}
-}
-
-// ====== Initialize ======
+// Show application form
+function showApplication(position){
+document.getElementById('application').style.display='block';
+document.getElementById('position_title').value=position;
 goToStep(1);
+document.getElementById('application').scrollIntoView({behavior:'smooth'});
+}
+
+// Dynamic add more functions
+let workCount=1, eduCount=1, certCount=1, langCount=1, refCount=1;
+function addWorkExp(){
+workCount++;let div=document.createElement('div');div.className='card';div.innerHTML=
+`<label>Job Title *</label><input type="text" name="job_title_${workCount}" required class="w-full p-2 border rounded">
+<label>Company *</label><input type="text" name="company_${workCount}" required class="w-full p-2 border rounded">
+<label>From</label><input type="date" name="from_${workCount}" class="w-full p-2 border rounded">
+<label>To</label><input type="date" name="to_${workCount}" class="w-full p-2 border rounded">
+<label>Role Description (max 1500 chars)</label><textarea name="role_desc_${workCount}" maxlength="1500" class="w-full p-2 border rounded"></textarea>`;
+document.getElementById('workExpWrap').appendChild(div);
+}
+function addEdu(){
+eduCount++;let div=document.createElement('div');div.className='card';div.innerHTML=
+`<label>School / University *</label><input type="text" name="school_${eduCount}" required class="w-full p-2 border rounded">
+<label>Degree *</label><input type="text" name="degree_${eduCount}" required class="w-full p-2 border rounded">
+<label>Field of Study</label><input type="text" name="field_${eduCount}" class="w-full p-2 border rounded">`;
+document.getElementById('eduWrap').appendChild(div);
+}
+function addCert(){
+certCount++;let div=document.createElement('div');div.className='card';div.innerHTML=
+`<label>Certification Name</label><input type="text" name="cert_name_${certCount}" class="w-full p-2 border rounded">
+<label>Certification Number</label><input type="text" name="cert_no_${certCount}" class="w-full p-2 border rounded">
+<label>Issued Date</label><input type="date" name="cert_date_${certCount}" class="w-full p-2 border rounded">`;
+document.getElementById('certWrap').appendChild(div);
+}
+function addRef(){
+refCount++;let div=document.createElement('div');div.className='card';div.innerHTML=
+`<label>Reference Name *</label><input type="text" name="ref_name_${refCount}" required class="w-full p-2 border rounded">
+<label>Organization / Address *</label><input type="text" name="ref_org_${refCount}" required class="w-full p-2 border rounded">
+<label>Position *</label><input type="text" name="ref_position_${refCount}" required class="w-full p-2 border rounded">
+<label>Relationship *</label><input type="text" name="ref_relationship_${refCount}" required class="w-full p-2 border rounded">
+<label>Email *</label><input type="email" name="ref_email_${refCount}" required class="w-full p-2 border rounded">
+<label>Telephone *</label><input type="tel" name="ref_phone_${refCount}" required class="w-full p-2 border rounded">`;
+document.getElementById('refsWrap').appendChild(div);
+}
+
+// Save/Load Draft
+function saveDraft(){
+let data={};
+document.querySelectorAll('#careersForm input,textarea,select').forEach(f=>data[f.name]=f.value);
+localStorage.setItem('careersFormDraft',JSON.stringify(data));
+alert('Draft saved locally.');
+}
+function loadDraft(){
+let draft=localStorage.getItem('careersFormDraft');
+if(draft){draft=JSON.parse(draft);
+for(let k in draft){let f=document.querySelector('[name="'+k+'"]');if(f)f.value=draft[k];}}
+}
+loadDraft();
+
+// Submit Form
+function submitForm(){
+const form=document.getElementById('careersForm');
+if(!form.checkValidity()){alert('Please fill all required fields.');return;}
+const formData=new FormData(form);
+const dataObj={};
+formData.forEach((v,k)=>dataObj[k]=v);
+
+// PDF
+const { jsPDF } = window.jspdf;
+const doc = new jsPDF();
+let y=10;
+doc.setFontSize(12);
+doc.text("UNCP Application Form",10,y);y+=10;
+for(let k in dataObj){doc.text(`${k}: ${dataObj[k]}`,10,y);y+=6;if(y>270){doc.addPage();y=10;}}
+doc.save("UNCP_Application.pdf");
+
+// EmailJS
+emailjs.init("YOUR_USER_ID"); // replace with actual EmailJS user ID
+emailjs.send("service_xxx","template_xxx",dataObj) // replace with actual service/template IDs
+.then(()=>alert('Application submitted successfully!'))
+.catch(err=>alert('Error sending application: '+err));
+}
 </script>
-</div>
+
 </body>
 </html>
