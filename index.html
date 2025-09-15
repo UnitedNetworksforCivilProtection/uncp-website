@@ -1,165 +1,268 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>United Networks for Civil Protection (UNCP)</title>
 <link rel="icon" href="logo.jpeg">
-<!-- jsPDF -->
+
+<!-- jsPDF for PDF generation -->
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
-<!-- EmailJS -->
+<!-- EmailJS SDK -->
 <script src="https://cdn.emailjs.com/sdk/3.2/email.min.js"></script>
+
+<!-- Tailwind CDN for styling -->
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css" rel="stylesheet">
+
 <style>
-/* ======== Global ======== */
-body{font-family:Arial,Helvetica,sans-serif;margin:0;background:#f4f6f9;color:#222}
-.container{max-width:1200px;margin:0 auto;padding:0 16px}
-.btn{padding:8px 14px;border:none;border-radius:8px;cursor:pointer}
-.btn.primary{background:#0b62a6;color:#fff}
-.btn.secondary{background:#eef4ff;color:#0b62a6}
-.card{background:#fff;padding:16px;margin-bottom:18px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.05)}
-input, select, textarea{width:100%;padding:8px;margin-top:6px;border:1px solid #d6d6d6;border-radius:6px}
-label{display:block;margin-top:10px;font-weight:700}
-.inline{display:flex;gap:12px}
-/* ======== Header ======== */
-header{display:flex;align-items:center;justify-content:space-between;padding:16px;background:#fff;border-bottom:1px solid #e6eefc;position:sticky;top:0;z-index:1000}
-header img{height:100px}
-nav a{margin-left:12px;color:#0b3b66;font-weight:700;text-decoration:none}
-nav a.donate{background:#ff7f00;color:#fff;padding:8px 12px;border-radius:8px}
-/* ======== Footer ======== */
-footer{background:#083e6b;color:#fff;padding:28px;border-radius:16px;margin-top:18px;position:relative;overflow:hidden}
-footer h3{color:#ff7f00}
-.socials a{display:inline-block;width:40px;height:40px;background:#ff7f00;color:#fff;text-align:center;line-height:40px;border-radius:50%;margin-right:10px;text-decoration:none;font-weight:bold;transition:all 0.3s}
-.socials a:hover{transform:scale(1.2);box-shadow:0 0 10px rgba(255,127,0,0.6)}
-/* ======== Sections ======== */
-section h1,section h2{color:#083e6b}
-.accordion .accordion-header{background:#f7fbff;padding:12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border-radius:8px;border:1px solid #e6eefc;margin-bottom:6px}
+body{font-family:Arial,sans-serif;margin:0;background:#f4f6f9;color:#222}
+header{display:flex;align-items:center;justify-content:space-between;padding:16px;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,0.08);position:sticky;top:0;z-index:1000}
+header .logo img{height:100px}
+nav ul{display:flex;gap:16px;list-style:none;margin:0;padding:0;align-items:center}
+nav a{font-weight:700;padding:6px 12px;border-radius:6px;color:#0b3b66}
+nav .donate{background:#ff7f00;color:#fff}
+section{max-width:1100px;margin:18px auto;padding:20px;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+h1,h2{color:#083e6b}
+.accordion-item{border:1px solid #e6eefc;border-radius:8px;margin-bottom:10px;overflow:hidden}
+.accordion-header{background:#f7fbff;padding:12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
 .accordion-body{max-height:0;overflow:hidden;transition:max-height .28s ease;padding:0 12px}
 .accordion-item.active .accordion-body{padding:12px}
-.job{border-left:4px solid #083e6b;padding:12px;margin-bottom:12px}
+.chip{display:inline-block;padding:6px 10px;border-radius:999px;border:1px dashed #0b62a6;margin:4px}
+footer{background:#0b3b66;color:#fff;padding:32px;border-top:6px solid #ff7f00}
+footer a{color:#ffbf69;font-weight:600}
+footer .socials a{display:inline-block;width:40px;height:40px;line-height:40px;text-align:center;background:#083e6b;border-radius:50%;margin-right:8px;color:#fff;font-weight:bold;transition:all .3s}
+footer .socials a:hover{background:#ff7f00;color:#083e6b;transform:scale(1.2)}
 .form-step{display:none}
+.form-step.active{display:block}
 </style>
 </head>
 <body>
-<div class="container">
 
 <!-- Header -->
 <header>
-<img src="logo.jpeg" alt="UNCP Logo">
-<nav>
-<a href="#home">Home</a>
-<a href="#about">About</a>
-<a href="#what-we-do">What We Do</a>
-<a href="#where-we-work">Where We Work</a>
-<a href="#careersSection">Careers</a>
-<a href="#donate" class="donate">Donate</a>
-</nav>
+  <div class="logo flex items-center gap-4">
+    <img src="logo.jpeg" alt="UNCP Logo">
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#what-we-do">What We Do</a></li>
+      <li><a href="#where-we-work">Where We Work</a></li>
+      <li><a href="#careersSection">Careers</a></li>
+      <li><a href="#donate" class="donate">Donate</a></li>
+    </ul>
+  </nav>
 </header>
 
 <!-- Home -->
-<section id="home" class="card">
-<h1>United Networks for Civil Protection (UNCP)</h1>
-<p><strong>Type:</strong> Community-Based Organization</p>
-<p><strong>Incorporated:</strong> Company Limited by Guarantee, Uganda</p>
-<p>We protect and empower vulnerable children, youth and communities in refugee & host settings.</p>
+<section id="home">
+  <h1>United Networks for Civil Protection (UNCP)</h1>
+  <p><strong>Type:</strong> Community-Based Organization</p>
+  <p><strong>Incorporated:</strong> Company Limited by Guarantee, Uganda</p>
+  <p class="muted">We protect and empower vulnerable children, youth and communities in refugee & host settings.</p>
 </section>
 
-<!-- About & Accordion -->
+<!-- About / What We Do / Where We Work -->
 <section id="about" class="accordion">
-<div class="accordion-item" id="accordion-about">
-<div class="accordion-header">About UNCP <span>+</span></div>
-<div class="accordion-body">
-<p>Founded in 2018, UNCP specializes in child protection and community empowerment...</p>
-</div>
-</div>
-<div class="accordion-item" id="accordion-what">
-<div class="accordion-header">What We Do <span>+</span></div>
-<div class="accordion-body">
-<ul><li>Child Protection</li><li>GBV Prevention</li><li>MHPSS</li><li>Youth Empowerment</li><li>Climate & Livelihoods</li><li>Inclusive Education</li></ul>
-</div>
-</div>
-<div class="accordion-item" id="accordion-where">
-<div class="accordion-header">Where We Work <span>+</span></div>
-<div class="accordion-body">
-<div class="inline" style="flex-wrap:wrap">
-<span class="chip">Arua City</span><span class="chip">Arua District</span><span class="chip">Madi Okollo</span>
-<span class="chip">Terego</span><span class="chip">Adjumani</span><span class="chip">Moyo</span>
-</div>
-</div>
-</div>
+  <div class="accordion-item">
+    <div class="accordion-header">About UNCP <span>+</span></div>
+    <div class="accordion-body">
+      <h3>Overview</h3>
+      <p>United Networks for Civil Protection (UNCP) ... (short overview)</p>
+      <h4>History</h4>
+      <p>Founded in 2018 by child protection specialists...</p>
+      <h4>Mission & Vision</h4>
+      <p>Mission: ... Vision: ...</p>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <div class="accordion-header">What We Do <span>+</span></div>
+    <div class="accordion-body">
+      <ul>
+        <li>Child Protection</li>
+        <li>GBV Prevention</li>
+        <li>MHPSS</li>
+        <li>Youth Empowerment</li>
+        <li>Climate & Livelihoods</li>
+        <li>Inclusive Education</li>
+      </ul>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <div class="accordion-header">Where We Work <span>+</span></div>
+    <div class="accordion-body">
+      <p class="muted">Uganda — districts we work in:</p>
+      <div class="flex flex-wrap gap-2">
+        <span class="chip">Arua City</span><span class="chip">Arua District</span><span class="chip">Madi Okollo</span>
+        <span class="chip">Terego</span><span class="chip">Adjumani</span><span class="chip">Moyo</span><span class="chip">Obongi</span>
+        <span class="chip">Pakwach</span><span class="chip">Nebbi</span><span class="chip">Koboko</span><span class="chip">Yumbe</span>
+        <span class="chip">Zombo</span><span class="chip">Maracha</span>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- Careers -->
-<section id="careersSection" class="card">
-<h2>Open Positions</h2>
-<input id="jobSearch" placeholder="Filter positions..." style="width:100%;padding:10px;border-radius:8px;border:1px solid #ddd;margin-bottom:12px">
-<div id="jobList">
-<div class="job card" data-deadline="2025-09-24">
-<strong>Child Protection Case Worker (Volunteer)</strong>
-<p>Arua City • 6 months • Application: 10 Sep – 24 Sep 2025</p>
-<button class="btn primary" onclick="showJD('Child Protection Case Worker (Volunteer)')">View JD</button>
-<button class="btn secondary" onclick="startApplication('Child Protection Case Worker (Volunteer)')">Apply</button>
-</div>
-</div>
+<!-- Careers Section -->
+<section id="careersSection">
+  <h2>Open Positions</h2>
+  <div id="jobList">
+    <div class="job card p-4 mb-4 border-l-4 border-blue-800" data-deadline="2025-09-24">
+      <strong>Child Protection Case Worker (Volunteer)</strong>
+      <div class="mt-2 text-gray-600">Arua City • 6 months • Application: 10 Sep 2025 – 24 Sep 2025</div>
+      <div class="mt-4 flex gap-2">
+        <button class="btn bg-blue-800 text-white px-3 py-1 rounded" onclick="showJD('Child Protection Case Worker (Volunteer)')">View JD</button>
+        <button class="btn bg-green-700 text-white px-3 py-1 rounded" onclick="startApplication('Child Protection Case Worker (Volunteer)','2025-09-24')">Apply</button>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- Job Description Modal -->
-<div id="jdModal" style="display:none;position:fixed;left:50%;top:10%;transform:translateX(-50%);width:90%;max-width:900px;background:#fff;padding:16px;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.25);z-index:3000;">
-<div id="jdContent"></div>
-<div style="text-align:right;margin-top:12px"><button onclick="closeJD()" class="btn secondary">Close</button></div>
+<!-- JD Modal -->
+<div id="jdModal" class="fixed left-1/2 top-10 transform -translate-x-1/2 max-w-3xl w-11/12 bg-white p-6 rounded-lg shadow-2xl z-50 hidden">
+  <div id="jdContent"></div>
+  <div class="text-right mt-4">
+    <button onclick="closeJD()" class="btn bg-gray-200 text-blue-800 px-3 py-1 rounded">Close</button>
+  </div>
 </div>
 
-<!-- Multi-step Form (hidden by default) -->
-<section id="application" class="card" style="display:none">
-<h2>Application Form</h2>
-<form id="careersForm">
-<!-- All 8 steps here (as coded in previous messages) -->
-</form>
+<!-- Multi-step Application Form (hidden by default) -->
+<section id="applicationSection" class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg hidden">
+  <h2>Application Form</h2>
+  <form id="careersForm">
+    <input type="hidden" name="position_title" id="position_title" value="">
+
+    <!-- Steps 1 to 8 -->
+    <!-- Step 1: Personal Info -->
+    <div class="form-step active" data-step="1">
+      <h3>Step 1 — Personal Information</h3>
+      <label>How Did You Hear About Us?*</label>
+      <select name="how_hear" required class="w-full p-2 border rounded">
+        <option value="">--Select--</option>
+        <option>Job Board</option><option>Event</option><option>Social Media</option><option>UNCP Website</option><option>Other</option>
+      </select>
+      <label>Have you previously worked for UNCP?*</label>
+      <div class="flex gap-4">
+        <label><input type="radio" name="worked_uncp" value="Yes" required> Yes</label>
+        <label><input type="radio" name="worked_uncp" value="No" required> No</label>
+      </div>
+      <label>Full Name*</label><input type="text" name="candidate_name" required class="w-full p-2 border rounded">
+      <label>Email*</label><input type="email" name="candidate_email" required class="w-full p-2 border rounded">
+      <label>Phone*</label><input type="tel" name="candidate_phone" required class="w-full p-2 border rounded">
+      <div class="mt-4 flex gap-2">
+        <button type="button" class="btn bg-gray-300 text-blue-800 px-3 py-1 rounded" onclick="goToStep(2)">Next</button>
+      </div>
+    </div>
+
+    <!-- Step 2: Education -->
+    <div class="form-step" data-step="2">
+      <h3>Step 2 — Education</h3>
+      <div id="educationContainer"></div>
+      <button type="button" onclick="addEducation()" class="btn bg-blue-800 text-white px-3 py-1 rounded mt-2">Add Education</button>
+      <div class="mt-4 flex gap-2">
+        <button type="button" class="btn bg-gray-300 px-3 py-1 rounded" onclick="goToStep(1)">Previous</button>
+        <button type="button" class="btn bg-gray-300 px-3 py-1 rounded" onclick="goToStep(3)">Next</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Work Experience -->
+    <div class="form-step" data-step="3">
+      <h3>Step 3 — Work Experience</h3>
+      <div id="workExpContainer"></div>
+      <button type="button" onclick="addWorkExp()" class="btn bg-blue-800 text-white px-3 py-1 rounded mt-2">Add Work Experience</button>
+      <div class="mt-4 flex gap-2">
+        <button type="button" class="btn bg-gray-300 px-3 py-1 rounded" onclick="goToStep(2)">Previous</button>
+        <button type="button" class="btn bg-gray-300 px-3 py-1 rounded" onclick="goToStep(4)">Next</button>
+      </div>
+    </div>
+
+    <!-- Step 4: Skills & Competencies -->
+    <div class="form-step" data-step="4">
+      <h3>Step 4 — Skills & Competencies</h3>
+      <textarea name="skills" maxlength="2500" required class="w-full p-2 border rounded" placeholder="Describe skills and competencies"></textarea>
+      <div class="mt-4 flex gap-2">
+        <button type="button" class="btn bg-gray-300 px-3 py-1 rounded" onclick="goToStep(3)">Previous</button>
+        <button type="button" class="btn bg-gray-300 px-3 py-1 rounded" onclick="goToStep(5)">Next</button>
+      </div>
+    </div>
+
+    <!-- Step 5: Achievements & Experience -->
+    <div class="form-step" data-step="5">
+      <h3>Step 5 — Achievements & Operational Experience</h3>
+      <textarea name="achievements" maxlength="2500" required class="w-full p-2 border rounded" placeholder="Describe your achievements and experience relevant to this position"></textarea>
+      <div class="mt-4 flex gap-2">
+        <button type="button" class="btn bg-gray-300 px-3 py-1 rounded" onclick="goToStep(4)">Previous</button>
+        <button type="button" class="btn bg-gray-300 px-3 py-1 rounded" onclick="goToStep(6)">Next</button>
+      </div>
+    </div>
+
+    <!-- Step 6: Career Alignment -->
+    <div class="form-step" data-step="6">
+      <h3>Step 6 — Career Aspirations</h3>
+      <textarea name="career_aspirations" maxlength="2500" required class="w-full p-2 border rounded" placeholder="How does this position align with your career aspirations?"></textarea>
+      <div class="mt-4 flex gap-2">
+        <button type="button" class="btn bg-gray-300 px-3 py-1 rounded" onclick="goToStep(5)">Previous</button>
+        <button type="button" class="btn bg-gray-300 px-3 py-1 rounded" onclick="goToStep(7)">Next</button>
+      </div>
+    </div>
+
+    <!-- Step 7: References -->
+    <div class="form-step" data-step="7">
+      <h3>Step 7 — References</h3>
+      <div id="referencesContainer"></div>
+      <button type="button" onclick="addReference()" class="btn bg-blue-800 text-white px-3 py-1 rounded mt-2">Add Reference</button>
+      <div class="mt-4 flex gap-2">
+        <button type="button" class="btn bg-gray-300 px-3 py-1 rounded" onclick="goToStep(6)">Previous</button>
+        <button type="button" class="btn bg-gray-300 px-3 py-1 rounded" onclick="goToStep(8)">Next</button>
+      </div>
+    </div>
+
+    <!-- Step 8: Review & Submit -->
+    <div class="form-step" data-step="8">
+      <h3>Step 8 — Review & Submit</h3>
+      <p>Please review your application before submitting.</p>
+      <div class="mt-4 flex gap-2">
+        <button type="button" class="btn bg-gray-300 px-3 py-1 rounded" onclick="goToStep(7)">Previous</button>
+        <button type="button" class="btn bg-green-700 text-white px-3 py-1 rounded" onclick="submitApplication()">Submit Application</button>
+      </div>
+    </div>
+
+  </form>
 </section>
 
-<!-- Donate / Contact -->
-<section id="donate" class="card">
-<h2>Donate / Contact</h2>
-<p>Email: <a href="mailto:uncip2019@gmail.com">uncip2019@gmail.com</a></p>
-<p>Tel: +256 702 398687 / +256 779 576538</p>
+<!-- Donate Section -->
+<section id="donate" class="p-6 bg-white rounded-lg shadow-lg max-w-4xl mx-auto">
+  <h2>Donate / Contact</h2>
+  <p>Email: <a href="mailto:uncip2019@gmail.com">uncip2019@gmail.com</a></p>
+  <p>Tel: +256 702 398687 / +256 779 576538</p>
 </section>
 
 <!-- Artistic Footer -->
-<footer>
-<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
-<div><img src="logo.jpeg" alt="UNCP" style="height:80px"></div>
-<div>
-<h3>Contact</h3>
-<p>Email: <a href="mailto:uncip2019@gmail.com" style="color:#fff;text-decoration:underline">uncip2019@gmail.com</a></p>
-<p>Tel: +256 702 398687 / +256 779 576538</p>
-</div>
-<div>
-<h3>Follow Us</h3>
-<div class="socials">
-<a href="#">F</a>
-<a href="#">X</a>
-<a href="#">I</a>
-<a href="#">Y</a>
-</div>
-</div>
-</div>
+<footer class="mt-12">
+  <div class="flex flex-col md:flex-row justify-between items-start gap-6">
+    <div><img src="logo.jpeg" class="h-20" alt="UNCP"></div>
+    <div>
+      <h3 class="font-bold text-lg">Contact</h3>
+      <p>Email: <a href="mailto:uncip2019@gmail.com">uncip2019@gmail.com</a><br>Tel: +256 702 398687 / +256 779 576538</p>
+    </div>
+    <div>
+      <h3 class="font-bold text-lg">Follow Us</h3>
+      <div class="socials flex mt-2">
+        <a href="#" title="Facebook">F</a>
+        <a href="#" title="X / Twitter">X</a>
+        <a href="#" title="Instagram">I</a>
+        <a href="#" title="YouTube">Y</a>
+      </div>
+    </div>
+  </div>
 </footer>
-</div>
 
 <script>
-/* Accordion */
-document.querySelectorAll('.accordion-header').forEach(h=>{h.addEventListener('click',()=>{const item=h.parentElement;item.classList.toggle('active');const body=item.querySelector('.accordion-body');body.style.maxHeight=item.classList.contains('active')?body.scrollHeight+'px':null;h.querySelector('span').innerText=item.classList.contains('active')?'−':'+';});});
-/* Job Description */
-const jobDescriptions={"Child Protection Case Worker (Volunteer)":`<h3>Child Protection Case Worker (Volunteer)</h3><p>Provide support to children at risk, case management, PSS.</p>`};
-function showJD(title){document.getElementById('jdContent').innerHTML=jobDescriptions[title]||'<p>Not found.</p>';document.getElementById('jdModal').style.display='block';}
-function closeJD(){document.getElementById('jdModal').style.display='none';}
-/* Apply triggers form */
-function startApplication(title){document.getElementById('application').style.display='block';document.getElementById('application').scrollIntoView({behavior:'smooth'});document.getElementById('careersForm').elements.position_title.value=title;goToStep(1);}
-/* Initialize form steps */
-let currentStep=1,totalSteps=8;
-function goToStep(n){if(n<1||n>totalSteps)return;document.querySelectorAll('.form-step').forEach(el=>el.style.display='none');const show=document.querySelector('.form-step[data-step="'+n+'"]');if(show)show.style.display='block';currentStep=n;}
-goToStep(1);
-/* Search filter */
-document.getElementById('jobSearch').addEventListener('input',()=>{const q=document.getElementById('jobSearch').value.toLowerCase();document.querySelectorAll('#jobList .job').forEach(job=>{job.style.display=job.querySelector('strong').innerText.toLowerCase().includes(q)?'':'none';});});
-</script>
-</body>
-</html>
+// Accordion logic
+document.querySelectorAll('.accordion-item .accordion-header').forEach(h=>{
+  h.addEventListener('click', ()=>{
+    const item = h.parentElement;
+    item.classList.toggle('active');
+    const body = item.querySelector('.accordion-body');
+    if(item.classList.contains('active')){body.style.maxHeight = body.scrollHeight+'px'; h.querySelector('span').innerText='−';}
+   
