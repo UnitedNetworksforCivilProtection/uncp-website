@@ -3,156 +3,227 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UNCP - United Networks for Civil Protection</title>
-<!-- Tailwind CSS CDN -->
-<script src="https://cdn.tailwindcss.com"></script>
-<!-- jsPDF CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<!-- EmailJS CDN -->
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.6.4/dist/email.min.js"></script>
+<title>United Networks for Civil Protection (UNCP)</title>
+<link rel="icon" href="logo.jpeg">
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<script src="https://cdn.emailjs.com/sdk/3.2/email.min.js"></script>
 <style>
-/* Custom Styles */
-body {font-family: 'Inter', sans-serif;}
-.header-logo {height:80px;}
-.header-nav a {margin-right:16px;}
-.form-step {padding:16px;border:1px solid #ddd;border-radius:12px;margin-bottom:16px;background:#fff;}
-.card {background:#f9f9f9;border-radius:10px;padding:12px;margin-bottom:10px;}
-.btn {padding:8px 14px;border-radius:8px;}
-.btn.secondary {background:#ddd;color:#333;}
-.btn:hover {opacity:0.9;}
-.social-icon {width:32px;height:32px;margin-right:8px;display:inline-block;}
+  body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f6f9;color:#222}
+  header{display:flex;align-items:center;justify-content:space-between;padding:12px;background:#fff;position:sticky;top:0;z-index:1000;box-shadow:0 2px 6px rgba(0,0,0,.1)}
+  .logo img{height:100px}
+  nav ul{display:flex;gap:12px;list-style:none;margin:0;padding:0;align-items:center}
+  nav a{color:#0b3b66;font-weight:700;padding:8px;border-radius:6px;text-decoration:none}
+  .donate{background:#ff7f00;color:#fff;padding:8px 12px;border-radius:8px}
+  section{padding:18px;max-width:1100px;margin:18px auto;background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+  h1,h2,h3,h4{color:#083e6b}
+  .accordion-item{border:1px solid #e6eefc;border-radius:8px;margin-bottom:10px;overflow:hidden}
+  .accordion-header{background:#f7fbff;padding:12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+  .accordion-body{max-height:0;overflow:hidden;transition:max-height .3s ease;padding:0 12px}
+  .accordion-item.active .accordion-body{padding:12px}
+  .chip{display:inline-block;padding:6px 10px;border-radius:999px;border:1px dashed #0b62a6;margin:4px}
+  .hero{position:relative;height:400px;overflow:hidden;border-radius:10px;margin-bottom:18px}
+  .hero img{width:100%;height:400px;object-fit:cover;position:absolute;top:0;left:0;transition:opacity 1s ease-in-out;opacity:0}
+  .hero img.active{opacity:1}
+  footer{background:#083e6b;color:white;padding:20px;border-top:4px solid #ff7f00;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap}
+  footer a{color:white;text-decoration:none;margin-right:12px}
+  footer a:hover{color:#ff7f00;transition:0.3s}
+  .social-icons a{font-size:20px;margin-right:12px;transition:transform 0.3s}
+  .social-icons a:hover{transform:scale(1.3)}
+  .applyBtn{background:#ff7f00;color:white;padding:8px 16px;border:none;border-radius:6px;cursor:pointer}
+  input,textarea,select,button{font-family:inherit}
+  input,textarea,select{width:100%;padding:8px;border-radius:6px;border:1px solid #d6d6d6;margin-top:6px;margin-bottom:12px}
 </style>
 </head>
-<body class="bg-gray-50">
+<body>
 
-<!-- HEADER -->
-<header class="bg-white shadow p-4 flex items-center justify-between">
-<img src="logo.png" alt="UNCP Logo" class="header-logo">
-<nav class="header-nav flex items-center">
-<a href="#home" class="text-gray-700 hover:text-blue-600">Home</a>
-<a href="#about" class="text-gray-700 hover:text-blue-600">About</a>
-<a href="#careers" class="text-gray-700 hover:text-blue-600">Careers</a>
-<a href="#donate" class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600">Donate</a>
-</nav>
+<!-- Header -->
+<header>
+  <div class="logo"><img src="logo.jpeg" alt="UNCP Logo"></div>
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#careersSection" class="donate">Donate</a></li>
+    </ul>
+  </nav>
 </header>
 
-<!-- HOME SECTION -->
-<section id="home" class="p-6 text-center bg-blue-50">
-<h1 class="text-4xl font-bold mb-4">United Networks for Civil Protection (UNCP)</h1>
-<p class="text-lg max-w-3xl mx-auto">We protect, empower and work with vulnerable children, youth, and communities, including forcefully displaced populations.</p>
+<!-- Hero slideshow -->
+<div class="hero" id="hero">
+  <img src="photo1.jpg" class="active" alt="">
+  <img src="photo2.jpg" alt="">
+  <img src="photo3.jpg" alt="">
+</div>
+
+<!-- Home Section -->
+<section id="home">
+  <h1>United Networks for Civil Protection (UNCP)</h1>
+  <p>Community-Based Organization • Company Limited by Guarantee, Uganda</p>
+  <p><strong>Our Mission:</strong> We protect, empower and work with vulnerable children, youth, and communities including forcefully displaced populations.</p>
 </section>
 
-<!-- ABOUT SECTION -->
-<section id="about" class="p-6 bg-white mt-6 rounded-xl shadow">
-<h2 class="text-3xl font-bold mb-4">About UNCP</h2>
-
-<div>
-<h3 class="text-xl font-semibold">Overview</h3>
-<p>United Networks for Civil Protection (UNCP) is a humanitarian organization dedicated to safeguarding and empowering vulnerable communities and populations.</p>
-</div>
-
-<div>
-<h3 class="text-xl font-semibold">History</h3>
-<p>Founded in 2018 by child protection specialists, UNCP has grown to serve thousands of children, youth, and displaced communities.</p>
-</div>
-
-<div>
-<h3 class="text-xl font-semibold">Mission & Vision</h3>
-<p><strong>Mission:</strong> To protect and empower vulnerable populations, providing them with the resources, care, and advocacy they need to thrive.</p>
-<p><strong>Vision:</strong> A world where every child, youth, and community can live safely, with dignity and opportunity, even in the face of displacement and crisis.</p>
-</div>
+<!-- About Section -->
+<section id="about" class="accordion">
+  <div class="accordion-item">
+    <div class="accordion-header">About UNCP <span>+</span></div>
+    <div class="accordion-body">
+      <h3>Overview</h3>
+      <p>United Networks for Civil Protection (UNCP) is a community-based organization focused on child protection, youth empowerment, and support to vulnerable populations including refugees and displaced communities.</p>
+      <h4>History</h4>
+      <p>Founded in 2018 by child protection specialists with extensive experience in humanitarian programs, UNCP has grown into a leading organization supporting communities in Uganda.</p>
+      <h4>Mission & Vision</h4>
+      <p><strong>Mission:</strong> Protect and empower children, youth, and communities. <strong>Vision:</strong> A resilient and inclusive society where vulnerable populations thrive.</p>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <div class="accordion-header">What We Do <span>+</span></div>
+    <div class="accordion-body">
+      <ul>
+        <li>Child Protection</li>
+        <li>GBV Prevention</li>
+        <li>MHPSS</li>
+        <li>Youth Empowerment</li>
+        <li>Climate & Livelihoods</li>
+        <li>Inclusive Education</li>
+      </ul>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <div class="accordion-header">Where We Work <span>+</span></div>
+    <div class="accordion-body">
+      <div>
+        <span class="chip">Arua City</span><span class="chip">Arua District</span><span class="chip">Madi Okollo</span>
+        <span class="chip">Terego</span><span class="chip">Adjumani</span><span class="chip">Moyo</span>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- CAREERS SECTION -->
-<section id="careers" class="p-6 mt-6 bg-blue-50 rounded-xl shadow">
-<h2 class="text-3xl font-bold mb-4">Careers</h2>
-<p>Explore our open positions and join UNCP in making a difference. Click "Apply" to submit your application.</p>
+<!-- Careers Section -->
+<section id="careersSection">
+  <h2>Careers at UNCP</h2>
+  <div class="job-listing" style="border:1px solid #ddd; border-radius:8px; padding:16px; margin-bottom:20px;">
+    <h3>Child Protection Officer</h3>
+    <p>Location: Arua, Uganda</p>
+    <details>
+      <summary style="cursor:pointer; font-weight:bold;">Job Description</summary>
+      <p>Provide support to children at risk, manage cases, deliver psychosocial support, and engage with communities.</p>
+    </details>
+    <button class="applyBtn">Apply</button>
+  </div>
 
-<!-- Example Position -->
-<div class="job-card bg-white p-4 rounded-lg shadow mb-4">
-<h3 class="font-semibold text-xl">Child Protection Officer</h3>
-<p>Location: Juba</p>
-<p>Full-time | Posted: 2025-09-15</p>
-<button class="btn bg-blue-500 text-white mt-2" onclick="showApplication('Child Protection Officer')">Apply</button>
-</div>
+  <!-- Hidden Multi-Step Form -->
+  <div id="multiStepForm" style="display:none; border:1px solid #ddd; border-radius:8px; padding:20px; background:#f7f9fc;">
+    <h2>Application Form</h2>
+    <form id="careerForm">
+      <!-- Step 1 -->
+      <div class="form-step">
+        <h3>Personal Details</h3>
+        <label>Full Name *</label><input type="text" name="fullName" required>
+        <label>Email *</label><input type="email" name="email" required>
+        <label>Phone *</label><input type="tel" name="phone" required>
+      </div>
+      <!-- Step 2 -->
+      <div class="form-step" style="display:none;">
+        <h3>Experience</h3>
+        <label>Briefly describe your experience (max 2500 chars) *</label>
+        <textarea name="experience" maxlength="2500" required></textarea>
+      </div>
+      <!-- Step 3 -->
+      <div class="form-step" style="display:none;">
+        <h3>Application Questions</h3>
+        <label>1. How have your achievements and operational experience prepared you for this position? *</label>
+        <textarea name="question1" maxlength="2500" required></textarea>
+        <label>2. Describe skills and competencies relevant to this position *</label>
+        <textarea name="question2" maxlength="2500" required></textarea>
+        <label>3. How does this position align with your career aspirations? *</label>
+        <textarea name="question3" maxlength="2500" required></textarea>
+      </div>
+      <!-- Steps 4-8 placeholders -->
+      <div class="form-step" style="display:none;"><h3>Step 4: Education & Certifications</h3></div>
+      <div class="form-step" style="display:none;"><h3>Step 5: References</h3></div>
+      <div class="form-step" style="display:none;"><h3>Step 6: Voluntary Disclosures</h3></div>
+      <div class="form-step" style="display:none;"><h3>Step 7: Additional Info</h3></div>
+      <div class="form-step" style="display:none;"><h3>Step 8: Review & Submit</h3></div>
+      <div>
+        <button type="button" id="prevBtn" style="display:none;">Previous</button>
+        <button type="button" id="nextBtn">Next</button>
+        <button type="submit" id="submitBtn" style="display:none; background:#28a745; color:white;">Submit</button>
+      </div>
+    </form>
+  </div>
 </section>
 
-<!-- APPLICATION FORM (HIDDEN BY DEFAULT) -->
-<section id="application" class="p-6 mt-6 bg-white rounded-xl shadow" style="display:none;">
-<h2 class="text-2xl font-bold mb-4">Application Form</h2>
-<form id="careersForm">
-
-<input type="hidden" name="position_title" id="position_title" value="">
-
-<!-- Steps go here (full 8-step form as integrated previously) -->
-<!-- For brevity, assume we paste the full 8-step form code from earlier here -->
-
-</form>
-</section>
-
-<!-- FOOTER -->
-<footer class="bg-gray-900 text-white p-6 mt-6 rounded-xl shadow text-center">
-<p class="mb-4">© 2025 United Networks for Civil Protection. All rights reserved.</p>
-<div>
-<a href="#" class="social-icon"><img src="facebook.svg" alt="Facebook"></a>
-<a href="#" class="social-icon"><img src="twitter.svg" alt="Twitter"></a>
-<a href="#" class="social-icon"><img src="linkedin.svg" alt="LinkedIn"></a>
-<a href="#" class="social-icon"><img src="instagram.svg" alt="Instagram"></a>
-</div>
+<!-- Footer -->
+<footer>
+  <div>
+    <img src="logo.jpeg" alt="UNCP" style="height:60px;margin-bottom:8px">
+    <p>Contact: <a href="mailto:uncip2019@gmail.com">uncip2019@gmail.com</a> | +256 702 398687</p>
+  </div>
+  <div class="social-icons">
+    <a href="#" title="Facebook">F</a>
+    <a href="#" title="Twitter">T</a>
+    <a href="#" title="Instagram">I</a>
+    <a href="#" title="YouTube">Y</a>
+  </div>
 </footer>
 
 <script>
-// Show hidden application form
-function showApplication(position){
-document.getElementById('application').style.display='block';
-document.getElementById('position_title').value=position;
-document.getElementById('application').scrollIntoView({behavior:'smooth'});
+emailjs.init('YOUR_EMAILJS_USER_ID');
+
+// Accordion
+document.querySelectorAll('.accordion-header').forEach(h=>{
+  h.addEventListener('click', ()=>{
+    const item = h.parentElement;
+    item.classList.toggle('active');
+    const body = item.querySelector('.accordion-body');
+    if(item.classList.contains('active')){
+      body.style.maxHeight = body.scrollHeight+'px';
+      h.querySelector('span').innerText='−';
+    } else{
+      body.style.maxHeight=null;
+      h.querySelector('span').innerText='+';
+    }
+  });
+});
+
+// Hero slideshow
+let slides = document.querySelectorAll('#hero img'), current=0;
+setInterval(()=>{
+  slides[current].classList.remove('active');
+  current = (current+1)%slides.length;
+  slides[current].classList.add('active');
+},5000);
+
+// Careers Form
+document.querySelectorAll('.applyBtn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.getElementById('multiStepForm').style.display='block';
+    btn.scrollIntoView({behavior:'smooth'});
+  });
+});
+const form = document.getElementById('careerForm');
+const steps = form.querySelectorAll('.form-step');
+const nextBtn = document.getElementById('nextBtn');
+const prevBtn = document.getElementById('prevBtn');
+const submitBtn = document.getElementById('submitBtn');
+let currentStep=0;
+
+function showStep(n){
+  steps.forEach((s,i)=> s.style.display=(i===n?'block':'none'));
+  prevBtn.style.display=n===0?'none':'inline-block';
+  nextBtn.style.display=n===steps.length-1?'none':'inline-block';
+  submitBtn.style.display=n===steps.length-1?'inline-block':'none';
 }
-
-// Load Draft
-let currentStep=1;
-function goToStep(n){
-document.querySelectorAll('.form-step').forEach(step=>step.style.display='none');
-document.querySelector(`.form-step[data-step="${n}"]`).style.display='block';
-currentStep=n;
-}
-
-function saveDraft(){
-let data={};
-document.querySelectorAll('#careersForm input,textarea,select').forEach(f=>data[f.name]=f.value);
-localStorage.setItem('careersFormDraft',JSON.stringify(data));
-alert('Draft saved locally.');
-}
-
-function loadDraft(){
-let draft=localStorage.getItem('careersFormDraft');
-if(draft){draft=JSON.parse(draft);
-for(let k in draft){let f=document.querySelector('[name="'+k+'"]');if(f)f.value=draft[k];}}
-}
-loadDraft();
-
-function submitForm(){
-const form=document.getElementById('careersForm');
-if(!form.checkValidity()){alert('Please fill all required fields.');return;}
-const formData=new FormData(form);
-const dataObj={};
-formData.forEach((v,k)=>dataObj[k]=v);
-
-// PDF
-const { jsPDF } = window.jspdf;
-const doc = new jsPDF();
-let y=10;
-doc.setFontSize(12);
-doc.text("UNCP Application Form",10,y);y+=10;
-for(let k in dataObj){doc.text(`${k}: ${dataObj[k]}`,10,y);y+=6;if(y>270){doc.addPage();y=10;}}
-doc.save("UNCP_Application.pdf");
-
-// EmailJS
-emailjs.init("YOUR_USER_ID");
-emailjs.send("service_xxx","template_xxx",dataObj)
-.then(()=>alert('Application submitted successfully!'))
-.catch(err=>alert('Error sending application: '+err));
-}
+showStep(currentStep);
+nextBtn.addEventListener('click',()=>{ if(currentStep<steps.length-1) currentStep++; showStep(currentStep); });
+prevBtn.addEventListener('click',()=>{ if(currentStep>0) currentStep--; showStep(currentStep); });
+form.addEventListener('submit',function(e){
+  e.preventDefault();
+  emailjs.sendForm('YOUR_SERVICE_ID','YOUR_TEMPLATE_ID',this)
+    .then(()=>{ alert('Application sent successfully!'); form.reset(); currentStep=0; showStep(currentStep); document.getElementById('multiStepForm').style.display='none'; })
+    .catch(err=>{ alert('Failed to send application.'); console.error(err); });
+});
 </script>
 
 </body>
