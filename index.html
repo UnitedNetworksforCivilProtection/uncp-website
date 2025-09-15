@@ -3,13 +3,160 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UNCP Logo Test</title>
+  <title>United Networks for Civil Protection (UNCP)</title>
   <style>
-    body { display: flex; justify-content: center; align-items: center; height: 100vh; background: #f5f5f5; }
-    img { height: 150px; }
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+    header { display: flex; justify-content: space-between; align-items: center; background: #003366; color: white; padding: 10px 20px; }
+    header img { height: 50px; }
+    nav { display: flex; align-items: center; }
+    nav a { color: white; margin: 0 10px; text-decoration: none; }
+    nav a:hover { text-decoration: underline; }
+    .donate-btn { background: orange; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-weight: bold; }
+    .search-box { display: none; margin-left: 10px; }
+    .accordion { border: 1px solid #ccc; border-radius: 5px; margin: 15px 0; }
+    .accordion-item { border-bottom: 1px solid #ccc; }
+    .accordion-header { width: 100%; text-align: left; padding: 10px; background: #f2f2f2; border: none; font-size: 16px; cursor: pointer; }
+    .accordion-content { display: none; padding: 10px; }
+    .accordion-item.active .accordion-content { display: block; }
+    .impact { display: flex; justify-content: center; gap: 40px; margin: 20px 0; }
+    .impact div { text-align: center; }
+    footer { background: #222; color: white; padding: 20px; text-align: center; }
+    footer img { height: 40px; float: left; }
+    footer .social-icons { margin: 10px 0; }
+    footer .social-icons a { margin: 0 5px; color: white; font-size: 20px; text-decoration: none; }
+    footer .donate-btn { margin-left: 15px; }
   </style>
 </head>
 <body>
-  <img src="images/logo.jpeg" alt="UNCP Logo">
+
+<header>
+  <img src="logo.png" alt="UNCP Logo">
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#donate" class="donate-btn">Donate</a>
+    <a href="javascript:void(0)" id="search-icon">🔍</a>
+    <input type="text" id="search-box" class="search-box" placeholder="Search...">
+  </nav>
+</header>
+
+<!-- Home -->
+<section id="home">
+  <h1>Welcome to United Networks for Civil Protection (UNCP)</h1>
+  <p>A community-based non-profit organization incorporated as a company limited by guarantee in Uganda. We protect and empower vulnerable children, youth, and communities.</p>
+
+  <!-- Impact Stats -->
+  <div class="impact">
+    <div>
+      <h2>20+</h2>
+      <p>Community Projects</p>
+    </div>
+    <div>
+      <h2>5</h2>
+      <p>Active Donors</p>
+    </div>
+  </div>
+
+  <!-- About -->
+  <h2>About UNCP</h2>
+  <div class="accordion">
+    <div class="accordion-item">
+      <button class="accordion-header">Overview</button>
+      <div class="accordion-content">
+        <p><strong>Type:</strong> Community-Based Organization</p>
+        <p><strong>Incorporated:</strong> Company Limited by Guarantee in Uganda</p>
+        <p><strong>Founded:</strong> 2018</p>
+        <p><strong>Mission:</strong> To protect and empower vulnerable children, youth, and communities.</p>
+        <p><strong>Vision:</strong> A safe, inclusive, and resilient society where every child and vulnerable person thrives.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- What We Do -->
+  <h2>What We Do</h2>
+  <p>We deliver holistic, community-led interventions in child protection, GBV prevention, MHPSS, youth empowerment, inclusive education, and climate change adaptation.</p>
+
+  <!-- Where We Work -->
+  <h2>Where We Work</h2>
+  <p>We work across Uganda, especially in refugee and host communities in West Nile and other regions.</p>
+
+  <!-- News & Stories -->
+  <h2>News and Stories</h2>
+  <p>Latest updates and success stories from our work will be shared here.</p>
+
+  <!-- Get Involved -->
+  <h2>Get Involved</h2>
+  <p>Join us in making a difference.</p>
+  <ul>
+    <li><a href="#career">Career</a></li>
+    <li><a href="#partners">Our Partners & Donors</a></li>
+    <li><a href="#supplier">Become a Supplier</a></li>
+  </ul>
+</section>
+
+<!-- Career -->
+<section id="career">
+  <h2>Career Opportunities</h2>
+  <p>Explore open positions with UNCP. Positions are only visible during the application period.</p>
+  <div class="accordion">
+    <div class="accordion-item">
+      <button class="accordion-header">Child Protection Case Worker (Volunteer) – Arua City</button>
+      <div class="accordion-content">
+        <p><strong>Duration:</strong> 6 months</p>
+        <p><strong>Application Period:</strong> 10th – 24th September 2025</p>
+        <p><strong>Summary:</strong> Provide case management, psychosocial support, and community-based protection for children at risk.</p>
+        <a href="#application" class="donate-btn">Apply Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Application Form -->
+<section id="application">
+  <h2>Application Form</h2>
+  <form id="careerForm">
+    <label for="position">Position Title*</label>
+    <input type="text" id="position" name="position" required>
+    <label for="name">Full Name*</label>
+    <input type="text" id="name" name="name" required>
+    <label for="email">Email*</label>
+    <input type="email" id="email" name="email" required>
+    <label for="phone">Phone*</label>
+    <input type="text" id="phone" name="phone" required>
+    <label><input type="checkbox" required> I acknowledge and agree to UNCP’s terms.</label>
+    <button type="submit" class="donate-btn">Submit Application</button>
+  </form>
+</section>
+
+<!-- Footer -->
+<footer>
+  <img src="logo.png" alt="UNCP Logo">
+  <p>Contact us: uncip2019@gmail.com | +256702398687 | +256779576538</p>
+  <div class="social-icons">
+    <a href="#">📘</a>
+    <a href="#">🐦</a>
+    <a href="#">📸</a>
+    <a href="#">▶️</a>
+    <a href="#">🎵</a>
+    <a href="#">💼</a>
+  </div>
+  <a href="#donate" class="donate-btn">Donate</a>
+</footer>
+
+<script>
+  // Accordion toggle
+  document.querySelectorAll('.accordion-header').forEach(button => {
+    button.addEventListener('click', () => {
+      button.parentElement.classList.toggle('active');
+    });
+  });
+
+  // Search toggle
+  document.getElementById('search-icon').addEventListener('click', () => {
+    let box = document.getElementById('search-box');
+    box.style.display = box.style.display === 'inline-block' ? 'none' : 'inline-block';
+    box.focus();
+  });
+</script>
+
 </body>
 </html>
