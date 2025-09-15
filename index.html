@@ -5,114 +5,75 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>United Networks for Civil Protection (UNCP)</title>
 <link rel="icon" href="logo.jpeg">
-<!-- jsPDF for PDF generation -->
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
-<!-- EmailJS SDK -->
 <script src="https://cdn.emailjs.com/sdk/3.2/email.min.js"></script>
 <style>
-/* === Base Styling === */
 body{font-family:Arial,Helvetica,sans-serif;margin:0;background:#f4f6f9;color:#222}
 .container{max-width:1100px;margin:18px auto;padding:0 16px}
 header{display:flex;align-items:center;justify-content:space-between;padding:12px;background:#fff;border-bottom:1px solid #e6eefc;position:sticky;top:0;z-index:1000}
-.brand{display:flex;align-items:center;gap:12px}
-.brand img{height:96px}
+.brand img{height:100px}
 nav ul{display:flex;gap:12px;list-style:none;margin:0;padding:0;align-items:center}
 nav li{position:relative}
 nav a{color:#0b3b66;font-weight:700;padding:8px;border-radius:6px;text-decoration:none}
-nav a.btn.donate{background:#ff7f00;color:#fff;padding:8px 12px;border-radius:8px;transition:all 0.3s ease;}
-nav a.btn.donate:hover{transform:scale(1.05);}
-section{background:#fff;margin:18px 0;padding:18px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.04);opacity:0;transform:translateY(20px);transition:all 0.8s ease-out}
-section.visible{opacity:1;transform:translateY(0)}
+nav a.donate{background:#ff7f00;color:#fff;padding:8px 12px;border-radius:8px}
+section{background:#fff;margin:18px 0;padding:18px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
 h1,h2{color:#083e6b}
-.accordion{margin-top:12px}
-.accordion-item{border:1px solid #e6eefc;border-radius:8px;margin-bottom:10px;overflow:hidden}
-.accordion-header{background:#f7fbff;padding:12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:all 0.3s ease}
-.accordion-header:hover{background:#e6f0ff}
-.accordion-body{max-height:0;overflow:hidden;transition:max-height .28s ease;padding:0 12px}
-.accordion-item.active .accordion-body{padding:12px}
-form label{display:block;margin-top:10px;font-weight:700}
-input,select,textarea{width:100%;padding:8px;border-radius:6px;border:1px solid #d6d6d6;margin-top:6px}
-.btn{background:#0b62a6;color:#fff;padding:8px 12px;border-radius:8px;border:none;cursor:pointer;margin-top:12px;transition:all 0.3s ease, box-shadow 0.3s ease;}
-.btn:hover{transform:translateY(-3px);box-shadow:0 8px 15px rgba(0,0,0,0.2);}
+.card{padding:16px;background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.05);margin-bottom:18px}
+.btn{background:#0b62a6;color:#fff;padding:8px 12px;border-radius:8px;border:none;cursor:pointer;margin-top:12px}
 .btn.secondary{background:#eef4ff;color:#0b62a6}
 .inline{display:flex;gap:12px}
 .chip{display:inline-block;padding:6px 10px;border-radius:999px;border:1px dashed #0b62a6;margin:4px}
-footer{margin-top:18px;padding:18px;background:#083e6b;color:#fff;border-radius:10px;}
-footer .social-icons a{color:#fff;margin-right:8px;text-decoration:none;transition:transform 0.4s ease,color 0.3s ease;}
-footer .social-icons a:hover{transform:rotate(10deg) scale(1.4);color:#ffdd00;}
+.footer{background:#083e6b;color:#fff;padding:24px;border-radius:12px;position:relative;overflow:hidden}
+.footer .socials a{display:inline-block;width:40px;height:40px;text-align:center;line-height:40px;border-radius:50%;background:#ff7f00;color:#fff;margin-right:8px;text-decoration:none;font-weight:bold;transition:transform 0.3s ease}
+.footer .socials a:hover{transform:scale(1.2)}
 </style>
 </head>
 <body>
 <div class="container">
-
-<!-- Header -->
 <header>
-<div class="brand">
-<a href="#home"><img src="logo.jpeg" alt="UNCP Logo"></a>
-<div>
-<div style="font-weight:900;color:#083e6b">United Networks for Civil Protection</div>
-<div style="font-size:13px;color:#666">Community-Based Non-Profit • Company Limited by Guarantee (Uganda)</div>
-</div>
-</div>
-
-<nav>
-<ul>
-<li><a href="#home">Home</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#what-we-do">What We Do</a></li>
-<li><a href="#where-we-work">Where We Work</a></li>
-<li><a href="#get-involved">Get Involved</a></li>
-<li><a href="#donate" class="btn donate">Donate</a></li>
-</ul>
-</nav>
+  <div class="brand"><img src="logo.jpeg" alt="UNCP Logo"></div>
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#what-we-do">What We Do</a></li>
+      <li><a href="#where-we-work">Where We Work</a></li>
+      <li><a href="#get-involved">Get Involved</a></li>
+      <li><a href="#donate" class="donate">Donate</a></li>
+    </ul>
+  </nav>
 </header>
 
-<!-- Home -->
 <section id="home">
 <h1>United Networks for Civil Protection (UNCP)</h1>
-<p style="font-size:1.1em"><strong>We protect, empower, and work with vulnerable children, youth, and communities including forcibly displaced populations.</strong></p>
-<p><strong>Type:</strong> Community-Based Organization</p>
-<p><strong>Incorporated:</strong> Company Limited by Guarantee, Uganda</p>
+<p>We protect, empower, and work with vulnerable children, youth, and communities including forcibly displaced populations.</p>
 </section>
 
-<!-- About Section -->
-<section id="about" class="accordion">
-<div class="accordion-item" id="accordion-about">
-<div class="accordion-header">About UNCP <span>+</span></div>
-<div class="accordion-body">
+<section id="about" class="card">
+<h2>About UNCP</h2>
 <h3>Overview</h3>
 <p>United Networks for Civil Protection (UNCP) is a community-based non-profit organization dedicated to protecting and empowering vulnerable children, youth, and communities, including forcibly displaced populations in Uganda.</p>
-<h4>History</h4>
-<p>Founded in 2018 by child protection specialists, UNCP has implemented projects in child protection, youth empowerment, GBV prevention, MHPSS (mental health and psychosocial support), inclusive education, climate resilience, and livelihoods support.</p>
-<h4>Mission & Vision</h4>
+<h3>History</h3>
+<p>Founded in 2018 by child protection specialists, UNCP has implemented projects in child protection, youth empowerment, GBV prevention, MHPSS, inclusive education, climate resilience, and livelihoods support.</p>
+<h3>Mission & Vision</h3>
 <p><strong>Mission:</strong> To ensure safe, inclusive, and resilient communities through protection, empowerment, and social support initiatives.</p>
 <p><strong>Vision:</strong> A society where children, youth, and vulnerable groups live free from harm, access opportunities equally, and actively participate in community development.</p>
-</div>
-</div>
 </section>
 
-<!-- What We Do Section -->
-<section id="what-we-do" class="accordion">
-<div class="accordion-item" id="accordion-what">
-<div class="accordion-header">What We Do <span>+</span></div>
-<div class="accordion-body">
+<section id="what-we-do" class="card">
+<h2>What We Do</h2>
 <ul>
 <li>Child Protection: Case management, safeguarding, family support, and community engagement.</li>
 <li>GBV Prevention: Awareness, prevention, response, and survivor support programs.</li>
-<li>MHPSS (Mental Health & Psychosocial Support): Counseling, psychosocial interventions, and referrals.</li>
+<li>MHPSS: Counseling, psychosocial interventions, and referrals.</li>
 <li>Youth Empowerment: Skills development, mentorship, and leadership programs.</li>
 <li>Climate & Livelihoods: Sustainable agriculture, climate resilience, and income-generating activities.</li>
 <li>Inclusive Education: Support for children with disabilities and access to quality learning opportunities.</li>
 </ul>
-</div>
-</div>
 </section>
 
-<!-- Where We Work -->
-<section id="where-we-work" class="accordion">
-<div class="accordion-item" id="accordion-where">
-<div class="accordion-header">Where We Work <span>+</span></div>
-<div class="accordion-body">
+<section id="where-we-work" class="card">
+<h2>Where We Work</h2>
 <p>Uganda — Districts we operate in:</p>
 <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px">
 <span class="chip">Arua City</span><span class="chip">Arua District</span><span class="chip">Madi Okollo</span>
@@ -120,62 +81,51 @@ footer .social-icons a:hover{transform:rotate(10deg) scale(1.4);color:#ffdd00;}
 <span class="chip">Pakwach</span><span class="chip">Nebbi</span><span class="chip">Koboko</span><span class="chip">Yumbe</span>
 <span class="chip">Zombo</span><span class="chip">Maracha</span>
 </div>
-</div>
-</div>
 </section>
 
-<!-- Get Involved -->
-<section id="get-involved">
+<section id="get-involved" class="card">
 <h2>Get Involved</h2>
-<div style="display:flex;flex-direction:column;gap:16px">
 <div>
 <h3>Careers</h3>
-<p>Explore current opportunities to join UNCP and make an impact.</p>
-<a href="#careersSection" class="btn">View Current Opportunities</a>
-</div>
-<div>
+<p><a href="#careersSection" class="btn">View Current Opportunities</a></p>
 <h3>Become Our Supplier</h3>
-<p>Submit your company profile and product/service offerings to become an approved supplier.</p>
-<a href="mailto:uncip2019@gmail.com?subject=Supplier Profile Submission" class="btn secondary">Submit Supplier Profile</a>
-</div>
-<div>
+<p>UNCP works with reliable suppliers to support our operations. Submit your company profile and product/service offerings to become an approved supplier.</p>
+<p><a href="#supplierForm" class="btn secondary">Submit Supplier Profile</a></p>
 <h3>Partner With Us</h3>
-<p>Join us in creating safer, resilient communities.</p>
-<a href="mailto:uncip2019@gmail.com?subject=Partnership Inquiry" class="btn secondary">Partner With UNCP</a>
-</div>
-</div>
-</section>
-
-<!-- Careers Section and Multi-Step Application Form -->
-<section id="careersSection">
-<h2>Open Positions</h2>
-<input id="jobSearch" placeholder="Filter positions (keyword)..." style="width:100%;padding:10px;border-radius:8px;border:1px solid #ddd;margin-bottom:12px">
-<div id="jobList">
-<!-- Sample Job -->
-<div class="job card" data-deadline="2025-09-24" style="padding:12px;margin-bottom:12px;border-left:4px solid #083e6b;">
-<strong>Child Protection Case Worker (Volunteer)</strong>
-<div style="margin-top:6px;color:#444">Arua City • 6 months • Application: 10 Sep 2025 – 24 Sep 2025</div>
-<div style="margin-top:8px">
-<button class="btn" onclick="showJD('Child Protection Case Worker (Volunteer)')">View JD</button>
-<button class="btn" onclick="startApplication('Child Protection Case Worker (Volunteer)','2025-09-24')">Apply</button>
-</div>
-</div>
+<p>UNCP partners with organizations, NGOs, and government institutions to expand our impact. Join us in creating safer, resilient communities.</p>
+<p><a href="#partnerForm" class="btn secondary">Partner With UNCP</a></p>
 </div>
 </section>
 
-<!-- Job Description Modal & Multi-Step Form hidden by default (JS will show on Apply) -->
-<div id="jdModal" style="display:none;position:fixed;left:50%;top:6%;transform:translateX(-50%);max-width:900px;width:92%;background:#fff;padding:16px;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.25);z-index:3000;">
-<div id="jdContent"></div>
-<div style="text-align:right;margin-top:12px"><button onclick="closeJD()" class="btn secondary">Close</button></div>
-</div>
-
-<!-- Donate / Contact -->
 <section id="donate" class="card">
 <h2>Donate / Contact</h2>
 <p>Email: <a href="mailto:uncip2019@gmail.com">uncip2019@gmail.com</a></p>
 <p>Tel: +256 702 398687 / +256 779 576538</p>
 </section>
 
-<!-- Footer -->
-<footer>
-<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12
+<footer class="footer">
+<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
+<div><img src="logo.jpeg" alt="UNCP" style="height:56px"></div>
+<div>
+<p><strong>Contact</strong></p>
+<p>Email: <a href="mailto:uncip2019@gmail.com" style="color:#fff">uncip2019@gmail.com</a><br>Tel: +256 702 398687 / +256 779 576538</p>
+</div>
+<div class="socials">
+<a href="#">F</a><a href="#">X</a><a href="#">I</a><a href="#">Y</a>
+</div>
+</div>
+</footer>
+
+<!-- Forms placeholders: Careers multi-step, Supplier, Partner, hidden by default -->
+<section id="careersSection" style="display:none"></section>
+<section id="supplierForm" style="display:none"></section>
+<section id="partnerForm" style="display:none"></section>
+
+<script>
+emailjs.init('YOUR_EMAILJS_USER_ID');
+
+// Functions to show/hide forms
+function showForm(id){document.getElementById(id).style.display='block';window.scrollTo(0,document.getElementById(id).offsetTop);}
+</script>
+</body>
+</html>
