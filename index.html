@@ -1,224 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>United Networks for Civil Protection (UNCP)</title>
 <link rel="icon" href="logo.jpeg">
+<!-- jsPDF for PDF generation -->
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<!-- EmailJS SDK -->
 <script src="https://cdn.emailjs.com/sdk/3.2/email.min.js"></script>
+<!-- FontAwesome for social icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 <style>
-  body{font-family:Arial,Helvetica,sans-serif;margin:0;background:#f4f6f9;color:#222}
-  .container{max-width:1100px;margin:18px auto;padding:0 16px}
-  header{display:flex;align-items:center;justify-content:space-between;padding:12px;background:#fff;border-bottom:1px solid #e6eefc;position:sticky;top:0;z-index:1000}
-  .brand{display:flex;align-items:center;gap:12px}
-  .brand img{height:100px}
-  nav ul{display:flex;gap:12px;list-style:none;margin:0;padding:0;align-items:center}
-  nav a{color:#0b3b66;font-weight:700;padding:8px;border-radius:6px;text-decoration:none}
-  .donate{background:#ff7f00;color:#fff;padding:8px 12px;border-radius:8px}
-  section{background:#fff;margin:18px 0;padding:18px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
-  h1,h2,h3,h4{color:#083e6b}
-  .accordion{margin-top:12px}
-  .accordion-item{border:1px solid #e6eefc;border-radius:8px;margin-bottom:10px;overflow:hidden}
-  .accordion-header{background:#f7fbff;padding:12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
-  .accordion-body{max-height:0;overflow:hidden;transition:max-height .28s ease;padding:0 12px}
-  .accordion-item.active .accordion-body{padding:12px}
-  form label{display:block;margin-top:10px;font-weight:700}
-  input,select,textarea{width:100%;padding:8px;border-radius:6px;border:1px solid #d6d6d6;margin-top:6px}
-  .btn{background:#0b62a6;color:#fff;padding:8px 12px;border-radius:8px;border:none;cursor:pointer;margin-top:12px}
-  .btn.secondary{background:#eef4ff;color:#0b62a6}
-  .inline{display:flex;gap:12px}
-  .chip{display:inline-block;padding:6px 10px;border-radius:999px;border:1px dashed #0b62a6;margin:4px}
-  footer{background:#083e6b;color:#fff;padding:24px;border-radius:10px;margin-top:24px}
-  footer a{color:#ff7f00;text-decoration:none;font-weight:700}
-  .social-icons a{display:inline-block;width:36px;height:36px;background:#ff7f00;color:#fff;border-radius:50%;text-align:center;line-height:36px;font-weight:bold;margin-right:8px;text-decoration:none;transition:0.3s}
-  .social-icons a:hover{transform:scale(1.2);background:#0b62a6;color:#fff}
+/* ========== Global Styles ========== */
+body{font-family:Arial,Helvetica,sans-serif;margin:0;background:#f4f6f9;color:#222}
+.container{max-width:1100px;margin:18px auto;padding:0 16px}
+h1,h2,h3,h4{color:#083e6b}
+a{text-decoration:none;color:inherit}
+.card{background:#fff;margin:12px 0;padding:18px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.04);transition:transform .25s ease,box-shadow .25s ease;}
+.card:hover{transform:translateY(-4px);box-shadow:0 6px 18px rgba(0,0,0,0.12);}
+.btn{background:#0b62a6;color:#fff;padding:8px 12px;border-radius:8px;border:none;cursor:pointer;margin-top:12px;transition:all 0.25s ease;}
+.btn:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.15);}
+.btn.secondary{background:#eef4ff;color:#0b62a6}
+.btn.secondary:hover{background:#0b62a6;color:#fff}
+.inline{display:flex;gap:12px}
+input,select,textarea{width:100%;padding:8px;border-radius:6px;border:1px solid #d6d6d6;margin-top:6px}
+label{display:block;margin-top:10px;font-weight:700}
+section{margin:18px 0}
+
+/* ========== Header ========== */
+header{display:flex;align-items:center;justify-content:space-between;padding:12px;background:#fff;border-bottom:1px solid #e6eefc;position:sticky;top:0;z-index:1000}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{height:100px}
+nav ul{display:flex;gap:12px;list-style:none;margin:0;padding:0;align-items:center}
+nav a{color:#0b3b66;font-weight:700;padding:8px;border-radius:6px;transition:color .25s ease,transform .2s ease}
+nav a:hover{color:#ff7f00;transform:translateY(-2px)}
+.donate{background:#ff7f00;color:#fff;padding:8px 12px;border-radius:8px;transition:background .25s ease,transform .2s ease}
+.donate:hover{background:#e06a00;transform:translateY(-2px)}
+
+/* ========== Accordion ========== */
+.accordion{margin-top:12px}
+.accordion-item{border:1px solid #e6eefc;border-radius:8px;margin-bottom:10px;overflow:hidden}
+.accordion-header{background:#f7fbff;padding:12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.accordion-body{max-height:0;overflow:hidden;transition:max-height .28s ease;padding:0 12px}
+.accordion-item.active .accordion-body{padding:12px}
+
+/* ========== Chips ========== */
+.chip{display:inline-block;padding:6px 10px;border-radius:999px;border:1px dashed #0b62a6;margin:4px}
+
+/* ========== Footer ========== */
+footer{background:#083e6b;color:#fff;padding:24px;border-radius:12px;margin-top:18px;position:relative;overflow:hidden}
+footer div[style*="position:absolute"]{position:absolute;bottom:0;left:0;width:100%;height:60px;background:linear-gradient(to top,#0b62a6,transparent)}
+footer .social{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:#ff7f00;color:#fff;font-size:16px;transition:transform .3s ease,background .3s ease}
+footer .social:hover{transform:scale(1.2) rotate(10deg);background:#e06a00}
 </style>
 </head>
 <body>
 <div class="container">
 
-  <!-- Header -->
-  <header>
-    <div class="brand">
-      <a href="#home"><img src="logo.jpeg" alt="UNCP Logo"></a>
-      <div>
-        <div style="font-weight:900;color:#083e6b">United Networks for Civil Protection</div>
-        <div style="font-size:13px;color:#666">Community-Based Non-Profit • Company Limited by Guarantee (Uganda)</div>
-      </div>
+<!-- ========== Header ========== -->
+<header>
+  <div class="brand">
+    <a href="#home"><img src="logo.jpeg" alt="UNCP Logo"></a>
+    <div>
+      <div style="font-weight:900;color:#083e6b">United Networks for Civil Protection</div>
+      <div style="font-size:13px;color:#666">Community-Based Non-Profit • Company Limited by Guarantee (Uganda)</div>
     </div>
-    <nav>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#what-we-do">What We Do</a></li>
+      <li><a href="#where-we-work">Where We Work</a></li>
+      <li><a href="#getInvolved">Get Involved</a></li>
+      <li><a href="#donate" class="donate">Donate</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ========== Home Section ========== -->
+<section id="home" class="card">
+  <h1>United Networks for Civil Protection (UNCP)</h1>
+  <p><strong>Type:</strong> Community-Based Organization</p>
+  <p><strong>Incorporated:</strong> Company Limited by Guarantee, Uganda</p>
+  <p><strong>Our Work:</strong> We protect, empower, and work with vulnerable children, youth, and communities, including forcibly displaced populations.</p>
+</section>
+
+<!-- ========== About UNCP ========== -->
+<section id="about" class="accordion">
+  <div class="accordion-item">
+    <div class="accordion-header">About UNCP <span>+</span></div>
+    <div class="accordion-body">
+      <h3>Overview</h3>
+      <p>United Networks for Civil Protection (UNCP) is a community-based non-profit organization dedicated to protecting and empowering vulnerable children, youth, and communities, including forcibly displaced populations in Uganda.</p>
+      <h4>History</h4>
+      <p>Founded in 2018 by child protection specialists, UNCP has implemented projects in child protection, youth empowerment, GBV prevention, MHPSS, inclusive education, climate resilience, and livelihoods support.</p>
+      <h4>Mission & Vision</h4>
+      <p><strong>Mission:</strong> To ensure safe, inclusive, and resilient communities through protection, empowerment, and social support initiatives.<br>
+         <strong>Vision:</strong> A society where children, youth, and vulnerable groups live free from harm, access opportunities equally, and actively participate in community development.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== What We Do ========== -->
+<section id="what-we-do" class="accordion">
+  <div class="accordion-item">
+    <div class="accordion-header">What We Do <span>+</span></div>
+    <div class="accordion-body">
       <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#what-we-do">What We Do</a></li>
-        <li><a href="#where-we-work">Where We Work</a></li>
-        <li><a href="#get-involved">Get Involved</a></li>
-        <li><a href="#donate" class="donate">Donate</a></li>
+        <li><strong>Child Protection:</strong> Case management, safeguarding, family support, and community engagement.</li>
+        <li><strong>GBV Prevention:</strong> Awareness, prevention, response, and survivor support programs.</li>
+        <li><strong>MHPSS:</strong> Counseling, psychosocial interventions, and referrals.</li>
+        <li><strong>Youth Empowerment:</strong> Skills development, mentorship, and leadership programs.</li>
+        <li><strong>Climate & Livelihoods:</strong> Sustainable agriculture, climate resilience, and income-generating activities.</li>
+        <li><strong>Inclusive Education:</strong> Support for children with disabilities and access to quality learning opportunities.</li>
       </ul>
-    </nav>
-  </header>
+    </div>
+  </div>
+</section>
 
-  <!-- Home -->
-  <section id="home">
-    <h1>United Networks for Civil Protection (UNCP)</h1>
-    <p><strong>Type:</strong> Community-Based Organization</p>
-    <p><strong>Incorporated:</strong> Company Limited by Guarantee, Uganda</p>
-    <p class="muted">We protect, empower, and work with vulnerable children, youth, and communities, including forcibly displaced populations.</p>
-  </section>
-
-  <!-- About -->
-  <section id="about" class="accordion">
-    <div class="accordion-item" id="accordion-about">
-      <div class="accordion-header">About UNCP <span>+</span></div>
-      <div class="accordion-body">
-        <h3>Overview</h3>
-        <p>United Networks for Civil Protection (UNCP) is a community-based non-profit organization dedicated to protecting and empowering vulnerable children, youth, and communities, including forcibly displaced populations in Uganda.</p>
-        <h4>History</h4>
-        <p>Founded in 2018 by child protection specialists, UNCP has implemented projects in child protection, youth empowerment, GBV prevention, MHPSS (mental health and psychosocial support), inclusive education, climate resilience, and livelihoods support.</p>
-        <h4>Mission & Vision</h4>
-        <p><strong>Mission:</strong> To ensure safe, inclusive, and resilient communities through protection, empowerment, and social support initiatives.</p>
-        <p><strong>Vision:</strong> A society where children, youth, and vulnerable groups live free from harm, access opportunities equally, and actively participate in community development.</p>
+<!-- ========== Where We Work ========== -->
+<section id="where-we-work" class="accordion">
+  <div class="accordion-item">
+    <div class="accordion-header">Where We Work <span>+</span></div>
+    <div class="accordion-body">
+      <p>Uganda — Districts we operate in:</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px">
+        <span class="chip">Arua City</span><span class="chip">Arua District</span><span class="chip">Madi Okollo</span>
+        <span class="chip">Terego</span><span class="chip">Adjumani</span><span class="chip">Moyo</span><span class="chip">Obongi</span>
+        <span class="chip">Pakwach</span><span class="chip">Nebbi</span><span class="chip">Koboko</span><span class="chip">Yumbe</span>
+        <span class="chip">Zombo</span><span class="chip">Maracha</span>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- What We Do -->
-  <section id="what-we-do" class="accordion">
-    <div class="accordion-item">
-      <div class="accordion-header">What We Do <span>+</span></div>
-      <div class="accordion-body">
-        <ul>
-          <li><strong>Child Protection:</strong> Case management, safeguarding, family support, and community engagement.</li>
-          <li><strong>GBV Prevention:</strong> Awareness, prevention, response, and survivor support programs.</li>
-          <li><strong>MHPSS:</strong> Counseling, psychosocial interventions, and referrals.</li>
-          <li><strong>Youth Empowerment:</strong> Skills development, mentorship, and leadership programs.</li>
-          <li><strong>Climate & Livelihoods:</strong> Sustainable agriculture, climate resilience, and income-generating activities.</li>
-          <li><strong>Inclusive Education:</strong> Support for children with disabilities and access to quality learning opportunities.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- Where We Work -->
-  <section id="where-we-work" class="accordion">
-    <div class="accordion-item">
-      <div class="accordion-header">Where We Work <span>+</span></div>
-      <div class="accordion-body">
-        <p>Uganda — Districts we operate in:</p>
-        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px">
-          <span class="chip">Arua City</span><span class="chip">Arua District</span><span class="chip">Madi Okollo</span>
-          <span class="chip">Terego</span><span class="chip">Adjumani</span><span class="chip">Moyo</span><span class="chip">Obongi</span>
-          <span class="chip">Pakwach</span><span class="chip">Nebbi</span><span class="chip">Koboko</span><span class="chip">Yumbe</span>
-          <span class="chip">Zombo</span><span class="chip">Maracha</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Get Involved -->
-  <section id="get-involved">
-    <h2>Get Involved</h2>
-
+<!-- ========== Get Involved ========== -->
+<section id="getInvolved" class="card">
+  <h2>Get Involved</h2>
+  <div style="display:flex;gap:12px;flex-wrap:wrap">
     <!-- Careers -->
-    <div id="careersSection">
+    <div style="flex:1;min-width:250px">
       <h3>Careers</h3>
-      <p>Explore current job opportunities:</p>
-      <div id="jobList">
-        <div class="job card" data-deadline="2025-09-24" style="padding:12px;margin-bottom:12px;border-left:4px solid #083e6b;">
-          <strong>Child Protection Case Worker (Volunteer)</strong>
-          <div style="margin-top:6px;color:#444">Arua City • 6 months • Application: 10 Sep 2025 – 24 Sep 2025</div>
-          <div style="margin-top:8px">
-            <button class="btn" onclick="showJD('Child Protection Case Worker (Volunteer)')">View JD</button>
-            <button class="btn" onclick="startApplication('Child Protection Case Worker (Volunteer)','2025-09-24')">Apply</button>
-          </div>
-        </div>
-      </div>
+      <p>Explore current opportunities and contribute to our mission.</p>
+      <button class="btn" onclick="document.getElementById('careersSection').scrollIntoView()">View Current Opportunities</button>
     </div>
-
-    <!-- Supplier -->
-    <section id="supplier" class="card">
+    <!-- Become Supplier -->
+    <div style="flex:1;min-width:250px">
       <h3>Become Our Supplier</h3>
-      <form id="supplierForm">
-        <label>Company Name *</label><input type="text" name="company_name" required>
-        <label>Products / Services Offered *</label><textarea name="products_services" required></textarea>
-        <label>Email *</label><input type="email" name="company_email" required>
-        <label>Phone</label><input type="tel" name="company_phone">
-        <label>Additional Notes</label><textarea name="supplier_notes"></textarea>
-        <button type="button" class="btn" onclick="submitSupplier()">Submit</button>
-      </form>
-      <div id="supplierStatus" style="margin-top:12px;"></div>
-    </section>
-
-    <!-- Donor / Partner -->
-    <section id="donorPartner" class="card">
-      <h3>Donor / Partner</h3>
-      <form id="donorForm">
-        <label>Full Name *</label><input type="text" name="donor_name" required>
-        <label>Email *</label><input type="email" name="donor_email" required>
-        <label>Phone</label><input type="tel" name="donor_phone">
-        <label>Are you interested in <strong>Donating</strong> or <strong>Partnering</strong>? *</label>
-        <select name="involvement_type" required>
-          <option value="">--Select--</option>
-          <option>Donor</option>
-          <option>Partner</option>
-        </select>
-        <label>Message / Proposal *</label><textarea name="donor_message" required></textarea>
-        <button type="button" class="btn" onclick="submitDonor()">Submit</button>
-      </form>
-      <div id="donorStatus" style="margin-top:12px;"></div>
-    </section>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div style="display:flex;justify-content:space-between;flex-wrap:wrap;align-items:center">
-      <div>© 2025 UNCP. All Rights Reserved.</div>
-      <div class="social-icons">
-        <a href="#" target="_blank">F</a>
-        <a href="#" target="_blank">T</a>
-        <a href="#" target="_blank">I</a>
-        <a href="#" target="_blank">L</a>
-      </div>
+      <p>Submit your company profile and product/service offerings to become an approved supplier.</p>
+      <button class="btn secondary" onclick="document.getElementById('supplierForm').scrollIntoView()">Submit Supplier Profile</button>
     </div>
-  </footer>
+    <!-- Partner With Us -->
+    <div style="flex:1;min-width:250px">
+      <h3>Partner With Us</h3>
+      <p>Join us in creating safer, resilient communities.</p>
+      <button class="btn secondary" onclick="document.getElementById('partnerForm').scrollIntoView()">Partner With UNCP</button>
+    </div>
+  </div>
+</section>
+
+<!-- ========== Careers Section (Multi-Step Form Hidden by Default) ========== -->
+<section id="careersSection" class="card">
+  <h2>Career Opportunities</h2>
+  <div id="jobList">
+    <div class="card">
+      <h4>Child Protection Officer</h4>
+      <p>Deadline: 30 Sept 2025</p>
+      <p>Responsible for safeguarding children in field operations...</p>
+      <button class="btn" onclick="showApplicationForm()">Apply</button>
+    </div>
+    <!-- Additional positions can be added here -->
+  </div>
+  
+  <!-- Multi-step Application Form -->
+  <form id="applicationForm" style="display:none">
+    <h3>Application Form</h3>
+    <div id="formSteps">
+      <!-- Step 1: Personal Info -->
+      <div class="step">
+        <label>Full Name</label>
+        <input type="text" name="fullName" required>
+        <label>Email</label>
+        <input type="email" name="email" required>
+        <label>Phone</label>
+        <input type="text" name="phone" required>
+      </div>
+      <!-- Step 2: Experience -->
+      <div class="step" style="display:none">
+        <label>Relevant Experience</label>
+        <textarea name="experience" maxlength="2500"></textarea>
+      </div>
+      <!-- Step 3: Achievements & Competencies -->
+      <div class="step" style="display:none">
+        <label>Achievements & Operational Experience</label>
+        <textarea name="achievements" maxlength="2500"></textarea>
+        <label>Skills & Competencies</label>
+        <textarea name="skills" maxlength="2500"></textarea>
+        <label>Career Alignment</label>
+        <textarea name="careerAlignment" maxlength="2500"></textarea>
+      </div>
+      <!-- Additional steps (up to 8) can be added in same style -->
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:12px">
+      <button type="button" class="btn secondary" onclick="prevStep()">Previous</button>
+      <button type="button" class="btn" onclick="nextStep()">Next</button>
+    </div>
+    <button type="submit" class="btn" style="margin-top:12px;display:none" id="submitApp">Submit Application</button>
+  </form>
+</section>
+
+<!-- ========== Supplier Form ========== -->
+<section id="supplierForm" class="card">
+  <h2>Become Our Supplier</h2>
+  <form id="supplierFormFields">
+    <label>Company Name</label>
+    <input type="text" name="company" required>
+    <label>Email</label>
+    <input type="email" name="email" required>
+    <label>Products / Services Offered</label>
+    <textarea name="products" required></textarea>
+    <button type="submit" class="btn">Submit Supplier Profile</button>
+  </form>
+</section>
+
+<!-- ========== Partner Form ========== -->
+<section id="partnerForm" class="card">
+  <h2>Partner With UNCP</h2>
+  <form id="partnerFormFields">
+    <label>Organization / Individual Name</label>
+    <input type="text" name="name" required>
+    <label>Email</label>
+    <input type="email" name="email" required>
+    <label>Proposal / Message</label>
+    <textarea name="proposal" required></textarea>
+    <button type="submit" class="btn">Submit Proposal</button>
+  </form>
+</section>
+
+<!-- ========== Footer ========== -->
+<footer>
+  <p>&copy; 2025 UNCP | Uganda</p>
+  <div style="display:flex;justify-content:center;gap:12px;margin-top:12px">
+    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+    <a href="#" class="social"><i class="fab fa-twitter"></i></a>
+    <a href="#" class="social"><i class="fab fa-instagram"></i></a>
+    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+  </div>
+</footer>
+
 </div>
 
 <script>
-  emailjs.init("YOUR_EMAILJS_USER_ID");
-
-  // Accordion toggle
-  document.querySelectorAll('.accordion-header').forEach(header=>{
-    header.addEventListener('click',()=>{
-      const item = header.parentElement;
-      item.classList.toggle('active');
-      const body = item.querySelector('.accordion-body');
-      if(item.classList.contains('active')) body.style.maxHeight = body.scrollHeight + 'px';
-      else body.style.maxHeight = 0;
-    });
+// ========== Accordion Toggle ==========
+document.querySelectorAll('.accordion-header').forEach(header=>{
+  header.addEventListener('click',()=>{
+    const item=header.parentElement;
+    item.classList.toggle('active');
+    const body=header.nextElementSibling;
+    body.style.maxHeight = item.classList.contains('active') ? body.scrollHeight + "px" : "0";
   });
+});
 
-  // Supplier Form
-  function submitSupplier(){
-    const form=document.getElementById('supplierForm');const data={};
-    for(const el of form.elements){if(!el.name)continue;data[el.name]=el.value||'';}
-    emailjs.send("YOUR_EMAILJS_SERVICE_ID","YOUR_EMAILJS_TEMPLATE_SUPPLIER",data)
-    .then(()=>{document.getElementById('supplierStatus').innerText='Supplier profile submitted successfully!';form.reset();})
-    .catch(err=>{console.error(err);document.getElementById('supplierStatus').innerText='Submission failed. Please try again.';});
-  }
+// ========== Multi-step Form Logic ==========
+let currentStep=0;
+const steps=document.querySelectorAll('#formSteps .step');
+function showApplicationForm(){document.getElementById('applicationForm').style.display='block'; steps.forEach((s,i)=>s.style.display=i===0?'block':'none'); currentStep=0; document.getElementById('submitApp').style.display='none';}
+function nextStep(){if(currentStep<steps.length-1){steps[currentStep].style.display='none'; currentStep++; steps[currentStep].style.display='block'; if(currentStep===steps.length-1) document.getElementById('submitApp').style.display='block';}}
+function prevStep(){if(currentStep>0){steps[currentStep].style.display='none'; currentStep--; steps[currentStep].style.display='block'; document.getElementById('submitApp').style.display='none';}}
 
-  // Donor Form
-  function submitDonor(){
-    const form=document.getElementById('donorForm');const data={};
-    for(const el of form.elements){if(!el.name)continue;data[el.name]=el.value||'';}
-    emailjs.send("YOUR_EMAILJS_SERVICE_ID","YOUR_EMAILJS_TEMPLATE_DONOR",data)
-    .then(()=>{document.getElementById('donorStatus').innerText='Thank you! Your message has been sent.';form.reset();})
-    .catch(err=>{console.error(err);document.getElementById('donorStatus').innerText='Submission failed. Please try again.';});
-  }
+// ========== EmailJS Submission ==========
+emailjs.init("YOUR_EMAILJS_USER_ID"); // <-- replace with your EmailJS User ID
 
-  // Careers form placeholder
-  function showJD(position){alert("Job Description for "+position);}
-  function startApplication(position,deadline){alert("Start application for "+position+" (Deadline: "+deadline+")");}
+document.getElementById('applicationForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  emailjs.sendForm('service_id','template_id', this).then(res=>alert('Application submitted successfully!'), err=>alert('Error sending application'));
+});
+
+document.getElementById('supplierFormFields').addEventListener('submit', function(e){
+  e.preventDefault();
+  emailjs.sendForm('service_id','template_id', this).then(res=>alert('Supplier profile submitted!'), err=>alert('Error sending supplier form'));
+});
+
+document.getElementById('partnerFormFields').addEventListener('submit', function(e){
+  e.preventDefault();
+  emailjs.sendForm('service_id','template_id', this).then(res=>alert('Partner form submitted!'), err=>alert('Error sending partner form'));
+});
 </script>
 </body>
 </html>
