@@ -9,7 +9,7 @@
   body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; background: #f5f5f5; color: #333; }
   h1,h2,h3 { margin: 10px 0; }
   a { text-decoration: none; color: inherit; }
-  img { max-width: 100%; }
+  img { max-width: 100%; display: block; }
 
   /* Header */
   header { display: flex; justify-content: space-between; align-items: center; background: #003366; color: white; padding: 10px 20px; position: sticky; top: 0; z-index: 1000; flex-wrap: wrap; }
@@ -21,20 +21,23 @@
   .donate-btn:hover { background: darkorange; }
   #search-box { display: none; margin-left: 10px; padding: 5px; border-radius: 4px; border: none; }
 
-  /* Hero/Home Section */
-  #home { padding: 50px 20px; text-align: center; color: white; position: relative; }
-  #home h1 { font-size: 36px; margin-bottom: 10px; }
-  #home p { font-size: 18px; max-width: 700px; margin: auto; margin-bottom: 40px; }
+  /* Hero/Home Section with responsive banner */
+  #home { position: relative; text-align: center; color: white; overflow: hidden; }
+  .banner-img { width: 100%; height: 100%; object-fit: cover; min-height: 600px; }
+  .banner-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1; }
+  .banner-content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2; padding: 20px; }
+  .banner-content h1 { font-size: 36px; margin-bottom: 15px; }
+  .banner-content p { font-size: 18px; max-width: 700px; margin: auto; }
 
   /* Impact Panel */
-  .impact-panel { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; max-width: 1000px; margin: 30px auto 50px auto; }
-  .impact-card { background: #003366; color: white; padding: 20px 30px; border-radius: 10px; flex: 1 1 200px; text-align: center; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; }
+  .impact-panel { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; max-width: 1000px; margin: 30px auto 50px auto; position: relative; z-index: 2; }
+  .impact-card { background: #003366; color: white; padding: 20px 30px; border-radius: 10px; flex: 1 1 200px; text-align: center; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s, opacity 0.6s ease; opacity: 0; transform: translateY(20px); }
   .impact-card h2 { font-size: 28px; margin: 0 0 10px 0; color: orange; }
   .impact-card p { margin: 0; font-size: 16px; }
-  .impact-card:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+  .impact-card.visible { opacity: 1; transform: translateY(0); }
 
-  /* Home Sections */
-  .home-sections { display: flex; flex-direction: column; gap: 15px; max-width: 900px; margin: auto; }
+  /* Home Sections (Collapsible) */
+  .home-sections { display: flex; flex-direction: column; gap: 15px; max-width: 900px; margin: auto; position: relative; z-index: 2; }
   .home-section-btn { background: white; color: #003366; padding: 20px; border-radius: 10px; font-size: 20px; cursor: pointer; text-align: left; border: 1px solid #ccc; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transition: transform 0.2s, box-shadow 0.3s; }
   .home-section-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 10px rgba(0,0,0,0.15); }
   .home-section-content { max-height: 0; overflow: hidden; transition: max-height 0.5s ease, opacity 0.5s ease; opacity: 0; padding: 0 20px; margin-top: 0; background: white; border-radius: 10px; border-left: 5px solid #003366; box-shadow: 0 2px 4px rgba(0,0,0,0.05); line-height: 1.5; }
@@ -56,8 +59,9 @@
   @media (max-width: 768px) {
     header { flex-direction: column; align-items: flex-start; }
     nav { flex-direction: row; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+    .banner-content h1 { font-size: 28px; }
+    .banner-content p { font-size: 16px; }
     .home-section-btn { font-size: 18px; padding: 15px; }
-    .home-section-content { padding: 15px; }
     .impact-card h2 { font-size: 24px; }
     .impact-card p { font-size: 14px; }
   }
@@ -67,7 +71,6 @@
 
 <!-- Header -->
 <header>
-  <!-- Correct logo path -->
   <img src="images/logo.jpeg" alt="UNCP Logo">
   <nav>
     <a href="#home">Home</a>
@@ -77,69 +80,116 @@
   </nav>
 </header>
 
-<!-- Home Section -->
+<!-- Home Section with Responsive Banner -->
 <section id="home">
-  <h1>Welcome to UNCP</h1>
-  <p>Protecting and empowering vulnerable children, youth, and communities in Uganda.</p>
+  <picture>
+    <!-- Mobile -->
+    <source srcset="images/banner-small.webp" type="image/webp" media="(max-width: 768px)">
+    <source srcset="images/banner-small.jpeg" type="image/jpeg" media="(max-width: 768px)">
+    <!-- Tablet -->
+    <source srcset="images/banner-medium.webp" type="image/webp" media="(max-width: 1280px)">
+    <source srcset="images/banner-medium.jpeg" type="image/jpeg" media="(max-width: 1280px)">
+    <!-- Desktop -->
+    <source srcset="images/banner-large.webp" type="image/webp" media="(max-width: 1920px)">
+    <source srcset="images/banner-large.jpeg" type="image/jpeg" media="(max-width: 1920px)">
+    <!-- Extra large -->
+    <source srcset="images/banner-xlarge.webp" type="image/webp">
+    <source srcset="images/banner-xlarge.jpeg" type="image/jpeg">
+    <!-- Fallback -->
+    <img src="images/banner-large.jpeg" alt="Children and community supported by UNCP" class="banner-img">
+  </picture>
 
-  <!-- Impact Panel -->
-  <div class="impact-panel">
-    <div class="impact-card">
-      <h2>1,200+</h2>
-      <p>Children Supported</p>
-    </div>
-    <div class="impact-card">
-      <h2>500+</h2>
-      <p>Youth Empowered</p>
-    </div>
-    <div class="impact-card">
-      <h2>50+</h2>
-      <p>Community Projects</p>
-    </div>
-    <div class="impact-card">
-      <h2>100+</h2>
-      <p>Active Donors</p>
-    </div>
+  <div class="banner-overlay"></div>
+
+  <div class="banner-content">
+    <h1>Welcome to UNCP</h1>
+    <p>Protecting and empowering vulnerable children, youth, and communities in Uganda.</p>
   </div>
+</section>
 
-  <!-- Collapsible Home Sections -->
-  <div class="home-sections">
-    <button class="home-section-btn" data-target="about-section">About UNCP</button>
-    <div id="about-section" class="home-section-content">
-      <p><strong>Type:</strong> Community-Based Organization</p>
-      <p><strong>Incorporated:</strong> Company Limited by Guarantee in Uganda</p>
-      <p><strong>Founded:</strong> 2018</p>
-      <p><strong>Mission:</strong> To protect and empower vulnerable children, youth, and communities.</p>
-      <p><strong>Vision:</strong> A safe, inclusive, and resilient society where every child and vulnerable person thrives.</p>
-    </div>
+<!-- Impact Panel -->
+<div class="impact-panel">
+  <div class="impact-card"><h2>1,200+</h2><p>Children Supported</p></div>
+  <div class="impact-card"><h2>500+</h2><p>Youth Empowered</p></div>
+  <div class="impact-card"><h2>50+</h2><p>Community Projects</p></div>
+  <div class="impact-card"><h2>100+</h2><p>Active Donors</p></div>
+</div>
 
-    <button class="home-section-btn" data-target="whatwedo-section">What We Do</button>
-    <div id="whatwedo-section" class="home-section-content">
-      <p>We deliver holistic, community-led interventions in child protection, GBV prevention, MHPSS, youth empowerment, inclusive education, and climate change adaptation.</p>
-    </div>
+<!-- Collapsible Home Sections -->
+<div class="home-sections">
+  <button class="home-section-btn" data-target="about-section">About UNCP</button>
+  <div id="about-section" class="home-section-content">
+    <p><strong>Type:</strong> Community-Based Organization</p>
+    <p><strong>Incorporated:</strong> Company Limited by Guarantee in Uganda</p>
+    <p><strong>Founded:</strong> 2018</p>
+    <p><strong>Mission:</strong> To protect and empower vulnerable children, youth, and communities.</p>
+    <p><strong>Vision:</strong> A safe, inclusive, and resilient society where every child and vulnerable person thrives.</p>
+  </div>
+  <button class="home-section-btn" data-target="whatwedo-section">What We Do</button>
+  <div id="whatwedo-section" class="home-section-content">
+    <p>We deliver holistic, community-led interventions in child protection, GBV prevention, MHPSS, youth empowerment, inclusive education, and climate change adaptation.</p>
+  </div>
+  <button class="home-section-btn" data-target="wherewework-section">Where We Work</button>
+  <div id="wherewework-section" class="home-section-content">
+    <p>We work across Uganda, especially in refugee and host communities in West Nile and other regions.</p>
+  </div>
+  <button class="home-section-btn" data-target="news-section">News & Stories</button>
+  <div id="news-section" class="home-section-content">
+    <p>Latest updates and success stories from our work will be shared here.</p>
+  </div>
+  <button class="home-section-btn" data-target="getinvolved-section">Get Involved</button>
+  <div id="getinvolved-section" class="home-section-content">
+    <ul>
+      <li><a href="#career">Career Opportunities</a></li>
+      <li><a href="#partners">Our Partners & Donors</a></li>
+      <li><a href="#supplier">Become a Supplier</a></li>
+    </ul>
+  </div>
+</div>
 
-    <button class="home-section-btn" data-target="wherewework-section">Where We Work</button>
-    <div id="wherewework-section" class="home-section-content">
-      <p>We work across Uganda, especially in refugee and host communities in West Nile and other regions.</p>
-    </div>
-
-    <button class="home-section-btn" data-target="news-section">News & Stories</button>
-    <div id="news-section" class="home-section-content">
-      <p>Latest updates and success stories from our work will be shared here.</p>
-    </div>
-
-    <button class="home-section-btn" data-target="getinvolved-section">Get Involved</button>
-    <div id="getinvolved-section" class="home-section-content">
-      <ul>
-        <li><a href="#career">Career Opportunities</a></li>
-        <li><a href="#partners">Our Partners & Donors</a></li>
-        <li><a href="#supplier">Become a Supplier</a></li>
-      </ul>
+<!-- Career Section -->
+<section id="career">
+  <h2>Career Opportunities</h2>
+  <p>Explore open positions with UNCP. Positions are only visible during the application period.</p>
+  <div class="accordion">
+    <div class="accordion-item">
+      <button class="accordion-header">Child Protection Case Worker (Volunteer) – Arua City</button>
+      <div class="accordion-content">
+        <p><strong>Duration:</strong> 6 months</p>
+        <p><strong>Application Period:</strong> 10th – 24th September 2025</p>
+        <p><strong>Summary:</strong> Provide case management, psychosocial support, and community-based protection for children at risk.</p>
+        <a href="#application" class="donate-btn">Apply Now</a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- Career, Application, Footer sections remain the same as previous template -->
+<!-- Application Form -->
+<section id="application">
+  <h2>Application Form</h2>
+  <form id="careerForm">
+    <label for="position">Position Title*</label>
+    <input type="text" id="position" name="position" required>
+    <label for="name">Full Name*</label>
+    <input type="text" id="name" name="name" required>
+    <label for="email">Email*</label>
+    <input type="email" id="email" name="email" required>
+    <label for="phone">Phone*</label>
+    <input type="text" id="phone" name="phone" required>
+    <label><input type="checkbox" required> I acknowledge and agree to UNCP’s terms.</label>
+    <button type="submit" class="donate-btn">Submit Application</button>
+  </form>
+</section>
+
+<!-- Footer -->
+<footer>
+  <img src="images/logo.jpeg" alt="UNCP Logo">
+  <p>Contact us: uncip2019@gmail.com | +256702398687 | +256779576538</p>
+  <div class="social-icons">
+    <a href="#">📘</a><a href="#">🐦</a><a href="#">📸</a><a href="#">▶️</a><a href="#">🎵</a><a href="#">💼</a>
+  </div>
+  <a href="#donate" class="donate-btn">Donate</a>
+</footer>
 
 <script>
   // Home section toggle
@@ -160,19 +210,16 @@
 
   // Search toggle
   document.getElementById('search-icon').addEventListener('click', () => {
-    const box = document.getElement
-    .getElementById('search-box');
+    const box = document.getElementById('search-box');
     box.style.display = box.style.display === 'inline-block' ? 'none' : 'inline-block';
     box.focus();
   });
 
   // Auto-hide expired job postings
   function parseDate(str) {
-    // Remove st, nd, rd, th
     str = str.replace(/(\d+)(st|nd|rd|th)/, '$1');
     return new Date(str);
   }
-
   document.querySelectorAll('#career .accordion-item').forEach(item => {
     const content = item.querySelector('.accordion-content');
     if(!content) return;
@@ -189,42 +236,17 @@
       }
     }
   });
+
+  // Fade-in impact cards on scroll
+  const cards = document.querySelectorAll('.impact-card');
+  window.addEventListener('scroll', () => {
+    const triggerBottom = window.innerHeight * 0.85;
+    cards.forEach(card => {
+      const cardTop = card.getBoundingClientRect().top;
+      if(cardTop < triggerBottom) card.classList.add('visible');
+    });
+  });
 </script>
 
 </body>
 </html>
-#home {
-  padding: 80px 20px;
-  text-align: center;
-  color: white;
-  position: relative;
-  background: url('images/banner.jpeg') center/cover no-repeat;
-  min-height: 600px;
-}
-
-#home::after {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.5); /* Dark overlay for contrast */
-  z-index: 0;
-}
-
-#home h1,
-#home p,
-.impact-panel,
-.home-sections {
-  position: relative;
-  z-index: 1;
-}
-.impact-card { 
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.impact-card.visible { 
-  opacity: 1;
-  transform: translateY(0);
-}
