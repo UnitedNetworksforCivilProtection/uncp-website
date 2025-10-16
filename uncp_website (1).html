@@ -24,7 +24,7 @@ h1, h2, h3, h4 { color: #003366; }
 .accordion-item.active .accordion-header::after { transform: rotate(90deg); }
 .accordion-header:hover { background: #e1e1e1; }
 .accordion-content { max-height: 0; overflow: hidden; background: #fafafa; transition: max-height 0.4s ease, padding 0.3s ease; padding: 0 10px; }
-.accordion-item.active .accordion-content { max-height: 1200px; padding: 15px; border-left: 4px solid orange; background-color: #fff8e1; }
+.accordion-item.active .accordion-content { max-height: 1500px; padding: 15px; border-left: 4px solid orange; background-color: #fff8e1; }
 .highlight { background-color: yellow; transition: background-color 1.5s ease; }
 .impact { display: flex; justify-content: center; gap: 40px; margin: 20px 0; flex-wrap: wrap; }
 .impact div { text-align: center; }
@@ -146,7 +146,7 @@ label { display: block; margin: 10px 0 5px; font-weight: bold; }
 <button type="button" id="next1">Save & Continue</button>
 </div>
 
-<!-- Step 2: Experience (dynamic) -->
+<!-- Step 2: Experience -->
 <div class="step" id="step2">
 <h3>Work Experience</h3>
 <div id="experienceContainer"></div>
@@ -278,7 +278,6 @@ alert("You can now fill the application manually.");
 });
 
 // Multi-step form
-let currentStep=1;
 function showStep(step){ document.querySelectorAll('.step').forEach(s=>s.classList.remove('active')); document.getElementById('step'+step).classList.add('active'); }
 document.getElementById('next1').onclick=function(){ showStep(2); };
 document.getElementById('back2').onclick=function(){ showStep(1); };
@@ -308,14 +307,53 @@ let div=document.createElement('div'); div.innerHTML=`<label>Degree / Diploma*</
 document.getElementById('educationContainer').appendChild(div);
 };
 
-// Form submission
+// Auto-qualification requirements
+const positionRequirements = {
+  "Funds Raising Volunteer": {
+    degrees: ["Diploma in Social Sciences","Diploma in Business Administration","Diploma in Marketing","Diploma in Public Relations","Diploma in Development Studies"],
+    skills: ["Fundraising","Community Engagement","Project Management"]
+  }
+};
+
+function checkAutoQualification() {
+  const degreeInputs = document.querySelectorAll('#educationContainer input[name^="degree"]');
+  const selectedSkills = Array.from(document.getElementById('skills').selectedOptions).map(o=>o.value);
+  
+  let degreeMatch = false;
+  degreeInputs.forEach(input => {
+    positionRequirements["Funds Raising Volunteer"].degrees.forEach(reqDegree => {
+      if(input.value.toLowerCase().includes(reqDegree.toLowerCase())) degreeMatch = true;
+    });
+  });
+
+  const skillMatchCount = positionRequirements["Funds Raising Volunteer"].skills.filter(skill => selectedSkills.includes(skill)).length;
+  const skillMatch = skillMatchCount >= positionRequirements["Funds Raising Volunteer"].skills.length;
+
+  let score = 0;
+  if(degreeMatch) score += 50;
+  if(skillMatch) score += 50;
+
+  return { degreeMatch, skillMatch, score };
+}
+
+// Form submission with auto-qualification
 document.getElementById('careerForm').addEventListener('submit', function(e){
 e.preventDefault();
-alert("Thank you, "+document.getElementById('fullName').value+". Your application has been received. We’ll contact you after review.");
+
+const result = checkAutoQualification();
+
+if(result.score < 100){
+if(!confirm(`Your application may not fully meet the position requirements. Qualification score: ${result.score}%. Do you still want to submit?`)) return;
+}
+
+alert("Thank you, "+document.getElementById('fullName').value+". Your application has been received. Qualification score: "+result.score+"%.");
+
 let formData={};
 document.querySelectorAll('#careerForm input, #careerForm textarea, #careerForm select').forEach(i=>{ formData[i.id||i.name]=i.value; });
 localStorage.setItem('uncpPreviousApplicant', JSON.stringify(formData));
-this.reset(); showStep(1);
+
+this.reset(); 
+showStep(1);
 });
 </script>
 </body>
