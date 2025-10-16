@@ -177,3 +177,18 @@ document.getElementById('careerForm').addEventListener('submit', function(e) {
   e.preventDefault();
   alert("Thank you, " + document.getElementById('name').value + ". Your application has been received. We’ll contact you after careful review.");
   this.reset();
+// Back to Top
+const topButton = document.getElementById("backToTop");
+window.onscroll = function() {
+  topButton.style.display = (document.documentElement.scrollTop > 100) ? 'block' : 'none';
+};
+topButton.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+// Responsive Menu Toggle
+const menuToggle = document.querySelector('.menu-toggle');
+const nav = document.querySelector('nav');
+menuToggle.addEventListener('click', () => nav.classList.toggle('active'));
+</script>
+
+</body>
+</html>
