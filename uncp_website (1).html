@@ -33,14 +33,13 @@ footer img { height: 40px; float: left; margin-right: 10px; }
 footer .social-icons { margin: 10px 0; }
 footer .social-icons a { margin: 0 5px; color: white; font-size: 20px; text-decoration: none; }
 footer .donate-btn { margin-left: 15px; }
-form input, form textarea { width: 100%; padding: 8px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc; }
+form input, form textarea, select { width: 100%; padding: 8px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc; }
 form button { background: orange; color: white; border: none; padding: 10px 15px; border-radius: 5px; font-weight: bold; cursor: pointer; transition: background 0.3s; }
 form button:hover { background: darkorange; }
 #backToTop { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 99; font-size: 18px; background: orange; color: white; border: none; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: background 0.3s, transform 0.3s; }
 #backToTop:hover { background: darkorange; transform: scale(1.1); }
 .container { max-width: 1000px; margin: auto; padding: 20px; background: #f8f8f8; border-radius: 8px; }
 label { display: block; margin: 10px 0 5px; font-weight: bold; }
-input, select, textarea { width: 100%; padding: 8px; margin-bottom: 10px; border-radius: 4px; border: 1px solid #ccc; }
 button { padding: 10px 15px; border: none; border-radius: 5px; background: orange; color: #fff; cursor: pointer; font-weight: bold; margin-top: 10px; }
 button:hover { background: darkorange; }
 .hidden { display: none; }
@@ -64,10 +63,12 @@ th { background: #003366; color: #fff; cursor: pointer; }
 <section id="home">
   <h1>Welcome to United Networks for Civil Protection (UNCP)</h1>
   <p>We are a community-based non-profit organization incorporated as a company limited by guarantee in Uganda. UNCP works to protect and empower vulnerable children, youth, and communities for a safer, more resilient society.</p>
+
   <div class="impact">
     <div><h2>20+</h2><p>Community Projects</p></div>
     <div><h2>5</h2><p>Active Donors</p></div>
   </div>
+
   <div class="accordion">
     <div class="accordion-item">
       <button class="accordion-header">About UNCP</button>
@@ -79,24 +80,28 @@ th { background: #003366; color: #fff; cursor: pointer; }
         <p><strong>Vision:</strong> A safe, inclusive, and resilient society where every child and vulnerable person thrives.</p>
       </div>
     </div>
+
     <div class="accordion-item">
       <button class="accordion-header">What We Do</button>
       <div class="accordion-content">
         <p>UNCP delivers holistic, community-led interventions in child protection, GBV prevention, MHPSS, youth empowerment, inclusive education, and climate change adaptation.</p>
       </div>
     </div>
+
     <div class="accordion-item">
       <button class="accordion-header">Where We Work</button>
       <div class="accordion-content">
         <p>We operate in Uganda — particularly in refugee-hosting and vulnerable districts across West Nile and Northern regions.</p>
       </div>
     </div>
+
     <div class="accordion-item">
       <button class="accordion-header">News and Stories</button>
       <div class="accordion-content">
         <p>Stay updated with stories of impact, new projects, and inspiring community transformation led by UNCP.</p>
       </div>
     </div>
+
     <div class="accordion-item">
       <button class="accordion-header">Get Involved</button>
       <div class="accordion-content">
@@ -112,7 +117,6 @@ th { background: #003366; color: #fff; cursor: pointer; }
   </div>
 </section>
 
-<!-- Application Form & Admin Dashboard -->
 <div class="container" id="applicationFormContainer">
   <h2>Application Form</h2>
   <p>Enter your email to start:</p>
@@ -123,6 +127,7 @@ th { background: #003366; color: #fff; cursor: pointer; }
     <button type="button" id="usePrevious">Use Previous Application</button>
     <button type="button" id="applyManual">Apply Manually</button>
   </div>
+
   <form id="applicationForm" class="hidden">
     <h2>Personal Information</h2>
     <label>Full Name*</label>
@@ -131,6 +136,8 @@ th { background: #003366; color: #fff; cursor: pointer; }
     <input type="email" id="email" required>
     <label>Phone*</label>
     <input type="text" id="phone" required>
+    <label>Position Applying For*</label>
+    <input type="text" id="position" required>
     <label>Education Level*</label>
     <input type="text" id="educationLevel" required>
     <label>Field of Study*</label>
@@ -192,14 +199,9 @@ th { background: #003366; color: #fff; cursor: pointer; }
   </table>
 </div>
 
-<script>
-// JavaScript code for form handling, prefill, admin dashboard, search, CSV export goes here
-</script>
-
 <footer>
   <img src="logo.png" alt="UNCP Logo" />
   <p>Contact us: uncip2019@gmail.com | +256702398687 | +256779576538</p>
-  <div class="social-icons
   <div class="social-icons">
     <a href="#">📘</a>
     <a href="#">🐦</a>
@@ -214,99 +216,139 @@ th { background: #003366; color: #fff; cursor: pointer; }
 <button id="backToTop" title="Back to Top">↑</button>
 
 <script>
-  // Accordion functionality
-  document.querySelectorAll('.accordion-header').forEach(button => {
-    button.addEventListener('click', () => {
-      const item = button.parentElement;
-      item.classList.toggle('active');
+/* Accordion */
+document.querySelectorAll('.accordion-header').forEach(button => {
+  button.addEventListener('click', () => { button.parentElement.classList.toggle('active'); });
+});
+
+/* Search */
+const searchIcon = document.getElementById('search-icon');
+const searchBox = document.getElementById('search-box');
+searchIcon.addEventListener('click', () => { searchBox.style.display = searchBox.style.display==='inline-block'?'none':'inline-block'; searchBox.focus(); });
+
+searchBox.addEventListener('keypress', function(e){
+  if(e.key==='Enter'){ e.preventDefault();
+    const term = this.value.toLowerCase(); let firstMatch=null;
+    document.querySelectorAll('.accordion-content, .accordion-header').forEach(el=>{
+      el.innerHTML=el.innerHTML.replace(/<span class="highlight">|<\/span>/g,'');
+      if(el.textContent.toLowerCase().includes(term) && term!==""){
+        el.parentElement.classList.add('active');
+        const regex = new RegExp(`(${term})`,'gi');
+        el.innerHTML=el.innerHTML.replace(regex,'<span class="highlight">$1</span>');
+        if(!firstMatch) firstMatch=el;
+      }
     });
+    if(firstMatch) firstMatch.scrollIntoView({behavior:'smooth',block:'center'});
+    else alert(`No results found for "${term}".`);
+  }
+});
+
+/* Back to top */
+const topButton=document.getElementById("backToTop");
+window.onscroll=function(){ topButton.style.display=(document.body.scrollTop>100||document.documentElement.scrollTop>100)?'block':'none';};
+topButton.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
+
+/* Application Form */
+const startButton=document.getElementById('startApplication');
+const formContainer=document.getElementById('applicationForm');
+const returningDiv=document.getElementById('returningApplicant');
+
+startButton.addEventListener('click',()=>{
+  const email=document.getElementById('applicantEmail').value;
+  if(email.trim()===""){ alert("Please enter your email."); return; }
+  if(localStorage.getItem(email)){ returningDiv.classList.remove('hidden'); }
+  else { formContainer.classList.remove('hidden'); }
+});
+
+document.getElementById('usePrevious').addEventListener('click',()=>{
+  const email=document.getElementById('applicantEmail').value;
+  const data=JSON.parse(localStorage.getItem(email));
+  if(data){ Object.keys(data).forEach(key=>{ const field=document.getElementById(key); if(field) field.value=data[key]; }); }
+  formContainer.classList.remove('hidden'); returningDiv.classList.add('hidden');
+});
+
+document.getElementById('applyManual').addEventListener('click',()=>{
+  formContainer.classList.remove('hidden'); returningDiv.classList.add('hidden');
+});
+
+document.getElementById('applicationForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  const email=document.getElementById('email').value;
+  const formData={};
+  Array.from(this.elements).forEach(el=>{ if(el.id) formData[el.id]=el.value; });
+  localStorage.setItem(email,JSON.stringify(formData));
+  alert("Application submitted successfully!");
+  this.reset();
+  loadAdminTable();
+});
+
+/* Admin Dashboard */
+const adminTable=document.getElementById('adminTable').getElementsByTagName('tbody')[0];
+const exportBtn=document.getElementById('exportCsv');
+const statusFilter=document.getElementById('statusFilter');
+const searchInput=document.getElementById('searchInput');
+
+function calculateQualification(data){
+  const requiredDegree=['Bachelor','BA','BSc','MA','MSc','PhD'];
+  const requiredSkills=['Child Protection','GBV','MHPSS','Youth Empowerment','Education','Climate Adaptation'];
+  let degreeMatch=requiredDegree.some(deg=>data.educationLevel && data.educationLevel.includes(deg));
+  let skillsMatch=requiredSkills.some(skill=>data.skills && data.skills.includes(skill));
+  if(degreeMatch && skillsMatch) return 'Qualified';
+  if(degreeMatch || skillsMatch) return 'Partially Qualified';
+  return 'Not Qualified';
+}
+
+function loadAdminTable(){
+  adminTable.innerHTML='';
+  for(let i=0;i<localStorage.length;i++){
+    const email=localStorage.key(i);
+    const data=JSON.parse(localStorage.getItem(email));
+    const tr=document.createElement('tr');
+    const status=calculateQualification(data);
+    const submissionDate=new Date().toLocaleDateString();
+    tr.innerHTML=`
+      <td>${data.fullName||''}</td>
+      <td>${data.email||''}</td>
+      <td>${data.phone||''}</td>
+      <td>${data.position||''}</td>
+      <td>${data.experienceYears||''}</td>
+      <td>${status}</td>
+      <td>${submissionDate}</td>
+      <td>${data.coverLetter?'Uploaded':'N/A'}</td>
+      <td>${data.resume?'Uploaded':'N/A'}</td>
+    `;
+    adminTable.appendChild(tr);
+  }
+}
+
+function filterAdminTable(){
+  const term=searchInput.value.toLowerCase();
+  const status=statusFilter.value;
+  Array.from(adminTable.rows).forEach(row=>{
+    const rowStatus=row.cells[5].innerText;
+    const name=row.cells[0].innerText.toLowerCase();
+    const email=row.cells[1].innerText.toLowerCase();
+    const matchTerm=name.includes(term)||email.includes(term);
+    const matchStatus=(status==='All')||(rowStatus===status);
+    row.style.display=(matchTerm && matchStatus)?'':'none';
   });
+}
 
-  // Search box toggle
-  const searchIcon = document.getElementById('search-icon');
-  const searchBox = document.getElementById('search-box');
-  searchIcon.addEventListener('click', () => {
-    searchBox.style.display = searchBox.style.display === 'inline-block' ? 'none' : 'inline-block';
-    searchBox.focus();
-  });
+exportBtn.addEventListener('click',()=>{
+  let csv=[];
+  const headers=Array.from(adminTable.parentElement.querySelectorAll('th')).map(th=>th.innerText);
+  csv.push(headers.join(','));
+  Array.from(adminTable.rows).forEach(row=>{ if(row.style.display!=='none'){ let rowData=Array.from(row.cells).map(cell=>`"${cell.innerText}"`); csv.push(rowData.join(',')); }});
+  const blob=new Blob([csv.join('\n')],{type:'text/csv'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a'); a.href=url; a.download='applications.csv'; a.click(); URL.revokeObjectURL(url);
+});
 
-  // Back to top button
-  const topButton = document.getElementById("backToTop");
-  window.onscroll = function() {
-    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-      topButton.style.display = "block";
-    } else {
-      topButton.style.display = "none";
-    }
-  };
-  topButton.addEventListener("click", function() {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
+statusFilter.addEventListener('change',filterAdminTable);
+searchInput.addEventListener('input',filterAdminTable);
 
-  // Application form logic (simplified)
-  const startButton = document.getElementById('startApplication');
-  const formContainer = document.getElementById('applicationForm');
-  const returningDiv = document.getElementById('returningApplicant');
-
-  startButton.addEventListener('click', () => {
-    const email = document.getElementById('applicantEmail').value;
-    if(email.trim() === "") { alert("Please enter your email."); return; }
-
-    // Check for previous applications (mock logic)
-    if(localStorage.getItem(email)) {
-      returningDiv.classList.remove('hidden');
-    } else {
-      formContainer.classList.remove('hidden');
-    }
-  });
-
-  document.getElementById('usePrevious').addEventListener('click', () => {
-    const email = document.getElementById('applicantEmail').value;
-    const data = JSON.parse(localStorage.getItem(email));
-    if(data){
-      Object.keys(data).forEach(key => {
-        const field = document.getElementById(key);
-        if(field) field.value = data[key];
-      });
-    }
-    formContainer.classList.remove('hidden');
-    returningDiv.classList.add('hidden');
-  });
-
-  document.getElementById('applyManual').addEventListener('click', () => {
-    formContainer.classList.remove('hidden');
-    returningDiv.classList.add('hidden');
-  });
-
-  document.getElementById('applicationForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    const email = document.getElementById('email').value;
-    const formData = {};
-    Array.from(this.elements).forEach(el => { if(el.id) formData[el.id] = el.value; });
-    localStorage.setItem(email, JSON.stringify(formData));
-    alert("Application submitted successfully!");
-    this.reset();
-  });
-
-  // Highlight search in accordion
-  searchBox.addEventListener('keypress', function(e){
-    if(e.key === 'Enter'){
-      e.preventDefault();
-      const term = this.value.toLowerCase();
-      let firstMatch = null;
-      document.querySelectorAll('.accordion-content, .accordion-header').forEach(el => {
-        el.innerHTML = el.innerHTML.replace(/<span class="highlight">|<\/span>/g, '');
-        if(el.textContent.toLowerCase().includes(term) && term !== ""){
-          el.parentElement.classList.add('active');
-          const regex = new RegExp(`(${term})`, 'gi');
-          el.innerHTML = el.innerHTML.replace(regex, '<span class="highlight">$1</span>');
-          if(!firstMatch) firstMatch = el;
-        }
-      });
-      if(firstMatch) firstMatch.scrollIntoView({ behavior: "smooth", block: "center" });
-      else alert(`No results found for "${term}".`);
-    }
-  });
+loadAdminTable();
 </script>
 </body>
 </html>
+
