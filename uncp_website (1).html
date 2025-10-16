@@ -11,7 +11,7 @@ header img { height: 55px; }
 nav { display: flex; align-items: center; }
 nav a { color: white; margin: 0 10px; text-decoration: none; font-weight: 500; }
 nav a:hover { text-decoration: underline; }
-@keyframes pulse { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,140,0, 0.6); } 70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255,140,0, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,140,0, 0); } }
+@keyframes pulse { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,140,0,0.6); } 70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255,140,0,0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,140,0,0); } }
 .donate-btn { background: orange; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: background 0.3s; animation: pulse 2.5s infinite; }
 .donate-btn:hover { background: darkorange; }
 .search-box { display: none; margin-left: 10px; padding: 5px; border-radius: 5px; border: none; }
@@ -24,7 +24,7 @@ h1, h2, h3, h4 { color: #003366; }
 .accordion-item.active .accordion-header::after { transform: rotate(90deg); }
 .accordion-header:hover { background: #e1e1e1; }
 .accordion-content { max-height: 0; overflow: hidden; background: #fafafa; transition: max-height 0.4s ease, padding 0.3s ease; padding: 0 10px; }
-.accordion-item.active .accordion-content { max-height: 800px; padding: 15px; border-left: 4px solid orange; background-color: #fff8e1; }
+.accordion-item.active .accordion-content { max-height: 1200px; padding: 15px; border-left: 4px solid orange; background-color: #fff8e1; }
 .highlight { background-color: yellow; transition: background-color 1.5s ease; }
 .impact { display: flex; justify-content: center; gap: 40px; margin: 20px 0; flex-wrap: wrap; }
 .impact div { text-align: center; }
@@ -40,228 +40,192 @@ form button:hover { background: darkorange; }
 #backToTop:hover { background: darkorange; transform: scale(1.1); }
 .container { max-width: 1000px; margin: auto; padding: 20px; background: #f8f8f8; border-radius: 8px; display: block; }
 label { display: block; margin: 10px 0 5px; font-weight: bold; }
-button { padding: 10px 15px; border: none; border-radius: 5px; background: orange; color: #fff; cursor: pointer; font-weight: bold; margin-top: 10px; }
-button:hover { background: darkorange; }
 .hidden { display: none; }
 .prefill-option { margin: 20px 0; padding: 15px; background: #eef; border: 1px solid #99c; border-radius: 5px; }
+.step { display: none; }
+.step.active { display: block; }
 </style>
 </head>
 <body>
+
 <header>
-  <img src="logo.png" alt="UNCP Logo" />
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#donate" class="donate-btn">Donate</a>
-    <a href="javascript:void(0)" id="search-icon">🔍</a>
-    <input type="text" id="search-box" class="search-box" placeholder="Type & press Enter..." />
-  </nav>
+<img src="logo.png" alt="UNCP Logo" />
+<nav>
+<a href="#home">Home</a>
+<a href="#donate" class="donate-btn">Donate</a>
+<a href="javascript:void(0)" id="search-icon">🔍</a>
+<input type="text" id="search-box" class="search-box" placeholder="Type & press Enter..." />
+</nav>
 </header>
 
 <section id="home">
-  <h1>Welcome to United Networks for Civil Protection (UNCP)</h1>
-  <p>We are a community-based non-profit organization incorporated as a company limited by guarantee in Uganda. UNCP works to protect and empower vulnerable children, youth, and communities for a safer, more resilient society.</p>
+<h1>Welcome to United Networks for Civil Protection (UNCP)</h1>
+<p>We are a community-based non-profit organization incorporated as a company limited by guarantee in Uganda. UNCP works to protect and empower vulnerable children, youth, and communities for a safer, more resilient society.</p>
 
-  <div class="impact">
-    <div><h2>20+</h2><p>Community Projects</p></div>
-    <div><h2>5</h2><p>Active Donors</p></div>
-  </div>
+<div class="impact">
+<div><h2>20+</h2><p>Community Projects</p></div>
+<div><h2>5</h2><p>Active Donors</p></div>
+</div>
 
-  <div class="accordion">
-    <div class="accordion-item">
-      <button class="accordion-header">About UNCP</button>
-      <div class="accordion-content">
-        <p><strong>Type:</strong> Community-Based Organization</p>
-        <p><strong>Incorporated as:</strong> Company Limited by Guarantee in Uganda</p>
-        <p><strong>Founded:</strong> 2018</p>
-        <p><strong>Mission:</strong> To protect and empower vulnerable children, youth, and communities.</p>
-        <p><strong>Vision:</strong> A safe, inclusive, and resilient society where every child and vulnerable person thrives.</p>
-      </div>
-    </div>
+<div class="accordion">
+<div class="accordion-item">
+<button class="accordion-header">About UNCP</button>
+<div class="accordion-content">
+<p><strong>Type:</strong> Community-Based Organization</p>
+<p><strong>Incorporated as:</strong> Company Limited by Guarantee in Uganda</p>
+<p><strong>Founded:</strong> 2018</p>
+<p><strong>Mission:</strong> To protect and empower vulnerable children, youth, and communities.</p>
+<p><strong>Vision:</strong> A safe, inclusive, and resilient society where every child and vulnerable person thrives.</p>
+</div>
+</div>
 
-    <div class="accordion-item">
-      <button class="accordion-header">What We Do</button>
-      <div class="accordion-content">
-        <p>UNCP delivers holistic, community-led interventions in child protection, GBV prevention, MHPSS, youth empowerment, inclusive education, and climate change adaptation.</p>
-      </div>
-    </div>
+<div class="accordion-item">
+<button class="accordion-header">What We Do</button>
+<div class="accordion-content">
+<p>UNCP delivers holistic, community-led interventions in child protection, GBV prevention, MHPSS, youth empowerment, inclusive education, and climate change adaptation.</p>
+</div>
+</div>
 
-    <div class="accordion-item">
-      <button class="accordion-header">Where We Work</button>
-      <div class="accordion-content">
-        <p>We operate in Uganda — particularly in refugee-hosting and vulnerable districts across West Nile and Northern regions.</p>
-      </div>
-    </div>
+<div class="accordion-item">
+<button class="accordion-header">Where We Work</button>
+<div class="accordion-content">
+<p>We operate in Uganda — particularly in refugee-hosting and vulnerable districts across West Nile and Northern regions.</p>
+</div>
+</div>
 
-    <div class="accordion-item">
-      <button class="accordion-header">News and Stories</button>
-      <div class="accordion-content">
-        <p>Stay updated with stories of impact, new projects, and inspiring community transformation led by UNCP.</p>
-      </div>
-    </div>
-
-    <div class="accordion-item">
-      <button class="accordion-header">Get Involved</button>
-      <div class="accordion-content">
-        <div class="accordion-item">
-          <button class="accordion-header">Open Positions</button>
-          <div class="accordion-content active">
-            <p>Click on a position to view details or apply.</p>
-
-            <div class="position-item">
-              <h4>Child Protection Case Worker (Volunteer) – Arua City</h4>
-              <p><strong>Duration:</strong> 6 months</p>
-              <p><strong>Application Period:</strong> 10 Sep – 31 Oct 2025</p>
-              <button class="viewJDBtn">View JD</button>
-              <button class="apply-btn">Apply</button>
-
-              <div class="jd-details hidden" style="margin-top:10px; padding:10px; border:1px solid #ccc; border-radius:5px; background:#fff8e1;">
-                <p><strong>Summary:</strong> Provide case management, psychosocial support, and community-based protection for children at risk.</p>
-                <p><strong>Requirements:</strong> Bachelor’s degree in Social Work, Child Protection, or related field; experience working with vulnerable children; willingness to travel to field locations.</p>
-                <p><strong>Responsibilities:</strong> Conduct case management, provide psychosocial support, report on child protection issues, and collaborate with community stakeholders.</p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="accordion-item">
+<button class="accordion-header">Get Involved</button>
+<div class="accordion-content">
+<div class="accordion-item">
+<button class="accordion-header">Open Positions</button>
+<div class="accordion-content active">
+<p>Click on a position to view details or apply.</p>
+<div class="position-item">
+<h4>Funds Raising Volunteer – Arua City, Uganda</h4>
+<p><strong>Application Period:</strong> 16 Oct 2025 – 16 Nov 2025</p>
+<button class="viewJDBtn">View JD</button>
+<button class="apply-btn">Apply</button>
+<div class="jd-details hidden" style="margin-top:10px; padding:10px; border:1px solid #ccc; border-radius:5px; background:#fff8e1;">
+<p><strong>Summary:</strong> UNCP is seeking a passionate and proactive Funds Raising Volunteer to support the organization’s fundraising initiatives. The volunteer will assist in mobilizing resources, identifying potential donors, and implementing fundraising strategies to ensure sustainable support for UNCP’s programs.</p>
+<p><strong>Key Responsibilities:</strong> Support planning and execution of fundraising campaigns and events; Identify and engage donors, sponsors, and partners; Assist in drafting proposals, letters, communications; Maintain donor records; Promote UNCP’s mission; Collaborate with team for innovative strategies.</p>
+<p><strong>Qualifications:</strong> Diploma in Social Sciences, Business Admin, Marketing, PR, Development Studies or related; Strong communication and interpersonal skills; Interest in fundraising and community engagement; Ability to work independently and in teams; Basic knowledge of fundraising strategies; Commitment to UNCP’s mission.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
 
 <div class="container" id="applicationFormContainer">
-  <h2>Application Form</h2>
-  <p>Please complete all required fields (*). You can use your previous application if you applied before.</p>
+<h2>Application Form</h2>
+<p>Please complete all required fields (*). You can use your previous application if you applied before.</p>
+<div class="prefill-option">
+<button type="button" id="usePreviousBtn">Use Previous Application</button>
+<button type="button" id="applyManuallyBtn">Apply Manually</button>
+</div>
 
-  <div class="prefill-option">
-    <button type="button" id="usePreviousBtn">Use Previous Application</button>
-    <button type="button" id="applyManuallyBtn">Apply Manually</button>
-  </div>
+<form id="careerForm">
+<!-- Step 1: My Information -->
+<div class="step active" id="step1">
+<h3>My Information</h3>
+<label>Email*</label><input type="email" id="email" required>
+<label>Full Name*</label><input type="text" id="fullName" required>
+<label>Password*</label><input type="password" id="password" required>
+<label>Verify Password*</label><input type="password" id="verifyPassword" required>
+<label>How Did You Hear About Us?*</label>
+<select id="hearAbout" required>
+<option value="">Select</option>
+<option>UNCP Career Page</option>
+<option>Social Media</option>
+<option>Newspaper</option>
+<option>Staff of UNCP</option>
+<option>Others</option>
+</select>
+<label><input type="checkbox" id="terms" required> Yes, I have read and consent to the Terms & Conditions and Data Privacy Statement</label>
+<button type="button" id="next1">Save & Continue</button>
+</div>
 
-  <form id="careerForm">
+<!-- Step 2: Experience (dynamic) -->
+<div class="step" id="step2">
+<h3>Work Experience</h3>
+<div id="experienceContainer"></div>
+<button type="button" id="addExperience">Add Experience</button>
+<button type="button" id="back2">Back</button>
+<button type="button" id="next2">Save & Continue</button>
+</div>
 
-    <!-- Step 1: My Information -->
-    <div class="form-step">
-      <label>How Did You Hear About Us?*</label>
-      <select id="heardFrom" required>
-        <option value="">Select</option>
-        <option>UNCP Career Page</option>
-        <option>Social Media</option>
-        <option>News Paper</option>
-        <option>Staff of UNCP</option>
-        <option>Others</option>
-      </select>
-      <label>Full Name*</label>
-      <input type="text" id="fullName" required />
-      <label>Email*</label>
-      <input type="email" id="email" required />
-      <label>Phone*</label>
-      <input type="text" id="phone" required />
-      <button type="button" class="nextBtn">Save & Continue →</button>
-    </div>
+<!-- Step 3: Education -->
+<div class="step" id="step3">
+<h3>Education</h3>
+<div id="educationContainer"></div>
+<button type="button" id="addEducation">Add Education</button>
+<button type="button" id="back3">Back</button>
+<button type="button" id="next3">Save & Continue</button>
+</div>
 
-    <!-- Step 2: Experience -->
-    <div class="form-step hidden">
-      <h3>Work Experience</h3>
-      <div id="experienceContainer">
-        <div class="experience-item">
-          <label>Position Title*</label><input type="text" class="expTitle" required />
-          <label>Organization*</label><input type="text" class="expOrg" required />
-          <label>From*</label><input type="month" class="expFrom" required />
-          <label>To*</label><input type="month" class="expTo" required />
-          <label>Summary*</label><textarea class="expSummary" maxlength="1000" required></textarea>
-        </div>
-      </div>
-      <button type="button" id="addExperience">Add Another Experience</button>
-      <button type="button" class="backBtn">← Back</button>
-      <button type="button" class="nextBtn">Save & Continue →</button>
-    </div>
+<!-- Step 4: Certifications -->
+<div class="step" id="step4">
+<h3>Certifications (Optional)</h3>
+<div id="certContainer"></div>
+<button type="button" id="addCert">Add Certification</button>
+<button type="button" id="back4">Back</button>
+<button type="button" id="next4">Save & Continue</button>
+</div>
 
-    <!-- Step 3: Education -->
-    <div class="form-step hidden">
-      <h3>Education</h3>
-      <div id="educationContainer">
-        <div class="education-item">
-          <label>Degree*</label><input type="text" class="eduDegree" required />
-          <label>Institution*</label><input type="text" class="eduInst" required />
-          <label>Year of Graduation*</label><input type="number" class="eduYear" required />
-        </div>
-      </div>
-      <button type="button" id="addEducation">Add Another Education</button>
-      <button type="button" class="backBtn">← Back</button>
-      <button type="button" class="nextBtn">Save & Continue →</button>
-    </div>
+<!-- Step 5: Languages -->
+<div class="step" id="step5">
+<h3>Languages</h3>
+<label>Select Languages*</label>
+<select id="languages" multiple>
+<option>English</option><option>Lugbarati</option><option>Alur</option><option>Acholi</option><option>Kakwa</option><option>Ma'di</option>
+</select>
+<button type="button" id="back5">Back</button>
+<button type="button" id="next5">Save & Continue</button>
+</div>
 
-    <!-- Step 4: Certifications -->
-    <div class="form-step hidden">
-      <h3>Certifications (Optional)</h3>
-      <label>Name of Certification</label>
-      <input type="text" id="certName" />
-      <label>Issuing Organization</label>
-      <input type="text" id="certOrg" />
-      <button type="button" class="backBtn">← Back</button>
-      <button type="button" class="nextBtn">Save & Continue →</button>
-    </div>
+<!-- Step 6: Skills -->
+<div class="step" id="step6">
+<h3>Skills</h3>
+<label>Select Skills*</label>
+<select id="skills" multiple>
+<option>Child Protection</option>
+<option>GBV Prevention</option>
+<option>MHPSS</option>
+<option>Youth Empowerment</option>
+<option>Inclusive Education</option>
+<option>Climate Change Adaptation</option>
+<option>Fundraising</option>
+<option>Community Engagement</option>
+<option>Project Management</option>
+</select>
+<button type="button" id="back6">Back</button>
+<button type="button" id="next6">Save & Continue</button>
+</div>
 
-    <!-- Step 5: Languages -->
-    <div class="form-step hidden">
-      <h3>Languages</h3>
-      <select id="languages" multiple>
-        <option>Lugbarati</option>
-        <option>Alur</option>
-        <option>Acholi</option>
-        <option>Kakwa</option>
-        <option>Ma'di</option>
-        <option>English</option>
-        <option>French</option>
-        <option>Other</option>
-      </select>
-      <button type="button" class="backBtn">← Back</button>
-      <button type="button" class="nextBtn">Save & Continue →</button>
-    </div>
+<!-- Step 7: Application Questions -->
+<div class="step" id="step7">
+<h3>Application Questions</h3>
+<label>How have your achievements and operational experience prepared you for this position?*</label>
+<textarea id="q1" maxlength="1500" required></textarea>
+<label>Please describe any skills and competencies relevant to this position.*</label>
+<textarea id="q2" maxlength="1500" required></textarea>
+<label>How does this position align with your career aspirations?*</label>
+<textarea id="q3" maxlength="1500" required></textarea>
+<button type="button" id="back7">Back</button>
+<button type="submit">Submit Application</button>
+</div>
 
-    <!-- Step 6: Skills -->
-    <div class="form-step hidden">
-      <h3>Skills</h3>
-      <select id="skills" multiple>
-        <option>Child Protection</option>
-        <option>GBV Prevention</option>
-        <option>Psychosocial Support</option>
-        <option>Youth Empowerment</option>
-        <option>Inclusive Education</option>
-        <option>Climate Change Adaptation</option>
-      </select>
-      <button type="button" class="backBtn">← Back</button>
-      <button type="button" class="nextBtn">Save & Continue →</button>
-    </div>
-
-    <!-- Step 7: Application Questions -->
-    <div class="form-step hidden">
-      <h3>Application Questions</h3>
-      <label>1. How have your achievements and operational experience to date prepared you for this position?*</label>
-      <textarea id="q1" maxlength="1500" required></textarea>
-      <label>2. Please describe any skills and competencies you have, and which may be of particular relevance to this position.*</label>
-      <textarea id="q2" maxlength="1500" required></textarea>
-      <label>3. How does this position align with your career aspirations?*</label>
-      <textarea id="q3" maxlength="1500" required></textarea>
-      <button type="button" class="backBtn">← Back</button>
-      <button type="submit">Submit Application</button>
-    </div>
-
-  </form>
+</form>
 </div>
 
 <footer>
-  <img src="logo.png" alt="UNCP Logo" />
-  <p>Contact us: uncip2019@gmail.com | +256702398687 | +256779576538</p>
-  <div class="social-icons">
-    <a href="#">📘</a>
-    <a href="#">🐦</a>
-    <a href="#">📸</a>
-    <a href="#">▶️</a>
-    <a href="#">🎵</a>
-    <a href="#">💼</a>
-  </div>
-  <a href="#donate" class="donate-btn">Donate</a>
+<img src="logo.png" alt="UNCP Logo" />
+<p>Contact us: uncip2019@gmail.com | +256702398687 | +256779576538</p>
+<div class="social-icons">
+<a href="#">📘</a><a href="#">🐦</a><a href="#">📸</a><a href="#">▶️</a><a href="#">🎵</a><a href="#">💼</a>
+</div>
+<a href="#donate" class="donate-btn">Donate</a>
 </footer>
 
 <button id="backToTop" title="Back to Top">↑</button>
@@ -269,176 +233,89 @@ button:hover { background: darkorange; }
 <script>
 // Accordion
 document.querySelectorAll('.accordion-header').forEach(button => {
-  button.addEventListener('click', () => {
-    const item = button.parentElement;
-    item.classList.toggle('active');
-  });
+button.addEventListener('click', () => { button.parentElement.classList.toggle('active'); });
 });
 
 // Search toggle
 const searchIcon = document.getElementById('search-icon');
 const searchBox = document.getElementById('search-box');
-searchIcon.addEventListener('click', () => {
-  searchBox.style.display = searchBox.style.display === 'inline-block' ? 'none' : 'inline-block';
-  searchBox.focus();
-});
+searchIcon.addEventListener('click', () => { searchBox.style.display = searchBox.style.display === 'inline-block' ? 'none' : 'inline-block'; searchBox.focus(); });
 
 // Back to top
 const topButton = document.getElementById("backToTop");
-window.onscroll = function() {
-  if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-    topButton.style.display = "block";
-  } else { topButton.style.display = "none"; }
-};
-topButton.addEventListener("click", function() {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
+window.onscroll = function() { if(document.body.scrollTop>100 || document.documentElement.scrollTop>100) { topButton.style.display="block"; } else { topButton.style.display="none"; } };
+topButton.addEventListener("click", function(){ window.scrollTo({ top:0, behavior:"smooth" }); });
 
-// Multi-step form
-const steps = document.querySelectorAll('.form-step');
-let currentStep = 0;
-function showStep(step) {
-  steps.forEach((s,i)=>s.classList.toggle('hidden', i!==step));
-  steps[step].scrollIntoView({behavior:"smooth"});
-}
-showStep(currentStep);
-
-document.querySelectorAll('.nextBtn').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    if(currentStep < steps.length-1){ currentStep++; showStep(currentStep); }
-  });
-});
-document.querySelectorAll('.backBtn').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    if(currentStep > 0){ currentStep--; showStep(currentStep); }
-  });
-});
-
-// Add Experience / Education
-document.getElementById('addExperience').addEventListener('click', ()=>{
-  const container = document.getElementById('experienceContainer');
-  if(container.children.length < 4){
-    const div = container.firstElementChild.cloneNode(true);
-    div.querySelectorAll('input,textarea').forEach(el=>el.value='');
-    container.appendChild(div);
-  }
-});
-document.getElementById('addEducation').addEventListener('click', ()=>{
-  const container = document.getElementById('educationContainer');
-  if(container.children.length < 4){
-    const div = container.firstElementChild.cloneNode(true);
-    div.querySelectorAll('input').forEach(el=>el.value='');
-    container.appendChild(div);
-  }
-});
-
-// Toggle Job Description
+// View JD toggle
 document.querySelectorAll('.viewJDBtn').forEach(btn=>{
-  btn.addEventListener('click', ()=>{
-    const jd = btn.nextElementSibling; 
-    jd.classList.toggle('hidden');
-    jd.scrollIntoView({behavior:'smooth', block:'center'});
-  });
+btn.addEventListener('click', ()=>{
+btn.nextElementSibling.classList.toggle('hidden');
+});
 });
 
 // Apply button scrolls to form
 document.querySelectorAll('.apply-btn').forEach(btn=>{
-  btn.addEventListener('click', e=>{
-    e.preventDefault();
-    document.getElementById('applicationFormContainer').scrollIntoView({behavior:"smooth"});
-    currentStep = 0;
-    showStep(currentStep);
-  });
+btn.addEventListener('click', e=>{
+e.preventDefault();
+document.getElementById('applicationFormContainer').scrollIntoView({behavior:"smooth"});
+});
 });
 
-// Pre-fill logic
-function loadPreviousApplication() {
-  const data = JSON.parse(localStorage.getItem('uncpPreviousApplicant'));
-  if(!data) return;
-  document.getElementById('heardFrom').value = data.heardFrom || '';
-  document.getElementById('fullName').value = data.fullName || '';
-  document.getElementById('email').value = data.email || '';
-  document.getElementById('phone').value = data.phone || '';
-
-  const expContainer = document.getElementById('experienceContainer'); expContainer.innerHTML='';
-  data.experience?.forEach(exp=>{
-    const div = document.createElement('div'); div.classList.add('experience-item');
-    div.innerHTML = `
-      <label>Position Title*</label><input type="text" class="expTitle" required value="${exp.title}" />
-      <label>Organization*</label><input type="text" class="expOrg" required value="${exp.org}" />
-      <label>From*</label><input type="month" class="expFrom" required value="${exp.from}" />
-      <label>To*</label><input type="month" class="expTo" required value="${exp.to}" />
-      <label>Summary*</label><textarea class="expSummary" maxlength="1000" required>${exp.summary}</textarea>
-    `;
-    expContainer.appendChild(div);
-  });
-
-  const eduContainer = document.getElementById('educationContainer'); eduContainer.innerHTML='';
-  data.education?.forEach(edu=>{
-    const div = document.createElement('div'); div.classList.add('education-item');
-    div.innerHTML = `
-      <label>Degree*</label><input type="text" class="eduDegree" required value="${edu.degree}" />
-      <label>Institution*</label><input type="text" class="eduInst" required value="${edu.institution}" />
-      <label>Year of Graduation*</label><input type="number" class="eduYear" required value="${edu.year}" />
-    `;
-    eduContainer.appendChild(div);
-  });
-
-  document.getElementById('certName').value = data.certName || '';
-  document.getElementById('certOrg').value = data.certOrg || '';
-
-  const langs = document.getElementById('languages');
-  Array.from(langs.options).forEach(opt=>{ if(data.languages?.includes(opt.value)) opt.selected=true; });
-
-  const skills = document.getElementById('skills');
-  Array.from(skills.options).forEach(opt=>{ if(data.skills?.includes(opt.value)) opt.selected=true; });
-
-  document.getElementById('q1').value = data.q1 || '';
-  document.getElementById('q2').value = data.q2 || '';
-  document.getElementById('q3').value = data.q3 || '';
-}
-
-// Save application
-document.getElementById('careerForm').addEventListener('submit', e=>{
-  e.preventDefault();
-  const experience = Array.from(document.querySelectorAll('.experience-item')).map(exp=>({
-    title: exp.querySelector('.expTitle').value,
-    org: exp.querySelector('.expOrg').value,
-    from: exp.querySelector('.expFrom').value,
-    to: exp.querySelector('.expTo').value,
-    summary: exp.querySelector('.expSummary').value
-  }));
-  const education = Array.from(document.querySelectorAll('.education-item')).map(edu=>({
-    degree: edu.querySelector('.eduDegree').value,
-    institution: edu.querySelector('.eduInst').value,
-    year: edu.querySelector('.eduYear').value
-  }));
-  const data = {
-    heardFrom: document.getElementById('heardFrom').value,
-    fullName: document.getElementById('fullName').value,
-    email: document.getElementById('email').value,
-    phone: document.getElementById('phone').value,
-    experience, education,
-    certName: document.getElementById('certName').value,
-    certOrg: document.getElementById('certOrg').value,
-    languages: Array.from(document.getElementById('languages').selectedOptions).map(opt=>opt.value),
-    skills: Array.from(document.getElementById('skills').selectedOptions).map(opt=>opt.value),
-    q1: document.getElementById('q1').value,
-    q2: document.getElementById('q2').value,
-    q3: document.getElementById('q3').value
-  };
-  localStorage.setItem('uncpPreviousApplicant', JSON.stringify(data));
-  alert("Thank you, " + data.fullName + ". Your application has been received. We’ll contact you after review.");
-  e.target.reset(); currentStep=0; showStep(currentStep);
-});
-
-// Pre-fill trigger
+// Pre-fill previous application (example using localStorage)
 document.getElementById('usePreviousBtn').addEventListener('click', ()=>{
-  loadPreviousApplication(); currentStep=0; showStep(currentStep);
-  alert('Your previous application has been loaded. You can edit fields or upload new documents if needed.');
+let prev=JSON.parse(localStorage.getItem('uncpPreviousApplicant')||'{}');
+if(Object.keys(prev).length===0){ alert("No previous application found."); return; }
+document.getElementById('careerForm').querySelectorAll('input, textarea').forEach(input=>{
+if(prev[input.id]) input.value=prev[input.id];
 });
+alert("Previous application loaded. You can edit fields or upload new documents.");
+});
+
+// Apply manually
 document.getElementById('applyManuallyBtn').addEventListener('click', ()=>{
-  currentStep=0; showStep(currentStep);
+document.getElementById('careerForm').reset();
+alert("You can now fill the application manually.");
+});
+
+// Multi-step form
+let currentStep=1;
+function showStep(step){ document.querySelectorAll('.step').forEach(s=>s.classList.remove('active')); document.getElementById('step'+step).classList.add('active'); }
+document.getElementById('next1').onclick=function(){ showStep(2); };
+document.getElementById('back2').onclick=function(){ showStep(1); };
+document.getElementById('next2').onclick=function(){ showStep(3); };
+document.getElementById('back3').onclick=function(){ showStep(2); };
+document.getElementById('next3').onclick=function(){ showStep(4); };
+document.getElementById('back4').onclick=function(){ showStep(3); };
+document.getElementById('next4').onclick=function(){ showStep(5); };
+document.getElementById('back5').onclick=function(){ showStep(4); };
+document.getElementById('next5').onclick=function(){ showStep(6); };
+document.getElementById('back6').onclick=function(){ showStep(5); };
+document.getElementById('next6').onclick=function(){ showStep(7); };
+document.getElementById('back7').onclick=function(){ showStep(6); };
+
+// Add Experience / Education dynamically
+let expCount=0; let eduCount=0;
+document.getElementById('addExperience').onclick=function(){
+if(expCount>=4){ alert("Maximum 4 experiences allowed."); return; }
+expCount++;
+let div=document.createElement('div'); div.innerHTML=`<label>Job Title*</label><input type="text" name="jobTitle${expCount}" required><label>Organization*</label><input type="text" name="org${expCount}" required><label>Duration*</label><input type="text" name="duration${expCount}" required>`;
+document.getElementById('experienceContainer').appendChild(div);
+};
+document.getElementById('addEducation').onclick=function(){
+if(eduCount>=4){ alert("Maximum 4 education entries allowed."); return; }
+eduCount++;
+let div=document.createElement('div'); div.innerHTML=`<label>Degree / Diploma*</label><input type="text" name="degree${eduCount}" required><label>Institution*</label><input type="text" name="institution${eduCount}" required><label>Year*</label><input type="text" name="year${eduCount}" required>`;
+document.getElementById('educationContainer').appendChild(div);
+};
+
+// Form submission
+document.getElementById('careerForm').addEventListener('submit', function(e){
+e.preventDefault();
+alert("Thank you, "+document.getElementById('fullName').value+". Your application has been received. We’ll contact you after review.");
+let formData={};
+document.querySelectorAll('#careerForm input, #careerForm textarea, #careerForm select').forEach(i=>{ formData[i.id||i.name]=i.value; });
+localStorage.setItem('uncpPreviousApplicant', JSON.stringify(formData));
+this.reset(); showStep(1);
 });
 </script>
 </body>
