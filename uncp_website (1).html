@@ -16,7 +16,7 @@ nav a:hover { text-decoration: underline; }
 .donate-btn:hover { background: darkorange; }
 .search-box { display: none; margin-left: 10px; padding: 5px; border-radius: 5px; border: none; }
 section { padding: 30px 20px; max-width: 900px; margin: auto; }
-h1, h2 { color: #003366; }
+h1, h2, h3, h4 { color: #003366; }
 .accordion { border-radius: 5px; margin: 15px 0; overflow: hidden; }
 .accordion-item { border-bottom: 1px solid #ccc; }
 .accordion-header { width: 100%; text-align: left; padding: 10px; background: #f2f2f2; border: none; font-size: 16px; cursor: pointer; font-weight: bold; transition: background 0.3s; position: relative; }
@@ -24,7 +24,7 @@ h1, h2 { color: #003366; }
 .accordion-item.active .accordion-header::after { transform: rotate(90deg); }
 .accordion-header:hover { background: #e1e1e1; }
 .accordion-content { max-height: 0; overflow: hidden; background: #fafafa; transition: max-height 0.4s ease, padding 0.3s ease; padding: 0 10px; }
-.accordion-item.active .accordion-content { max-height: 800px; padding: 15px; border-left: 4px solid orange; background-color: #fff8e1; } /* highlight active */
+.accordion-item.active .accordion-content { max-height: 800px; padding: 15px; border-left: 4px solid orange; background-color: #fff8e1; }
 .highlight { background-color: yellow; transition: background-color 1.5s ease; }
 .impact { display: flex; justify-content: center; gap: 40px; margin: 20px 0; flex-wrap: wrap; }
 .impact div { text-align: center; }
@@ -44,9 +44,6 @@ button { padding: 10px 15px; border: none; border-radius: 5px; background: orang
 button:hover { background: darkorange; }
 .hidden { display: none; }
 .prefill-option { margin: 20px 0; padding: 15px; background: #eef; border: 1px solid #99c; border-radius: 5px; }
-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-th { background: #003366; color: #fff; cursor: pointer; }
 </style>
 </head>
 <body>
@@ -108,16 +105,22 @@ th { background: #003366; color: #fff; cursor: pointer; }
         <div class="accordion-item">
           <button class="accordion-header">Open Positions</button>
           <div class="accordion-content active">
-            <p>Click on a position to view details and apply.</p>
-            <div class="accordion-item">
-              <button class="accordion-header">Child Protection Case Worker (Volunteer) – Arua City</button>
-              <div class="accordion-content active">
-                <p><strong>Duration:</strong> 6 months</p>
-                <p><strong>Application Period:</strong> 10th September – 31st October 2025</p>
+            <p>Click on a position to view details or apply.</p>
+
+            <div class="position-item">
+              <h4>Child Protection Case Worker (Volunteer) – Arua City</h4>
+              <p><strong>Duration:</strong> 6 months</p>
+              <p><strong>Application Period:</strong> 10 Sep – 31 Oct 2025</p>
+              <button class="viewJDBtn">View JD</button>
+              <button class="apply-btn">Apply</button>
+
+              <div class="jd-details hidden" style="margin-top:10px; padding:10px; border:1px solid #ccc; border-radius:5px; background:#fff8e1;">
                 <p><strong>Summary:</strong> Provide case management, psychosocial support, and community-based protection for children at risk.</p>
-                <a href="#applicationFormContainer" class="donate-btn apply-btn">Apply Now</a>
+                <p><strong>Requirements:</strong> Bachelor’s degree in Social Work, Child Protection, or related field; experience working with vulnerable children; willingness to travel to field locations.</p>
+                <p><strong>Responsibilities:</strong> Conduct case management, provide psychosocial support, report on child protection issues, and collaborate with community stakeholders.</p>
               </div>
             </div>
+
           </div>
         </div>
       </div>
@@ -135,15 +138,15 @@ th { background: #003366; color: #fff; cursor: pointer; }
   </div>
 
   <form id="careerForm">
+
     <!-- Step 1: My Information -->
-    <div class="form-step" id="step1">
-      <h3>My Information</h3>
+    <div class="form-step">
       <label>How Did You Hear About Us?*</label>
       <select id="heardFrom" required>
-        <option value="">-- Select --</option>
-        <option>UNCP career page</option>
+        <option value="">Select</option>
+        <option>UNCP Career Page</option>
         <option>Social Media</option>
-        <option>Newspaper</option>
+        <option>News Paper</option>
         <option>Staff of UNCP</option>
         <option>Others</option>
       </select>
@@ -156,13 +159,9 @@ th { background: #003366; color: #fff; cursor: pointer; }
       <button type="button" class="nextBtn">Save & Continue →</button>
     </div>
 
-    <!-- Steps 2-7 (Experience, Education, Certifications, Languages, Skills, Questions) -->
-    <!-- Code from previous multi-step container pasted here -->
-    <!-- Include experience/education add buttons, mandatory cover letter/resume upload, back/save continue buttons -->
-
-    <!-- Step 2 -->
-    <div class="form-step hidden" id="step2">
-      <h3>My Experience</h3>
+    <!-- Step 2: Experience -->
+    <div class="form-step hidden">
+      <h3>Work Experience</h3>
       <div id="experienceContainer">
         <div class="experience-item">
           <label>Position Title*</label><input type="text" class="expTitle" required />
@@ -172,15 +171,13 @@ th { background: #003366; color: #fff; cursor: pointer; }
           <label>Summary*</label><textarea class="expSummary" maxlength="1000" required></textarea>
         </div>
       </div>
-      <button type="button" id="addExperience">+ Add Another Experience</button>
-      <div style="margin-top:10px;">
-        <button type="button" class="backBtn">← Back</button>
-        <button type="button" class="nextBtn">Save & Continue →</button>
-      </div>
+      <button type="button" id="addExperience">Add Another Experience</button>
+      <button type="button" class="backBtn">← Back</button>
+      <button type="button" class="nextBtn">Save & Continue →</button>
     </div>
 
     <!-- Step 3: Education -->
-    <div class="form-step hidden" id="step3">
+    <div class="form-step hidden">
       <h3>Education</h3>
       <div id="educationContainer">
         <div class="education-item">
@@ -189,84 +186,67 @@ th { background: #003366; color: #fff; cursor: pointer; }
           <label>Year of Graduation*</label><input type="number" class="eduYear" required />
         </div>
       </div>
-      <button type="button" id="addEducation">+ Add Another Education</button>
-      <div style="margin-top:10px;">
-        <button type="button" class="backBtn">← Back</button>
-        <button type="button" class="nextBtn">Save & Continue →</button>
-      </div>
+      <button type="button" id="addEducation">Add Another Education</button>
+      <button type="button" class="backBtn">← Back</button>
+      <button type="button" class="nextBtn">Save & Continue →</button>
     </div>
 
     <!-- Step 4: Certifications -->
-    <div class="form-step hidden" id="step4">
+    <div class="form-step hidden">
       <h3>Certifications (Optional)</h3>
-      <label>Certification Name</label><input type="text" id="certName" />
-      <label>Issuing Organization</label><input type="text" id="certOrg" />
-      <div style="margin-top:10px;">
-        <button type="button" class="backBtn">← Back</button>
-        <button type="button" class="nextBtn">Save & Continue →</button>
-      </div>
+      <label>Name of Certification</label>
+      <input type="text" id="certName" />
+      <label>Issuing Organization</label>
+      <input type="text" id="certOrg" />
+      <button type="button" class="backBtn">← Back</button>
+      <button type="button" class="nextBtn">Save & Continue →</button>
     </div>
 
     <!-- Step 5: Languages -->
-    <div class="form-step hidden" id="step5">
+    <div class="form-step hidden">
       <h3>Languages</h3>
-      <label>Select languages you speak*</label>
-      <select id="languages" multiple required>
+      <select id="languages" multiple>
         <option>Lugbarati</option>
         <option>Alur</option>
         <option>Acholi</option>
         <option>Kakwa</option>
         <option>Ma'di</option>
         <option>English</option>
+        <option>French</option>
         <option>Other</option>
       </select>
-      <div style="margin-top:10px;">
-        <button type="button" class="backBtn">← Back</button>
-        <button type="button" class="nextBtn">Save & Continue →</button>
-      </div>
+      <button type="button" class="backBtn">← Back</button>
+      <button type="button" class="nextBtn">Save & Continue →</button>
     </div>
 
     <!-- Step 6: Skills -->
-    <div class="form-step hidden" id="step6">
+    <div class="form-step hidden">
       <h3>Skills</h3>
-      <label>Select skills relevant to thematic areas*</label>
-      <select id="skills" multiple required>
+      <select id="skills" multiple>
         <option>Child Protection</option>
         <option>GBV Prevention</option>
-        <option>MHPSS</option>
+        <option>Psychosocial Support</option>
         <option>Youth Empowerment</option>
         <option>Inclusive Education</option>
         <option>Climate Change Adaptation</option>
       </select>
-      <div style="margin-top:10px;">
-        <button type="button" class="backBtn">← Back</button>
-        <button type="button" class="nextBtn">Save & Continue →</button>
-      </div>
+      <button type="button" class="backBtn">← Back</button>
+      <button type="button" class="nextBtn">Save & Continue →</button>
     </div>
 
     <!-- Step 7: Application Questions -->
-    <div class="form-step hidden" id="step7">
+    <div class="form-step hidden">
       <h3>Application Questions</h3>
-      <label>1. How have your achievements and operational experience prepared you for this position?* (max 1500 chars)</label>
+      <label>1. How have your achievements and operational experience to date prepared you for this position?*</label>
       <textarea id="q1" maxlength="1500" required></textarea>
-
-      <label>2. Please describe any skills and competencies relevant to this position.* (max 1500 chars)</label>
+      <label>2. Please describe any skills and competencies you have, and which may be of particular relevance to this position.*</label>
       <textarea id="q2" maxlength="1500" required></textarea>
-
-      <label>3. How does this position align with your career aspirations?* (max 1500 chars)</label>
+      <label>3. How does this position align with your career aspirations?*</label>
       <textarea id="q3" maxlength="1500" required></textarea>
-
-      <label>Cover Letter / Motivation Letter* (PDF or DOC)</label>
-      <input type="file" id="coverLetter" accept=".pdf,.doc,.docx" required />
-
-      <label>Resume / CV* (PDF or DOC)</label>
-      <input type="file" id="resume" accept=".pdf,.doc,.docx" required />
-
-      <div style="margin-top:10px;">
-        <button type="button" class="backBtn">← Back</button>
-        <button type="submit">Submit Application</button>
-      </
+      <button type="button" class="backBtn">← Back</button>
+      <button type="submit">Submit Application</button>
     </div>
+
   </form>
 </div>
 
@@ -287,103 +267,179 @@ th { background: #003366; color: #fff; cursor: pointer; }
 <button id="backToTop" title="Back to Top">↑</button>
 
 <script>
-  // Accordion logic
-  document.querySelectorAll('.accordion-header').forEach(button => {
-    button.addEventListener('click', () => {
-      const item = button.parentElement;
-      item.classList.toggle('active');
-    });
+// Accordion
+document.querySelectorAll('.accordion-header').forEach(button => {
+  button.addEventListener('click', () => {
+    const item = button.parentElement;
+    item.classList.toggle('active');
   });
+});
 
-  // Search toggle
-  const searchIcon = document.getElementById('search-icon');
-  const searchBox = document.getElementById('search-box');
-  searchIcon.addEventListener('click', () => {
-    searchBox.style.display = searchBox.style.display === 'inline-block' ? 'none' : 'inline-block';
-    searchBox.focus();
+// Search toggle
+const searchIcon = document.getElementById('search-icon');
+const searchBox = document.getElementById('search-box');
+searchIcon.addEventListener('click', () => {
+  searchBox.style.display = searchBox.style.display === 'inline-block' ? 'none' : 'inline-block';
+  searchBox.focus();
+});
+
+// Back to top
+const topButton = document.getElementById("backToTop");
+window.onscroll = function() {
+  if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+    topButton.style.display = "block";
+  } else { topButton.style.display = "none"; }
+};
+topButton.addEventListener("click", function() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+// Multi-step form
+const steps = document.querySelectorAll('.form-step');
+let currentStep = 0;
+function showStep(step) {
+  steps.forEach((s,i)=>s.classList.toggle('hidden', i!==step));
+  steps[step].scrollIntoView({behavior:"smooth"});
+}
+showStep(currentStep);
+
+document.querySelectorAll('.nextBtn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    if(currentStep < steps.length-1){ currentStep++; showStep(currentStep); }
   });
-
-  // Back to Top
-  const topButton = document.getElementById("backToTop");
-  window.onscroll = function() {
-    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-      topButton.style.display = "block";
-    } else {
-      topButton.style.display = "none";
-    }
-  };
-  topButton.addEventListener("click", function() {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+});
+document.querySelectorAll('.backBtn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    if(currentStep > 0){ currentStep--; showStep(currentStep); }
   });
+});
 
-  // Multi-step form logic
-  const steps = document.querySelectorAll('.form-step');
-  let currentStep = 0;
-  function showStep(step) {
-    steps.forEach((s,i)=>s.classList.toggle('hidden', i!==step));
-    steps[step].scrollIntoView({behavior:"smooth"});
+// Add Experience / Education
+document.getElementById('addExperience').addEventListener('click', ()=>{
+  const container = document.getElementById('experienceContainer');
+  if(container.children.length < 4){
+    const div = container.firstElementChild.cloneNode(true);
+    div.querySelectorAll('input,textarea').forEach(el=>el.value='');
+    container.appendChild(div);
   }
-  showStep(currentStep);
+});
+document.getElementById('addEducation').addEventListener('click', ()=>{
+  const container = document.getElementById('educationContainer');
+  if(container.children.length < 4){
+    const div = container.firstElementChild.cloneNode(true);
+    div.querySelectorAll('input').forEach(el=>el.value='');
+    container.appendChild(div);
+  }
+});
 
-  document.querySelectorAll('.nextBtn').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      if(currentStep < steps.length-1){
-        currentStep++;
-        showStep(currentStep);
-      }
-    });
+// Toggle Job Description
+document.querySelectorAll('.viewJDBtn').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    const jd = btn.nextElementSibling; 
+    jd.classList.toggle('hidden');
+    jd.scrollIntoView({behavior:'smooth', block:'center'});
   });
-  document.querySelectorAll('.backBtn').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      if(currentStep > 0){
-        currentStep--;
-        showStep(currentStep);
-      }
-    });
-  });
+});
 
-  // Add Experience / Education dynamically
-  document.getElementById('addExperience').addEventListener('click', ()=>{
-    const container = document.getElementById('experienceContainer');
-    if(container.children.length < 4){
-      const div = container.firstElementChild.cloneNode(true);
-      div.querySelectorAll('input,textarea').forEach(el=>el.value='');
-      container.appendChild(div);
-    }
-  });
-  document.getElementById('addEducation').addEventListener('click', ()=>{
-    const container = document.getElementById('educationContainer');
-    if(container.children.length < 4){
-      const div = container.firstElementChild.cloneNode(true);
-      div.querySelectorAll('input').forEach(el=>el.value='');
-      container.appendChild(div);
-    }
-  });
-
-  // Use Previous / Apply Manually placeholders
-  document.getElementById('usePreviousBtn').addEventListener('click', ()=>alert('Pre-fill previous application logic to be implemented'));
-  document.getElementById('applyManuallyBtn').addEventListener('click', ()=>alert('Manual application selected'));
-
-  // Form submission
-  document.getElementById('careerForm').addEventListener('submit', e=>{
+// Apply button scrolls to form
+document.querySelectorAll('.apply-btn').forEach(btn=>{
+  btn.addEventListener('click', e=>{
     e.preventDefault();
-    alert("Thank you, " + document.getElementById('fullName').value + ". Your application has been received. We’ll contact you after review.");
-    e.target.reset();
+    document.getElementById('applicationFormContainer').scrollIntoView({behavior:"smooth"});
     currentStep = 0;
     showStep(currentStep);
   });
+});
 
-  // Scroll to form when Apply Now clicked
-  document.querySelectorAll('.apply-btn').forEach(btn=>{
-    btn.addEventListener('click', e=>{
-      e.preventDefault();
-      document.getElementById('applicationFormContainer').scrollIntoView({behavior:"smooth"});
-      currentStep = 0;
-      showStep(currentStep);
-    });
+// Pre-fill logic
+function loadPreviousApplication() {
+  const data = JSON.parse(localStorage.getItem('uncpPreviousApplicant'));
+  if(!data) return;
+  document.getElementById('heardFrom').value = data.heardFrom || '';
+  document.getElementById('fullName').value = data.fullName || '';
+  document.getElementById('email').value = data.email || '';
+  document.getElementById('phone').value = data.phone || '';
+
+  const expContainer = document.getElementById('experienceContainer'); expContainer.innerHTML='';
+  data.experience?.forEach(exp=>{
+    const div = document.createElement('div'); div.classList.add('experience-item');
+    div.innerHTML = `
+      <label>Position Title*</label><input type="text" class="expTitle" required value="${exp.title}" />
+      <label>Organization*</label><input type="text" class="expOrg" required value="${exp.org}" />
+      <label>From*</label><input type="month" class="expFrom" required value="${exp.from}" />
+      <label>To*</label><input type="month" class="expTo" required value="${exp.to}" />
+      <label>Summary*</label><textarea class="expSummary" maxlength="1000" required>${exp.summary}</textarea>
+    `;
+    expContainer.appendChild(div);
   });
 
+  const eduContainer = document.getElementById('educationContainer'); eduContainer.innerHTML='';
+  data.education?.forEach(edu=>{
+    const div = document.createElement('div'); div.classList.add('education-item');
+    div.innerHTML = `
+      <label>Degree*</label><input type="text" class="eduDegree" required value="${edu.degree}" />
+      <label>Institution*</label><input type="text" class="eduInst" required value="${edu.institution}" />
+      <label>Year of Graduation*</label><input type="number" class="eduYear" required value="${edu.year}" />
+    `;
+    eduContainer.appendChild(div);
+  });
+
+  document.getElementById('certName').value = data.certName || '';
+  document.getElementById('certOrg').value = data.certOrg || '';
+
+  const langs = document.getElementById('languages');
+  Array.from(langs.options).forEach(opt=>{ if(data.languages?.includes(opt.value)) opt.selected=true; });
+
+  const skills = document.getElementById('skills');
+  Array.from(skills.options).forEach(opt=>{ if(data.skills?.includes(opt.value)) opt.selected=true; });
+
+  document.getElementById('q1').value = data.q1 || '';
+  document.getElementById('q2').value = data.q2 || '';
+  document.getElementById('q3').value = data.q3 || '';
+}
+
+// Save application
+document.getElementById('careerForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const experience = Array.from(document.querySelectorAll('.experience-item')).map(exp=>({
+    title: exp.querySelector('.expTitle').value,
+    org: exp.querySelector('.expOrg').value,
+    from: exp.querySelector('.expFrom').value,
+    to: exp.querySelector('.expTo').value,
+    summary: exp.querySelector('.expSummary').value
+  }));
+  const education = Array.from(document.querySelectorAll('.education-item')).map(edu=>({
+    degree: edu.querySelector('.eduDegree').value,
+    institution: edu.querySelector('.eduInst').value,
+    year: edu.querySelector('.eduYear').value
+  }));
+  const data = {
+    heardFrom: document.getElementById('heardFrom').value,
+    fullName: document.getElementById('fullName').value,
+    email: document.getElementById('email').value,
+    phone: document.getElementById('phone').value,
+    experience, education,
+    certName: document.getElementById('certName').value,
+    certOrg: document.getElementById('certOrg').value,
+    languages: Array.from(document.getElementById('languages').selectedOptions).map(opt=>opt.value),
+    skills: Array.from(document.getElementById('skills').selectedOptions).map(opt=>opt.value),
+    q1: document.getElementById('q1').value,
+    q2: document.getElementById('q2').value,
+    q3: document.getElementById('q3').value
+  };
+  localStorage.setItem('uncpPreviousApplicant', JSON.stringify(data));
+  alert("Thank you, " + data.fullName + ". Your application has been received. We’ll contact you after review.");
+  e.target.reset(); currentStep=0; showStep(currentStep);
+});
+
+// Pre-fill trigger
+document.getElementById('usePreviousBtn').addEventListener('click', ()=>{
+  loadPreviousApplication(); currentStep=0; showStep(currentStep);
+  alert('Your previous application has been loaded. You can edit fields or upload new documents if needed.');
+});
+document.getElementById('applyManuallyBtn').addEventListener('click', ()=>{
+  currentStep=0; showStep(currentStep);
+});
 </script>
 </body>
 </html>
-
