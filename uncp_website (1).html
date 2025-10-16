@@ -1,49 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>United Networks for Civil Protection (UNCP)</title>
 <style>
-body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff; color: #333; scroll-behavior: smooth; }
-header { display: flex; justify-content: space-between; align-items: center; background: #003366; color: white; padding: 10px 20px; position: sticky; top: 0; z-index: 100; }
-header img { height: 55px; }
-nav { display: flex; align-items: center; }
-nav a { color: white; margin: 0 10px; text-decoration: none; font-weight: 500; }
-nav a:hover { text-decoration: underline; }
-@keyframes pulse { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,140,0,0.6); } 70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255,140,0,0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,140,0,0); } }
-.donate-btn { background: orange; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: background 0.3s; animation: pulse 2.5s infinite; }
-.donate-btn:hover { background: darkorange; }
-.search-box { display: none; margin-left: 10px; padding: 5px; border-radius: 5px; border: none; }
-section { padding: 30px 20px; max-width: 900px; margin: auto; }
-h1, h2, h3, h4 { color: #003366; }
-.accordion { border-radius: 5px; margin: 15px 0; overflow: hidden; }
-.accordion-item { border-bottom: 1px solid #ccc; }
-.accordion-header { width: 100%; text-align: left; padding: 10px; background: #f2f2f2; border: none; font-size: 16px; cursor: pointer; font-weight: bold; transition: background 0.3s; position: relative; }
-.accordion-header::after { content: "▶"; position: absolute; right: 15px; transition: transform 0.3s ease; }
-.accordion-item.active .accordion-header::after { transform: rotate(90deg); }
-.accordion-header:hover { background: #e1e1e1; }
-.accordion-content { max-height: 0; overflow: hidden; background: #fafafa; transition: max-height 0.4s ease, padding 0.3s ease; padding: 0 10px; }
-.accordion-item.active .accordion-content { max-height: 1500px; padding: 15px; border-left: 4px solid orange; background-color: #fff8e1; }
-.highlight { background-color: yellow; transition: background-color 1.5s ease; }
-.impact { display: flex; justify-content: center; gap: 40px; margin: 20px 0; flex-wrap: wrap; }
-.impact div { text-align: center; }
-footer { background: #222; color: white; padding: 20px; text-align: center; margin-top: 30px; position: relative; }
-footer img { height: 40px; float: left; margin-right: 10px; }
-footer .social-icons { margin: 10px 0; }
-footer .social-icons a { margin: 0 5px; color: white; font-size: 20px; text-decoration: none; }
-footer .donate-btn { margin-left: 15px; }
-form input, form textarea, select { width: 100%; padding: 8px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc; }
-form button { background: orange; color: white; border: none; padding: 10px 15px; border-radius: 5px; font-weight: bold; cursor: pointer; transition: background 0.3s; }
-form button:hover { background: darkorange; }
-#backToTop { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 99; font-size: 18px; background: orange; color: white; border: none; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: background 0.3s, transform 0.3s; }
-#backToTop:hover { background: darkorange; transform: scale(1.1); }
-.container { max-width: 1000px; margin: auto; padding: 20px; background: #f8f8f8; border-radius: 8px; display: block; }
-label { display: block; margin: 10px 0 5px; font-weight: bold; }
-.hidden { display: none; }
-.prefill-option { margin: 20px 0; padding: 15px; background: #eef; border: 1px solid #99c; border-radius: 5px; }
-.step { display: none; }
-.step.active { display: block; }
+body { font-family: Arial, sans-serif; margin:0; padding:0; background:#fff; color:#333; scroll-behavior:smooth; }
+header { display:flex; justify-content:space-between; align-items:center; background:#003366; color:white; padding:10px 20px; position:sticky; top:0; z-index:100; }
+header img { height:55px; }
+nav { display:flex; align-items:center; }
+nav a { color:white; margin:0 10px; text-decoration:none; font-weight:500; }
+nav a:hover { text-decoration:underline; }
+@keyframes pulse { 0% {transform:scale(1);box-shadow:0 0 0 0 rgba(255,140,0,0.6);} 70% {transform:scale(1.05);box-shadow:0 0 0 10px rgba(255,140,0,0);} 100% {transform:scale(1);box-shadow:0 0 0 0 rgba(255,140,0,0);} }
+.donate-btn { background:orange; color:white; padding:8px 15px; border-radius:5px; text-decoration:none; font-weight:bold; transition:background 0.3s; animation:pulse 2.5s infinite; }
+.donate-btn:hover { background:darkorange; }
+.search-box { display:none; margin-left:10px; padding:5px; border-radius:5px; border:none; }
+section { padding:30px 20px; max-width:900px; margin:auto; }
+h1,h2,h3,h4 { color:#003366; }
+.accordion { border-radius:5px; margin:15px 0; overflow:hidden; }
+.accordion-item { border-bottom:1px solid #ccc; }
+.accordion-header { width:100%; text-align:left; padding:10px; background:#f2f2f2; border:none; font-size:16px; cursor:pointer; font-weight:bold; position:relative; transition:background 0.3s; }
+.accordion-header::after { content:"▶"; position:absolute; right:15px; transition:transform 0.3s ease; }
+.accordion-item.active .accordion-header::after { transform:rotate(90deg); }
+.accordion-header:hover { background:#e1e1e1; }
+.accordion-content { max-height:0; overflow:hidden; background:#fafafa; transition:max-height 0.4s ease, padding 0.3s ease; padding:0 10px; }
+.accordion-item.active .accordion-content { max-height:1500px; padding:15px; border-left:4px solid orange; background-color:#fff8e1; }
+.highlight { background-color:yellow; transition: background-color 1.5s ease; }
+.impact { display:flex; justify-content:center; gap:40px; margin:20px 0; flex-wrap:wrap; }
+.impact div { text-align:center; }
+footer { background:#222; color:white; padding:20px; text-align:center; margin-top:30px; position:relative; }
+footer img { height:40px; float:left; margin-right:10px; }
+footer .social-icons { margin:10px 0; }
+footer .social-icons a { margin:0 5px; color:white; font-size:20px; text-decoration:none; }
+footer .donate-btn { margin-left:15px; }
+form input, form textarea, select { width:100%; padding:8px; margin-bottom:10px; border-radius:5px; border:1px solid #ccc; }
+form button { background:orange; color:white; border:none; padding:10px 15px; border-radius:5px; font-weight:bold; cursor:pointer; transition:background 0.3s; }
+form button:hover { background:darkorange; }
+#backToTop { display:none; position:fixed; bottom:30px; right:30px; z-index:99; font-size:18px; background:orange; color:white; border:none; border-radius:50%; width:45px; height:45px; cursor:pointer; box-shadow:0 4px 8px rgba(0,0,0,0.2); transition: background 0.3s, transform 0.3s; }
+#backToTop:hover { background:darkorange; transform:scale(1.1); }
+.container { max-width:1000px; margin:auto; padding:20px; background:#f8f8f8; border-radius:8px; display:block; }
+label { display:block; margin:10px 0 5px; font-weight:bold; }
+.hidden { display:none; }
+.prefill-option { margin:20px 0; padding:15px; background:#eef; border:1px solid #99c; border-radius:5px; }
+.step { display:none; }
+.step.active { display:block; }
+table { width:100%; border-collapse:collapse; margin-top:15px; }
+table th, table td { padding:8px; border:1px solid #ccc; text-align:left; }
 </style>
 </head>
 <body>
@@ -95,7 +97,7 @@ label { display: block; margin: 10px 0 5px; font-weight: bold; }
 
 <div class="accordion-item">
 <button class="accordion-header">Get Involved</button>
-<div class="accordion-content">
+<div class="accordion-content" id="get-involved">
 <div class="accordion-item">
 <button class="accordion-header">Open Positions</button>
 <div class="accordion-content active">
@@ -106,9 +108,9 @@ label { display: block; margin: 10px 0 5px; font-weight: bold; }
 <button class="viewJDBtn">View JD</button>
 <button class="apply-btn">Apply</button>
 <div class="jd-details hidden" style="margin-top:10px; padding:10px; border:1px solid #ccc; border-radius:5px; background:#fff8e1;">
-<p><strong>Summary:</strong> UNCP is seeking a passionate and proactive Funds Raising Volunteer to support the organization’s fundraising initiatives. The volunteer will assist in mobilizing resources, identifying potential donors, and implementing fundraising strategies to ensure sustainable support for UNCP’s programs.</p>
-<p><strong>Key Responsibilities:</strong> Support planning and execution of fundraising campaigns and events; Identify and engage donors, sponsors, and partners; Assist in drafting proposals, letters, communications; Maintain donor records; Promote UNCP’s mission; Collaborate with team for innovative strategies.</p>
-<p><strong>Qualifications:</strong> Diploma in Social Sciences, Business Admin, Marketing, PR, Development Studies or related; Strong communication and interpersonal skills; Interest in fundraising and community engagement; Ability to work independently and in teams; Basic knowledge of fundraising strategies; Commitment to UNCP’s mission.</p>
+<p><strong>Summary:</strong> UNCP is seeking a proactive Funds Raising Volunteer to support fundraising initiatives.</p>
+<p><strong>Key Responsibilities:</strong> Support campaigns, identify donors, draft proposals, maintain donor records, promote UNCP mission.</p>
+<p><strong>Qualifications:</strong> Diploma in Social Sciences, Business Admin, Marketing, PR, Development Studies or related; communication & interpersonal skills; interest in fundraising; teamwork.</p>
 </div>
 </div>
 </div>
@@ -117,6 +119,7 @@ label { display: block; margin: 10px 0 5px; font-weight: bold; }
 </div>
 </section>
 
+<!-- Full Multi-Step Application Form -->
 <div class="container" id="applicationFormContainer">
 <h2>Application Form</h2>
 <p>Please complete all required fields (*). You can use your previous application if you applied before.</p>
@@ -125,102 +128,122 @@ label { display: block; margin: 10px 0 5px; font-weight: bold; }
 <button type="button" id="applyManuallyBtn">Apply Manually</button>
 </div>
 
-<form id="careerForm">
-<!-- Step 1: My Information -->
+<form id="multiStepForm">
 <div class="step active" id="step1">
 <h3>My Information</h3>
 <label>Email*</label><input type="email" id="email" required>
-<label>Full Name*</label><input type="text" id="fullName" required>
 <label>Password*</label><input type="password" id="password" required>
 <label>Verify Password*</label><input type="password" id="verifyPassword" required>
 <label>How Did You Hear About Us?*</label>
 <select id="hearAbout" required>
 <option value="">Select</option>
-<option>UNCP Career Page</option>
-<option>Social Media</option>
-<option>Newspaper</option>
-<option>Staff of UNCP</option>
-<option>Others</option>
+<option value="UNCP Career Page">UNCP Career Page</option>
+<option value="Social Media">Social Media</option>
+<option value="News Paper">News Paper</option>
+<option value="Staff of UNCP">Staff of UNCP</option>
+<option value="Others">Others</option>
 </select>
-<label><input type="checkbox" id="terms" required> Yes, I have read and consent to the Terms & Conditions and Data Privacy Statement</label>
-<button type="button" id="next1">Save & Continue</button>
+<label><input type="checkbox" id="agreeTerms" required> I have read and consent to the Terms & Conditions and Data Privacy Statement</label>
+<button type="button" id="next1">Save & Continue →</button>
 </div>
 
-<!-- Step 2: Experience -->
 <div class="step" id="step2">
-<h3>Work Experience</h3>
-<div id="experienceContainer"></div>
+<h3>Experience</h3>
+<div id="experienceContainer">
+<div class="experienceEntry">
+<label>Job Title*</label><input type="text" class="jobTitle" required>
+<label>Organization*</label><input type="text" class="organization" required>
+<label>From*</label><input type="month" class="expFrom" required>
+<label>To*</label><input type="month" class="expTo" required>
+</div>
+</div>
 <button type="button" id="addExperience">Add Experience</button>
-<button type="button" id="back2">Back</button>
-<button type="button" id="next2">Save & Continue</button>
+<br>
+<button type="button" id="back2">← Back</button>
+<button type="button" id="next2">Save & Continue →</button>
 </div>
 
-<!-- Step 3: Education -->
 <div class="step" id="step3">
 <h3>Education</h3>
-<div id="educationContainer"></div>
+<div id="educationContainer">
+<div class="educationEntry">
+<label>Degree*</label><input type="text" class="degree" required>
+<label>Institution*</label><input type="text" class="institution" required>
+<label>Year of Completion*</label><input type="number" class="eduYear" required>
+</div>
+</div>
 <button type="button" id="addEducation">Add Education</button>
-<button type="button" id="back3">Back</button>
-<button type="button" id="next3">Save & Continue</button>
+<br>
+<button type="button" id="back3">← Back</button>
+<button type="button" id="next3">Save & Continue →</button>
 </div>
 
-<!-- Step 4: Certifications -->
 <div class="step" id="step4">
 <h3>Certifications (Optional)</h3>
-<div id="certContainer"></div>
+<div id="certContainer">
+<div class="certEntry">
+<label>Certification Name</label><input type="text" class="certName">
+<label>Issuing Organization</label><input type="text" class="certOrg">
+</div>
+</div>
 <button type="button" id="addCert">Add Certification</button>
-<button type="button" id="back4">Back</button>
-<button type="button" id="next4">Save & Continue</button>
+<br>
+<button type="button" id="back4">← Back</button>
+<button type="button" id="next4">Save & Continue →</button>
 </div>
 
-<!-- Step 5: Languages -->
 <div class="step" id="step5">
 <h3>Languages</h3>
 <label>Select Languages*</label>
-<select id="languages" multiple>
-<option>English</option><option>Lugbarati</option><option>Alur</option><option>Acholi</option><option>Kakwa</option><option>Ma'di</option>
+<select multiple id="languages" required>
+<option value="English">English</option>
+<option value="Luganda">Luganda</option>
+<option value="Lugbarati">Lugbarati</option>
+<option value="Alur">Alur</option>
+<option value="Acholi">Acholi</option>
+<option value="Kakwa">Kakwa</option>
+<option value="Ma'di">Ma'di</option>
 </select>
-<button type="button" id="back5">Back</button>
-<button type="button" id="next5">Save & Continue</button>
+<br>
+<button type="button" id="back5">← Back</button>
+<button type="button" id="next5">Save & Continue →</button>
 </div>
 
-<!-- Step 6: Skills -->
 <div class="step" id="step6">
 <h3>Skills</h3>
 <label>Select Skills*</label>
-<select id="skills" multiple>
-<option>Child Protection</option>
-<option>GBV Prevention</option>
-<option>MHPSS</option>
-<option>Youth Empowerment</option>
-<option>Inclusive Education</option>
-<option>Climate Change Adaptation</option>
-<option>Fundraising</option>
-<option>Community Engagement</option>
-<option>Project Management</option>
+<select multiple id="skills" required>
+<option value="Child Protection">Child Protection</option>
+<option value="GBV Prevention">GBV Prevention</option>
+<option value="Youth Empowerment">Youth Empowerment</option>
+<option value="MHPSS">MHPSS</option>
+<option value="Inclusive Education">Inclusive Education</option>
+<option value="Climate Change Adaptation">Climate Change Adaptation</option>
+<option value="Fundraising">Fundraising</option>
+<option value="Project Management">Project Management</option>
+<option value="Communication">Communication</option>
 </select>
-<button type="button" id="back6">Back</button>
-<button type="button" id="next6">Save & Continue</button>
+<br>
+<button type="button" id="back6">← Back</button>
+<button type="button" id="next6">Save & Continue →</button>
 </div>
 
-<!-- Step 7: Application Questions -->
 <div class="step" id="step7">
 <h3>Application Questions</h3>
-<label>How have your achievements and operational experience prepared you for this position?*</label>
+<label>1. How have your achievements and operational experience prepared you for this position?*</label>
 <textarea id="q1" maxlength="1500" required></textarea>
-<label>Please describe any skills and competencies relevant to this position.*</label>
+<label>2. Please describe any skills and competencies of relevance to this position*</label>
 <textarea id="q2" maxlength="1500" required></textarea>
-<label>How does this position align with your career aspirations?*</label>
+<label>3. How does this position align with your career aspirations?*</label>
 <textarea id="q3" maxlength="1500" required></textarea>
-<button type="button" id="back7">Back</button>
-<button type="submit">Submit Application</button>
+<button type="button" id="back7">← Back</button>
+<button type="submit" id="submitApplication">Submit Application</button>
 </div>
-
 </form>
 </div>
 
 <footer>
-<img src="logo.png" alt="UNCP Logo" />
+<img src="logo.png" alt="UNCP Logo">
 <p>Contact us: uncip2019@gmail.com | +256702398687 | +256779576538</p>
 <div class="social-icons">
 <a href="#">📘</a><a href="#">🐦</a><a href="#">📸</a><a href="#">▶️</a><a href="#">🎵</a><a href="#">💼</a>
@@ -231,129 +254,59 @@ label { display: block; margin: 10px 0 5px; font-weight: bold; }
 <button id="backToTop" title="Back to Top">↑</button>
 
 <script>
-// Accordion
-document.querySelectorAll('.accordion-header').forEach(button => {
-button.addEventListener('click', () => { button.parentElement.classList.toggle('active'); });
-});
-
+// Accordion toggle
+document.querySelectorAll('.accordion-header').forEach(button=>{ button.addEventListener('click',()=>{ button.parentElement.classList.toggle('active'); }); });
 // Search toggle
-const searchIcon = document.getElementById('search-icon');
-const searchBox = document.getElementById('search-box');
-searchIcon.addEventListener('click', () => { searchBox.style.display = searchBox.style.display === 'inline-block' ? 'none' : 'inline-block'; searchBox.focus(); });
-
+document.getElementById('search-icon').addEventListener('click',()=>{ const sb=document.getElementById('search-box'); sb.style.display=sb.style.display==='inline-block'?'none':'inline-block'; sb.focus(); });
+// JD toggle
+document.querySelectorAll('.viewJDBtn').forEach(btn=>{ btn.addEventListener('click',()=>{ btn.nextElementSibling.classList.toggle('hidden'); }); });
+// Apply scroll
+document.querySelectorAll('.apply-btn').forEach(btn=>{ btn.addEventListener('click',()=>{ document.getElementById('applicationFormContainer').scrollIntoView({behavior:'smooth'}); }); });
 // Back to top
-const topButton = document.getElementById("backToTop");
-window.onscroll = function() { if(document.body.scrollTop>100 || document.documentElement.scrollTop>100) { topButton.style.display="block"; } else { topButton.style.display="none"; } };
-topButton.addEventListener("click", function(){ window.scrollTo({ top:0, behavior:"smooth" }); });
-
-// View JD toggle
-document.querySelectorAll('.viewJDBtn').forEach(btn=>{
-btn.addEventListener('click', ()=>{
-btn.nextElementSibling.classList.toggle('hidden');
-});
-});
-
-// Apply button scrolls to form
-document.querySelectorAll('.apply-btn').forEach(btn=>{
-btn.addEventListener('click', e=>{
-e.preventDefault();
-document.getElementById('applicationFormContainer').scrollIntoView({behavior:"smooth"});
-});
-});
-
-// Pre-fill previous application (example using localStorage)
-document.getElementById('usePreviousBtn').addEventListener('click', ()=>{
-let prev=JSON.parse(localStorage.getItem('uncpPreviousApplicant')||'{}');
-if(Object.keys(prev).length===0){ alert("No previous application found."); return; }
-document.getElementById('careerForm').querySelectorAll('input, textarea').forEach(input=>{
-if(prev[input.id]) input.value=prev[input.id];
-});
-alert("Previous application loaded. You can edit fields or upload new documents.");
-});
-
-// Apply manually
-document.getElementById('applyManuallyBtn').addEventListener('click', ()=>{
-document.getElementById('careerForm').reset();
-alert("You can now fill the application manually.");
-});
+const topButton=document.getElementById("backToTop");
+window.onscroll=function(){ if(document.body.scrollTop>100||document.documentElement.scrollTop>100) topButton.style.display="block"; else topButton.style.display="none"; };
+topButton.addEventListener("click",()=>{ window.scrollTo({top:0,behavior:"smooth"}); });
 
 // Multi-step form
-function showStep(step){ document.querySelectorAll('.step').forEach(s=>s.classList.remove('active')); document.getElementById('step'+step).classList.add('active'); }
-document.getElementById('next1').onclick=function(){ showStep(2); };
-document.getElementById('back2').onclick=function(){ showStep(1); };
-document.getElementById('next2').onclick=function(){ showStep(3); };
-document.getElementById('back3').onclick=function(){ showStep(2); };
-document.getElementById('next3').onclick=function(){ showStep(4); };
-document.getElementById('back4').onclick=function(){ showStep(3); };
-document.getElementById('next4').onclick=function(){ showStep(5); };
-document.getElementById('back5').onclick=function(){ showStep(4); };
-document.getElementById('next5').onclick=function(){ showStep(6); };
-document.getElementById('back6').onclick=function(){ showStep(5); };
-document.getElementById('next6').onclick=function(){ showStep(7); };
-document.getElementById('back7').onclick=function(){ showStep(6); };
+const steps=[...document.querySelectorAll('.step')];
+let currentStep=0;
+function showStep(n){ steps.forEach((s,i)=>s.classList.toggle('active',i===n)); }
+function nextStep(){ if(currentStep<steps.length-1){ currentStep++; showStep(currentStep); } }
+function prevStep(){ if(currentStep>0){ currentStep--; showStep(currentStep); } }
+document.getElementById('next1').addEventListener('click',nextStep);
+document.getElementById('next2').addEventListener('click',nextStep);
+document.getElementById('next3').addEventListener('click',nextStep);
+document.getElementById('next4').addEventListener('click',nextStep);
+document.getElementById('next5').addEventListener('click',nextStep);
+document.getElementById('next6').addEventListener('click',nextStep);
+document.getElementById('back2').addEventListener('click',prevStep);
+document.getElementById('back3').addEventListener('click',prevStep);
+document.getElementById('back4').addEventListener('click',prevStep);
+document.getElementById('back5').addEventListener('click',prevStep);
+document.getElementById('back6').addEventListener('click',prevStep);
+document.getElementById('back7').addEventListener('click',prevStep);
 
-// Add Experience / Education dynamically
-let expCount=0; let eduCount=0;
-document.getElementById('addExperience').onclick=function(){
-if(expCount>=4){ alert("Maximum 4 experiences allowed."); return; }
-expCount++;
-let div=document.createElement('div'); div.innerHTML=`<label>Job Title*</label><input type="text" name="jobTitle${expCount}" required><label>Organization*</label><input type="text" name="org${expCount}" required><label>Duration*</label><input type="text" name="duration${expCount}" required>`;
-document.getElementById('experienceContainer').appendChild(div);
-};
-document.getElementById('addEducation').onclick=function(){
-if(eduCount>=4){ alert("Maximum 4 education entries allowed."); return; }
-eduCount++;
-let div=document.createElement('div'); div.innerHTML=`<label>Degree / Diploma*</label><input type="text" name="degree${eduCount}" required><label>Institution*</label><input type="text" name="institution${eduCount}" required><label>Year*</label><input type="text" name="year${eduCount}" required>`;
-document.getElementById('educationContainer').appendChild(div);
-};
+// Add Experience/Education/Cert dynamically
+document.getElementById('addExperience').addEventListener('click',()=>{ const div=document.createElement('div'); div.className='experienceEntry'; div.innerHTML=`<label>Job Title*</label><input type="text" class="jobTitle" required><label>Organization*</label><input type="text" class="organization" required><label>From*</label><input type="month" class="expFrom" required><label>To*</label><input type="month" class="expTo" required>`; document.getElementById('experienceContainer').appendChild(div); });
+document.getElementById('addEducation').addEventListener('click',()=>{ const div=document.createElement('div'); div.className='educationEntry'; div.innerHTML=`<label>Degree*</label><input type="text" class="degree" required><label>Institution*</label><input type="text" class="institution" required><label>Year of Completion*</label><input type="number" class="eduYear" required>`; document.getElementById('educationContainer').appendChild(div); });
+document.getElementById('addCert').addEventListener('click',()=>{ const div=document.createElement('div'); div.className='certEntry'; div.innerHTML=`<label>Certification Name</label><input type="text" class="certName"><label>Issuing Organization</label><input type="text" class="certOrg">`; document.getElementById('certContainer').appendChild(div); });
 
-// Auto-qualification requirements
-const positionRequirements = {
-  "Funds Raising Volunteer": {
-    degrees: ["Diploma in Social Sciences","Diploma in Business Administration","Diploma in Marketing","Diploma in Public Relations","Diploma in Development Studies"],
-    skills: ["Fundraising","Community Engagement","Project Management"]
-  }
-};
+// Previous / Manual
+document.getElementById('usePreviousBtn').addEventListener('click',()=>{
+let prev=JSON.parse(localStorage.getItem('uncpPreviousApplicant')||'{}');
+for(let key in prev){ let el=document.getElementById(key); if(el) el.value=prev[key]; }
+alert("Previous application loaded. You can edit and submit.");
+});
+document.getElementById('applyManuallyBtn').addEventListener('click',()=>{ alert("Please fill in your application manually."); });
 
-function checkAutoQualification() {
-  const degreeInputs = document.querySelectorAll('#educationContainer input[name^="degree"]');
-  const selectedSkills = Array.from(document.getElementById('skills').selectedOptions).map(o=>o.value);
-  
-  let degreeMatch = false;
-  degreeInputs.forEach(input => {
-    positionRequirements["Funds Raising Volunteer"].degrees.forEach(reqDegree => {
-      if(input.value.toLowerCase().includes(reqDegree.toLowerCase())) degreeMatch = true;
-    });
-  });
-
-  const skillMatchCount = positionRequirements["Funds Raising Volunteer"].skills.filter(skill => selectedSkills.includes(skill)).length;
-  const skillMatch = skillMatchCount >= positionRequirements["Funds Raising Volunteer"].skills.length;
-
-  let score = 0;
-  if(degreeMatch) score += 50;
-  if(skillMatch) score += 50;
-
-  return { degreeMatch, skillMatch, score };
-}
-
-// Form submission with auto-qualification
-document.getElementById('careerForm').addEventListener('submit', function(e){
+// Form submit
+document.getElementById('multiStepForm').addEventListener('submit',function(e){
 e.preventDefault();
-
-const result = checkAutoQualification();
-
-if(result.score < 100){
-if(!confirm(`Your application may not fully meet the position requirements. Qualification score: ${result.score}%. Do you still want to submit?`)) return;
-}
-
-alert("Thank you, "+document.getElementById('fullName').value+". Your application has been received. Qualification score: "+result.score+"%.");
-
-let formData={};
-document.querySelectorAll('#careerForm input, #careerForm textarea, #careerForm select').forEach(i=>{ formData[i.id||i.name]=i.value; });
-localStorage.setItem('uncpPreviousApplicant', JSON.stringify(formData));
-
-this.reset(); 
-showStep(1);
+let data={};
+document.querySelectorAll('#multiStepForm input, #multiStepForm select, #multiStepForm textarea').forEach(inp=>{ data[inp.id || inp.className]=inp.value; });
+localStorage.setItem('uncpPreviousApplicant',JSON.stringify(data));
+alert("Thank you! Your application has been received.");
+this.reset(); currentStep=0; showStep(currentStep);
 });
 </script>
 </body>
