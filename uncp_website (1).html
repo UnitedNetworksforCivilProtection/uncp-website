@@ -5,76 +5,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>United Networks for Civil Protection (UNCP)</title>
 <style>
-  /* General Styles */
-  body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff; color: #333; line-height: 1.6; scroll-behavior: smooth; }
-  h1, h2 { color: #003366; }
-  section { padding: 30px 20px; max-width: 900px; margin: auto; }
-
-  /* Header */
-  header { display: flex; justify-content: space-between; align-items: center; background: #003366; color: white; padding: 10px 20px; position: sticky; top: 0; z-index: 100; }
-  header img { height: 55px; }
-  nav { display: flex; align-items: center; }
-  nav a { color: white; margin: 0 10px; text-decoration: none; font-weight: 500; }
-  nav a:hover { text-decoration: underline; }
-
-  /* Hamburger Menu */
-  .menu-toggle { display: none; font-size: 24px; cursor: pointer; margin-left: 10px; }
-  @media (max-width: 768px) {
-    nav a:not(.donate-btn) { display: none; }
-    nav.active a:not(.donate-btn) { display: block; margin: 10px 0; }
-    .menu-toggle { display: block; }
-    nav { flex-direction: column; align-items: flex-start; }
-  }
-
-  /* Donate Button */
-  .donate-btn { background: orange; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: background 0.3s; animation: pulse 2.5s infinite; }
-  .donate-btn:hover { background: darkorange; }
-  @keyframes pulse { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,140,0,0.6); } 70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255,140,0,0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,140,0,0); } }
-
-  /* Search Box */
-  .search-box { display: none; margin-left: 10px; padding: 5px; border-radius: 5px; border: none; width: 200px; }
-  @media (max-width: 768px) { .search-box { width: 100%; margin: 10px 0; } }
-
-  /* Accordion */
-  .accordion { border-radius: 5px; margin: 15px 0; overflow: hidden; }
-  .accordion-item { border-bottom: 1px solid #ccc; }
-  .accordion-header { width: 100%; text-align: left; padding: 10px; background: #f2f2f2; border: none; font-size: 16px; cursor: pointer; font-weight: bold; transition: background 0.3s; position: relative; }
-  .accordion-header:hover { background: #e1e1e1; }
-  .accordion-header::after { content: "▶"; position: absolute; right: 15px; transition: transform 0.3s ease; }
-  .accordion-item.active > .accordion-header::after { transform: rotate(90deg); }
-  .accordion-content { max-height: 0; overflow: hidden; background: #fafafa; transition: max-height 0.4s ease, padding 0.3s ease; padding: 0 10px; }
-  .accordion-item.active > .accordion-content { max-height: 800px; padding: 10px; }
-
-  /* Highlight */
-  .highlight { background-color: yellow; transition: background-color 1.5s ease; }
-
-  /* Impact Section */
-  .impact { display: flex; justify-content: center; gap: 40px; margin: 20px 0; flex-wrap: wrap; }
-  .impact div { text-align: center; }
-
-  /* Footer */
-  footer { background: #222; color: white; padding: 20px; text-align: center; margin-top: 30px; position: relative; }
-  footer img { height: 40px; float: left; margin-right: 10px; }
-  footer .social-icons { margin: 10px 0; }
-  footer .social-icons a { margin: 0 5px; color: white; font-size: 20px; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; background: #444; border-radius: 50%; transition: background 0.3s; }
-  footer .social-icons a:hover { background: #666; }
-  footer .social-icons svg { width: 18px; height: 18px; }
-
-  /* Form */
-  form input, form textarea { width: 100%; padding: 8px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc; }
-  form button { background: orange; color: white; border: none; padding: 10px 15px; border-radius: 5px; font-weight: bold; cursor: pointer; transition: background 0.3s; }
-  form button:hover { background: darkorange; }
-
-  /* Back-to-top */
-  #backToTop { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 99; font-size: 18px; background: orange; color: white; border: none; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: background 0.3s, transform 0.3s; }
-  #backToTop:hover { background: darkorange; transform: scale(1.1); }
+body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #fff; color: #333; scroll-behavior: smooth; }
+header { display: flex; justify-content: space-between; align-items: center; background: #003366; color: white; padding: 10px 20px; position: sticky; top: 0; z-index: 100; }
+header img { height: 55px; }
+nav { display: flex; align-items: center; }
+nav a { color: white; margin: 0 10px; text-decoration: none; font-weight: 500; }
+nav a:hover { text-decoration: underline; }
+@keyframes pulse { 0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,140,0, 0.6); } 70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255,140,0, 0); } 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,140,0, 0); } }
+.donate-btn { background: orange; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: background 0.3s; animation: pulse 2.5s infinite; }
+.donate-btn:hover { background: darkorange; }
+.search-box { display: none; margin-left: 10px; padding: 5px; border-radius: 5px; border: none; }
+section { padding: 30px 20px; max-width: 900px; margin: auto; }
+h1, h2 { color: #003366; }
+.accordion { border-radius: 5px; margin: 15px 0; overflow: hidden; }
+.accordion-item { border-bottom: 1px solid #ccc; }
+.accordion-header { width: 100%; text-align: left; padding: 10px; background: #f2f2f2; border: none; font-size: 16px; cursor: pointer; font-weight: bold; transition: background 0.3s; position: relative; }
+.accordion-header::after { content: "▶"; position: absolute; right: 15px; transition: transform 0.3s ease; }
+.accordion-item.active .accordion-header::after { transform: rotate(90deg); }
+.accordion-header:hover { background: #e1e1e1; }
+.accordion-content { max-height: 0; overflow: hidden; background: #fafafa; transition: max-height 0.4s ease, padding 0.3s ease; padding: 0 10px; }
+.accordion-item.active .accordion-content { max-height: 800px; padding: 10px; }
+.highlight { background-color: yellow; transition: background-color 1.5s ease; }
+.impact { display: flex; justify-content: center; gap: 40px; margin: 20px 0; flex-wrap: wrap; }
+.impact div { text-align: center; }
+footer { background: #222; color: white; padding: 20px; text-align: center; margin-top: 30px; position: relative; }
+footer img { height: 40px; float: left; margin-right: 10px; }
+footer .social-icons { margin: 10px 0; }
+footer .social-icons a { margin: 0 5px; color: white; font-size: 20px; text-decoration: none; }
+footer .donate-btn { margin-left: 15px; }
+form input, form textarea { width: 100%; padding: 8px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc; }
+form button { background: orange; color: white; border: none; padding: 10px 15px; border-radius: 5px; font-weight: bold; cursor: pointer; transition: background 0.3s; }
+form button:hover { background: darkorange; }
+#backToTop { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 99; font-size: 18px; background: orange; color: white; border: none; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: background 0.3s, transform 0.3s; }
+#backToTop:hover { background: darkorange; transform: scale(1.1); }
+.container { max-width: 1000px; margin: auto; padding: 20px; background: #f8f8f8; border-radius: 8px; }
+label { display: block; margin: 10px 0 5px; font-weight: bold; }
+input, select, textarea { width: 100%; padding: 8px; margin-bottom: 10px; border-radius: 4px; border: 1px solid #ccc; }
+button { padding: 10px 15px; border: none; border-radius: 5px; background: orange; color: #fff; cursor: pointer; font-weight: bold; margin-top: 10px; }
+button:hover { background: darkorange; }
+.hidden { display: none; }
+.prefill-option { margin: 20px 0; padding: 15px; background: #eef; border: 1px solid #99c; border-radius: 5px; }
+table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+th { background: #003366; color: #fff; cursor: pointer; }
 </style>
 </head>
 <body>
-
 <header>
   <img src="logo.png" alt="UNCP Logo" />
-  <span class="menu-toggle">☰</span>
   <nav>
     <a href="#home">Home</a>
     <a href="#donate" class="donate-btn">Donate</a>
@@ -86,42 +64,149 @@
 <section id="home">
   <h1>Welcome to United Networks for Civil Protection (UNCP)</h1>
   <p>We are a community-based non-profit organization incorporated as a company limited by guarantee in Uganda. UNCP works to protect and empower vulnerable children, youth, and communities for a safer, more resilient society.</p>
-
   <div class="impact">
     <div><h2>20+</h2><p>Community Projects</p></div>
     <div><h2>5</h2><p>Active Donors</p></div>
   </div>
-
-  <div class="accordion" id="mainAccordion">
-    <!-- Accordion items remain the same as before -->
+  <div class="accordion">
+    <div class="accordion-item">
+      <button class="accordion-header">About UNCP</button>
+      <div class="accordion-content">
+        <p><strong>Type:</strong> Community-Based Organization</p>
+        <p><strong>Incorporated as:</strong> Company Limited by Guarantee in Uganda</p>
+        <p><strong>Founded:</strong> 2018</p>
+        <p><strong>Mission:</strong> To protect and empower vulnerable children, youth, and communities.</p>
+        <p><strong>Vision:</strong> A safe, inclusive, and resilient society where every child and vulnerable person thrives.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header">What We Do</button>
+      <div class="accordion-content">
+        <p>UNCP delivers holistic, community-led interventions in child protection, GBV prevention, MHPSS, youth empowerment, inclusive education, and climate change adaptation.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header">Where We Work</button>
+      <div class="accordion-content">
+        <p>We operate in Uganda — particularly in refugee-hosting and vulnerable districts across West Nile and Northern regions.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header">News and Stories</button>
+      <div class="accordion-content">
+        <p>Stay updated with stories of impact, new projects, and inspiring community transformation led by UNCP.</p>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <button class="accordion-header">Get Involved</button>
+      <div class="accordion-content">
+        <div class="accordion-item">
+          <button class="accordion-header">Open Positions</button>
+          <div class="accordion-content">
+            <p>Click on a position to view details and apply.</p>
+            <button class="donate-btn" onclick="document.getElementById('applicationFormContainer').scrollIntoView({behavior:'smooth'})">Apply Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<section id="application">
+<!-- Application Form & Admin Dashboard -->
+<div class="container" id="applicationFormContainer">
   <h2>Application Form</h2>
-  <form id="careerForm">
-    <label for="position">Position Title*</label>
-    <input type="text" id="position" required />
-    <label for="name">Full Name*</label>
-    <input type="text" id="name" required />
-    <label for="email">Email*</label>
-    <input type="email" id="email" required />
-    <label for="phone">Phone*</label>
-    <input type="text" id="phone" required />
-    <label><input type="checkbox" required /> I acknowledge and agree to UNCP’s terms.</label>
+  <p>Enter your email to start:</p>
+  <input type="email" id="applicantEmail" placeholder="Email Address" required>
+  <button id="startApplication">Start Application</button>
+  <div id="returningApplicant" class="prefill-option hidden">
+    <p>We found a previous application. Choose an option:</p>
+    <button type="button" id="usePrevious">Use Previous Application</button>
+    <button type="button" id="applyManual">Apply Manually</button>
+  </div>
+  <form id="applicationForm" class="hidden">
+    <h2>Personal Information</h2>
+    <label>Full Name*</label>
+    <input type="text" id="fullName" required>
+    <label>Email*</label>
+    <input type="email" id="email" required>
+    <label>Phone*</label>
+    <input type="text" id="phone" required>
+    <label>Education Level*</label>
+    <input type="text" id="educationLevel" required>
+    <label>Field of Study*</label>
+    <input type="text" id="educationField" required>
+    <label>Total Experience (Years)*</label>
+    <input type="number" id="experienceYears" min="0" required>
+    <label>Skills* (Comma separated)</label>
+    <input type="text" id="skills" placeholder="e.g., Case Management, Psychosocial Support" required>
+    <label>Languages* (Comma separated)</label>
+    <input type="text" id="languages" placeholder="e.g., English, Lugbarati" required>
+
+    <h2>Upload Documents</h2>
+    <label>Cover Letter / Motivation Letter*</label>
+    <input type="file" id="coverLetter" accept="application/pdf,application/msword" required>
+    <label>Resume / CV*</label>
+    <input type="file" id="resume" accept="application/pdf,application/msword" required>
+    <label>Other Supporting Documents (Optional)</label>
+    <input type="file" id="otherDocs" multiple accept="application/pdf,application/msword,image/*">
+
+    <h2>Application Questions</h2>
+    <label>1. How have your achievements prepared you for this position?*</label>
+    <textarea id="q1" maxlength="1500" required></textarea>
+    <label>2. Relevant skills and competencies*</label>
+    <textarea id="q2" maxlength="1500" required></textarea>
+    <label>3. How does this position align with your career aspirations?*</label>
+    <textarea id="q3" maxlength="1500" required></textarea>
+
+    <h2>Terms and Conditions</h2>
+    <label><input type="checkbox" id="agree" required> I acknowledge and agree to the terms and conditions.*</label>
     <button type="submit">Submit Application</button>
   </form>
-</section>
+
+  <h2>Admin Dashboard</h2>
+  <label>Filter by Status:</label>
+  <select id="statusFilter">
+    <option value="All">All</option>
+    <option value="Qualified">Qualified</option>
+    <option value="Partially Qualified">Partially Qualified</option>
+    <option value="Not Qualified">Not Qualified</option>
+  </select>
+  <label>Search by Name or Email:</label>
+  <input type="text" id="searchInput" placeholder="Enter name or email">
+  <button id="exportCsv">Export to CSV</button>
+  <table id="adminTable">
+    <thead>
+      <tr>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Position</th>
+        <th>Score</th>
+        <th>Status</th>
+        <th>Submission Date</th>
+        <th>Cover Letter</th>
+        <th>Resume</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
+
+<script>
+// JavaScript code for form handling, prefill, admin dashboard, search, CSV export goes here
+</script>
 
 <footer>
   <img src="logo.png" alt="UNCP Logo" />
-  <address>Contact us: <a href="mailto:uncip2019@gmail.com">uncip2019@gmail.com</a> | +256702398687 | +256779576538</address>
+  <p>Contact us: uncip2019@gmail.com | +256702398687 | +256779576538</p>
+  <div class="social-icons
   <div class="social-icons">
-    <a href="#" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="white" d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.66 9.13 8.44 9.88v-6.99H7.9v-2.89h2.54V9.83c0-2.51 1.49-3.89 3.77-3.89 1.09 0 2.23.2 2.23.2v2.45h-1.25c-1.23 0-1.61.76-1.61 1.54v1.85h2.74l-.44 2.89h-2.3v6.99C18.34 21.13 22 16.99 22 12z"/></svg></a>
-    <a href="#" aria-label="Twitter"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="white" d="M22.46 6c-.77.35-1.6.58-2.46.69a4.3 4.3 0 001.88-2.37 8.59 8.59 0 01-2.72 1.04 4.28 4.28 0 00-7.29 3.9A12.14 12.14 0 013 4.79a4.28 4.28 0 001.33 5.72 4.24 4.24 0 01-1.94-.54v.05a4.28 4.28 0 003.43 4.2 4.3 4.3 0 01-1.93.07 4.28 4.28 0 003.99 2.97A8.58 8.58 0 012 19.54 12.1 12.1 0 008.29 21c7.55 0 11.68-6.25 11.68-11.67 0-.18-.01-.35-.02-.53A8.35 8.35 0 0022.46 6z"/></svg></a>
-    <a href="#" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="white" d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm10 2c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3h10zm-5 3a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm4.5-.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z"/></svg></a>
-    <a href="#" aria-label="YouTube"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="white" d="M21.8 8s-.2-1.44-.82-2.08c-.78-.82-1.65-.82-2.05-.86C15.09 5 12 5 12 5h-.01s-3.09 0-6.92.06c-.4.04-1.27.04-2.05.86C2.4 6.56 2.2 8 2.2 8S2 9.61 2 11.22v1.56C2 14.39 2.2 16 2.2 16s.2 1.44.82 2.08c.78.82 1.8.8 2.26.89 1.64.12 6.92.11 6.92.11s3.09 0 6.92-.06c.46-.09 1.48-.07 2.26-.89.62-.64.82-2.08.82-2.08s.2-1.61.2-3.22v-1.56c0-1.61-.2-3.22-.2-3.22zM10 14.5v-5l5 2.5-5 2.5z"/></svg></a>
-    <a href="#" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="white" d="M19 3A2 2 0 0121 5v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14zM8.5 19v-8H6v8h2.5zm-1.25-9.25a1.25 1.25 0 110-2.5 1.25 1.25 0 010 2.5zM20 19v-4.25c0-2.48-1.25-3.25-2.5-3.25s-2.5.77-2.5 3.25V19h2.5v-4.25c0-.66.25-1.25.75-1.25s.75.59.75 1.25V19H20z"/></svg></a>
+    <a href="#">📘</a>
+    <a href="#">🐦</a>
+    <a href="#">📸</a>
+    <a href="#">▶️</a>
+    <a href="#">🎵</a>
+    <a href="#">💼</a>
   </div>
   <a href="#donate" class="donate-btn">Donate</a>
 </footer>
@@ -129,66 +214,99 @@
 <button id="backToTop" title="Back to Top">↑</button>
 
 <script>
-// Accordion Functionality with ARIA
-document.querySelectorAll('.accordion-header').forEach(button => {
-  button.addEventListener('click', () => {
-    const item = button.parentElement;
-    const expanded = item.classList.toggle('active');
-    button.setAttribute('aria-expanded', expanded);
-  });
-});
-
-// Search Toggle & Highlight
-const searchIcon = document.getElementById('search-icon');
-const searchBox = document.getElementById('search-box');
-searchIcon.addEventListener('click', () => { searchBox.style.display = searchBox.style.display === 'inline-block' ? 'none' : 'inline-block'; searchBox.focus(); });
-searchBox.addEventListener('keypress', function(e) {
-  if (e.key === 'Enter') {
-    e.preventDefault();
-    const term = this.value.toLowerCase();
-    let firstMatch = null;
-    const walk = (node) => {
-      if (node.nodeType === 3) {
-        const idx = node.data.toLowerCase().indexOf(term);
-        if (idx >= 0) {
-          const span = document.createElement('span');
-          span.className = 'highlight';
-          span.textContent = node.data.substr(idx, term.length);
-          const after = node.splitText(idx);
-          after.splitText(term.length);
-          after.parentNode.replaceChild(span, after);
-          if (!firstMatch) firstMatch = span;
-        }
-      } else {
-        node.childNodes.forEach(walk);
-      }
-    };
-    document.querySelectorAll('.accordion-content, .accordion-header').forEach(el => {
-      el.querySelectorAll('.highlight').forEach(h => h.replaceWith(document.createTextNode(h.textContent)));
-      walk(el);
+  // Accordion functionality
+  document.querySelectorAll('.accordion-header').forEach(button => {
+    button.addEventListener('click', () => {
+      const item = button.parentElement;
+      item.classList.toggle('active');
     });
-    if (firstMatch) firstMatch.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    else alert(`No results found for "${term}".`);
-  }
-});
+  });
 
-// Form Submission
-document.getElementById('careerForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  alert("Thank you, " + document.getElementById('name').value + ". Your application has been received. We’ll contact you after careful review.");
-  this.reset();
-// Back to Top
-const topButton = document.getElementById("backToTop");
-window.onscroll = function() {
-  topButton.style.display = (document.documentElement.scrollTop > 100) ? 'block' : 'none';
-};
-topButton.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+  // Search box toggle
+  const searchIcon = document.getElementById('search-icon');
+  const searchBox = document.getElementById('search-box');
+  searchIcon.addEventListener('click', () => {
+    searchBox.style.display = searchBox.style.display === 'inline-block' ? 'none' : 'inline-block';
+    searchBox.focus();
+  });
 
-// Responsive Menu Toggle
-const menuToggle = document.querySelector('.menu-toggle');
-const nav = document.querySelector('nav');
-menuToggle.addEventListener('click', () => nav.classList.toggle('active'));
+  // Back to top button
+  const topButton = document.getElementById("backToTop");
+  window.onscroll = function() {
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+      topButton.style.display = "block";
+    } else {
+      topButton.style.display = "none";
+    }
+  };
+  topButton.addEventListener("click", function() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  // Application form logic (simplified)
+  const startButton = document.getElementById('startApplication');
+  const formContainer = document.getElementById('applicationForm');
+  const returningDiv = document.getElementById('returningApplicant');
+
+  startButton.addEventListener('click', () => {
+    const email = document.getElementById('applicantEmail').value;
+    if(email.trim() === "") { alert("Please enter your email."); return; }
+
+    // Check for previous applications (mock logic)
+    if(localStorage.getItem(email)) {
+      returningDiv.classList.remove('hidden');
+    } else {
+      formContainer.classList.remove('hidden');
+    }
+  });
+
+  document.getElementById('usePrevious').addEventListener('click', () => {
+    const email = document.getElementById('applicantEmail').value;
+    const data = JSON.parse(localStorage.getItem(email));
+    if(data){
+      Object.keys(data).forEach(key => {
+        const field = document.getElementById(key);
+        if(field) field.value = data[key];
+      });
+    }
+    formContainer.classList.remove('hidden');
+    returningDiv.classList.add('hidden');
+  });
+
+  document.getElementById('applyManual').addEventListener('click', () => {
+    formContainer.classList.remove('hidden');
+    returningDiv.classList.add('hidden');
+  });
+
+  document.getElementById('applicationForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    const formData = {};
+    Array.from(this.elements).forEach(el => { if(el.id) formData[el.id] = el.value; });
+    localStorage.setItem(email, JSON.stringify(formData));
+    alert("Application submitted successfully!");
+    this.reset();
+  });
+
+  // Highlight search in accordion
+  searchBox.addEventListener('keypress', function(e){
+    if(e.key === 'Enter'){
+      e.preventDefault();
+      const term = this.value.toLowerCase();
+      let firstMatch = null;
+      document.querySelectorAll('.accordion-content, .accordion-header').forEach(el => {
+        el.innerHTML = el.innerHTML.replace(/<span class="highlight">|<\/span>/g, '');
+        if(el.textContent.toLowerCase().includes(term) && term !== ""){
+          el.parentElement.classList.add('active');
+          const regex = new RegExp(`(${term})`, 'gi');
+          el.innerHTML = el.innerHTML.replace(regex, '<span class="highlight">$1</span>');
+          if(!firstMatch) firstMatch = el;
+        }
+      });
+      if(firstMatch) firstMatch.scrollIntoView({ behavior: "smooth", block: "center" });
+      else alert(`No results found for "${term}".`);
+    }
+  });
 </script>
-
 </body>
 </html>
