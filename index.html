@@ -15,6 +15,15 @@ nav a:hover { text-decoration:underline; }
 .donate-btn:hover { background:darkorange; }
 @keyframes pulse { 0%{transform:scale(1);box-shadow:0 0 0 0 rgba(255,140,0,0.6);}70%{transform:scale(1.05);box-shadow:0 0 0 10px rgba(255,140,0,0);}100%{transform:scale(1);box-shadow:0 0 0 0 rgba(255,140,0,0);} }
 .search-box { display:none; margin-left:10px; padding:5px; border-radius:5px; border:none; }
+
+/* Dropdown Menu Styles */
+.dropdown { position:relative; display:inline-block; }
+.dropbtn { color:white; text-decoration:none; font-weight:500; padding:0 10px; cursor:pointer; }
+.dropdown-content { display:none; position:absolute; background:#003366; min-width:160px; box-shadow:0 8px 16px rgba(0,0,0,0.2); z-index:1; border-radius:5px; }
+.dropdown-content a { color:white; padding:10px; text-decoration:none; display:block; }
+.dropdown-content a:hover { background:darkorange; }
+.dropdown:hover .dropdown-content { display:block; }
+
 section { padding:30px 20px; max-width:1000px; margin:auto; }
 h1,h2,h3 { color:#003366; }
 .accordion { border-radius:5px; margin:15px 0; overflow:hidden; }
@@ -48,15 +57,21 @@ footer .social-icons a { margin:0 5px; color:white; font-size:20px; text-decorat
 <body>
 
 <header>
-  <img src="logo.jpg" alt="UNCP Logo" />
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#about">Who We Are</a>
-    <a href="#open-positions">Open Positions</a>
-    <a href="javascript:void(0)" id="search-icon">🔍</a>
-    <input type="text" id="search-box" class="search-box" placeholder="Type & press Enter..." />
-    <a href="#donate" class="donate-btn">Donate</a>
-  </nav>
+<img src="logo.jpg" alt="UNCP Logo" />
+<nav>
+  <a href="#home">Home</a>
+  <a href="#about">Who We Are</a>
+  <a href="#what-we-do">What We Do</a>
+  <div class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Get Involved ▼</a>
+    <div class="dropdown-content">
+      <a href="#career">Career / Volunteer</a>
+      <a href="#donate">Donate</a>
+    </div>
+  </div>
+  <a href="javascript:void(0)" id="search-icon">🔍</a>
+  <input type="text" id="search-box" class="search-box" placeholder="Type & press Enter..." />
+</nav>
 </header>
 
 <section id="home">
@@ -71,16 +86,54 @@ footer .social-icons a { margin:0 5px; color:white; font-size:20px; text-decorat
 <section id="about">
 <h2>About UNCP</h2>
 <p>Founded in 2018, UNCP is a community-based non-profit organization incorporated as a company limited by guarantee in Uganda. Our mission is to protect and empower vulnerable children, youth, and communities. We envision a safe, inclusive, and resilient society.</p>
-
-<h3>What We Do</h3>
-<p>UNCP delivers holistic interventions in child protection, GBV prevention, MHPSS, youth empowerment, inclusive education, and climate change adaptation.</p>
-
 <h3>Where We Work</h3>
 <p>We operate across Uganda, particularly in refugee-hosting and vulnerable districts in West Nile and Northern regions.</p>
 </section>
 
-<section id="open-positions">
-<h2>Open Positions</h2>
+<section id="what-we-do">
+<h2>What We Do</h2>
+<div class="accordion">
+  <div class="accordion-item">
+    <button class="accordion-header">Child Protection</button>
+    <div class="accordion-content">
+      <p>Protecting vulnerable children through community-based interventions and safeguarding measures.</p>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-header">GBV Prevention and Response</button>
+    <div class="accordion-content">
+      <p>Preventing gender-based violence and supporting survivors through holistic interventions.</p>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-header">Sustainable Livelihoods and Climate Change Resilience</button>
+    <div class="accordion-content">
+      <p>Empowering communities with sustainable livelihood opportunities while enhancing resilience to climate change impacts.</p>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-header">Inclusive Education</button>
+    <div class="accordion-content">
+      <p>Promoting access to quality education for all children, including marginalized and vulnerable groups.</p>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-header">Mental Health and Psychosocial Support (MHPSS)</button>
+    <div class="accordion-content">
+      <p>Providing mental health and psychosocial services to children, youth, and communities affected by adversity.</p>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <button class="accordion-header">Youth and Adolescents Empowerment through Life Skills</button>
+    <div class="accordion-content">
+      <p>Equipping young people with essential life skills, leadership, and personal development opportunities.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="career">
+<h2>Career / Volunteer Opportunities</h2>
 <div class="accordion">
   <div class="accordion-item active">
     <button class="accordion-header">Funds Raising Volunteer – Arua City • Volunteer • 16 Oct – 16 Nov 2025</button>
@@ -120,7 +173,7 @@ footer .social-icons a { margin:0 5px; color:white; font-size:20px; text-decorat
 </div>
 </div>
 
-<!-- Multi-step Application Modal -->
+<!-- Application Modal -->
 <div id="applyModal" class="modal">
 <div class="modal-content">
 <span class="close" id="applyClose">&times;</span>
@@ -153,39 +206,68 @@ Do you want to use your previous data?<br><br>
 <button id="backToTop" title="Back to Top">↑</button>
 
 <script>
-// Accordion
-document.querySelectorAll('.accordion-header').forEach(btn => { btn.addEventListener('click', ()=>{ btn.parentElement.classList.toggle('active'); }); });
+// Accordion functionality
+document.querySelectorAll('.accordion-header').forEach(button => {
+  button.addEventListener('click', () => {
+    const item = button.parentElement;
+    item.classList.toggle('active');
+  });
+});
 
-// Search
+// Search toggle
 const searchIcon = document.getElementById('search-icon');
 const searchBox = document.getElementById('search-box');
-searchIcon.addEventListener('click', ()=>{ searchBox.style.display = searchBox.style.display==='inline-block'?'none':'inline-block'; searchBox.focus(); });
+searchIcon.addEventListener('click', () => {
+  searchBox.style.display = searchBox.style.display === 'inline-block' ? 'none' : 'inline-block';
+  searchBox.focus();
+});
 
-// Back to Top
+// Back to top
 const topButton = document.getElementById("backToTop");
-window.onscroll = ()=>{ topButton.style.display = (document.body.scrollTop>100 || document.documentElement.scrollTop>100)?'block':'none'; }
-topButton.addEventListener("click", ()=>{ window.scrollTo({top:0,behavior:'smooth'}); });
+window.onscroll = function() {
+  if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+    topButton.style.display = "block";
+  } else { topButton.style.display = "none"; }
+};
+topButton.addEventListener("click", () => { window.scrollTo({ top: 0, behavior: "smooth" }); });
 
 // Modals
-const jdModal = document.getElementById('jdModal');
-const applyModal = document.getElementById('applyModal');
-document.getElementById('viewJD').onclick = ()=>{ jdModal.style.display='block'; }
-document.getElementById('jdClose').onclick = ()=>{ jdModal.style.display='none'; }
-document.getElementById('applyBtn').onclick = ()=>{ applyModal.style.display='block'; showAutofillPrompt(); }
-document.getElementById('applyClose').onclick = ()=>{ applyModal.style.display='none'; }
-window.onclick = (e)=>{ if(e.target==jdModal) jdModal.style.display='none'; if(e.target==applyModal) applyModal.style.display='none'; }
+const jdModal = document.getElementById("jdModal");
+const applyModal = document.getElementById("applyModal");
+document.getElementById("viewJD").onclick = () => jdModal.style.display = "block";
+document.getElementById("applyBtn").onclick = () => applyModal.style.display = "block";
+document.getElementById("jdClose").onclick = () => jdModal.style.display = "none";
+document.getElementById("applyClose").onclick = () => applyModal.style.display = "none";
+window.onclick = function(event) { 
+  if(event.target==jdModal) jdModal.style.display="none";
+  if(event.target==applyModal) applyModal.style.display="none";
+};
 
 // Multi-step form
-let currentStep = 0;
-const steps = applyModal.querySelectorAll('.step');
-const autofillPrompt = document.getElementById('autofillPrompt');
-function showAutofillPrompt(){ steps.forEach(s=>s.classList.remove('active')); autofillPrompt.style.display='block'; }
-function usePrevious(){ alert("Previous data auto-filled."); autofillPrompt.style.display='none'; currentStep=0; showStep(currentStep); }
-function skipPrevious(){ autofillPrompt.style.display='none'; currentStep=0; showStep(currentStep); }
-function showStep(n){ steps.forEach(s=>s.classList.remove('active')); steps[n].classList.add('active'); }
-function nextStep(){ if(currentStep<steps.length-1){ currentStep++; showStep(currentStep); } }
-function prevStep(){ if(currentStep>0){ currentStep--; showStep(currentStep); } }
-function submitForm(){ alert("Thank you, your application has been received."); currentStep=0; showStep(currentStep); applyModal.style.display='none'; }
+let currentStep=1;
+function nextStep() {
+  if(currentStep<7){
+    document.querySelector(`.step${currentStep}`).classList.remove('active');
+    currentStep++;
+    document.querySelector(`.step${currentStep}`).classList.add('active');
+  }
+}
+function prevStep() {
+  if(currentStep>1){
+    document.querySelector(`.step${currentStep}`).classList.remove('active');
+    currentStep--;
+    document.querySelector(`.step${currentStep}`).classList.add('active');
+  }
+}
+function submitForm(){
+  alert("Application submitted! Thank you.");
+  applyModal.style.display="none";
+}
+
+// Previous data options
+function usePrevious(){ alert("Auto-fill previous data activated."); document.getElementById("autofillPrompt").style.display="none"; }
+function skipPrevious(){ alert("Manual entry activated."); document.getElementById("autofillPrompt").style.display="none"; }
+
 </script>
 </body>
 </html>
