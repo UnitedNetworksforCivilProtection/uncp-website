@@ -5,55 +5,59 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>United Networks for Civil Protection (UNCP)</title>
 <style>
-body { font-family: Arial, sans-serif; margin:0; padding:0; background:#fff; color:#333; scroll-behavior:smooth; }
-header { display:flex; justify-content:space-between; align-items:center; background:#003366; color:white; padding:10px 20px; position:sticky; top:0; z-index:100; }
-header img { height:55px; }
-nav { display:flex; align-items:center; }
-nav a { color:white; margin:0 10px; text-decoration:none; font-weight:500; }
-nav a:hover { text-decoration:underline; }
-@keyframes pulse { 0% {transform:scale(1);box-shadow:0 0 0 0 rgba(255,140,0,0.6);} 70% {transform:scale(1.05);box-shadow:0 0 0 10px rgba(255,140,0,0);} 100% {transform:scale(1);box-shadow:0 0 0 0 rgba(255,140,0,0);} }
-.donate-btn { background:orange; color:white; padding:8px 15px; border-radius:5px; text-decoration:none; font-weight:bold; transition:background 0.3s; animation:pulse 2.5s infinite; }
-.donate-btn:hover { background:darkorange; }
-.search-box { display:none; margin-left:10px; padding:5px; border-radius:5px; border:none; }
-section { padding:30px 20px; max-width:900px; margin:auto; }
-h1,h2,h3,h4 { color:#003366; }
-.accordion { border-radius:5px; margin:15px 0; overflow:hidden; }
-.accordion-item { border-bottom:1px solid #ccc; }
-.accordion-header { width:100%; text-align:left; padding:10px; background:#f2f2f2; border:none; font-size:16px; cursor:pointer; font-weight:bold; position:relative; transition:background 0.3s; }
-.accordion-header::after { content:"▶"; position:absolute; right:15px; transition:transform 0.3s ease; }
-.accordion-item.active .accordion-header::after { transform:rotate(90deg); }
-.accordion-header:hover { background:#e1e1e1; }
-.accordion-content { max-height:0; overflow:hidden; background:#fafafa; transition:max-height 0.4s ease, padding 0.3s ease; padding:0 10px; }
-.accordion-item.active .accordion-content { max-height:1500px; padding:15px; border-left:4px solid orange; background-color:#fff8e1; }
-.highlight { background-color:yellow; transition: background-color 1.5s ease; }
-.impact { display:flex; justify-content:center; gap:40px; margin:20px 0; flex-wrap:wrap; }
-.impact div { text-align:center; }
-footer { background:#222; color:white; padding:20px; text-align:center; margin-top:30px; position:relative; }
-footer img { height:40px; float:left; margin-right:10px; }
-footer .social-icons { margin:10px 0; }
-footer .social-icons a { margin:0 5px; color:white; font-size:20px; text-decoration:none; }
-footer .donate-btn { margin-left:15px; }
-form input, form textarea, select { width:100%; padding:8px; margin-bottom:10px; border-radius:5px; border:1px solid #ccc; }
-form button { background:orange; color:white; border:none; padding:10px 15px; border-radius:5px; font-weight:bold; cursor:pointer; transition:background 0.3s; }
-form button:hover { background:darkorange; }
-#backToTop { display:none; position:fixed; bottom:30px; right:30px; z-index:99; font-size:18px; background:orange; color:white; border:none; border-radius:50%; width:45px; height:45px; cursor:pointer; box-shadow:0 4px 8px rgba(0,0,0,0.2); transition: background 0.3s, transform 0.3s; }
-#backToTop:hover { background:darkorange; transform:scale(1.1); }
-.container { max-width:1000px; margin:auto; padding:20px; background:#f8f8f8; border-radius:8px; display:block; }
-label { display:block; margin:10px 0 5px; font-weight:bold; }
-.hidden { display:none; }
-.prefill-option { margin:20px 0; padding:15px; background:#eef; border:1px solid #99c; border-radius:5px; }
-.step { display:none; }
-.step.active { display:block; }
-table { width:100%; border-collapse:collapse; margin-top:15px; }
-table th, table td { padding:8px; border:1px solid #ccc; text-align:left; }
+body{font-family:Arial,sans-serif;margin:0;padding:0;background:#fff;color:#333;line-height:1.6;scroll-behavior:smooth;}
+header{display:flex;justify-content:space-between;align-items:center;background:#003366;color:white;padding:10px 20px;position:sticky;top:0;z-index:100;}
+header img{height:55px;}
+nav{display:flex;align-items:center;}
+nav a{color:white;margin:0 10px;text-decoration:none;font-weight:500;}
+nav a:hover{text-decoration:underline;}
+.donate-btn{background:orange;color:white;padding:8px 15px;border-radius:5px;text-decoration:none;font-weight:bold;transition:background 0.3s;cursor:pointer;}
+.donate-btn:hover{background:darkorange;}
+.search-box{display:none;margin-left:10px;padding:5px;border-radius:5px;border:none;}
+section{padding:30px 20px;max-width:900px;margin:auto;}
+h1,h2{color:#003366;}
+.accordion{border-radius:5px;margin:15px 0;overflow:hidden;}
+.accordion-item{border-bottom:1px solid #ccc;}
+.accordion-header{width:100%;text-align:left;padding:10px;background:#f2f2f2;border:none;font-size:16px;cursor:pointer;font-weight:bold;transition:background 0.3s;position:relative;}
+.accordion-header::after{content:"▶";position:absolute;right:15px;transition:transform 0.3s ease;}
+.accordion-item.active .accordion-header::after{transform:rotate(90deg);}
+.accordion-header:hover{background:#e1e1e1;}
+.accordion-content{max-height:0;overflow:hidden;background:#fafafa;transition:max-height 0.4s ease,padding 0.3s ease;padding:0 10px;}
+.accordion-item.active .accordion-content{max-height:2000px;padding:10px;}
+.highlight{background-color:yellow;transition:background-color 1.5s ease;}
+.impact{display:flex;justify-content:center;gap:40px;margin:20px 0;flex-wrap:wrap;}
+.impact div{text-align:center;}
+footer{background:#222;color:white;padding:20px;text-align:center;margin-top:30px;position:relative;}
+footer img{height:40px;float:left;margin-right:10px;}
+footer .social-icons{margin:10px 0;}
+footer .social-icons a{margin:0 5px;color:white;font-size:20px;text-decoration:none;}
+footer .donate-btn{margin-left:15px;}
+form input,form textarea,select{width:100%;padding:8px;margin-bottom:10px;border-radius:5px;border:1px solid #ccc;}
+form button{background:orange;color:white;border:none;padding:10px 15px;border-radius:5px;font-weight:bold;cursor:pointer;transition:background 0.3s;}
+form button:hover{background:darkorange;}
+#backToTop{display:none;position:fixed;bottom:30px;right:30px;z-index:99;font-size:18px;background:orange;color:white;border:none;border-radius:50%;width:45px;height:45px;cursor:pointer;box-shadow:0 4px 8px rgba(0,0,0,0.2);transition:background 0.3s, transform 0.3s;}
+#backToTop:hover{background:darkorange;transform:scale(1.1);}
+.modal{display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;overflow:auto;background-color:rgba(0,0,0,0.5);}
+.modal-content{background:#fff;margin:5% auto;padding:20px;border-radius:10px;width:90%;max-width:800px;position:relative;max-height:90vh;overflow-y:auto;}
+.close{position:absolute;top:10px;right:15px;font-size:28px;font-weight:bold;color:#333;cursor:pointer;}
+.step{display:none;}
+.step.active{display:block;}
+.button-row{display:flex;justify-content:space-between;margin-top:15px;}
+#autofillPrompt{background:#f9f9f9;border:1px solid #ccc;padding:10px;margin-bottom:10px;}
+.add-btn{background:#003366;color:white;padding:5px 10px;margin-bottom:10px;border-radius:4px;cursor:pointer;}
+.add-btn:hover{background:darkblue;}
 </style>
 </head>
 <body>
 
 <header>
-<img src="logo.png" alt="UNCP Logo" />
+<img src="logo.jpg" alt="UNCP Logo" />
 <nav>
 <a href="#home">Home</a>
+<a href="#who-we-are">Who We Are</a>
+<a href="#where-we-work">Where We Work</a>
+<a href="#what-we-do">What We Do</a>
+<a href="#get-involved">Get Involved</a>
 <a href="#donate" class="donate-btn">Donate</a>
 <a href="javascript:void(0)" id="search-icon">🔍</a>
 <input type="text" id="search-box" class="search-box" placeholder="Type & press Enter..." />
@@ -61,253 +65,198 @@ table th, table td { padding:8px; border:1px solid #ccc; text-align:left; }
 </header>
 
 <section id="home">
-<h1>Welcome to United Networks for Civil Protection (UNCP)</h1>
-<p>We are a community-based non-profit organization incorporated as a company limited by guarantee in Uganda. UNCP works to protect and empower vulnerable children, youth, and communities for a safer, more resilient society.</p>
-
+<h1>Welcome to UNCP</h1>
+<p>We are a community-based non-profit organization incorporated in Uganda. UNCP works to protect and empower vulnerable children, youth, and communities for a safer, more resilient society.</p>
 <div class="impact">
 <div><h2>20+</h2><p>Community Projects</p></div>
 <div><h2>5</h2><p>Active Donors</p></div>
 </div>
+</section>
 
-<div class="accordion">
-<div class="accordion-item">
-<button class="accordion-header">About UNCP</button>
-<div class="accordion-content">
-<p><strong>Type:</strong> Community-Based Organization</p>
-<p><strong>Incorporated as:</strong> Company Limited by Guarantee in Uganda</p>
-<p><strong>Founded:</strong> 2018</p>
-<p><strong>Mission:</strong> To protect and empower vulnerable children, youth, and communities.</p>
-<p><strong>Vision:</strong> A safe, inclusive, and resilient society where every child and vulnerable person thrives.</p>
-</div>
-</div>
+<section id="who-we-are">
+<h1>Who We Are</h1>
+<p>We are a community-based non-profit organization committed to fostering inclusive and resilient communities across Uganda. Founded in 2018, UNCP works to protect and empower vulnerable children, youth, and communities for a safer society.</p>
+</section>
 
-<div class="accordion-item">
-<button class="accordion-header">What We Do</button>
-<div class="accordion-content">
-<p>UNCP delivers holistic, community-led interventions in child protection, GBV prevention, MHPSS, youth empowerment, inclusive education, and climate change adaptation.</p>
-</div>
-</div>
+<section id="where-we-work">
+<h1>Where We Work</h1>
+<p>We operate in Uganda — particularly in refugee-hosting and vulnerable districts across West Nile and Northern regions. Key districts and cities include:</p>
+<ul>
+<li>Arua City</li><li>Moyo</li><li>Yumbe</li><li>Adjumani</li>
+<li>Kitgum</li><li>Gulu</li><li>Lira</li><li>Koboko</li>
+<li>Nebbi</li><li>Paidha</li>
+</ul>
+</section>
 
-<div class="accordion-item">
-<button class="accordion-header">Where We Work</button>
-<div class="accordion-content">
-<p>We operate in Uganda — particularly in refugee-hosting and vulnerable districts across West Nile and Northern regions.</p>
-</div>
-</div>
+<section id="what-we-do">
+<h1>What We Do</h1>
+<ul>
+<li><strong>Child Protection:</strong> Community-based initiatives to protect children from abuse and exploitation.</li>
+<li><strong>GBV Prevention & Response:</strong> Preventing and responding to gender-based violence.</li>
+<li><strong>Sustainable Livelihoods & Climate Change Resilience:</strong> Supporting community livelihoods while promoting climate resilience.</li>
+<li><strong>Inclusive Education:</strong> Ensuring access to quality education for all children.</li>
+<li><strong>MHPSS:</strong> Providing mental health and psychosocial support.</li>
+<li><strong>Youth & Adolescents Empowerment:</strong> Life skills and youth development programs.</li>
+</ul>
+</section>
 
+<section id="get-involved">
+<div id="previousAppContainer" style="display:none; margin-bottom:10px;">
+<button onclick="usePrevious()" class="donate-btn">View Previous Application</button>
+</div>
 <div class="accordion-item">
 <button class="accordion-header">Get Involved</button>
-<div class="accordion-content" id="get-involved">
-<div class="accordion-item">
-<button class="accordion-header">Open Positions</button>
-<div class="accordion-content active">
-<p>Click on a position to view details or apply.</p>
-<div class="position-item">
-<h4>Funds Raising Volunteer – Arua City, Uganda</h4>
-<p><strong>Application Period:</strong> 16 Oct 2025 – 16 Nov 2025</p>
-<button class="viewJDBtn">View JD</button>
-<button class="apply-btn">Apply</button>
-<div class="jd-details hidden" style="margin-top:10px; padding:10px; border:1px solid #ccc; border-radius:5px; background:#fff8e1;">
-<p><strong>Summary:</strong> UNCP is seeking a proactive Funds Raising Volunteer to support fundraising initiatives.</p>
-<p><strong>Key Responsibilities:</strong> Support campaigns, identify donors, draft proposals, maintain donor records, promote UNCP mission.</p>
-<p><strong>Qualifications:</strong> Diploma in Social Sciences, Business Admin, Marketing, PR, Development Studies or related; communication & interpersonal skills; interest in fundraising; teamwork.</p>
-</div>
-</div>
-</div>
-</div>
+<div class="accordion-content">
+<p>Explore ways to contribute to UNCP’s mission.</p>
+<button onclick="toggleCareers()">Careers</button>
+<div id="positionsContainer" style="display:none;"></div>
 </div>
 </div>
 </section>
 
-<!-- Full Multi-Step Application Form -->
-<div class="container" id="applicationFormContainer">
-<h2>Application Form</h2>
-<p>Please complete all required fields (*). You can use your previous application if you applied before.</p>
-<div class="prefill-option">
-<button type="button" id="usePreviousBtn">Use Previous Application</button>
-<button type="button" id="applyManuallyBtn">Apply Manually</button>
-</div>
-
-<form id="multiStepForm">
-<div class="step active" id="step1">
-<h3>My Information</h3>
-<label>Email*</label><input type="email" id="email" required>
-<label>Password*</label><input type="password" id="password" required>
-<label>Verify Password*</label><input type="password" id="verifyPassword" required>
-<label>How Did You Hear About Us?*</label>
-<select id="hearAbout" required>
-<option value="">Select</option>
-<option value="UNCP Career Page">UNCP Career Page</option>
-<option value="Social Media">Social Media</option>
-<option value="News Paper">News Paper</option>
-<option value="Staff of UNCP">Staff of UNCP</option>
-<option value="Others">Others</option>
-</select>
-<label><input type="checkbox" id="agreeTerms" required> I have read and consent to the Terms & Conditions and Data Privacy Statement</label>
-<button type="button" id="next1">Save & Continue →</button>
-</div>
-
-<div class="step" id="step2">
-<h3>Experience</h3>
-<div id="experienceContainer">
-<div class="experienceEntry">
-<label>Job Title*</label><input type="text" class="jobTitle" required>
-<label>Organization*</label><input type="text" class="organization" required>
-<label>From*</label><input type="month" class="expFrom" required>
-<label>To*</label><input type="month" class="expTo" required>
-</div>
-</div>
-<button type="button" id="addExperience">Add Experience</button>
-<br>
-<button type="button" id="back2">← Back</button>
-<button type="button" id="next2">Save & Continue →</button>
-</div>
-
-<div class="step" id="step3">
-<h3>Education</h3>
-<div id="educationContainer">
-<div class="educationEntry">
-<label>Degree*</label><input type="text" class="degree" required>
-<label>Institution*</label><input type="text" class="institution" required>
-<label>Year of Completion*</label><input type="number" class="eduYear" required>
-</div>
-</div>
-<button type="button" id="addEducation">Add Education</button>
-<br>
-<button type="button" id="back3">← Back</button>
-<button type="button" id="next3">Save & Continue →</button>
-</div>
-
-<div class="step" id="step4">
-<h3>Certifications (Optional)</h3>
-<div id="certContainer">
-<div class="certEntry">
-<label>Certification Name</label><input type="text" class="certName">
-<label>Issuing Organization</label><input type="text" class="certOrg">
-</div>
-</div>
-<button type="button" id="addCert">Add Certification</button>
-<br>
-<button type="button" id="back4">← Back</button>
-<button type="button" id="next4">Save & Continue →</button>
-</div>
-
-<div class="step" id="step5">
-<h3>Languages</h3>
-<label>Select Languages*</label>
-<select multiple id="languages" required>
-<option value="English">English</option>
-<option value="Luganda">Luganda</option>
-<option value="Lugbarati">Lugbarati</option>
-<option value="Alur">Alur</option>
-<option value="Acholi">Acholi</option>
-<option value="Kakwa">Kakwa</option>
-<option value="Ma'di">Ma'di</option>
-</select>
-<br>
-<button type="button" id="back5">← Back</button>
-<button type="button" id="next5">Save & Continue →</button>
-</div>
-
-<div class="step" id="step6">
-<h3>Skills</h3>
-<label>Select Skills*</label>
-<select multiple id="skills" required>
-<option value="Child Protection">Child Protection</option>
-<option value="GBV Prevention">GBV Prevention</option>
-<option value="Youth Empowerment">Youth Empowerment</option>
-<option value="MHPSS">MHPSS</option>
-<option value="Inclusive Education">Inclusive Education</option>
-<option value="Climate Change Adaptation">Climate Change Adaptation</option>
-<option value="Fundraising">Fundraising</option>
-<option value="Project Management">Project Management</option>
-<option value="Communication">Communication</option>
-</select>
-<br>
-<button type="button" id="back6">← Back</button>
-<button type="button" id="next6">Save & Continue →</button>
-</div>
-
-<div class="step" id="step7">
-<h3>Application Questions</h3>
-<label>1. How have your achievements and operational experience prepared you for this position?*</label>
-<textarea id="q1" maxlength="1500" required></textarea>
-<label>2. Please describe any skills and competencies of relevance to this position*</label>
-<textarea id="q2" maxlength="1500" required></textarea>
-<label>3. How does this position align with your career aspirations?*</label>
-<textarea id="q3" maxlength="1500" required></textarea>
-<button type="button" id="back7">← Back</button>
-<button type="submit" id="submitApplication">Submit Application</button>
-</div>
-</form>
-</div>
+<!-- Modals -->
+<div id="jdModal" class="modal"><div class="modal-content"><span id="jdClose" class="close">&times;</span><div id="jdContent"></div></div></div>
+<div id="applyModal" class="modal"><div class="modal-content"><span id="applyClose" class="close">&times;</span>
+<div id="autofillPrompt" style="display:none;"><p>We found a previous application. Would you like to use previous data or apply manually?</p><button onclick="usePrevious()">Use Previous</button><button onclick="skipPrevious()">Apply Manually</button></div>
+<form id="applicationForm"></form>
+</div></div>
 
 <footer>
-<img src="logo.png" alt="UNCP Logo">
+<img src="logo.jpg" alt="UNCP Logo" />
 <p>Contact us: uncip2019@gmail.com | +256702398687 | +256779576538</p>
 <div class="social-icons">
 <a href="#">📘</a><a href="#">🐦</a><a href="#">📸</a><a href="#">▶️</a><a href="#">🎵</a><a href="#">💼</a>
 </div>
 <a href="#donate" class="donate-btn">Donate</a>
 </footer>
-
 <button id="backToTop" title="Back to Top">↑</button>
 
 <script>
-// Accordion toggle
-document.querySelectorAll('.accordion-header').forEach(button=>{ button.addEventListener('click',()=>{ button.parentElement.classList.toggle('active'); }); });
-// Search toggle
-document.getElementById('search-icon').addEventListener('click',()=>{ const sb=document.getElementById('search-box'); sb.style.display=sb.style.display==='inline-block'?'none':'inline-block'; sb.focus(); });
-// JD toggle
-document.querySelectorAll('.viewJDBtn').forEach(btn=>{ btn.addEventListener('click',()=>{ btn.nextElementSibling.classList.toggle('hidden'); }); });
-// Apply scroll
-document.querySelectorAll('.apply-btn').forEach(btn=>{ btn.addEventListener('click',()=>{ document.getElementById('applicationFormContainer').scrollIntoView({behavior:'smooth'}); }); });
+// Accordion
+document.querySelectorAll('.accordion-header').forEach(button=>{button.addEventListener('click',()=>{button.parentElement.classList.toggle('active');});});
+
+// Search
+const searchIcon=document.getElementById('search-icon');
+const searchBox=document.getElementById('search-box');
+searchIcon.addEventListener('click',()=>{searchBox.style.display=searchBox.style.display==='inline-block'?'none':'inline-block';searchBox.focus();});
+searchBox.addEventListener('keypress',function(e){if(e.key==='Enter'){e.preventDefault();const term=this.value.toLowerCase();let found=false,firstMatch=null;document.querySelectorAll('.accordion-content, .accordion-header').forEach(el=>{el.innerHTML=el.innerHTML.replace(/<span class="highlight">|<\/span>/g,'');if(el.textContent.toLowerCase().includes(term)&&term!==""){el.parentElement.classList.add('active');const regex=new RegExp(`(${term})`,'gi');el.innerHTML=el.innerHTML.replace(regex,'<span class="highlight">$1</span>');if(!firstMatch) firstMatch=el;found=true;}});if(found&&firstMatch){firstMatch.scrollIntoView({behavior:"smooth",block:"center"});}else{alert(`No results found for "${term}".`);}}});
+
 // Back to top
 const topButton=document.getElementById("backToTop");
-window.onscroll=function(){ if(document.body.scrollTop>100||document.documentElement.scrollTop>100) topButton.style.display="block"; else topButton.style.display="none"; };
-topButton.addEventListener("click",()=>{ window.scrollTo({top:0,behavior:"smooth"}); });
+window.onscroll=function(){if(document.body.scrollTop>100||document.documentElement.scrollTop>100){topButton.style.display="block";}else{topButton.style.display="none";}};
+topButton.addEventListener("click",()=>{window.scrollTo({top:0,behavior:"smooth"});});
 
-// Multi-step form
-const steps=[...document.querySelectorAll('.step')];
+// Open Positions
+const positions=[{
+title:"Funds Raising Volunteer",
+location:"Arua City, Uganda",
+type:"Volunteer",
+period:"16th October 2025 – 16th November 2025",
+jd:`<h3>Funds Raising Volunteer - Arua City</h3>
+<p>Support UNCP fundraising initiatives, donor engagement, and proposal drafting. Duration: Volunteer position. Qualifications: Diploma minimum in Social Sciences, Business Administration, Marketing, PR, Development Studies or related.</p>`
+}];
+
+function toggleCareers(){
+  const container=document.getElementById("positionsContainer");
+  if(container.style.display==="none"){
+    container.style.display="block";
+    if(container.innerHTML.trim()===""){
+      positions.forEach((pos,index)=>{
+        const div=document.createElement("div");
+        div.innerHTML=`<h3>${pos.title}</h3><p>${pos.location} • ${pos.type} • ${pos.period}</p>
+        <button onclick="viewJD(${index})">View JD</button>
+        <button onclick="applyPosition(${index})">Apply</button><hr>`;
+        container.appendChild(div);
+      });
+    }
+  }else{container.style.display="none";}
+}
+
+// JD & Application Modals
+const jdModal=document.getElementById("jdModal");
+const applyModal=document.getElementById("applyModal");
+document.getElementById("jdClose").onclick=function(){jdModal.style.display="none";}
+document.getElementById("applyClose").onclick=function(){applyModal.style.display="none";}
+
+// Application
 let currentStep=0;
-function showStep(n){ steps.forEach((s,i)=>s.classList.toggle('active',i===n)); }
-function nextStep(){ if(currentStep<steps.length-1){ currentStep++; showStep(currentStep); } }
-function prevStep(){ if(currentStep>0){ currentStep--; showStep(currentStep); } }
-document.getElementById('next1').addEventListener('click',nextStep);
-document.getElementById('next2').addEventListener('click',nextStep);
-document.getElementById('next3').addEventListener('click',nextStep);
-document.getElementById('next4').addEventListener('click',nextStep);
-document.getElementById('next5').addEventListener('click',nextStep);
-document.getElementById('next6').addEventListener('click',nextStep);
-document.getElementById('back2').addEventListener('click',prevStep);
-document.getElementById('back3').addEventListener('click',prevStep);
-document.getElementById('back4').addEventListener('click',prevStep);
-document.getElementById('back5').addEventListener('click',prevStep);
-document.getElementById('back6').addEventListener('click',prevStep);
-document.getElementById('back7').addEventListener('click',prevStep);
-
-// Add Experience/Education/Cert dynamically
-document.getElementById('addExperience').addEventListener('click',()=>{ const div=document.createElement('div'); div.className='experienceEntry'; div.innerHTML=`<label>Job Title*</label><input type="text" class="jobTitle" required><label>Organization*</label><input type="text" class="organization" required><label>From*</label><input type="month" class="expFrom" required><label>To*</label><input type="month" class="expTo" required>`; document.getElementById('experienceContainer').appendChild(div); });
-document.getElementById('addEducation').addEventListener('click',()=>{ const div=document.createElement('div'); div.className='educationEntry'; div.innerHTML=`<label>Degree*</label><input type="text" class="degree" required><label>Institution*</label><input type="text" class="institution" required><label>Year of Completion*</label><input type="number" class="eduYear" required>`; document.getElementById('educationContainer').appendChild(div); });
-document.getElementById('addCert').addEventListener('click',()=>{ const div=document.createElement('div'); div.className='certEntry'; div.innerHTML=`<label>Certification Name</label><input type="text" class="certName"><label>Issuing Organization</label><input type="text" class="certOrg">`; document.getElementById('certContainer').appendChild(div); });
-
-// Previous / Manual
-document.getElementById('usePreviousBtn').addEventListener('click',()=>{
-let prev=JSON.parse(localStorage.getItem('uncpPreviousApplicant')||'{}');
-for(let key in prev){ let el=document.getElementById(key); if(el) el.value=prev[key]; }
-alert("Previous application loaded. You can edit and submit.");
+window.addEventListener("DOMContentLoaded", ()=>{
+  const savedData=JSON.parse(localStorage.getItem("uncpApplicant"));
+  if(savedData){document.getElementById("previousAppContainer").style.display="block";}
 });
-document.getElementById('applyManuallyBtn').addEventListener('click',()=>{ alert("Please fill in your application manually."); });
+function viewJD(i){document.getElementById("jdContent").innerHTML=positions[i].jd;jdModal.style.display="block";}
+function applyPosition(i){applyModal.style.display="block";const savedData=JSON.parse(localStorage.getItem("uncpApplicant"));if(savedData){document.getElementById("autofillPrompt").style.display="block";}else{document.getElementById("autofillPrompt").style.display="none";currentStep=0;renderForm();}}
+function usePrevious(){const savedData=JSON.parse(localStorage.getItem("uncpApplicant"));if(savedData){applyModal.style.display="block";currentStep=0;renderForm();setTimeout(()=>{const inputs=document.querySelectorAll("#applicationForm input, #applicationForm textarea, #applicationForm select");inputs.forEach(input=>{if(savedData[input.name]) input.value=savedData[input.name];if(input.type==='checkbox' && savedData[input.name]!==undefined) input.checked=savedData[input.name];});},100);}document.getElementById("autofillPrompt").style.display="none";}
+function skipPrevious(){document.getElementById("autofillPrompt").style.display="none";currentStep=0;renderForm();}
 
-// Form submit
-document.getElementById('multiStepForm').addEventListener('submit',function(e){
-e.preventDefault();
-let data={};
-document.querySelectorAll('#multiStepForm input, #multiStepForm select, #multiStepForm textarea').forEach(inp=>{ data[inp.id || inp.className]=inp.value; });
-localStorage.setItem('uncpPreviousApplicant',JSON.stringify(data));
-alert("Thank you! Your application has been received.");
-this.reset(); currentStep=0; showStep(currentStep);
-});
+function renderForm(){
+  const form=document.getElementById("applicationForm");
+  const steps=[
+    `<div class="step active">
+      <h2>Step 1: Personal Information</h2>
+      <label>Full Name*</label><input type="text" name="fullName" required>
+      <label>Email*</label><input type="email" name="email" required>
+      <label>Phone*</label><input type="text" name="phone" required>
+    </div>`,
+    `<div class="step">
+      <h2>Step 2: Experience</h2>
+      <div id="experienceList"></div>
+      <button type="button" class="add-btn" onclick="addExperience()">Add Experience</button>
+    </div>`,
+    `<div class="step">
+      <h2>Step 3: Education</h2>
+      <div id="educationList"></div>
+      <button type="button" class="add-btn" onclick="addEducation()">Add Education</button>
+    </div>`,
+    `<div class="step">
+      <h2>Step 4: Application Questions</h2>
+      <label>How have your achievements and operational experience prepared you for this position?*</label>
+      <textarea name="question1" maxlength="1500" required></textarea>
+      <label>Please describe any skills and competencies of relevance to this position*</label>
+      <textarea name="question2" maxlength="1500" required></textarea>
+      <label>How does this position align with your career aspirations?*</label>
+      <textarea name="question3" maxlength="1500" required></textarea>
+    </div>`,
+    `<div class="step">
+      <h2>Step 5: Terms & Conditions</h2>
+      <p>UNCP will only contact candidates who are shortlisted. Your data will be processed according to privacy policy.</p>
+      <label><input type="checkbox" name="tnc" required> I acknowledge and agree to these terms and conditions*</label>
+    </div>`
+  ];
+  form.innerHTML=steps[currentStep]+`<div class="button-row">${currentStep>0?'<button type="button" onclick="prevStep()">Back</button>':''}${currentStep<steps.length-1?'<button type="button" onclick="nextStep()">Next</button>':'<button type="button" onclick="submitForm()">Submit</button>'}</div>`;
+}
+
+function addExperience(){
+  const list=document.getElementById("experienceList");
+  const div=document.createElement("div");
+  div.innerHTML=`<label>Job Title*</label><input type="text" name="jobTitle" required>
+  <label>Organization*</label><input type="text" name="organization" required>
+  <label>From*</label><input type="month" name="from" required>
+  <label>To*</label><input type="month" name="to" required><hr>`;
+  list.appendChild(div);
+}
+
+function addEducation(){
+  const list=document.getElementById("educationList");
+  const div=document.createElement("div");
+  div.innerHTML=`<label>Degree*</label><input type="text" name="degree" required>
+  <label>Institution*</label><input type="text" name="institution" required>
+  <label>Field*</label><input type="text" name="field" required>
+  <label>Year*</label><input type="number" name="year" required><hr>`;
+  list.appendChild(div);
+}
+
+function nextStep(){currentStep++;renderForm();}
+function prevStep(){currentStep--;renderForm();}
+
+function submitForm(){
+  const inputs=document.querySelectorAll("#applicationForm input, #applicationForm textarea, #applicationForm select");
+  let formData={};
+  inputs.forEach(input=>{if(input.type==="checkbox") formData[input.name]=input.checked;else formData[input.name]=input.value;});
+  localStorage.setItem("uncpApplicant",JSON.stringify(formData));
+  alert("Application submitted successfully! Your data has been saved for future applications.");
+  applyModal.style.display="none";
+}
 </script>
 </body>
 </html>
