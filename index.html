@@ -5,57 +5,53 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>United Networks for Civil Protection (UNCP)</title>
 <style>
-  body { font-family: Arial, sans-serif; margin:0; padding:0; background:#fff; color:#333; line-height:1.6; scroll-behavior:smooth; }
-  header { display:flex; justify-content:space-between; align-items:center; background:#003366; color:white; padding:10px 20px; position:sticky; top:0; z-index:100; }
-  header img { height:55px; }
-  nav { display:flex; align-items:center; }
-  nav a { color:white; margin:0 10px; text-decoration:none; font-weight:500; }
-  nav a:hover { text-decoration:underline; }
-  @keyframes pulse { 0% { transform:scale(1); box-shadow:0 0 0 0 rgba(255,140,0,0.6); } 70% { transform:scale(1.05); box-shadow:0 0 0 10px rgba(255,140,0,0); } 100% { transform:scale(1); box-shadow:0 0 0 0 rgba(255,140,0,0); } }
-  .donate-btn { background:orange; color:white; padding:8px 15px; border-radius:5px; text-decoration:none; font-weight:bold; transition:background 0.3s; animation:pulse 2.5s infinite; }
-  .donate-btn:hover { background:darkorange; }
-  .search-box { display:none; margin-left:10px; padding:5px; border-radius:5px; border:none; }
-  section { padding:30px 20px; max-width:900px; margin:auto; }
-  h1, h2 { color:#003366; }
-  .accordion { border-radius:5px; margin:15px 0; overflow:hidden; }
-  .accordion-item { border-bottom:1px solid #ccc; }
-  .accordion-header { width:100%; text-align:left; padding:10px; background:#f2f2f2; border:none; font-size:16px; cursor:pointer; font-weight:bold; transition: background 0.3s; position:relative; }
-  .accordion-header::after { content:"▶"; position:absolute; right:15px; transition:transform 0.3s ease; }
-  .accordion-item.active .accordion-header::after { transform:rotate(90deg); }
-  .accordion-header:hover { background:#e1e1e1; }
-  .accordion-content { max-height:0; overflow:hidden; background:#fafafa; transition:max-height 0.4s ease, padding 0.3s ease; padding:0 10px; }
-  .accordion-item.active .accordion-content { max-height:800px; padding:10px; }
-  .highlight { background-color: yellow; transition: background-color 1.5s ease; }
-  .impact { display:flex; justify-content:center; gap:40px; margin:20px 0; flex-wrap:wrap; }
-  .impact div { text-align:center; }
-  footer { background:#222; color:white; padding:20px; text-align:center; margin-top:30px; position:relative; }
-  footer img { height:40px; float:left; margin-right:10px; }
-  footer .social-icons { margin:10px 0; }
-  footer .social-icons a { margin:0 5px; color:white; font-size:20px; text-decoration:none; }
-  footer .donate-btn { margin-left:15px; }
-  form input, form textarea { width:100%; padding:8px; margin-bottom:10px; border-radius:5px; border:1px solid #ccc; }
-  form button { background:orange; color:white; border:none; padding:10px 15px; border-radius:5px; font-weight:bold; cursor:pointer; transition:background 0.3s; }
-  form button:hover { background:darkorange; }
-  #backToTop { display:none; position:fixed; bottom:30px; right:30px; z-index:99; font-size:18px; background:orange; color:white; border:none; border-radius:50%; width:45px; height:45px; cursor:pointer; box-shadow:0 4px 8px rgba(0,0,0,0.2); transition:background 0.3s, transform 0.3s; }
-  #backToTop:hover { background:darkorange; transform:scale(1.1); }
+body { font-family: Arial, sans-serif; margin:0; padding:0; background:#fff; color:#333; line-height:1.6; scroll-behavior:smooth; }
+header { display:flex; justify-content:space-between; align-items:center; background:#003366; color:white; padding:10px 20px; position:sticky; top:0; z-index:100; }
+header img { height:55px; }
+nav { display:flex; align-items:center; }
+nav a { color:white; margin:0 10px; text-decoration:none; font-weight:500; }
+nav a:hover { text-decoration:underline; }
+.donate-btn { background:orange; color:white; padding:8px 15px; border-radius:5px; text-decoration:none; font-weight:bold; transition:background 0.3s; animation:pulse 2.5s infinite; }
+.donate-btn:hover { background:darkorange; }
+@keyframes pulse { 0%{transform:scale(1);box-shadow:0 0 0 0 rgba(255,140,0,0.6);}70%{transform:scale(1.05);box-shadow:0 0 0 10px rgba(255,140,0,0);}100%{transform:scale(1);box-shadow:0 0 0 0 rgba(255,140,0,0);} }
+.search-box { display:none; margin-left:10px; padding:5px; border-radius:5px; border:none; }
+section { padding:30px 20px; max-width:1000px; margin:auto; }
+h1,h2,h3 { color:#003366; }
+.accordion { border-radius:5px; margin:15px 0; overflow:hidden; }
+.accordion-item { border-bottom:1px solid #ccc; }
+.accordion-header { width:100%; text-align:left; padding:10px; background:#f2f2f2; border:none; font-size:16px; cursor:pointer; font-weight:bold; position:relative; transition: background 0.3s; }
+.accordion-header::after { content:"▶"; position:absolute; right:15px; transition:transform 0.3s ease; }
+.accordion-item.active .accordion-header::after { transform:rotate(90deg); }
+.accordion-header:hover { background:#e1e1e1; }
+.accordion-content { max-height:0; overflow:hidden; background:#fafafa; transition:max-height 0.4s ease, padding 0.3s ease; padding:0 10px; }
+.accordion-item.active .accordion-content { max-height:1000px; padding:10px; }
+.highlight { background-color: yellow; transition: background-color 1.5s ease; }
+.impact { display:flex; justify-content:center; gap:40px; margin:20px 0; flex-wrap:wrap; }
+.impact div { text-align:center; }
+footer { background:#222; color:white; padding:20px; text-align:center; margin-top:30px; position:relative; }
+footer img { height:40px; float:left; margin-right:10px; }
+footer .social-icons { margin:10px 0; }
+footer .social-icons a { margin:0 5px; color:white; font-size:20px; text-decoration:none; }
+#backToTop { display:none; position:fixed; bottom:30px; right:30px; z-index:99; font-size:18px; background:orange; color:white; border:none; border-radius:50%; width:45px; height:45px; cursor:pointer; box-shadow:0 4px 8px rgba(0,0,0,0.2); transition:background 0.3s, transform 0.3s; }
+#backToTop:hover { background:darkorange; transform:scale(1.1); }
 
-  /* Multi-step form styles */
-  .modal { display:none; position:fixed; z-index:200; left:0; top:0; width:100%; height:100%; overflow:auto; background: rgba(0,0,0,0.5); }
-  .modal-content { background:#fff; margin:5% auto; padding:20px; border-radius:10px; max-width:800px; position:relative; }
-  .close { position:absolute; top:10px; right:20px; font-size:30px; font-weight:bold; cursor:pointer; }
-  .step { display:none; padding:20px; border-radius:10px; margin-bottom:20px; background:#003366; color:white; text-align:center; font-weight:bold; }
-  .step.active { display:block; }
-  .button-row { display:flex; justify-content:space-between; margin-top:20px; }
-  #autofillPrompt { display:none; padding:20px; border:2px dashed #003366; margin-bottom:20px; text-align:center; background:#eef; color:#003366; border-radius:10px; }
+/* Multi-step form modal */
+.modal { display:none; position:fixed; z-index:200; left:0; top:0; width:100%; height:100%; overflow:auto; background: rgba(0,0,0,0.5); }
+.modal-content { background:#fff; margin:5% auto; padding:20px; border-radius:10px; max-width:800px; position:relative; }
+.close { position:absolute; top:10px; right:20px; font-size:30px; font-weight:bold; cursor:pointer; }
+.step { display:none; padding:20px; border-radius:10px; margin-bottom:20px; background:#003366; color:white; text-align:center; font-weight:bold; }
+.step.active { display:block; }
+.button-row { display:flex; justify-content:space-between; margin-top:20px; }
+#autofillPrompt { display:none; padding:20px; border:2px dashed #003366; margin-bottom:20px; text-align:center; background:#eef; color:#003366; border-radius:10px; }
 </style>
 </head>
-
 <body>
+
 <header>
   <img src="logo.jpg" alt="UNCP Logo" />
   <nav>
     <a href="#home">Home</a>
-    <a href="#get-involved">Get Involved</a>
+    <a href="#about">Who We Are</a>
     <a href="#open-positions">Open Positions</a>
     <a href="javascript:void(0)" id="search-icon">🔍</a>
     <input type="text" id="search-box" class="search-box" placeholder="Type & press Enter..." />
@@ -64,150 +60,132 @@
 </header>
 
 <section id="home">
-  <h1>Welcome to United Networks for Civil Protection (UNCP)</h1>
-  <p>We are a community-based non-profit organization in Uganda...</p>
+<h1>Welcome to United Networks for Civil Protection (UNCP)</h1>
+<p>UNCP works to protect and empower vulnerable children, youth, and communities for a safer, resilient society in Uganda.</p>
+<div class="impact">
+  <div><h2>20+</h2><p>Community Projects</p></div>
+  <div><h2>5</h2><p>Active Donors</p></div>
+</div>
+</section>
+
+<section id="about">
+<h2>About UNCP</h2>
+<p>Founded in 2018, UNCP is a community-based non-profit organization incorporated as a company limited by guarantee in Uganda. Our mission is to protect and empower vulnerable children, youth, and communities. We envision a safe, inclusive, and resilient society.</p>
+
+<h3>What We Do</h3>
+<p>UNCP delivers holistic interventions in child protection, GBV prevention, MHPSS, youth empowerment, inclusive education, and climate change adaptation.</p>
+
+<h3>Where We Work</h3>
+<p>We operate across Uganda, particularly in refugee-hosting and vulnerable districts in West Nile and Northern regions.</p>
 </section>
 
 <section id="open-positions">
-  <h2>Open Positions</h2>
-  <div class="accordion">
-    <div class="accordion-item active">
-      <button class="accordion-header">Funds Raising Volunteer – Arua City • Volunteer • Application: 16 Oct 2025 – 16 Nov 2025</button>
-      <div class="accordion-content">
-        <p>Support UNCP’s fundraising initiatives including campaigns, donor engagement, and proposals.</p>
-        <button class="donate-btn" id="viewJD">View JD</button>
-        <button class="donate-btn" id="applyBtn">Apply</button>
-      </div>
+<h2>Open Positions</h2>
+<div class="accordion">
+  <div class="accordion-item active">
+    <button class="accordion-header">Funds Raising Volunteer – Arua City • Volunteer • 16 Oct – 16 Nov 2025</button>
+    <div class="accordion-content">
+      <p>Support UNCP’s fundraising initiatives including campaigns, donor engagement, and proposals.</p>
+      <button class="donate-btn" id="viewJD">View JD</button>
+      <button class="donate-btn" id="applyBtn">Apply</button>
     </div>
   </div>
+</div>
 </section>
 
 <!-- Job Description Modal -->
 <div id="jdModal" class="modal">
-  <div class="modal-content">
-    <span class="close" id="jdClose">&times;</span>
-    <h2>Funds Raising Volunteer – Arua City</h2>
-    <p><strong>Application Period:</strong> 16 Oct – 16 Nov 2025</p>
-    <p><strong>Organization:</strong> UNCP</p>
-    <h3>Responsibilities</h3>
-    <ul>
-      <li>Support planning & execution of fundraising campaigns and events</li>
-      <li>Identify and engage donors, sponsors, partners</li>
-      <li>Assist in drafting proposals and donor communications</li>
-      <li>Maintain accurate records of contributions</li>
-      <li>Promote UNCP’s mission within the community</li>
-      <li>Collaborate with UNCP team on innovative fundraising strategies</li>
-    </ul>
-    <h3>Qualifications</h3>
-    <ul>
-      <li>Minimum Diploma in relevant field</li>
-      <li>Strong communication & interpersonal skills</li>
-      <li>Interest in fundraising & community engagement</li>
-      <li>Ability to work independently and in a team</li>
-      <li>Basic knowledge of fundraising strategies is an advantage</li>
-      <li>Commitment to UNCP values</li>
-    </ul>
-  </div>
+<div class="modal-content">
+<span class="close" id="jdClose">&times;</span>
+<h2>Funds Raising Volunteer – Arua City</h2>
+<p><strong>Application Period:</strong> 16 Oct – 16 Nov 2025</p>
+<h3>Responsibilities</h3>
+<ul>
+<li>Support planning & execution of fundraising campaigns and events</li>
+<li>Identify and engage donors, sponsors, partners</li>
+<li>Assist in drafting proposals and donor communications</li>
+<li>Maintain accurate records of contributions</li>
+<li>Promote UNCP’s mission within the community</li>
+<li>Collaborate with UNCP team on innovative fundraising strategies</li>
+</ul>
+<h3>Qualifications</h3>
+<ul>
+<li>Minimum Diploma in relevant field</li>
+<li>Strong communication & interpersonal skills</li>
+<li>Interest in fundraising & community engagement</li>
+<li>Ability to work independently and in a team</li>
+<li>Basic knowledge of fundraising strategies is an advantage</li>
+<li>Commitment to UNCP values</li>
+</ul>
+</div>
 </div>
 
 <!-- Multi-step Application Modal -->
 <div id="applyModal" class="modal">
-  <div class="modal-content">
-    <span class="close" id="applyClose">&times;</span>
-    <div id="autofillPrompt">
-      Previous application found.<br>
-      Do you want to use your previous data?<br><br>
-      <button onclick="usePrevious()">Yes, Auto-Fill</button>
-      <button onclick="skipPrevious()">No, Fill Manually</button>
-    </div>
-    <!-- Steps -->
-    <div class="step step1 active">
-      Step 1: Personal Info<br>Email, How did you hear about us?<br>
-      <div class="button-row"><button onclick="nextStep()">Next</button></div>
-    </div>
-    <div class="step step2">
-      Step 2: Experience (Add up to 4)<br>
-      <div class="button-row"><button onclick="prevStep()">Back</button><button onclick="nextStep()">Next</button></div>
-    </div>
-    <div class="step step3">
-      Step 3: Education (Add up to 4)<br>
-      <div class="button-row"><button onclick="prevStep()">Back</button><button onclick="nextStep()">Next</button></div>
-    </div>
-    <div class="step step4">
-      Step 4: Certifications (Optional)<br>
-      <div class="button-row"><button onclick="prevStep()">Back</button><button onclick="nextStep()">Next</button></div>
-    </div>
-    <div class="step step5">
-      Step 5: Languages (Multi-select)<br>
-      <div class="button-row"><button onclick="prevStep()">Back</button><button onclick="nextStep()">Next</button></div>
-    </div>
-    <div class="step step6">
-      Step 6: Skills (Select thematic skills)<br>
-      <div class="button-row"><button onclick="prevStep()">Back</button><button onclick="nextStep()">Next</button></div>
-    </div>
-    <div class="step step7">
-      Step 7: Application Questions<br>
-      <div class="button-row"><button onclick="prevStep()">Back</button><button onclick="submitForm()">Submit</button></div>
-    </div>
-  </div>
+<div class="modal-content">
+<span class="close" id="applyClose">&times;</span>
+<div id="autofillPrompt">
+Previous application found.<br>
+Do you want to use your previous data?<br><br>
+<button onclick="usePrevious()">Yes, Auto-Fill</button>
+<button onclick="skipPrevious()">No, Fill Manually</button>
+</div>
+
+<div class="step step1 active">Step 1: Personal Info<br>Email, How did you hear about us?<div class="button-row"><button onclick="nextStep()">Next</button></div></div>
+<div class="step step2">Step 2: Experience<br>Add up to 4 experiences<div class="button-row"><button onclick="prevStep()">Back</button><button onclick="nextStep()">Next</button></div></div>
+<div class="step step3">Step 3: Education<br>Add up to 4 entries<div class="button-row"><button onclick="prevStep()">Back</button><button onclick="nextStep()">Next</button></div></div>
+<div class="step step4">Step 4: Certifications (Optional)<div class="button-row"><button onclick="prevStep()">Back</button><button onclick="nextStep()">Next</button></div></div>
+<div class="step step5">Step 5: Languages<br>Multi-select including Lugbarati, Alur, Acholi, Kakwa, Ma'di<div class="button-row"><button onclick="prevStep()">Back</button><button onclick="nextStep()">Next</button></div></div>
+<div class="step step6">Step 6: Skills<br>Select thematic skills<div class="button-row"><button onclick="prevStep()">Back</button><button onclick="nextStep()">Next</button></div></div>
+<div class="step step7">Step 7: Application Questions<br>1500 character limit<div class="button-row"><button onclick="prevStep()">Back</button><button onclick="submitForm()">Submit</button></div></div>
+</div>
 </div>
 
 <footer>
-  <img src="logo.jpg" alt="UNCP Logo" />
-  <p>Contact: uncip2019@gmail.com | +256702398687 | +256779576538</p>
-  <div class="social-icons">
-    <a href="#">📘</a>
-    <a href="#">🐦</a>
-    <a href="#">📸</a>
-    <a href="#">▶️</a>
-    <a href="#">🎵</a>
-    <a href="#">💼</a>
-  </div>
-  <a href="#donate" class="donate-btn">Donate</a>
+<img src="logo.jpg" alt="UNCP Logo" />
+<p>Contact: uncip2019@gmail.com | +256702398687 | +256779576538</p>
+<div class="social-icons">
+<a href="#">📘</a><a href="#">🐦</a><a href="#">📸</a><a href="#">▶️</a><a href="#">🎵</a><a href="#">💼</a>
+</div>
+<a href="#donate" class="donate-btn">Donate</a>
 </footer>
 
 <button id="backToTop" title="Back to Top">↑</button>
 
 <script>
-  // Accordion
-  document.querySelectorAll('.accordion-header').forEach(btn => {
-    btn.addEventListener('click', () => { btn.parentElement.classList.toggle('active'); });
-  });
+// Accordion
+document.querySelectorAll('.accordion-header').forEach(btn => { btn.addEventListener('click', ()=>{ btn.parentElement.classList.toggle('active'); }); });
 
-  // Search
-  const searchIcon = document.getElementById('search-icon');
-  const searchBox = document.getElementById('search-box');
-  searchIcon.addEventListener('click', () => { searchBox.style.display = searchBox.style.display==='inline-block'?'none':'inline-block'; searchBox.focus(); });
+// Search
+const searchIcon = document.getElementById('search-icon');
+const searchBox = document.getElementById('search-box');
+searchIcon.addEventListener('click', ()=>{ searchBox.style.display = searchBox.style.display==='inline-block'?'none':'inline-block'; searchBox.focus(); });
 
-  // Back to top
-  const topButton = document.getElementById("backToTop");
-  window.onscroll = () => { topButton.style.display = (document.body.scrollTop>100 || document.documentElement.scrollTop>100)?'block':'none'; }
-  topButton.addEventListener("click", ()=>{ window.scrollTo({top:0,behavior:'smooth'}); });
+// Back to Top
+const topButton = document.getElementById("backToTop");
+window.onscroll = ()=>{ topButton.style.display = (document.body.scrollTop>100 || document.documentElement.scrollTop>100)?'block':'none'; }
+topButton.addEventListener("click", ()=>{ window.scrollTo({top:0,behavior:'smooth'}); });
 
-  // Modals
-  const jdModal = document.getElementById('jdModal');
-  const applyModal = document.getElementById('applyModal');
-  document.getElementById('viewJD').onclick = ()=>{ jdModal.style.display='block'; }
-  document.getElementById('jdClose').onclick = ()=>{ jdModal.style.display='none'; }
-  document.getElementById('applyBtn').onclick = ()=>{ applyModal.style.display='block'; showAutofillPrompt(); }
-  document.getElementById('applyClose').onclick = ()=>{ applyModal.style.display='none'; }
+// Modals
+const jdModal = document.getElementById('jdModal');
+const applyModal = document.getElementById('applyModal');
+document.getElementById('viewJD').onclick = ()=>{ jdModal.style.display='block'; }
+document.getElementById('jdClose').onclick = ()=>{ jdModal.style.display='none'; }
+document.getElementById('applyBtn').onclick = ()=>{ applyModal.style.display='block'; showAutofillPrompt(); }
+document.getElementById('applyClose').onclick = ()=>{ applyModal.style.display='none'; }
+window.onclick = (e)=>{ if(e.target==jdModal) jdModal.style.display='none'; if(e.target==applyModal) applyModal.style.display='none'; }
 
-  window.onclick = (e)=>{ if(e.target==jdModal) jdModal.style.display='none'; if(e.target==applyModal) applyModal.style.display='none'; }
-
-  // Multi-step form
-  let currentStep = 0;
-  const steps = applyModal.querySelectorAll('.step');
-  const autofillPrompt = document.getElementById('autofillPrompt');
-  const previousApplicant = { email:"applicant@example.com", heardFrom:"Social Media" };
-
-  function showAutofillPrompt(){ steps.forEach(s=>s.classList.remove('active')); autofillPrompt.style.display='block'; }
-  function usePrevious(){ alert("Previous data auto-filled."); autofillPrompt.style.display='none'; currentStep=0; showStep(currentStep); }
-  function skipPrevious(){ autofillPrompt.style.display='none'; currentStep=0; showStep(currentStep); }
-  function showStep(n){ steps.forEach(s=>s.classList.remove('active')); steps[n].classList.add('active'); }
-  function nextStep(){ if(currentStep<steps.length-1){ currentStep++; showStep(currentStep); } }
-  function prevStep(){ if(currentStep>0){ currentStep--; showStep(currentStep); } }
-  function submitForm(){ alert("Thank you, your application has been received."); currentStep=0; showStep(currentStep); applyModal.style.display='none'; }
-
+// Multi-step form
+let currentStep = 0;
+const steps = applyModal.querySelectorAll('.step');
+const autofillPrompt = document.getElementById('autofillPrompt');
+function showAutofillPrompt(){ steps.forEach(s=>s.classList.remove('active')); autofillPrompt.style.display='block'; }
+function usePrevious(){ alert("Previous data auto-filled."); autofillPrompt.style.display='none'; currentStep=0; showStep(currentStep); }
+function skipPrevious(){ autofillPrompt.style.display='none'; currentStep=0; showStep(currentStep); }
+function showStep(n){ steps.forEach(s=>s.classList.remove('active')); steps[n].classList.add('active'); }
+function nextStep(){ if(currentStep<steps.length-1){ currentStep++; showStep(currentStep); } }
+function prevStep(){ if(currentStep>0){ currentStep--; showStep(currentStep); } }
+function submitForm(){ alert("Thank you, your application has been received."); currentStep=0; showStep(currentStep); applyModal.style.display='none'; }
 </script>
 </body>
 </html>
